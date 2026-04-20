@@ -1,3 +1,4 @@
+import base64
 from pathlib import Path
 
 import numpy as np
@@ -8,6 +9,10 @@ from sklearn.neighbors import NearestNeighbors
 
 
 DATA_DIR = Path(__file__).parent / "data"
+WELCOME_VIDEO = Path("/Users/bztr1ng2l1ve/Downloads/4777126_Woman_Runner_3840x2160.mp4")
+WELCOME_FALLBACK_IMAGE = Path(
+    "/Users/bztr1ng2l1ve/.cursor/projects/Users-bztr1ng2l1ve-Desktop-ml-diet-twin-app/assets/image-f734546c-2013-4351-aaf2-4302d0c6611d.png"
+)
 
 
 @st.cache_data
@@ -175,11 +180,17 @@ def apply_custom_theme():
                 padding: 8px 10px;
                 margin-top: 6px;
                 margin-bottom: 8px;
+                color: #1d1d1f !important;
+            }
+            /* Tabs + tables: Streamlit theme can set light text on light bg (invisible rows). */
+            div[data-testid="stTabs"] [role="tabpanel"] {
+                color: #1d1d1f !important;
             }
             [data-testid="stTable"] table {
                 font-size: 0.95rem !important;
                 width: 100% !important;
                 border-collapse: collapse !important;
+                color: #1d1d1f !important;
             }
             [data-testid="stTable"] thead tr {
                 background: #f2f2f7 !important;
@@ -189,12 +200,23 @@ def apply_custom_theme():
                 padding: 10px 12px !important;
                 border-bottom: 1px solid #e8e8ed !important;
                 text-align: left !important;
+                color: #1d1d1f !important;
             }
             [data-testid="stTable"] tbody tr:nth-child(even) {
                 background: #fafafc !important;
             }
             [data-testid="stTable"] tbody tr:nth-child(odd) {
                 background: #ffffff !important;
+            }
+            [data-testid="stTable"] tbody tr:nth-child(even) td,
+            [data-testid="stTable"] tbody tr:nth-child(odd) td {
+                color: #1d1d1f !important;
+            }
+            [data-testid="stDataFrame"] {
+                color: #1d1d1f !important;
+            }
+            [data-testid="stDataFrame"] * {
+                --gdg-text-color: #1d1d1f !important;
             }
             .block-card {
                 background: var(--apple-bg-light);
@@ -343,6 +365,144 @@ def apply_custom_theme():
                 color: #005ecb;
                 margin-top: 0.15rem;
             }
+            .welcome-bleed {
+                position: fixed;
+                inset: 0;
+                width: 100vw;
+                height: 100svh;
+                margin: 0 !important;
+                z-index: 1;
+            }
+            .welcome-hero {
+                width: 100%;
+                height: 100%;
+                min-height: 100%;
+                border-radius: 0;
+                position: relative;
+                overflow: hidden;
+                margin-bottom: 0;
+                box-shadow: none;
+            }
+            .welcome-video {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: 0;
+            }
+            .welcome-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.28) 50%, rgba(0, 0, 0, 0.58) 100%);
+            }
+            .welcome-inner {
+                position: relative;
+                z-index: 2;
+                height: 100%;
+                color: #ffffff;
+                padding: 24px 28px;
+                display: flex;
+                flex-direction: column;
+            }
+            .welcome-top {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+                padding-bottom: 10px;
+            }
+            .welcome-brand {
+                font-size: 2.05rem;
+                font-weight: 700;
+                color: #ffffff;
+                text-align: left;
+            }
+            .welcome-nav {
+                display: flex;
+                gap: 34px;
+                font-size: 1.04rem;
+                font-weight: 600;
+            }
+            .welcome-nav span {
+                color: #ffffff;
+            }
+            .welcome-main {
+                display: grid;
+                grid-template-columns: 2.1fr 1fr;
+                gap: 24px;
+                flex: 1;
+                align-items: stretch;
+                margin-top: 42px;
+            }
+            .welcome-kicker {
+                font-size: 1.32rem;
+                font-weight: 600;
+                margin-top: 28px;
+                margin-left: 16px;
+                color: #ffffff;
+            }
+            .welcome-title {
+                margin-top: 10px;
+                font-size: 5rem;
+                line-height: 1.02;
+                font-weight: 800;
+                letter-spacing: -0.6px;
+                color: #ffffff;
+                margin-left: 16px;
+            }
+            .welcome-stats {
+                border-left: 1px solid rgba(255, 255, 255, 0.26);
+                padding-left: 26px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+            }
+            .welcome-stat {
+                padding: 28px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+                min-height: 22%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .welcome-stat-value {
+                font-size: 2.05rem;
+                font-weight: 700;
+                line-height: 1.15;
+                color: #ffffff;
+            }
+            .welcome-stat-label {
+                margin-top: 10px;
+                font-size: 1.22rem;
+                line-height: 1.45;
+                color: rgba(255, 255, 255, 0.86);
+            }
+            .welcome-inline-cta {
+                position: absolute;
+                left: 36px;
+                top: 49%;
+                transform: none;
+                z-index: 8;
+                min-width: 280px;
+                text-align: center;
+                background: rgba(255, 255, 255, 0.96);
+                color: #111111 !important;
+                border: 1px solid rgba(255, 255, 255, 1);
+                border-radius: 4px;
+                font-weight: 700;
+                font-size: 1.18rem;
+                letter-spacing: 0.4px;
+                padding: 16px 26px;
+                text-decoration: none !important;
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 8px 20px;
+            }
+            .welcome-inline-cta:hover {
+                background: #ffffff;
+                color: #111111 !important;
+            }
         </style>
         """,
         unsafe_allow_html=True,
@@ -463,6 +623,126 @@ def pick_workouts(gym_df: pd.DataFrame, home_workout: int, short_sessions: int, 
     return d.sort_values(by=["difficulty", "duration_min"]).head(weekly_count)
 
 
+@st.cache_data
+def get_welcome_bg_data_uri():
+    candidates = [
+        Path(__file__).parent / "assets" / "welcome_page.png",
+        WELCOME_FALLBACK_IMAGE,
+    ]
+    for image_path in candidates:
+        if image_path.exists():
+            encoded = base64.b64encode(image_path.read_bytes()).decode("ascii")
+            return f"data:image/png;base64,{encoded}"
+    return ""
+
+
+@st.cache_data
+def get_welcome_video_data_uri():
+    if not WELCOME_VIDEO.exists():
+        return ""
+    encoded = base64.b64encode(WELCOME_VIDEO.read_bytes()).decode("ascii")
+    return f"data:video/mp4;base64,{encoded}"
+
+
+def render_welcome_page():
+    params = st.query_params
+    clicked = params.get("welcome_start", "0") == "1"
+    if clicked:
+        params.clear()
+        return True
+
+    st.markdown(
+        """
+        <style>
+            /* Full-bleed welcome mode: remove Streamlit container gutters */
+            html, body, [data-testid="stAppViewContainer"] {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #111111 !important;
+                overflow: hidden !important;
+            }
+            [data-testid="stAppViewContainer"] > .main {
+                padding-top: 0 !important;
+            }
+            .main .block-container {
+                max-width: 100% !important;
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+            .stApp {
+                background: #111111 !important;
+                overflow-x: hidden !important;
+            }
+            .welcome-bleed {
+                margin-top: 0 !important;
+            }
+            /* Hide any leftover Streamlit buttons on welcome screen */
+            .stButton,
+            [data-testid="stFormSubmitButton"] {
+                display: none !important;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    video_uri = get_welcome_video_data_uri()
+    image_uri = get_welcome_bg_data_uri()
+    if image_uri:
+        fallback_style = f"background-image: url('{image_uri}'); background-size: cover; background-position: center center;"
+    else:
+        fallback_style = "background: linear-gradient(120deg, #1f2937, #0f172a);"
+    video_html = (
+        f'<video class="welcome-video" autoplay muted loop playsinline preload="auto"><source src="{video_uri}" type="video/mp4"></video>'
+        if video_uri
+        else ""
+    )
+
+    st.markdown(
+        f"""
+        <div class="welcome-bleed">
+            <div class="welcome-hero" style="{fallback_style}">
+                {video_html}
+                <div class="welcome-inner">
+                    <div class="welcome-top">
+                        <div class="welcome-brand">Diet Twin Planner</div>
+                    </div>
+                    <div class="welcome-main">
+                        <div>
+                            <div class="welcome-title">Achieve Your<br/>Fitness Goals</div>
+                            <div class="welcome-kicker">Customized for real results</div>
+                        </div>
+                        <div class="welcome-stats">
+                            <div class="welcome-stat">
+                                <div class="welcome-stat-value">Personalized Training Plans</div>
+                                <div class="welcome-stat-label">Built around your body, schedule, and goals</div>
+                            </div>
+                            <div class="welcome-stat">
+                                <div class="welcome-stat-value">Nutrition Guidance</div>
+                                <div class="welcome-stat-label">Simple meal strategies you can actually follow</div>
+                            </div>
+                            <div class="welcome-stat">
+                                <div class="welcome-stat-value">Progress Tracking</div>
+                                <div class="welcome-stat-label">Weekly check-ins and measurable results</div>
+                            </div>
+                            <div class="welcome-stat">
+                                <div class="welcome-stat-value">Expert Coaching</div>
+                                <div class="welcome-stat-label">Direct support to keep you accountable</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="welcome-inline-cta" href="?welcome_start=1">GET STARTED</a>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    return False
+
+
 def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     classifier = build_body_classifier(body_df)
 
@@ -573,7 +853,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         meal_table = meals[["meal_type", "food_name", "calories", "protein_g", "carbs_g", "fat_g"]].copy()
         meal_table.columns = ["Meal", "Food", "Calories", "Protein (g)", "Carbs (g)", "Fat (g)"]
         st.markdown('<div class="table-shell">', unsafe_allow_html=True)
-        st.table(meal_table)
+        st.dataframe(meal_table, use_container_width=True, hide_index=True)
         st.markdown('</div>', unsafe_allow_html=True)
         total_protein = meals["protein_g"].sum()
         st.markdown(
@@ -591,7 +871,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         workout_table = workouts[["exercise_name", "muscle_group", "difficulty", "equipment", "duration_min"]].copy()
         workout_table.columns = ["Exercise", "Muscle Group", "Difficulty", "Equipment", "Duration (min)"]
         st.markdown('<div class="table-shell">', unsafe_allow_html=True)
-        st.table(workout_table)
+        st.dataframe(workout_table, use_container_width=True, hide_index=True)
         st.markdown('</div>', unsafe_allow_html=True)
         avg_duration = workouts["duration_min"].mean() if not workouts.empty else 0
         st.markdown(
@@ -713,31 +993,35 @@ def render_onboarding_wizard():
     st.markdown(f'<div class="wizard-question">{prompt}</div>', unsafe_allow_html=True)
     st.markdown('<div class="wizard-helper">Tell us a bit about yourself so we can personalize your plan.</div>', unsafe_allow_html=True)
 
-    with st.form(f"onboarding_step_{current_step}", border=False):
-        if field == "age":
-            value = st.slider("Age", 16, 75, int(profile["age"]))
-            st.markdown(f'<div class="age-live-value">Age: {value}</div>', unsafe_allow_html=True)
-        elif field == "sex":
-            value = st.selectbox("Sex", ["M", "F"], index=0 if profile["sex"] == "M" else 1)
-        elif field == "height_cm":
-            value = st.slider("Height (cm)", 145, 210, int(float(profile["height_cm"])))
-        elif field == "weight_kg":
-            value = st.slider("Current weight (kg)", 40, 160, int(float(profile["weight_kg"])))
-        elif field == "goal_weight_kg":
-            value = st.slider("Goal weight (kg)", 40, 160, int(float(profile["goal_weight_kg"])))
-        elif field == "days_per_week":
-            value = st.slider("Workout days / week", 0, 7, int(profile["days_per_week"]))
-        else:
-            value = st.text_area(
-                "Lifestyle description",
-                value=profile["lifestyle_text"],
-                help="Include schedule, cravings, stress, sleep, equipment, and any injuries.",
-            )
+    # Use plain widgets + buttons (not st.form). Forms batch updates and two
+    # form_submit_buttons (Back/Next) often make "Next" look broken in Streamlit.
+    wkey = f"onb_{field}_{current_step}"
+    if field == "age":
+        value = st.slider("Age", 16, 75, int(profile["age"]), key=wkey)
+        st.markdown(f'<div class="age-live-value">Age: {value}</div>', unsafe_allow_html=True)
+    elif field == "sex":
+        value = st.selectbox("Sex", ["M", "F"], index=0 if profile["sex"] == "M" else 1, key=wkey)
+    elif field == "height_cm":
+        value = st.slider("Height (cm)", 145, 210, int(float(profile["height_cm"])), key=wkey)
+    elif field == "weight_kg":
+        value = st.slider("Current weight (kg)", 40, 160, int(float(profile["weight_kg"])), key=wkey)
+    elif field == "goal_weight_kg":
+        value = st.slider("Goal weight (kg)", 40, 160, int(float(profile["goal_weight_kg"])), key=wkey)
+    elif field == "days_per_week":
+        value = st.slider("Workout days / week", 0, 7, int(profile["days_per_week"]), key=wkey)
+    else:
+        value = st.text_area(
+            "Lifestyle description",
+            value=profile["lifestyle_text"],
+            help="Include schedule, cravings, stress, sleep, equipment, and any injuries.",
+            key=wkey,
+        )
 
-        c1, c2 = st.columns([1, 1])
-        back_clicked = c1.form_submit_button("Back", disabled=current_step == 0, type="secondary")
-        next_label = "Save and Generate Plan" if current_step == len(steps) - 1 else "Next"
-        next_clicked = c2.form_submit_button(next_label, type="primary")
+    c1, c2 = st.columns([1, 1])
+    next_label = "Save and Generate Plan" if current_step == len(steps) - 1 else "Next"
+    back_clicked = c1.button("Back", disabled=current_step == 0, type="secondary", key=f"onb_back_{current_step}")
+    next_clicked = c2.button(next_label, type="primary", key=f"onb_next_{current_step}")
+
     st.markdown("</div>", unsafe_allow_html=True)
 
     if back_clicked and current_step > 0:
@@ -767,6 +1051,14 @@ def main():
 
     if "profile" not in st.session_state:
         st.session_state["profile"] = None
+    if "welcome_seen" not in st.session_state:
+        st.session_state["welcome_seen"] = False
+
+    if not st.session_state["welcome_seen"]:
+        if render_welcome_page():
+            st.session_state["welcome_seen"] = True
+            st.rerun()
+        return
 
     st.markdown(
         """
