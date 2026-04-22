@@ -8,6 +8,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.py[cod]
 
 # Operating system specific files
 .DS_Store
@@ -25,3 +26,11 @@ Thumbs.db
 *.log
 tmp/
 temp/
+.pytest_cache/
+.mypy_cache/
+
+# Project specific ignores
+*.egg-info/
+.clean_push/
+Diet-Exercise-Plan-App/
+app_users.db
