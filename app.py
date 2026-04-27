@@ -1093,18 +1093,60 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         )
 
     with tab_workouts:
-        st.markdown('<div class="section-title">Recommended Weekly Lift Plan</div>', unsafe_allow_html=True)
-        workout_table = workouts[["exercise_name", "muscle_group", "difficulty", "equipment", "duration_min"]].copy()
-        workout_table.columns = ["Exercise", "Muscle Group", "Difficulty", "Equipment", "Duration (min)"]
+    st.markdown('<div class="section-title">Recommended Weekly Exercise Plan</div>', unsafe_allow_html=True)
+
+    if workouts.empty:
+        st.warning("No workout recommendations were found. Please update your profile and try again.")
+    else:
+        workout_table = workouts[
+            ["exercise_name", "muscle_group", "difficulty", "equipment", "duration_min"]
+        ].copy()
+
+        workout_table.columns = [
+            "Exercise",
+            "Muscle Group",
+            "Difficulty",
+            "Equipment",
+            "Duration (min)"
+        ]
+
+        # Add Day labels to make the output look like a weekly plan
+        workout_table.insert(
+            0,
+            "Day",
+            [f"Day {i + 1}" for i in range(len(workout_table))]
+        )
+
         st.markdown('<div class="table-shell">', unsafe_allow_html=True)
         st.dataframe(workout_table, use_container_width=True, hide_index=True)
         st.markdown('</div>', unsafe_allow_html=True)
-        avg_duration = workouts["duration_min"].mean() if not workouts.empty else 0
+
+        total_duration = workout_table["Duration (min)"].sum()
+        avg_duration = workout_table["Duration (min)"].mean()
+        equipment_needed = ", ".join(workout_table["Equipment"].dropna().unique())
+
+        st.markdown("### Weekly Workout Summary")
+        st.write(f"**Total weekly workout time:** {total_duration:.0f} minutes")
+        st.write(f"**Average session duration:** {avg_duration:.0f} minutes")
+        st.write(f"**Equipment needed:** {equipment_needed}")
+
+        if lifestyle["home_workout"]:
+            st.info("This plan prioritizes home-friendly exercises based on your profile.")
+
+        if lifestyle["short_sessions"]:
+            st.info("This plan keeps sessions shorter because you selected limited workout time.")
+
+        if lifestyle["injury_care"]:
+            st.warning(
+                "Recovery-sensitive mode: because you reported an injury or pain condition, "
+                "choose moderate intensity and avoid movements that cause discomfort."
+            )
+
         st.markdown(
-            f"""
+            """
             <div class="small-note">
-                Workouts honor schedule and equipment constraints.
-                Average session duration: <b>{avg_duration:.0f} minutes</b>.
+                This weekly exercise plan is generated based on your workout location,
+                available training time, weekly workout frequency, and lifestyle constraints.
             </div>
             """,
             unsafe_allow_html=True,
