@@ -1450,7 +1450,6 @@ def render_onboarding_wizard():
         "sleep_quality": "SQ",
         "health_conditions": "HC",
     }
-    days_to_activity = {v: k for k, v in activity_to_days.items()}
     params = st.query_params
     param_sex = str(params.get("onboarding_sex", "")).upper()
     param_height_raw = str(params.get("onboarding_height", "")).strip()
