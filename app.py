@@ -1092,7 +1092,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
             unsafe_allow_html=True,
         )
 
-    with tab_workouts:
+with tab_workouts:
     st.markdown('<div class="section-title">Recommended Weekly Exercise Plan</div>', unsafe_allow_html=True)
 
     if workouts.empty:
