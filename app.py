@@ -689,9 +689,11 @@ def pick_workouts(
     ]
     if "Shoulder injury" in health_conditions:
         avoid_muscles += ["shoulders", "chest", "triceps"]
+
         avoid_keywords += [
-            "press", "push", "raise", "dip",
-            "groin", "hip", "circle", "swing"
+        "press", "push", "raise", "dip",
+        "groin", "hip", "circle", "swing",
+        "cross", "rotation", "twist"
     ]
     if any(c in health_conditions for c in [
         "Type 2 Diabetes", "Hypertension", "Coronary Heart Disease",
