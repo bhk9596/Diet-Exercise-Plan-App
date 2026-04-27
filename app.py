@@ -703,12 +703,33 @@ def pick_workouts(
         d = d[~d["exercise_name"].str.lower().str.contains(pattern, na=False)]
 
     # fallback
+        # fallback
     if d.empty:
         d = gym_df.copy()
 
     weekly_count = min(max(days_per_week, 3), 6)
-    return d.sort_values(by=["difficulty", "duration_min"]).head(weekly_count)
+    d = d.sort_values(by=["difficulty", "duration_min"])
 
+    balanced_rows = []
+    used_muscles = set()
+
+    for _, row in d.iterrows():
+        muscle = row["muscle_group"]
+        if muscle not in used_muscles:
+            balanced_rows.append(row)
+            used_muscles.add(muscle)
+        if len(balanced_rows) >= weekly_count:
+            break
+
+    if len(balanced_rows) < weekly_count:
+        remaining = d[~d.index.isin([r.name for r in balanced_rows])]
+        for _, row in remaining.iterrows():
+            balanced_rows.append(row)
+            if len(balanced_rows) >= weekly_count:
+                break
+
+    return pd.DataFrame(balanced_rows).head(weekly_count)
+    
 @st.cache_data
 def get_welcome_bg_data_uri():
     candidates = [
