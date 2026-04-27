@@ -656,21 +656,30 @@ def pick_workouts(
     if short_sessions:
         d = d[d["duration_min"] <= 25]
 
-    # Injury-based adjustment
     avoid_muscles = []
-
-    if "Knee pain" in health_conditions or "Joint pain" in health_conditions:
-        avoid_muscles += ["quadriceps", "hamstrings", "calves", "glutes"]
-
+    avoid_keywords = []
+    if "Knee pain" in health_conditions or "Joint pain" in health_conditions or "Severe Arthritis" in health_conditions:
+        avoid_muscles += ["quadriceps", "hamstrings", "calves", "glutes", "adductors", "abductors"]
+        avoid_keywords += ["squat", "lunge", "leg", "jump", "run", "groiner", "hip"]
     if "Back pain" in health_conditions:
-        avoid_muscles += ["lower back", "lats", "traps"]
-
+        avoid_muscles += ["lower back", "lats", "traps", "abdominals"]
+        avoid_keywords += ["deadlift", "row", "crunch", "twist"]
     if "Shoulder injury" in health_conditions:
-        avoid_muscles += ["shoulders", "chest"]
-
+        avoid_muscles += ["shoulders", "chest", "triceps"]
+        avoid_keywords += ["press", "push", "raise", "dip"]
+    if any(c in health_conditions for c in [
+        "Type 2 Diabetes", "Hypertension", "Coronary Heart Disease",
+        "Chronic Kidney Disease", "Fatty Liver"
+    ]):
+        d = d[d["difficulty"] <= 2]
     if avoid_muscles:
-        d = d[~d["muscle_group"].isin(avoid_muscles)]
+        d = d[~d["muscle_group"].str.lower().isin([m.lower() for m in avoid_muscles])]
 
+    if avoid_keywords:
+        pattern = "|".join(avoid_keywords)
+        d = d[~d["exercise_name"].str.lower().str.contains(pattern, na=False)]
+
+    # fallback
     if d.empty:
         d = gym_df.copy()
 
