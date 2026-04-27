@@ -640,17 +640,42 @@ DIET_FEATURE_WEIGHTS = np.array(
 )
 
 
-def pick_workouts(gym_df: pd.DataFrame, home_workout: int, short_sessions: int, days_per_week: int):
+def pick_workouts(
+    gym_df: pd.DataFrame,
+    home_workout: int,
+    short_sessions: int,
+    days_per_week: int,
+    health_conditions=None,
+):
     d = gym_df.copy()
+    health_conditions = health_conditions or []
+
     if home_workout:
         d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+
     if short_sessions:
         d = d[d["duration_min"] <= 25]
+
+    # Injury-based adjustment
+    avoid_muscles = []
+
+    if "Knee pain" in health_conditions or "Joint pain" in health_conditions:
+        avoid_muscles += ["quadriceps", "hamstrings", "calves", "glutes"]
+
+    if "Back pain" in health_conditions:
+        avoid_muscles += ["lower back", "lats", "traps"]
+
+    if "Shoulder injury" in health_conditions:
+        avoid_muscles += ["shoulders", "chest"]
+
+    if avoid_muscles:
+        d = d[~d["muscle_group"].isin(avoid_muscles)]
+
     if d.empty:
         d = gym_df.copy()
+
     weekly_count = min(max(days_per_week, 3), 6)
     return d.sort_values(by=["difficulty", "duration_min"]).head(weekly_count)
-
 
 @st.cache_data
 def get_welcome_bg_data_uri():
@@ -997,7 +1022,13 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         num_meals=7, iterations=10000,
     )
 
-    workouts = pick_workouts(gym_df, lifestyle["home_workout"], lifestyle["short_sessions"], days_per_week)
+    workouts = pick_workouts(
+    gym_df,
+    lifestyle["home_workout"],
+    lifestyle["short_sessions"],
+    days_per_week,
+    profile.get("health_conditions", []),
+)
     bmi = weight_kg / ((height_cm / 100) ** 2)
     goal_progress = max(0.0, min(1.0, 1.0 - abs(goal_weight_kg - weight_kg) / max(weight_kg, 1)))
 
