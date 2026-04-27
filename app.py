@@ -646,90 +646,126 @@ def pick_workouts(
     short_sessions: int,
     days_per_week: int,
     health_conditions=None,
+    workout_time="30-45 minutes",
 ):
     d = gym_df.copy()
     health_conditions = health_conditions or []
+    conditions = [c.lower() for c in health_conditions]
 
     if home_workout:
         d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
 
-    if short_sessions:
+    if workout_time == "15-20 minutes":
         d = d[d["duration_min"] <= 25]
-
+    elif workout_time == "30-45 minutes":
+        d = d[(d["duration_min"] >= 20) & (d["duration_min"] <= 45)]
+    elif workout_time == "60+ minutes":
+        d = d[d["duration_min"] >= 30]
     avoid_muscles = []
     avoid_keywords = []
-    if "Knee pain" in health_conditions or "Joint pain" in health_conditions or "Severe Arthritis" in health_conditions:
-        avoid_muscles += ["quadriceps", "hamstrings", "calves", "glutes", "adductors", "abductors"]
-        avoid_keywords += ["squat", "lunge", "leg", "jump", "run", "groiner", "hip","kneeling"]
-    conditions = [c.lower() for c in health_conditions]
 
-    if "back pain" in conditions:
+    # Lower-body / joint limitations
+    if any(c in conditions for c in ["knee pain", "joint pain", "severe arthritis"]):
         avoid_muscles += [
-            "lower back",
-            "lats",
-            "traps",
-            "abdominals",
-            "adductors",
-            "abductors",
-            "glutes",
+            "quadriceps", "hamstrings", "calves", "glutes",
+            "adductors", "abductors", "lower back", "lats"
         ]
         avoid_keywords += [
-            "deadlift",
-            "row",
-            "twist",
-            "crunch",
-            "sit-up",
-            "back",
-            "groin",
-            "adductor",
-            "hip",
-            "cross-over",
-            "rotation",
-            "side leg",
-    ]
-    if "Shoulder injury" in health_conditions:
-        avoid_muscles += ["shoulders", "chest", "triceps"]
+            "squat", "lunge", "leg", "jump", "run",
+            "groin", "groiner", "hip", "kneeling",
+            "knee", "ankle", "calf", "swing",
+            "back", "stretch", "twist", "rotation", "cross"
+        ]
 
+    # Back / spine limitations
+    if "back pain" in conditions:
+        avoid_muscles += [
+            "lower back", "lats", "traps", "abdominals",
+            "adductors", "abductors", "glutes"
+        ]
         avoid_keywords += [
-        "press", "push", "raise", "dip",
-        "groin", "hip", "circle", "swing",
-        "cross", "rotation", "twist"
-    ]
-    if any(c in health_conditions for c in [
-        "Type 2 Diabetes", "Hypertension", "Coronary Heart Disease",
-        "Chronic Kidney Disease", "Fatty Liver"
-    ]):
-        d = d[d["difficulty"] <= 2]
-    if avoid_muscles:
-        d = d[~d["muscle_group"].str.lower().isin([m.lower() for m in avoid_muscles])]
+            "deadlift", "row", "twist", "crunch", "sit-up",
+            "back", "groin", "adductor", "hip",
+            "cross-over", "cross", "rotation", "side leg",
+            "swing", "stretch"
+        ]
 
+    # Upper-body / shoulder limitations
+    if "shoulder injury" in conditions:
+        avoid_muscles += [
+            "shoulders", "chest", "triceps"
+        ]
+        avoid_keywords += [
+            "press", "push", "push-up", "raise", "dip",
+            "shoulder", "chest", "tricep",
+            "groin", "hip", "circle", "swing",
+            "cross", "rotation", "twist"
+        ]
+
+    # Medical conditions: lower intensity
+    medical_conditions = [
+        "type 2 diabetes",
+        "dyslipidemia (high blood lipids)",
+        "pcos",
+        "fatty liver",
+        "coronary heart disease",
+        "chronic kidney disease",
+        "sleep apnea",
+        "hypertension",
+        "high uric acid",
+        "hypothyroidism",
+    ]
+
+    if any(c in conditions for c in medical_conditions):
+        d = d[d["difficulty"] <= 2]
+
+    # Apply muscle filtering
+    if avoid_muscles:
+        avoid_muscles_lower = [m.lower() for m in avoid_muscles]
+        d = d[~d["muscle_group"].str.lower().isin(avoid_muscles_lower)]
+
+    # Apply keyword filtering from exercise name
     if avoid_keywords:
         pattern = "|".join(avoid_keywords)
         d = d[~d["exercise_name"].str.lower().str.contains(pattern, na=False)]
 
-    # fallback
-        # fallback
+    # Safe fallback if filters remove too much
     if d.empty:
         d = gym_df.copy()
 
+        if home_workout:
+            d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+
+        if short_sessions:
+            d = d[d["duration_min"] <= 25]
+
+        if d.empty:
+            d = gym_df.copy()
+
     weekly_count = min(max(days_per_week, 3), 6)
+
+    # Balance output so the plan is not dominated by one muscle group
     d = d.sort_values(by=["difficulty", "duration_min"])
 
     balanced_rows = []
     used_muscles = set()
 
     for _, row in d.iterrows():
-        muscle = row["muscle_group"]
+        muscle = str(row["muscle_group"]).lower()
         if muscle not in used_muscles:
             balanced_rows.append(row)
             used_muscles.add(muscle)
+
         if len(balanced_rows) >= weekly_count:
             break
 
     if len(balanced_rows) < weekly_count:
-        remaining = d[~d.index.isin([r.name for r in balanced_rows])]
+        selected_indices = [r.name for r in balanced_rows]
+        remaining = d[~d.index.isin(selected_indices)]
+
         for _, row in remaining.iterrows():
             balanced_rows.append(row)
+
             if len(balanced_rows) >= weekly_count:
                 break
 
@@ -1086,6 +1122,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     lifestyle["short_sessions"],
     days_per_week,
     profile.get("health_conditions", []),
+    profile.get("workout_time", "30-45 minutes"),
 )
     bmi = weight_kg / ((height_cm / 100) ** 2)
     goal_progress = max(0.0, min(1.0, 1.0 - abs(goal_weight_kg - weight_kg) / max(weight_kg, 1)))
