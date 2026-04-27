@@ -532,6 +532,8 @@ def parse_lifestyle(profile: dict):
         "night_shift": int(schedule_type == "Night shift"),
         "sugar_craving": int(craving_level == "Often"),
         "home_workout": int(workout_location == "Home"),
+        "gym_workout": int(workout_location == "Gym"),
+        "both_workout": int(workout_location == "Both"),
         "vegetarian_pref": int(diet_preference == "Vegetarian"),
         "high_stress": int(stress_level == "High"),
         "short_sessions": int(workout_time == "15-20 minutes"),
@@ -643,6 +645,8 @@ DIET_FEATURE_WEIGHTS = np.array(
 def pick_workouts(
     gym_df: pd.DataFrame,
     home_workout: int,
+    gym_workout: int,
+    both_workout: int,
     short_sessions: int,
     days_per_week: int,
     health_conditions=None,
@@ -652,15 +656,31 @@ def pick_workouts(
     health_conditions = health_conditions or []
     conditions = [c.lower() for c in health_conditions]
 
-    if home_workout:
-        d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+    home_equipment = ["bodyweight", "dumbbell", "resistance_band", "bands"]
+    gym_equipment = [
+    "barbell", "machine", "cable", "bench",
+    "dumbbell", "kettlebell", "bodyweight"
+    ]
 
+    if home_workout:
+        d = d[d["equipment"].isin(home_equipment)]
+
+    elif gym_workout:
+        d = d[d["equipment"].isin(gym_equipment)]
+
+    elif both_workout:
+        d = d[d["equipment"].isin(list(set(home_equipment + gym_equipment)))]
+
+    # Workout time preference
     if workout_time == "15-20 minutes":
-        d = d[d["duration_min"] <= 25]
+        d = d[d["duration_min"] <= 20]
+
     elif workout_time == "30-45 minutes":
-        d = d[(d["duration_min"] >= 20) & (d["duration_min"] <= 45)]
+        d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
+
     elif workout_time == "60+ minutes":
-        d = d[d["duration_min"] >= 30]
+        d = d[d["duration_min"] >= 45]
+
     avoid_muscles = []
     avoid_keywords = []
 
@@ -724,7 +744,7 @@ def pick_workouts(
         avoid_muscles_lower = [m.lower() for m in avoid_muscles]
         d = d[~d["muscle_group"].str.lower().isin(avoid_muscles_lower)]
 
-    # Apply keyword filtering from exercise name
+    # Apply keyword filtering
     if avoid_keywords:
         pattern = "|".join(avoid_keywords)
         d = d[~d["exercise_name"].str.lower().str.contains(pattern, na=False)]
@@ -734,10 +754,22 @@ def pick_workouts(
         d = gym_df.copy()
 
         if home_workout:
-            d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+            d = d[d["equipment"].isin(home_equipment)]
 
-        if short_sessions:
-            d = d[d["duration_min"] <= 25]
+        elif gym_workout:
+            d = d[d["equipment"].isin(gym_equipment)]
+
+        elif both_workout:
+            d = d[d["equipment"].isin(list(set(home_equipment + gym_equipment)))]
+
+        if workout_time == "15-20 minutes":
+            d = d[d["duration_min"] <= 20]
+
+        elif workout_time == "30-45 minutes":
+            d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
+
+        elif workout_time == "60+ minutes":
+            d = d[d["duration_min"] >= 45]
 
         if d.empty:
             d = gym_df.copy()
@@ -752,6 +784,7 @@ def pick_workouts(
 
     for _, row in d.iterrows():
         muscle = str(row["muscle_group"]).lower()
+
         if muscle not in used_muscles:
             balanced_rows.append(row)
             used_muscles.add(muscle)
@@ -1119,6 +1152,8 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     workouts = pick_workouts(
     gym_df,
     lifestyle["home_workout"],
+    lifestyle["gym_workout"],
+    lifestyle["both_workout"],
     lifestyle["short_sessions"],
     days_per_week,
     profile.get("health_conditions", []),
