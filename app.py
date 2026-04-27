@@ -519,38 +519,233 @@ def apply_custom_theme():
     )
 
 
-def parse_lifestyle(text: str):
-    t = text.lower()
+def init_auth_db():
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    with sqlite3.connect(AUTH_DB) as conn:
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL
+            )
+            """
+        )
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS user_profiles (
+                user_id INTEGER PRIMARY KEY,
+                age INTEGER NOT NULL,
+                sex TEXT NOT NULL,
+                height_cm REAL NOT NULL,
+                weight_kg REAL NOT NULL,
+                goal_weight_kg REAL NOT NULL,
+                goal_timeline_weeks INTEGER NOT NULL,
+                days_per_week INTEGER NOT NULL,
+                schedule_type TEXT NOT NULL,
+                workout_location TEXT NOT NULL,
+                workout_time TEXT NOT NULL,
+                diet_preference TEXT NOT NULL,
+                craving_level TEXT NOT NULL,
+                stress_level TEXT NOT NULL,
+                sleep_quality TEXT NOT NULL,
+                health_conditions TEXT NOT NULL,
+                FOREIGN KEY(user_id) REFERENCES users(id)
+            )
+            """
+        )
+        conn.commit()
+
+
+def hash_password(password: str) -> str:
+    salt = os.urandom(16)
+    digest = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt, 200_000)
+    return f"{salt.hex()}:{digest.hex()}"
+
+
+def verify_password(password: str, stored_hash: str) -> bool:
+    try:
+        salt_hex, digest_hex = stored_hash.split(":")
+        salt = bytes.fromhex(salt_hex)
+        expected = bytes.fromhex(digest_hex)
+    except ValueError:
+        return False
+    actual = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt, 200_000)
+    return actual == expected
+
+
+def create_user(username: str, password: str):
+    if len(username.strip()) < 3:
+        return False, "Username must be at least 3 characters."
+    if len(password) < 6:
+        return False, "Password must be at least 6 characters."
+    try:
+        with sqlite3.connect(AUTH_DB) as conn:
+            conn.execute(
+                "INSERT INTO users (username, password_hash) VALUES (?, ?)",
+                (username.strip(), hash_password(password)),
+            )
+            conn.commit()
+    except sqlite3.IntegrityError:
+        return False, "That username already exists."
+    return True, "Account created successfully."
+
+
+def authenticate_user(username: str, password: str):
+    with sqlite3.connect(AUTH_DB) as conn:
+        row = conn.execute(
+            "SELECT id, password_hash FROM users WHERE username = ?",
+            (username.strip(),),
+        ).fetchone()
+    if not row:
+        return None
+    user_id, password_hash = row
+    return user_id if verify_password(password, password_hash) else None
+
+
+def save_user_profile(user_id: int, profile: dict):
+    with sqlite3.connect(AUTH_DB) as conn:
+        conn.execute(
+            """
+            INSERT INTO user_profiles (
+                user_id, age, sex, height_cm, weight_kg, goal_weight_kg, goal_timeline_weeks,
+                days_per_week, schedule_type, workout_location, workout_time, 
+                diet_preference, craving_level, stress_level, sleep_quality, health_conditions
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(user_id) DO UPDATE SET
+                age = excluded.age,
+                sex = excluded.sex,
+                height_cm = excluded.height_cm,
+                weight_kg = excluded.weight_kg,
+                goal_weight_kg = excluded.goal_weight_kg,
+                goal_timeline_weeks = excluded.goal_timeline_weeks,
+                days_per_week = excluded.days_per_week,
+                schedule_type = excluded.schedule_type,
+                workout_location = excluded.workout_location,
+                workout_time = excluded.workout_time,
+                diet_preference = excluded.diet_preference,
+                craving_level = excluded.craving_level,
+                stress_level = excluded.stress_level,
+                sleep_quality = excluded.sleep_quality,
+                health_conditions = excluded.health_conditions
+            """,
+            (
+                user_id,
+                profile["age"],
+                profile["sex"],
+                profile["height_cm"],
+                profile["weight_kg"],
+                profile["goal_weight_kg"],
+                profile.get("goal_timeline_weeks", 12),
+                profile["days_per_week"],
+                profile["schedule_type"],
+                profile["workout_location"],
+                profile["workout_time"],
+                profile["diet_preference"],
+                profile["craving_level"],
+                profile["stress_level"],
+                profile["sleep_quality"],
+                ",".join(profile.get("health_conditions", ["None"])),
+            ),
+        )
+        conn.commit()
+
+
+def load_user_profile(user_id: int):
+    with sqlite3.connect(AUTH_DB) as conn:
+        row = conn.execute(
+            """
+            SELECT age, sex, height_cm, weight_kg, goal_weight_kg, goal_timeline_weeks,
+            days_per_week, schedule_type, workout_location, workout_time, 
+            diet_preference, craving_level, stress_level, sleep_quality, health_conditions
+            FROM user_profiles
+            WHERE user_id = ?
+            """,
+            (user_id,),
+        ).fetchone()
+    if not row:
+        return None
+    keys = ["age", "sex", "height_cm", "weight_kg", "goal_weight_kg", "goal_timeline_weeks",
+            "days_per_week", "schedule_type", "workout_location", "workout_time",
+            "diet_preference", "craving_level", "stress_level", "sleep_quality", "health_conditions"
+    ]
+    profile = dict(zip(keys, row))
+    profile["health_conditions"] = profile["health_conditions"].split(",")
+    return profile
+
+def parse_lifestyle(profile: dict):
+    schedule_type = profile.get("schedule_type", "Regular daytime")
+    workout_location = profile.get("workout_location", "Home")
+    workout_time = profile.get("workout_time", "30-45 minutes")
+    diet_preference = profile.get("diet_preference", "No preference")
+    craving_level = profile.get("craving_level", "Sometimes")
+    stress_level = profile.get("stress_level", "Medium")
+    sleep_quality = profile.get("sleep_quality", "Average")
+    health_conditions = profile.get("health_conditions", ["None"])
+    
     tags = {
-        "night_shift": int(any(k in t for k in ["night shift", "overnight", "late shift"])),
-        "sugar_craving": int(any(k in t for k in ["sugar", "dessert", "sweet", "crave", "snack at night"])),
-        "home_workout": int(any(k in t for k in ["home", "apartment", "no gym"])),
-        "vegetarian_pref": int(any(k in t for k in ["vegetarian", "plant-based", "vegan"])),
-        "high_stress": int(any(k in t for k in ["stress", "busy", "anxious", "burnout", "overwhelmed"])),
-        "short_sessions": int(any(k in t for k in ["20 minutes", "15 minutes", "short workout", "quick workout"])),
-        "low_sleep": int(any(k in t for k in ["sleep 5", "sleep 4", "insomnia", "poor sleep"])),
-        "injury_care": int(any(k in t for k in ["injury", "knee pain", "back pain", "joint pain"])),
+        "night_shift": int(schedule_type == "Night shift"),
+        "sugar_craving": int(craving_level == "Often"),
+        "home_workout": int(workout_location == "Home"),
+        "vegetarian_pref": int(diet_preference == "Vegetarian"),
+        "high_stress": int(stress_level == "High"),
+        "short_sessions": int(workout_time == "15-20 minutes"),
+        "low_sleep": int(sleep_quality == "Poor"),
+        "injury_care": int(any(c in health_conditions for c in [
+            "Knee pain", "Back pain", "Shoulder injury", "Joint pain", "Severe Arthritis"
+        ])),
+        "medical_condition": int("None" not in health_conditions),
     }
     matched_cues = []
     if tags["night_shift"]:
-        matched_cues.append("you mentioned shift/late-hour routines")
+        matched_cues.append("you have a night shift schedule")
     if tags["short_sessions"]:
-        matched_cues.append("you prefer short workout windows")
+        matched_cues.append("you prefer short workout sessions")
     if tags["home_workout"]:
         matched_cues.append("you prefer home-based training")
     if tags["sugar_craving"]:
-        matched_cues.append("you flagged sugar/snack cravings")
+        matched_cues.append("you often crave sweets or snacks")
     if tags["high_stress"]:
-        matched_cues.append("you described high stress or burnout")
+        matched_cues.append("you have high stress")
     if tags["low_sleep"]:
-        matched_cues.append("you reported limited or poor sleep")
+        matched_cues.append("you reported poor sleep")
     if tags["injury_care"]:
-        matched_cues.append("you mentioned pain/injury constraints")
+        matched_cues.append("you have an injury or pain constraint")
+    if tags["medical_condition"]:
+        matched_cues.append("you have a medical condition")
     return {
         **tags,
         "matched_cues": matched_cues,
     }
+    
+def process_user_inputs(profile: dict):
+    age = int(profile["age"])
+    sex = profile["sex"]
+    height_cm = float(profile["height_cm"])
+    weight_kg = float(profile["weight_kg"])
+    goal_weight_kg = float(profile["goal_weight_kg"])
+    goal_timeline_weeks = int(profile.get("goal_timeline_weeks", 12))
+    days_per_week = int(profile["days_per_week"])
 
+    sex_bin = 1 if sex == "M" else 0
+    bmi = weight_kg / ((height_cm / 100) ** 2)
+    goal_direction = int(goal_weight_kg > weight_kg) - int(goal_weight_kg < weight_kg)
+    lifestyle = parse_lifestyle(profile)
+
+    return {
+        "age": age,
+        "sex": sex,
+        "sex_bin": sex_bin,
+        "height_cm": height_cm,
+        "weight_kg": weight_kg,
+        "goal_weight_kg": goal_weight_kg,
+        "goal_timeline_weeks": goal_timeline_weeks,
+        "days_per_week": days_per_week,
+        "bmi": bmi,
+        "goal_direction": goal_direction,
+        **lifestyle,
+    }
 
 def get_activity_multiplier(days_per_week: int, activity_df: pd.DataFrame):
     row = activity_df.loc[activity_df["days_per_week"] == days_per_week]
@@ -559,17 +754,20 @@ def get_activity_multiplier(days_per_week: int, activity_df: pd.DataFrame):
     return float(row.iloc[0]["multiplier"])
 
 
-def estimate_calories(age, sex, height_cm, weight_kg, goal_weight_kg, days_per_week, activity_df):
+def estimate_calories(age, sex, height_cm, weight_kg, goal_weight_kg, goal_timeline_weeks, days_per_week, activity_df):
     sex_offset = 5 if sex == "M" else -161
     bmr = 10 * weight_kg + 6.25 * height_cm - 5 * age + sex_offset
     tdee = bmr * get_activity_multiplier(days_per_week, activity_df)
     weight_gap = goal_weight_kg - weight_kg
+    weekly_change = weight_gap / goal_timeline_weeks
+    calorie_adjustment = weekly_change * 7700 / 7
     if weight_gap > 0:
-        target = tdee + min(450, 120 * weight_gap)
+        calorie_adjustment = min(450, calorie_adjustment)
     elif weight_gap < 0:
-        target = tdee - min(500, 130 * abs(weight_gap))
+        calorie_adjustment = max(-500, calorie_adjustment)
     else:
-        target = tdee
+        calorie_adjustment = 0
+    target = tdee + calorie_adjustment
     return max(1200, round(target))
 
 
@@ -888,21 +1086,25 @@ def render_welcome_page():
 def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     classifier = build_body_classifier(body_df)
 
-    age = int(profile["age"])
-    sex = profile["sex"]
-    height_cm = float(profile["height_cm"])
-    weight_kg = float(profile["weight_kg"])
-    goal_weight_kg = float(profile["goal_weight_kg"])
-    days_per_week = int(profile["days_per_week"])
-    lifestyle_text = profile["lifestyle_text"]
+    processed = process_user_inputs(profile)
 
-    lifestyle = parse_lifestyle(lifestyle_text)
-    sex_bin = 1 if sex == "M" else 0
+    age = processed["age"]
+    sex = processed["sex"]
+    height_cm = processed["height_cm"]
+    weight_kg = processed["weight_kg"]
+    goal_weight_kg = processed["goal_weight_kg"]
+    goal_timeline_weeks = processed["goal_timeline_weeks"]
+    days_per_week = processed["days_per_week"]
+    sex_bin = processed["sex_bin"]
+    bmi = processed["bmi"]
+    goal_direction = processed["goal_direction"]
+    lifestyle = processed
+    
     predicted_body_type = classifier.predict([[age, height_cm, weight_kg, sex_bin]])[0]
+    
     calorie_target = estimate_calories(
-        age, sex, height_cm, weight_kg, goal_weight_kg, days_per_week, activity_df
+    age, sex, height_cm, weight_kg, goal_weight_kg, goal_timeline_weeks, days_per_week, activity_df
     )
-    goal_direction = int(goal_weight_kg > weight_kg) - int(goal_weight_kg < weight_kg)
 
     user_vector = np.array(
         [
@@ -1072,10 +1274,10 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         else:
             st.markdown(
                 "- We used your body profile and goal to personalize the baseline plan.\n"
-                "- Add more daily routine details in the lifestyle box for deeper personalization."
+                "- Update your lifestyle choices in Edit Profile for deeper personalization."
             )
-        if lifestyle["injury_care"] or lifestyle["low_sleep"]:
-            st.info("Recovery-sensitive mode is on: prioritize consistency and moderate intensity.")
+        if lifestyle["injury_care"] or lifestyle["low_sleep"] or lifestyle["medical_condition"]:
+            st.info("Recovery-sensitive mode is on: prioritize consistency, moderate intensity, and safe food/training choices.")
 
 
 def render_onboarding_form(existing_profile=None):
@@ -1087,31 +1289,97 @@ def render_onboarding_form(existing_profile=None):
         height_cm = st.slider("Height (cm)", 145, 210, int(float(defaults.get("height_cm", 172))))
         weight_kg = st.slider("Current weight (kg)", 40, 160, int(float(defaults.get("weight_kg", 75))))
         goal_weight_kg = st.slider("Goal weight (kg)", 40, 160, int(float(defaults.get("goal_weight_kg", 68))))
+        goal_timeline_weeks = st.slider(
+            "How many weeks do you expect to reach your goal?", 4, 52, int(defaults.get("goal_timeline_weeks", 12))
+        )
         days_per_week = st.slider(
             "Workout days / week", 0, 7, int(defaults.get("days_per_week", 4))
         )
-        lifestyle_text = st.text_area(
-            "Lifestyle description",
-            value=defaults.get(
-                "lifestyle_text",
-                (
-                    "I work night shifts, only have 20 minutes to work out on weekdays, "
-                    "and prefer training at home. I also crave sweets late at night and have high stress."
-                ),
-            ),
-            help="Include schedule, cravings, stress, sleep, equipment, and any injuries.",
+        schedule_type = st.selectbox(
+            "What is your daily schedule like?",
+            ["Regular daytime", "Night shift", "Irregular schedule"],
+            index=["Regular daytime", "Night shift", "Irregular schedule"].index(defaults.get("schedule_type", "Regular daytime")),
+        )
+        workout_location = st.selectbox(
+            "Where do you prefer to work out?",
+            ["Gym", "Home", "Both"],
+            index=["Gym", "Home", "Both"].index(defaults.get("workout_location", "Home")),
+        )
+        workout_time = st.selectbox(
+            "How much time can you exercise per session?",
+            ["15-20 minutes", "30-45 minutes", "60+ minutes"],
+            index=["15-20 minutes", "30-45 minutes", "60+ minutes"].index(defaults.get("workout_time", "30-45 minutes")),
+        )
+        diet_preference = st.selectbox(
+            "Diet preference",
+            ["No preference", "Vegetarian", "High protein", "Low carb"],
+            index=["No preference", "Vegetarian", "High protein", "Low carb"].index(defaults.get("diet_preference", "No preference")),
+        )
+        craving_level = st.selectbox(
+            "Do you often crave sweets/snacks?",
+            ["Rarely", "Sometimes", "Often"],
+            index=["Rarely", "Sometimes", "Often"].index(defaults.get("craving_level", "Sometimes")),
+        )
+        stress_level = st.selectbox(
+            "Stress level",
+            ["Low", "Medium", "High"],
+            index=["Low", "Medium", "High"].index(defaults.get("stress_level", "Medium")),
+        )
+        sleep_quality = st.selectbox(
+            "Sleep quality",
+            ["Good", "Average", "Poor"],
+            index=["Good", "Average", "Poor"].index(defaults.get("sleep_quality", "Average")),
+        )
+        health_options = [
+            "None",
+            "Knee pain",
+            "Back pain",
+            "Shoulder injury",
+            "Joint pain",
+            "Type 2 Diabetes",
+            "Dyslipidemia (High blood lipids)",
+            "PCOS",
+            "Fatty Liver",
+            "Coronary Heart Disease",
+            "Chronic Kidney Disease",
+            "Sleep Apnea",
+            "Severe Arthritis",
+            "Hypertension",
+            "High Uric Acid",
+            "Hypothyroidism",
+        ]
+        default_conditions = defaults.get("health_conditions", ["None"])
+        if isinstance(default_conditions, str):
+            default_conditions = default_conditions.split(",")
+        default_conditions = [c for c in default_conditions if c in health_options]
+        if not default_conditions:
+            default_conditions = ["None"]
+        health_conditions = st.multiselect(
+            "Do you have any injuries or health conditions? (Select all that apply)",
+            health_options,
+            default=default_conditions,
         )
         submitted = st.form_submit_button("Save and Generate Plan")
     if not submitted:
         return None
+    if not health_conditions:
+        health_conditions = ["None"]
     return {
         "age": age,
         "sex": sex,
         "height_cm": height_cm,
         "weight_kg": weight_kg,
         "goal_weight_kg": goal_weight_kg,
+        "goal_timeline_weeks": goal_timeline_weeks,
         "days_per_week": days_per_week,
-        "lifestyle_text": lifestyle_text,
+        "schedule_type": schedule_type,
+        "workout_location": workout_location,
+        "workout_time": workout_time,
+        "diet_preference": diet_preference,
+        "craving_level": craving_level,
+        "stress_level": stress_level,
+        "sleep_quality": sleep_quality,
+        "health_conditions": health_conditions,
     }
 
 
@@ -1121,6 +1389,23 @@ def set_onboarding_sex(value: str) -> None:
 
 
 def render_onboarding_wizard():
+    steps = [
+        ("age", "How old are you?"),
+        ("sex", "What is your sex?"),
+        ("height_cm", "What is your height (cm)?"),
+        ("weight_kg", "What is your current weight (kg)?"),
+        ("goal_weight_kg", "What is your goal weight (kg)?"),
+        ("goal_timeline_weeks", "How many weeks do you expect to reach your goal?"),
+        ("days_per_week", "How many days per week can you work out?"),
+        ("schedule_type", "What is your daily schedule like?"),
+        ("workout_location", "Where do you prefer to work out?"),
+        ("workout_time", "How much time can you exercise per session?"),
+        ("diet_preference", "What is your diet preference?"),
+        ("craving_level", "Do you often crave sweets/snacks?"),
+        ("stress_level", "What is your stress level?"),
+        ("sleep_quality", "How is your sleep quality?"),
+        ("health_conditions", "Do you have any health conditions?"),
+    ]
     defaults = {
         "name": "",
         "age": 24,
@@ -1128,19 +1413,42 @@ def render_onboarding_wizard():
         "height_cm": 172,
         "weight_kg": 75,
         "goal_weight_kg": 68,
+        "goal_timeline_weeks": 12,
         "days_per_week": 4,
+        "schedule_type": "Regular daytime",
+        "workout_location": "Home",
+        "workout_time": "30-45 minutes",
+        "diet_preference": "No preference",
+        "craving_level": "Sometimes",
+        "stress_level": "Medium",
+        "sleep_quality": "Average",
+        "health_conditions": ["None"],
     }
-    activity_options = [
-        "Sedentary",
-        "Lightly Active",
-        "Moderately Active",
-        "Very Active",
-    ]
-    activity_to_days = {
-        "Sedentary": 1,
-        "Lightly Active": 3,
-        "Moderately Active": 5,
-        "Very Active": 6,
+
+    if "onboarding_step" not in st.session_state:
+        st.session_state["onboarding_step"] = 0
+    if "onboarding_profile" not in st.session_state:
+        st.session_state["onboarding_profile"] = defaults.copy()
+
+    current_step = st.session_state["onboarding_step"]
+    profile = st.session_state["onboarding_profile"]
+    field, prompt = steps[current_step]
+    labels = {
+        "age": "A",
+        "sex": "S",
+        "height_cm": "H",
+        "weight_kg": "W",
+        "goal_weight_kg": "G",
+        "goal_timeline_weeks": "T",
+        "days_per_week": "D",
+        "schedule_type": "ST",
+        "workout_location": "WL",
+        "workout_time": "WT",
+        "diet_preference": "DP",
+        "craving_level": "C",
+        "stress_level": "SL",
+        "sleep_quality": "SQ",
+        "health_conditions": "HC",
     }
     days_to_activity = {v: k for k, v in activity_to_days.items()}
     params = st.query_params
@@ -1651,6 +1959,110 @@ def render_onboarding_wizard():
         """,
         unsafe_allow_html=True,
     )
+    st.markdown(
+        f'<div class="wizard-step-label">{labels.get(field, "S")} Step {current_step + 1} of {len(steps)}</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(f'<div class="wizard-question">{prompt}</div>', unsafe_allow_html=True)
+    st.markdown('<div class="wizard-helper">Tell us a bit about yourself so we can personalize your plan.</div>', unsafe_allow_html=True)
+
+    with st.form(f"onboarding_step_{current_step}", border=False):
+        if field == "age":
+            value = st.slider("Age", 16, 75, int(profile["age"]))
+            st.markdown(f'<div class="age-live-value">Age: {value}</div>', unsafe_allow_html=True)
+        elif field == "sex":
+            value = st.selectbox("Sex", ["M", "F"], index=0 if profile["sex"] == "M" else 1)
+        elif field == "height_cm":
+            value = st.slider("Height (cm)", 145, 210, int(float(profile["height_cm"])))
+        elif field == "weight_kg":
+            value = st.slider("Current weight (kg)", 40, 160, int(float(profile["weight_kg"])))
+        elif field == "goal_weight_kg":
+            value = st.slider("Goal weight (kg)", 40, 160, int(float(profile["goal_weight_kg"])))
+        elif field == "goal_timeline_weeks":
+            value = st.slider("How many weeks do you expect to reach your goal?", 4, 52, int(profile["goal_timeline_weeks"]))
+        elif field == "days_per_week":
+            value = st.slider("Workout days / week", 0, 7, int(profile["days_per_week"]))
+        elif field == "schedule_type":
+            value = st.selectbox(
+                "What is your daily schedule like?",
+                ["Regular daytime", "Night shift", "Irregular schedule"],
+                index=["Regular daytime", "Night shift", "Irregular schedule"].index(profile["schedule_type"]),
+            )
+        elif field == "workout_location":
+            value = st.selectbox(
+                "Where do you prefer to work out?",
+                ["Gym", "Home", "Both"],
+                index=["Gym", "Home", "Both"].index(profile["workout_location"]),
+            )
+        elif field == "workout_time":
+            value = st.selectbox(
+                "How much time can you exercise per session?",
+                ["15-20 minutes", "30-45 minutes", "60+ minutes"],
+                index=["15-20 minutes", "30-45 minutes", "60+ minutes"].index(profile["workout_time"]),
+            )
+        elif field == "diet_preference":
+            value = st.selectbox(
+                "Diet preference",
+                ["No preference", "Vegetarian", "High protein", "Low carb"],
+                index=["No preference", "Vegetarian", "High protein", "Low carb"].index(profile["diet_preference"]),
+            )
+        elif field == "craving_level":
+            value = st.selectbox(
+                "Do you often crave sweets/snacks?",
+                ["Rarely", "Sometimes", "Often"],
+                index=["Rarely", "Sometimes", "Often"].index(profile["craving_level"]),
+            )
+        elif field == "stress_level":
+            value = st.selectbox(
+                "Stress level",
+                ["Low", "Medium", "High"],
+                index=["Low", "Medium", "High"].index(profile["stress_level"]),
+            )
+        elif field == "sleep_quality":
+            value = st.selectbox(
+                "Sleep quality",
+                ["Good", "Average", "Poor"],
+                index=["Good", "Average", "Poor"].index(profile["sleep_quality"]),
+            )
+        elif field == "health_conditions":
+            health_options = [
+                "None",
+                "Knee pain",
+                "Back pain",
+                "Shoulder injury",
+                "Joint pain",
+                "Type 2 Diabetes",
+                "Dyslipidemia (High blood lipids)",
+                "PCOS",
+                "Fatty Liver",
+                "Coronary Heart Disease",
+                "Chronic Kidney Disease",
+                "Sleep Apnea",
+                "Severe Arthritis",
+                "Hypertension",
+                "High Uric Acid",
+                "Hypothyroidism",
+            ]
+            default_conditions = profile.get("health_conditions", ["None"])
+            if isinstance(default_conditions, str):
+                default_conditions = default_conditions.split(",")
+            default_conditions = [c for c in default_conditions if c in health_options]
+            if not default_conditions:
+                default_conditions = ["None"]
+            value = st.multiselect(
+                "Do you have any of the following conditions? (Select all that apply)",
+                health_options,
+                default=default_conditions,
+            )
+        c1, c2 = st.columns([1, 1])
+        back_clicked = c1.form_submit_button("Back", disabled=current_step == 0, type="secondary")
+        next_label = "Save and Generate Plan" if current_step == len(steps) - 1 else "Next"
+        next_clicked = c2.form_submit_button(next_label, type="primary")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    if back_clicked and current_step > 0:
+        st.session_state["onboarding_step"] = current_step - 1
+        st.rerun()
 
     if show_gender_page:
         male_path, female_path = resolve_gender_avatar_paths()
@@ -1699,8 +2111,14 @@ def render_onboarding_wizard():
                 _m_html = _gender_pick_cell_html_emoji("👨", "Male", _ONBOARDING_GENDER_AVATAR_WIDTH_PX, "M")
             st.markdown(_m_html, unsafe_allow_html=True)
 
-        st.markdown("</div>", unsafe_allow_html=True)
-        return None
+        final_profile = st.session_state["onboarding_profile"].copy()
+        if not final_profile.get("health_conditions"):
+            final_profile["health_conditions"] = ["None"]
+        bmi = final_profile["weight_kg"] / ((final_profile["height_cm"] / 100) ** 2)
+        st.info(f"Captured BMI: **{bmi:.1f}**")
+        st.session_state.pop("onboarding_step", None)
+        st.session_state.pop("onboarding_profile", None)
+        return final_profile
 
     if "onboarding_stage" not in st.session_state:
         st.session_state["onboarding_stage"] = "height"
@@ -1710,9 +2128,34 @@ def render_onboarding_wizard():
     if st.session_state["onboarding_stage"] == "height":
         current_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
 
-        st.markdown('<div class="height-stage-lock"></div>', unsafe_allow_html=True)
-        st.markdown('<div class="basic-info-wrap" style="margin-top:-96px;">', unsafe_allow_html=True)
-        st.markdown('<div class="height-step-shell" style="padding-top:0; padding-bottom:0.35rem;">', unsafe_allow_html=True)
+def render_auth():
+    if "auth_mode" not in st.session_state:
+        st.session_state["auth_mode"] = "Login"
+    st.markdown(
+        """
+        <div class="fit-auth-wrap">
+            <div class="fit-auth-nav">
+                <div class="fit-auth-brand">Diet Twin Planner</div>
+                <div class="fit-auth-menu">
+                    <span>About</span>
+                    <span>Programs</span>
+                    <span>Results</span>
+                    <span class="fit-auth-menu-chip">Book a Plan</span>
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    left, right = st.columns([1.02, 1], gap="large")
+    with left:
+        st.image(
+            "img/test_img.png",
+            use_container_width=True,
+        )
+    with right:
+        st.markdown('<div class="fit-auth-right">', unsafe_allow_html=True)
+        st.markdown('<div class="fit-auth-kicker">HI, WELCOME TO DIET TWIN COACHING</div>', unsafe_allow_html=True)
         st.markdown(
             '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
