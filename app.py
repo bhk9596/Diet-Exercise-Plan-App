@@ -11,7 +11,9 @@ from PIL import Image
 import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, r2_score
+from sklearn.model_selection import train_test_split
 
 from diet_twin_finder import DietTwinFinder
 from meal_generator import MealGenerator
@@ -641,6 +643,153 @@ DIET_FEATURE_WEIGHTS = np.array(
     [1.0, 1.0, 1.0, 1.0, 2.3, 2.6, 2.2, 1.8, 2.2, 2.2, 1.5], dtype=float
 )
 
+LIFESTYLE_FIT_FEATURE_COLS = DIET_FEATURE_COLS
+
+
+@st.cache_resource
+def build_lifestyle_fit_model(diet_df: pd.DataFrame):
+    """Train a Random Forest model that predicts plan adherence from lifestyle signals."""
+    model_df = diet_df.dropna(subset=["adherence_score", "diet_pattern"]).copy()
+    x = model_df[LIFESTYLE_FIT_FEATURE_COLS].fillna(model_df[LIFESTYLE_FIT_FEATURE_COLS].median())
+    y_score = model_df["adherence_score"].clip(0, 100)
+    y_pattern = model_df["diet_pattern"].astype(str)
+
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y_score, test_size=0.2, random_state=42
+    )
+
+    regressor = RandomForestRegressor(
+        n_estimators=260,
+        max_depth=10,
+        min_samples_leaf=8,
+        random_state=42,
+        n_jobs=1,
+    )
+    regressor.fit(x_train, y_train)
+
+    classifier = RandomForestClassifier(
+        n_estimators=220,
+        max_depth=10,
+        min_samples_leaf=6,
+        random_state=42,
+        n_jobs=1,
+    )
+    classifier.fit(x, y_pattern)
+
+    predictions = regressor.predict(x_test)
+    metrics = {
+        "mae": float(mean_absolute_error(y_test, predictions)),
+        "r2": float(r2_score(y_test, predictions)),
+    }
+    importances = pd.Series(
+        regressor.feature_importances_,
+        index=LIFESTYLE_FIT_FEATURE_COLS,
+    ).sort_values(ascending=False)
+
+    return {
+        "regressor": regressor,
+        "classifier": classifier,
+        "feature_medians": x.median(),
+        "metrics": metrics,
+        "importances": importances,
+    }
+
+
+def predict_lifestyle_fit(model_bundle: dict, user_vector: np.ndarray, lifestyle: dict):
+    user_row = pd.DataFrame([user_vector], columns=LIFESTYLE_FIT_FEATURE_COLS)
+    user_row = user_row.fillna(model_bundle["feature_medians"])
+
+    regressor = model_bundle["regressor"]
+    classifier = model_bundle["classifier"]
+    user_array = user_row.to_numpy()
+    tree_predictions = np.array([tree.predict(user_array)[0] for tree in regressor.estimators_])
+    raw_score = float(np.clip(tree_predictions.mean(), 0, 100))
+    uncertainty = float(tree_predictions.std())
+
+    pattern = str(classifier.predict(user_row)[0])
+    pattern_probs = classifier.predict_proba(user_row)[0]
+    pattern_confidence = float(pattern_probs.max())
+
+    score_adjustment = 0
+    if lifestyle["low_sleep"]:
+        score_adjustment -= 6
+    if lifestyle["injury_care"]:
+        score_adjustment -= 5
+    if lifestyle["medical_condition"]:
+        score_adjustment -= 4
+    if lifestyle["short_sessions"]:
+        score_adjustment += 3
+    if lifestyle["home_workout"]:
+        score_adjustment += 2
+
+    fit_score = float(np.clip(raw_score + score_adjustment, 0, 100))
+    if fit_score >= 78:
+        label = "Strong fit"
+    elif fit_score >= 62:
+        label = "Good fit with a few friction points"
+    elif fit_score >= 48:
+        label = "Moderate fit"
+    else:
+        label = "Needs lifestyle support"
+
+    return {
+        "score": fit_score,
+        "raw_score": raw_score,
+        "label": label,
+        "pattern": pattern.replace("_", " ").title(),
+        "pattern_confidence": pattern_confidence,
+        "uncertainty": uncertainty,
+        "top_features": model_bundle["importances"].head(4),
+        "metrics": model_bundle["metrics"],
+    }
+
+
+def lifestyle_fit_recommendations(lifestyle: dict, fit_result: dict, calorie_target=None):
+    recommendations = []
+    daily_calorie_text = f" Keep the full day near {calorie_target} calories." if calorie_target else ""
+    if lifestyle["night_shift"]:
+        recommendations.append(
+            "Night shift schedule: eat your largest meal within 1-2 hours after waking, pack one planned high-protein snack for the middle of your shift, and make the final meal lighter so it is easier to sleep after work."
+        )
+    if lifestyle["sugar_craving"]:
+        recommendations.append(
+            "Sweet/snack cravings: pre-plan one controlled sweet option per day, such as Greek yogurt with fruit, a protein bar, or oatmeal with cinnamon. Eat it after a protein-rich meal instead of grazing between meals."
+        )
+    if lifestyle["high_stress"]:
+        recommendations.append(
+            "High-stress days: use a simple backup menu instead of improvising. Pick two repeatable meals, such as chicken/rice/vegetables or eggs/toast/fruit, and keep them ready for days when decision-making is low."
+        )
+    if lifestyle["short_sessions"]:
+        recommendations.append(
+            "Short workout sessions: use a 15-20 minute circuit with 3 rounds of 4 movements: one lower-body move, one push, one pull, and one core move. Rest 30-45 seconds between movements so the session stays short."
+        )
+    if lifestyle["home_workout"]:
+        recommendations.append(
+            "Home workout setup: keep the plan limited to bodyweight, dumbbells, or resistance bands. Put equipment in one visible spot and start with a 3-minute warmup so setup time does not become the reason to skip."
+        )
+    if lifestyle["low_sleep"]:
+        recommendations.append(
+            "Poor sleep: if you slept badly, switch that day's workout to an easy walk, mobility, or one light set of each planned exercise. Keep the habit, but avoid max-effort lifting or high-intensity intervals."
+        )
+    if lifestyle["injury_care"] or lifestyle["medical_condition"]:
+        recommendations.append(
+            "Injury or medical constraint: avoid exercises that trigger pain, keep intensity moderate, and choose controlled movements over jumping or heavy loading. For medical conditions, confirm major diet or training changes with a qualified clinician."
+        )
+    if not recommendations:
+        recommendations.append(
+            f"Low-friction routine: focus on three basics each day: hit the calorie target, include protein at every main meal, and complete the scheduled workout days.{daily_calorie_text}"
+        )
+
+    if fit_result["score"] < 62:
+        recommendations.append(
+            "Lower predicted adherence: for week 1, do not change everything at once. Choose one meal rule, such as protein at breakfast, and one exercise rule, such as completing the first 10 minutes of each workout."
+        )
+    else:
+        recommendations.append(
+            "Weekly execution target: review the plan every Sunday, choose the meals you will repeat, and schedule workouts on your calendar before the week starts."
+        )
+    return recommendations[:6]
+
 
 def pick_workouts(
     gym_df: pd.DataFrame,
@@ -1128,6 +1277,9 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     twin = diet_df.iloc[twin_indices[0]]
     similarity = float(1.0 - twin_distances[0])
 
+    lifestyle_model = build_lifestyle_fit_model(diet_df)
+    lifestyle_fit = predict_lifestyle_fit(lifestyle_model, user_vector, lifestyle)
+
     # --- Macro Target Calculation (scientific, goal-based) ---
     if goal_direction == -1:  # Weight Loss
         target_protein = (calorie_target * 0.40) / 4
@@ -1355,6 +1507,23 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
 
     with tab_lifestyle:
         st.markdown('<div class="section-title">Why This Plan Fits Your Lifestyle</div>', unsafe_allow_html=True)
+        f1, f2, f3 = st.columns(3)
+        f1.metric("Lifestyle Fit", f"{lifestyle_fit['score']:.0f} / 100", lifestyle_fit["label"])
+        f2.metric("Predicted Pattern", lifestyle_fit["pattern"])
+        f3.metric("Model Confidence", f"{lifestyle_fit['pattern_confidence']:.0%}")
+
+        st.markdown(
+            f"""
+            <div class="block-card">
+                <b>Machine learning output:</b> A Random Forest model predicts that this plan has a
+                <b>{lifestyle_fit['label'].lower()}</b> for your current routine. The raw model estimate was
+                <b>{lifestyle_fit['raw_score']:.0f}%</b>, then the app applied small safety adjustments for
+                sleep, injuries, and medical constraints that are not present in the historical training file.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
         cues = lifestyle["matched_cues"]
         if cues:
             st.markdown("- " + "\n- ".join([f"We adjusted recommendations because {c}." for c in cues[:5]]))
@@ -1363,6 +1532,45 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
                 "- We used your body profile and goal to personalize the baseline plan.\n"
                 "- Update your lifestyle choices in Edit Profile for deeper personalization."
             )
+
+        st.markdown("### Fit Recommendations")
+        for recommendation in lifestyle_fit_recommendations(lifestyle, lifestyle_fit, calorie_target):
+            st.markdown(f"- {recommendation}")
+
+        st.markdown("### Strongest Model Drivers")
+        driver_labels = {
+            "age": "Age",
+            "height_cm": "Height",
+            "weight_kg": "Weight",
+            "sex_bin": "Sex",
+            "night_shift": "Night shift schedule",
+            "sugar_craving": "Sweet/snack cravings",
+            "home_workout": "Home workout preference",
+            "vegetarian_pref": "Vegetarian preference",
+            "high_stress": "High stress",
+            "short_sessions": "Short workout sessions",
+            "goal_direction": "Goal direction",
+        }
+        driver_df = lifestyle_fit["top_features"].reset_index()
+        driver_df.columns = ["Feature", "Importance"]
+        driver_df["Feature"] = driver_df["Feature"].map(driver_labels).fillna(driver_df["Feature"])
+        driver_df["Importance"] = (driver_df["Importance"] * 100).round(1)
+        st.dataframe(driver_df, use_container_width=True, hide_index=True)
+
+        with st.expander("How the lifestyle model works"):
+            st.markdown(
+                f"""
+                The app trains a `RandomForestRegressor` on `data/diet_lifestyle_profiles.csv`.
+                Inputs are age, height, weight, sex, goal direction, and lifestyle flags such as
+                night shift, cravings, home workouts, vegetarian preference, high stress, and short sessions.
+
+                The target is historical `adherence_score`, so the output is an estimated likelihood that the
+                generated plan matches the user's routine. A companion `RandomForestClassifier` predicts the
+                closest diet pattern label. On the current holdout split, the adherence model has MAE
+                `{lifestyle_fit['metrics']['mae']:.1f}` points and R2 `{lifestyle_fit['metrics']['r2']:.2f}`.
+                """
+            )
+
         if lifestyle["injury_care"] or lifestyle["low_sleep"] or lifestyle["medical_condition"]:
             st.info("Recovery-sensitive mode is on: prioritize consistency, moderate intensity, and safe food/training choices.")
 
