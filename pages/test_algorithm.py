@@ -12,6 +12,7 @@ if str(parent_dir) not in sys.path:
 
 from diet_twin_finder import DietTwinFinder
 from meal_generator import MealGenerator
+from app import estimate_calories, get_activity_multiplier, DIET_FEATURE_COLS, DIET_FEATURE_WEIGHTS
 
 st.set_page_config(page_title="Algorithm Testing Dashboard", layout="wide")
 
@@ -28,9 +29,15 @@ def load_food_catalog():
     data_path = parent_dir / "data" / "clean_food_catalog.csv"
     return pd.read_csv(data_path)
 
+@st.cache_data
+def load_activity_multipliers():
+    data_path = parent_dir / "data" / "activity_multipliers.csv"
+    return pd.read_csv(data_path)
+
 try:
     df = load_profiles()
     food_df = load_food_catalog()
+    activity_df = load_activity_multipliers()
 except Exception as e:
     st.error(f"Failed to load dataset: {e}")
     st.stop()
@@ -107,12 +114,12 @@ user_input_map = {
     'vegetarian_pref': 1.0 if vegetarian_pref == "Yes" else 0.0,
     'home_workout': 1.0 if workout_pref == "Home Workout" else 0.0,
     'short_sessions': 1.0 if session_length == "Short (<30 mins)" else 0.0,
-    'goal_direction': 0.0 if goal == "Maintenance" else (1.0 if goal == "Weight Loss" else 2.0),
+    'goal_direction': 0.0 if goal == "Maintenance" else (-1.0 if goal == "Weight Loss" else 1.0),
     'adherence_score': adherence_score
 }
 
-# Construct the user vector ensuring strict column order required by the scaler
-user_vector = [user_input_map[col] for col in numerical_cols]
+# Construct the user vector ensuring strict column order matches DIET_FEATURE_COLS
+user_vector = [user_input_map[col] for col in DIET_FEATURE_COLS]
 
 st.markdown("---")
 
@@ -123,7 +130,7 @@ st.header("Twin Retrieval Results (Algorithm Output)")
 
 with st.spinner("Finding twins..."):
     # Initialize the finder with the selected metric
-    finder = DietTwinFinder(df, metric=metric)
+    finder = DietTwinFinder(df, metric=metric, feature_cols=DIET_FEATURE_COLS, weights=DIET_FEATURE_WEIGHTS)
     
     # Find the nearest twin(s)
     indices, distances = finder.find_twin(user_vector, k=k)
@@ -132,7 +139,7 @@ with st.spinner("Finding twins..."):
 for i, (idx, dist) in enumerate(zip(indices, distances)):
     twin_row = df.iloc[idx]
     
-    st.markdown(f"### Twin #{i+1}")
+    st.markdown(f"### Twin #{i+1} ({twin_row.get('profile_id', 'Unknown')})")
     
     # Convert Cosine Distance to Cosine Similarity (1 - distance)
     if metric == "cosine":
@@ -141,11 +148,61 @@ for i, (idx, dist) in enumerate(zip(indices, distances)):
     else:
         st.metric(label=f"Cost / Loss ({metric} distance)", value=f"{dist:.4f}")
         
+    # --- Calculate Macro Targets Scientifically ---
+    try:
+        # Determine goal weight based on selected goal
+        if goal == "Weight Loss":
+            goal_weight_kg = weight_kg - 5.0
+        elif goal == "Muscle Gain":
+            goal_weight_kg = weight_kg + 5.0
+        else:
+            goal_weight_kg = weight_kg
+            
+        # Default days_per_week for the testing dashboard
+        days_per_week = 4
+        
+        sex_str = "M" if sex == "Male" else "F"
+        calc_cals = estimate_calories(age, sex_str, height_cm, weight_kg, goal_weight_kg, days_per_week, activity_df)
+        
+        # Standard Macro Splits based on goal
+        if goal == "Weight Loss":
+            # High Protein: 40% Pro, 30% Carbs, 30% Fat
+            calc_pro = (calc_cals * 0.40) / 4
+            calc_carbs = (calc_cals * 0.30) / 4
+            calc_fat = (calc_cals * 0.30) / 9
+        elif goal == "Muscle Gain":
+            # High Carbs: 30% Pro, 50% Carbs, 20% Fat
+            calc_pro = (calc_cals * 0.30) / 4
+            calc_carbs = (calc_cals * 0.50) / 4
+            calc_fat = (calc_cals * 0.20) / 9
+        else:
+            # Balanced: 30% Pro, 40% Carbs, 30% Fat
+            calc_pro = (calc_cals * 0.30) / 4
+            calc_carbs = (calc_cals * 0.40) / 4
+            calc_fat = (calc_cals * 0.30) / 9
+
+        st.markdown("#### Scientifically Calculated Macro Targets")
+        m_col1, m_col2, m_col3, m_col4 = st.columns(4)
+        m_col1.metric("Calories", f"{calc_cals} kcal")
+        m_col2.metric("Protein", f"{calc_pro:.0f} g")
+        m_col3.metric("Carbs", f"{calc_carbs:.0f} g")
+        m_col4.metric("Fat", f"{calc_fat:.0f} g")
+        
+        # Save to session state for the sliders below
+        st.session_state["calc_cals"] = calc_cals
+        st.session_state["calc_pro"] = int(calc_pro)
+        st.session_state["calc_carbs"] = int(calc_carbs)
+        st.session_state["calc_fat"] = int(calc_fat)
+        
+    except Exception as e:
+        st.warning(f"Could not calculate macros: {e}")
+    # -------------------------------------------------------------------------
+        
     # Create a comparison dataframe for visualization
     comparison_df = pd.DataFrame({
-        'Feature': numerical_cols,
+        'Feature': DIET_FEATURE_COLS,
         'User Input': user_vector,
-        'Twin Data': [twin_row[col] for col in numerical_cols]
+        'Twin Data': [twin_row[col] for col in DIET_FEATURE_COLS]
     }).set_index('Feature')
     
     # Show comparison chart
@@ -163,11 +220,16 @@ st.markdown("---")
 st.header("Meal Plan Generator (Monte Carlo Search)")
 st.markdown("Input target macros. **Total Calories are automatically calculated** to ensure mathematical consistency.")
 
+# Use calculated defaults if available
+default_pro = st.session_state.get("calc_pro", 120)
+default_carbs = st.session_state.get("calc_carbs", 200)
+default_fat = st.session_state.get("calc_fat", 70)
+
 # Macro Input Sliders
 mcol1, mcol2, mcol3 = st.columns(3)
-target_pro = mcol1.slider("Target Protein (g)", 30, 250, 120, step=5)
-target_carbs = mcol2.slider("Target Carbs (g)", 50, 400, 200, step=10)
-target_fat = mcol3.slider("Target Fat (g)", 20, 150, 70, step=5)
+target_pro = mcol1.slider("Target Protein (g)", 30, 250, default_pro, step=5)
+target_carbs = mcol2.slider("Target Carbs (g)", 50, 400, default_carbs, step=10)
+target_fat = mcol3.slider("Target Fat (g)", 20, 150, default_fat, step=5)
 
 # Mathematically valid calorie calculation (Pro*4 + Carb*4 + Fat*9)
 calculated_cals = (target_pro * 4) + (target_carbs * 4) + (target_fat * 9)

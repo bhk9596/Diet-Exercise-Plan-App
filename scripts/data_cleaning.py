@@ -3,60 +3,6 @@ import json
 from pathlib import Path
 import os
 
-def parse_mfp_summary(summary_str):
-    """
-    Parses the JSON string in the summary column and extracts Calories, Protein, Carbs, and Fat.
-    """
-    try:
-        data = json.loads(summary_str)
-        # The JSON looks like: {"total": [{"name": "Calories", "value": 2001}, ...]}
-        totals = data.get("total", [])
-        
-        extracted = {"Calories": 0, "Protein": 0, "Carbs": 0, "Fat": 0}
-        for item in totals:
-            name = item.get("name")
-            value = item.get("value", 0)
-            if name in extracted:
-                extracted[name] = value
-        return pd.Series(extracted)
-    except Exception:
-        # If parsing fails or data is missing, return None
-        return pd.Series({"Calories": None, "Protein": None, "Carbs": None, "Fat": None})
-
-
-def clean_mfp_data(input_path, output_path):
-    print(f"Reading first 50,000 rows from {input_path}...")
-    # The MFP dataset doesn't have headers based on initial inspection.
-    df_mfp = pd.read_csv(
-        input_path, 
-        sep='\t', 
-        nrows=50000, 
-        header=None,
-        names=['user_id', 'date', 'meals', 'summary'],
-        on_bad_lines='skip'
-    )
-    
-    print("Parsing JSON summaries for macronutrients...")
-    # Apply the JSON parser to the summary column
-    macros_df = df_mfp['summary'].apply(parse_mfp_summary)
-    
-    # Combine the parsed macros with the user_id
-    combined_df = pd.concat([df_mfp[['user_id']], macros_df], axis=1)
-    
-    # Drop rows where parsing failed
-    combined_df = combined_df.dropna()
-    
-    print("Grouping by user_id and calculating means...")
-    # Group by user_id to get stable daily averages
-    user_profiles = combined_df.groupby('user_id').mean().reset_index()
-    
-    # Round the values to 2 decimal places for cleaner data
-    user_profiles = user_profiles.round(2)
-    
-    print(f"Saving MFP profiles to {output_path}...")
-    user_profiles.to_csv(output_path, index=False)
-    print(f"Done! Saved {len(user_profiles)} unique user profiles.\n")
-
 
 def clean_food_data(input_path, output_path):
     print(f"Reading Food.com dataset from {input_path}...")
@@ -96,19 +42,9 @@ if __name__ == "__main__":
     base_dir = Path(__file__).parent.parent
     data_dir = base_dir / "data"
     
-    # Task 1 Paths
-    mfp_input = data_dir / "mfp-diaries.tsv"
-    mfp_output = data_dir / "clean_mfp_profiles.csv"
-    
-    # Task 2 Paths
+    # Task Paths
     food_input = data_dir / "The Food.com.csv"
     food_output = data_dir / "clean_food_catalog.csv"
-    
-    # Execute Task 1
-    if mfp_input.exists():
-        clean_mfp_data(mfp_input, mfp_output)
-    else:
-        print(f"Error: Could not find {mfp_input}")
         
     # Execute Task 2
     if food_input.exists():

@@ -12,7 +12,9 @@ import pandas as pd
 import streamlit as st
 import streamlit.components.v1 as components
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import NearestNeighbors
+
+from diet_twin_finder import DietTwinFinder
+from meal_generator import MealGenerator
 
 
 DATA_DIR = Path(__file__).parent / "data"
@@ -28,7 +30,7 @@ def load_data():
     body_df = pd.read_csv(DATA_DIR / "nhanes_body_profiles.csv")
     diet_df = pd.read_csv(DATA_DIR / "diet_lifestyle_profiles.csv")
     gym_df = pd.read_csv(DATA_DIR / "megagym_subset.csv")
-    food_df = pd.read_csv(DATA_DIR / "food_catalog.csv")
+    food_df = pd.read_csv(DATA_DIR / "clean_food_catalog.csv")
     activity_df = pd.read_csv(DATA_DIR / "activity_multipliers.csv")
     return body_df, diet_df, gym_df, food_df, activity_df
 
@@ -579,44 +581,21 @@ def build_body_classifier(body_df: pd.DataFrame):
     return clf
 
 
-def retrieve_diet_twin(user_vector: np.ndarray, diet_df: pd.DataFrame):
-    feature_cols = [
-        "age",
-        "height_cm",
-        "weight_kg",
-        "sex_bin",
-        "night_shift",
-        "sugar_craving",
-        "home_workout",
-        "vegetarian_pref",
-        "high_stress",
-        "short_sessions",
-        "goal_direction",
-    ]
-    # Higher weights on lifestyle features to emphasize behavior-fit over pure body stats.
-    weights = np.array([1.0, 1.0, 1.0, 1.0, 2.3, 2.6, 2.2, 1.8, 2.2, 2.2, 1.5], dtype=float)
-    weighted_matrix = diet_df[feature_cols].values * weights
-    weighted_user = user_vector * weights
-    nn = NearestNeighbors(n_neighbors=3, metric="cosine")
-    nn.fit(weighted_matrix)
-    distances, indices = nn.kneighbors(weighted_user.reshape(1, -1))
-    best_idx = indices[0][0]
-    similarity = 1 - distances[0][0]
-    return diet_df.iloc[best_idx], float(similarity)
+# --- Diet Twin and Meal Generation ---
+# These capabilities are provided by the DietTwinFinder and MealGenerator classes.
+# See diet_twin_finder.py and meal_generator.py for the algorithm implementations.
 
-
-def pick_meals(food_df: pd.DataFrame, calorie_target: int, vegetarian_pref: int):
-    candidates = food_df.copy()
-    if vegetarian_pref:
-        candidates = candidates[candidates["vegetarian"] == 1]
-    candidates = candidates.sort_values(by="protein_g", ascending=False)
-    daily_budget = calorie_target
-    meal_plan = []
-    for meal_type, share in [("breakfast", 0.28), ("lunch", 0.34), ("dinner", 0.30), ("snack", 0.08)]:
-        target = daily_budget * share
-        row = (candidates.iloc[(candidates["calories"] - target).abs().argsort()]).head(1)
-        meal_plan.append(row.assign(meal_type=meal_type))
-    return pd.concat(meal_plan, ignore_index=True)
+# Shared constants for the k-NN feature space
+DIET_FEATURE_COLS = [
+    "age", "height_cm", "weight_kg", "sex_bin",
+    "night_shift", "sugar_craving", "home_workout",
+    "vegetarian_pref", "high_stress", "short_sessions",
+    "goal_direction",
+]
+# Weights applied AFTER StandardScaler — lifestyle flags dominate over body stats
+DIET_FEATURE_WEIGHTS = np.array(
+    [1.0, 1.0, 1.0, 1.0, 2.3, 2.6, 2.2, 1.8, 2.2, 2.2, 1.5], dtype=float
+)
 
 
 def pick_workouts(gym_df: pd.DataFrame, home_workout: int, short_sessions: int, days_per_week: int):
@@ -941,8 +920,37 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         ],
         dtype=float,
     )
-    twin, similarity = retrieve_diet_twin(user_vector, diet_df)
-    meals = pick_meals(food_df, calorie_target, lifestyle["vegetarian_pref"])
+
+    # --- k-NN Twin Retrieval (with StandardScaler + lifestyle weights) ---
+    finder = DietTwinFinder(
+        diet_df, metric="cosine",
+        feature_cols=DIET_FEATURE_COLS, weights=DIET_FEATURE_WEIGHTS,
+    )
+    twin_indices, twin_distances = finder.find_twin(user_vector, k=1)
+    twin = diet_df.iloc[twin_indices[0]]
+    similarity = float(1.0 - twin_distances[0])
+
+    # --- Macro Target Calculation (scientific, goal-based) ---
+    if goal_direction == -1:  # Weight Loss
+        target_protein = (calorie_target * 0.40) / 4
+        target_carbs = (calorie_target * 0.30) / 4
+        target_fat = (calorie_target * 0.30) / 9
+    elif goal_direction == 1:  # Muscle Gain
+        target_protein = (calorie_target * 0.30) / 4
+        target_carbs = (calorie_target * 0.50) / 4
+        target_fat = (calorie_target * 0.20) / 9
+    else:  # Maintenance
+        target_protein = (calorie_target * 0.30) / 4
+        target_carbs = (calorie_target * 0.40) / 4
+        target_fat = (calorie_target * 0.30) / 9
+
+    # --- Monte Carlo Meal Generation ---
+    generator = MealGenerator(food_df)
+    meals, meal_error, actual_totals = generator.generate_meal_plan(
+        calorie_target, target_protein, target_carbs, target_fat,
+        num_meals=7, iterations=10000,
+    )
+
     workouts = pick_workouts(gym_df, lifestyle["home_workout"], lifestyle["short_sessions"], days_per_week)
     bmi = weight_kg / ((height_cm / 100) ** 2)
     goal_progress = max(0.0, min(1.0, 1.0 - abs(goal_weight_kg - weight_kg) / max(weight_kg, 1)))
@@ -1013,17 +1021,26 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
 
     with tab_meals:
         st.markdown('<div class="section-title">Recommended Meal Structure</div>', unsafe_allow_html=True)
-        meal_table = meals[["meal_type", "food_name", "calories", "protein_g", "carbs_g", "fat_g"]].copy()
-        meal_table.columns = ["Meal", "Food", "Calories", "Protein (g)", "Carbs (g)", "Fat (g)"]
+        # Assign human-readable meal labels to the 7-dish plan
+        meal_labels = [
+            "Breakfast", "Breakfast",
+            "Lunch", "Lunch", "Lunch",
+            "Dinner", "Dinner",
+        ]
+        display_df = meals[["Name", "Calories", "Protein", "Carbs", "Fat"]].copy()
+        display_df.insert(0, "Meal", meal_labels[:len(display_df)])
+        display_df.columns = ["Meal", "Food", "Calories", "Protein (g)", "Carbs (g)", "Fat (g)"]
         st.markdown('<div class="table-shell">', unsafe_allow_html=True)
-        st.dataframe(meal_table, use_container_width=True, hide_index=True)
+        st.dataframe(display_df, use_container_width=True, hide_index=True)
         st.markdown('</div>', unsafe_allow_html=True)
-        total_protein = meals["protein_g"].sum()
         st.markdown(
             f"""
             <div class="small-note">
-                Meals are selected by calorie fit and protein priority.
-                Estimated daily protein from this meal set: <b>{total_protein:.0f} g</b>.
+                Meals optimized via Monte Carlo simulation (10,000 iterations).
+                Actual totals — Calories: <b>{actual_totals['Calories']:.0f}</b> |
+                Protein: <b>{actual_totals['Protein']:.0f} g</b> |
+                Carbs: <b>{actual_totals['Carbs']:.0f} g</b> |
+                Fat: <b>{actual_totals['Fat']:.0f} g</b>
             </div>
             """,
             unsafe_allow_html=True,
