@@ -1109,24 +1109,74 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
                 "Duration (min)"
             ]
 
-            workout_table.insert(
-                0,
-                "Day",
-                [f"Day {i + 1}" for i in range(len(workout_table))]
-            )
-
-            st.markdown('<div class="table-shell">', unsafe_allow_html=True)
-            st.dataframe(workout_table, use_container_width=True, hide_index=True)
-            st.markdown('</div>', unsafe_allow_html=True)
+            workout_table.insert(0, "Day", [f"Day {i + 1}" for i in range(len(workout_table))])
 
             total_duration = workout_table["Duration (min)"].sum()
             avg_duration = workout_table["Duration (min)"].mean()
             equipment_needed = ", ".join(workout_table["Equipment"].dropna().unique())
 
-            st.markdown("### Weekly Workout Summary")
-            st.write(f"**Total weekly workout time:** {total_duration:.0f} minutes")
-            st.write(f"**Average session duration:** {avg_duration:.0f} minutes")
-            st.write(f"**Equipment needed:** {equipment_needed}")
+            s1, s2, s3 = st.columns(3)
+            s1.metric("Total Weekly Time", f"{total_duration:.0f} min")
+            s2.metric("Average Session", f"{avg_duration:.0f} min")
+            s3.metric("Equipment", equipment_needed if equipment_needed else "None")
+
+            st.markdown("### Daily Workout Cards")
+
+            for _, row in workout_table.iterrows():
+                st.markdown(
+                    f"""
+                    <div style="
+                        background: white;
+                        border-radius: 16px;
+                        padding: 18px 22px;
+                        margin-bottom: 14px;
+                        box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 20px;
+                        border-left: 6px solid #0071e3;
+                    ">
+                        <div style="font-size: 0.9rem; color: #6e6e73; font-weight: 600;">
+                            {row["Day"]}
+                        </div>
+                        <div style="font-size: 1.35rem; font-weight: 700; margin-top: 4px;">
+                            {row["Exercise"]}
+                        </div>
+                        <div style="margin-top: 10px; color: #333;">
+                            <span style="
+                                display:inline-block;
+                                background:#f2f2f7;
+                                padding:5px 10px;
+                                border-radius:999px;
+                                margin-right:6px;
+                                font-size:0.9rem;
+                            ">
+                                Muscle: {row["Muscle Group"]}
+                            </span>
+                            <span style="
+                                display:inline-block;
+                                background:#f2f2f7;
+                                padding:5px 10px;
+                                border-radius:999px;
+                                margin-right:6px;
+                                font-size:0.9rem;
+                            ">
+                                Equipment: {row["Equipment"]}
+                            </span>
+                            <span style="
+                                display:inline-block;
+                                background:#f2f2f7;
+                                padding:5px 10px;
+                                border-radius:999px;
+                                font-size:0.9rem;
+                            ">
+                                {row["Duration (min)"]} min
+                            </span>
+                        </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+            with st.expander("View workout table"):
+                st.dataframe(workout_table, use_container_width=True, hide_index=True)
 
             if lifestyle["home_workout"]:
                 st.info("This plan prioritizes home-friendly exercises based on your profile.")
@@ -1139,16 +1189,6 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
                     "Recovery-sensitive mode: because you reported an injury or pain condition, "
                     "choose moderate intensity and avoid movements that cause discomfort."
                 )
-
-            st.markdown(
-                """
-                <div class="small-note">
-                    This weekly exercise plan is generated based on your workout location,
-                    available training time, weekly workout frequency, and lifestyle constraints.
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
 
 
 
