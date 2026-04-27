@@ -659,8 +659,8 @@ def pick_workouts(
     avoid_muscles = []
     avoid_keywords = []
     if "Knee pain" in health_conditions or "Joint pain" in health_conditions or "Severe Arthritis" in health_conditions:
-        avoid_muscles += ["quadriceps", "hamstrings", "calves", "glutes", "adductors", "abductors","kneeling"]
-        avoid_keywords += ["squat", "lunge", "leg", "jump", "run", "groiner", "hip"]
+        avoid_muscles += ["quadriceps", "hamstrings", "calves", "glutes", "adductors", "abductors"]
+        avoid_keywords += ["squat", "lunge", "leg", "jump", "run", "groiner", "hip","kneeling"]
     if "Back pain" in health_conditions:
         avoid_muscles += ["lower back", "lats", "traps", "abdominals"]
         avoid_keywords += ["deadlift", "row", "crunch", "twist"]
