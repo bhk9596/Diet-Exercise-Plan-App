@@ -34,3 +34,7 @@ temp/
 .clean_push/
 Diet-Exercise-Plan-App/
 app_users.db
+
+# Ignore massive raw datasets
+data/The Food.com.csv
+data/mfp-diaries.tsv
