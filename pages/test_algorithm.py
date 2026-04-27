@@ -1,0 +1,269 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+import sys
+from pathlib import Path
+
+# Add the parent directory to sys.path so we can import diet_twin_finder
+current_dir = Path(__file__).parent
+parent_dir = current_dir.parent
+if str(parent_dir) not in sys.path:
+    sys.path.append(str(parent_dir))
+
+from diet_twin_finder import DietTwinFinder
+from meal_generator import MealGenerator
+from app import estimate_calories, get_activity_multiplier, DIET_FEATURE_COLS, DIET_FEATURE_WEIGHTS
+
+st.set_page_config(page_title="Algorithm Testing Dashboard", layout="wide")
+
+st.title("Diet Recommendation Algorithm Testing")
+st.markdown("This dashboard perfectly reflects the 3-input architecture defined in our project methods.")
+
+@st.cache_data
+def load_profiles():
+    data_path = parent_dir / "data" / "diet_lifestyle_profiles.csv"
+    return pd.read_csv(data_path)
+
+@st.cache_data
+def load_food_catalog():
+    data_path = parent_dir / "data" / "clean_food_catalog.csv"
+    return pd.read_csv(data_path)
+
+@st.cache_data
+def load_activity_multipliers():
+    data_path = parent_dir / "data" / "activity_multipliers.csv"
+    return pd.read_csv(data_path)
+
+try:
+    df = load_profiles()
+    food_df = load_food_catalog()
+    activity_df = load_activity_multipliers()
+except Exception as e:
+    st.error(f"Failed to load dataset: {e}")
+    st.stop()
+
+# Extract numerical columns to ensure we build the user_vector in the exact correct order
+numerical_cols = df.select_dtypes(include=[np.number]).columns.tolist()
+if 'profile_id' in numerical_cols:
+    numerical_cols.remove('profile_id')
+if 'id' in numerical_cols:
+    numerical_cols.remove('id')
+
+# Sidebar: Hyperparameters
+st.sidebar.header("Hyperparameters")
+metric = st.sidebar.selectbox("Distance Metric", ["cosine", "euclidean", "manhattan"])
+k = st.sidebar.slider("Number of Twins (k)", min_value=1, max_value=10, value=1)
+
+st.markdown("---")
+
+# ==========================================
+# INPUT 1: Physical Measurements
+# ==========================================
+st.header("Input 1: Physical Measurements (Simulated)")
+col1_1, col1_2, col1_3, col1_4 = st.columns(4)
+
+age_min, age_max, age_mean = float(df['age'].min()), float(df['age'].max()), float(df['age'].mean())
+height_min, height_max, height_mean = float(df['height_cm'].min()), float(df['height_cm'].max()), float(df['height_cm'].mean())
+weight_min, weight_max, weight_mean = float(df['weight_kg'].min()), float(df['weight_kg'].max()), float(df['weight_kg'].mean())
+
+age = col1_1.slider("Age", min_value=age_min, max_value=age_max, value=age_mean, step=1.0)
+height_cm = col1_2.slider("Height (cm)", min_value=height_min, max_value=height_max, value=height_mean, step=0.1)
+weight_kg = col1_3.slider("Weight (kg)", min_value=weight_min, max_value=weight_max, value=weight_mean, step=0.1)
+sex = col1_4.selectbox("Biological Sex", ["Male", "Female"])
+
+st.markdown("---")
+
+# ==========================================
+# INPUT 2: Lifestyle Data
+# ==========================================
+st.header("Input 2: Lifestyle Data")
+st.caption("(模拟由大语言模型从用户文本中提取出的结构化数据)")
+
+col2_1, col2_2, col2_3 = st.columns(3)
+night_shift = col2_1.radio("Works Night Shifts", ["No", "Yes"])
+sugar_craving = col2_2.radio("Craves Sugar", ["No", "Yes"])
+high_stress = col2_3.radio("High Stress Level", ["No", "Yes"])
+
+col2_4, col2_5, col2_6 = st.columns(3)
+vegetarian_pref = col2_4.radio("Vegetarian Preference", ["No", "Yes"])
+workout_pref = col2_5.radio("Workout Preference", ["Gym", "Home Workout"])
+session_length = col2_6.radio("Session Length", ["Standard", "Short (<30 mins)"])
+
+st.markdown("---")
+
+# ==========================================
+# INPUT 3: Goals & Expectations
+# ==========================================
+st.header("Input 3: Goals & Expectations")
+col3_1, col3_2 = st.columns(2)
+
+goal = col3_1.selectbox("Goal Direction", ["Maintenance", "Weight Loss", "Muscle Gain"])
+
+adh_min, adh_max, adh_mean = float(df['adherence_score'].min()), float(df['adherence_score'].max()), float(df['adherence_score'].mean())
+adherence_score = col3_2.slider("Diet Adherence Score (Self-assessed)", min_value=adh_min, max_value=adh_max, value=adh_mean, step=1.0)
+
+# Build the feature dictionary mapping
+user_input_map = {
+    'age': age,
+    'height_cm': height_cm,
+    'weight_kg': weight_kg,
+    'sex_bin': 1.0 if sex == "Female" else 0.0,
+    'night_shift': 1.0 if night_shift == "Yes" else 0.0,
+    'sugar_craving': 1.0 if sugar_craving == "Yes" else 0.0,
+    'high_stress': 1.0 if high_stress == "Yes" else 0.0,
+    'vegetarian_pref': 1.0 if vegetarian_pref == "Yes" else 0.0,
+    'home_workout': 1.0 if workout_pref == "Home Workout" else 0.0,
+    'short_sessions': 1.0 if session_length == "Short (<30 mins)" else 0.0,
+    'goal_direction': 0.0 if goal == "Maintenance" else (-1.0 if goal == "Weight Loss" else 1.0),
+    'adherence_score': adherence_score
+}
+
+# Construct the user vector ensuring strict column order matches DIET_FEATURE_COLS
+user_vector = [user_input_map[col] for col in DIET_FEATURE_COLS]
+
+st.markdown("---")
+
+# ==========================================
+# OUTPUT: Twin Retrieval Results (k-NN)
+# ==========================================
+st.header("Twin Retrieval Results (Algorithm Output)")
+
+with st.spinner("Finding twins..."):
+    # Initialize the finder with the selected metric
+    finder = DietTwinFinder(df, metric=metric, feature_cols=DIET_FEATURE_COLS, weights=DIET_FEATURE_WEIGHTS)
+    
+    # Find the nearest twin(s)
+    indices, distances = finder.find_twin(user_vector, k=k)
+
+# Display Results
+for i, (idx, dist) in enumerate(zip(indices, distances)):
+    twin_row = df.iloc[idx]
+    
+    st.markdown(f"### Twin #{i+1} ({twin_row.get('profile_id', 'Unknown')})")
+    
+    # Convert Cosine Distance to Cosine Similarity (1 - distance)
+    if metric == "cosine":
+        similarity = 1.0 - dist
+        st.metric(label="Cosine Similarity Match", value=f"{similarity:.4f}")
+    else:
+        st.metric(label=f"Cost / Loss ({metric} distance)", value=f"{dist:.4f}")
+        
+    # --- Calculate Macro Targets Scientifically ---
+    try:
+        # Determine goal weight based on selected goal
+        if goal == "Weight Loss":
+            goal_weight_kg = weight_kg - 5.0
+        elif goal == "Muscle Gain":
+            goal_weight_kg = weight_kg + 5.0
+        else:
+            goal_weight_kg = weight_kg
+            
+        # Default days_per_week for the testing dashboard
+        days_per_week = 4
+        
+        sex_str = "M" if sex == "Male" else "F"
+        calc_cals = estimate_calories(age, sex_str, height_cm, weight_kg, goal_weight_kg, days_per_week, activity_df)
+        
+        # Standard Macro Splits based on goal
+        if goal == "Weight Loss":
+            # High Protein: 40% Pro, 30% Carbs, 30% Fat
+            calc_pro = (calc_cals * 0.40) / 4
+            calc_carbs = (calc_cals * 0.30) / 4
+            calc_fat = (calc_cals * 0.30) / 9
+        elif goal == "Muscle Gain":
+            # High Carbs: 30% Pro, 50% Carbs, 20% Fat
+            calc_pro = (calc_cals * 0.30) / 4
+            calc_carbs = (calc_cals * 0.50) / 4
+            calc_fat = (calc_cals * 0.20) / 9
+        else:
+            # Balanced: 30% Pro, 40% Carbs, 30% Fat
+            calc_pro = (calc_cals * 0.30) / 4
+            calc_carbs = (calc_cals * 0.40) / 4
+            calc_fat = (calc_cals * 0.30) / 9
+
+        st.markdown("#### Scientifically Calculated Macro Targets")
+        m_col1, m_col2, m_col3, m_col4 = st.columns(4)
+        m_col1.metric("Calories", f"{calc_cals} kcal")
+        m_col2.metric("Protein", f"{calc_pro:.0f} g")
+        m_col3.metric("Carbs", f"{calc_carbs:.0f} g")
+        m_col4.metric("Fat", f"{calc_fat:.0f} g")
+        
+        # Save to session state for the sliders below
+        st.session_state["calc_cals"] = calc_cals
+        st.session_state["calc_pro"] = int(calc_pro)
+        st.session_state["calc_carbs"] = int(calc_carbs)
+        st.session_state["calc_fat"] = int(calc_fat)
+        
+    except Exception as e:
+        st.warning(f"Could not calculate macros: {e}")
+    # -------------------------------------------------------------------------
+        
+    # Create a comparison dataframe for visualization
+    comparison_df = pd.DataFrame({
+        'Feature': DIET_FEATURE_COLS,
+        'User Input': user_vector,
+        'Twin Data': [twin_row[col] for col in DIET_FEATURE_COLS]
+    }).set_index('Feature')
+    
+    # Show comparison chart
+    st.bar_chart(comparison_df)
+    
+    # Show raw twin data for reference
+    with st.expander("View Raw Twin Profile"):
+        st.dataframe(twin_row.to_frame().T)
+
+st.markdown("---")
+
+# ==========================================
+# OUTPUT: Meal Generator (Monte Carlo)
+# ==========================================
+st.header("Meal Plan Generator (Monte Carlo Search)")
+st.markdown("Input target macros. **Total Calories are automatically calculated** to ensure mathematical consistency.")
+
+# Use calculated defaults if available
+default_pro = st.session_state.get("calc_pro", 120)
+default_carbs = st.session_state.get("calc_carbs", 200)
+default_fat = st.session_state.get("calc_fat", 70)
+
+# Macro Input Sliders
+mcol1, mcol2, mcol3 = st.columns(3)
+target_pro = mcol1.slider("Target Protein (g)", 30, 250, default_pro, step=5)
+target_carbs = mcol2.slider("Target Carbs (g)", 50, 400, default_carbs, step=10)
+target_fat = mcol3.slider("Target Fat (g)", 20, 150, default_fat, step=5)
+
+# Mathematically valid calorie calculation (Pro*4 + Carb*4 + Fat*9)
+calculated_cals = (target_pro * 4) + (target_carbs * 4) + (target_fat * 9)
+st.info(f"💡 **Calculated Target Calories:** {calculated_cals} kcal (Protein × 4 + Carbs × 4 + Fat × 9)")
+
+if st.button("Generate Meal Plan"):
+    with st.spinner("Running deep Monte Carlo simulation (10000 iterations)..."):
+        generator = MealGenerator(food_df)
+        best_plan_df, best_error, actual_totals = generator.generate_meal_plan(
+            calculated_cals, target_pro, target_carbs, target_fat, num_meals=7, iterations=10000
+        )
+        
+        st.success(f"Meal Plan Generated! Total Error Score: {best_error:.4f}")
+        
+        # Display Totals Comparison
+        st.write("### Target vs. Actual Macros")
+        tcol1, tcol2, tcol3, tcol4 = st.columns(4)
+        
+        # Removed delta arguments to avoid Streamlit UI confusion
+        tcol1.metric("Calories", f"{actual_totals['Calories']:.0f} kcal")
+        tcol2.metric("Protein", f"{actual_totals['Protein']:.0f} g")
+        tcol3.metric("Carbs", f"{actual_totals['Carbs']:.0f} g")
+        tcol4.metric("Fat", f"{actual_totals['Fat']:.0f} g")
+        
+        # Display Recommended Meals
+        st.write("### Recommended 7-Dish Daily Plan")
+        labels = [
+            "Breakfast (Dish 1)", "Breakfast (Dish 2)", 
+            "Lunch (Dish 1)", "Lunch (Dish 2)", "Lunch (Dish 3)", 
+            "Dinner (Dish 1)", "Dinner (Dish 2)"
+        ]
+        
+        for i, (idx, row) in enumerate(best_plan_df.iterrows()):
+            with st.container():
+                st.markdown(f"**{labels[i]}**: {row['Name']}")
+                st.caption(f"Calories: {row['Calories']} | Protein: {row['Protein']}g | Carbs: {row['Carbs']}g | Fat: {row['Fat']}g")
+                st.divider()

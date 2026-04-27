@@ -1,0 +1,40 @@
+# Python virtual environment (libraries and platform-specific binaries)
+.venv/
+venv/
+env/
+
+# Compiled Python files and caches (machine-generated)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+
+# Operating system specific files
+.DS_Store
+Thumbs.db
+
+# IDE settings (optional but recommended to keep local)
+.vscode/
+.idea/
+
+# Environment variables and secrets (NEVER push these to GitHub)
+.env
+.env.local
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
+.pytest_cache/
+.mypy_cache/
+
+# Project specific ignores
+*.egg-info/
+.clean_push/
+Diet-Exercise-Plan-App/
+app_users.db
+
+# Ignore massive raw datasets
+data/The Food.com.csv
+data/mfp-diaries.tsv
