@@ -2062,6 +2062,156 @@ def render_onboarding_wizard():
                 height: 0 !important;
                 pointer-events: none !important;
             }
+            /* Render health conditions with checkbox-pills that match radio pill style */
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] {
+                margin: 0 0 8px 0 !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] label {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 40px !important;
+                width: 100% !important;
+                padding: 9px 14px !important;
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+                cursor: pointer !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] label > div:first-child,
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] [data-baseweb="checkbox"] > div:first-child,
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] [role="checkbox"],
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] svg {
+                display: none !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] label p {
+                margin: 0 !important;
+                font-size: 1rem !important;
+                font-weight: 800 !important;
+                color: #334155 !important;
+                line-height: 1.25 !important;
+                text-align: center !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"]:has(input:checked) label {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"]:has(input:checked) label p {
+                color: #166534 !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] input[type="checkbox"] {
+                position: absolute !important;
+                opacity: 0 !important;
+                width: 0 !important;
+                height: 0 !important;
+                pointer-events: none !important;
+                display: none !important;
+            }
+            /* Match multi-select pills to the same style as other question choices */
+            body:has(.details-stage-lock) [data-testid="stPills"] [data-baseweb="button-group"] {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 8px 10px !important;
+                margin-top: 4px !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stPills"] button {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                color: #334155 !important;
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+                padding: 9px 14px !important;
+                min-height: 40px !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stPills"] button[aria-pressed="true"],
+            body:has(.details-stage-lock) [data-testid="stPills"] button[data-selected="true"] {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+                color: #166534 !important;
+            }
+            /* Fallback selectors for browsers/DOM variants */
+            .basic-info-wrap [data-testid*="stPill"] [data-baseweb="button-group"],
+            .basic-info-wrap [data-testid="stPills"] [data-baseweb="button-group"] {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 8px 10px !important;
+                margin-top: 4px !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] button,
+            .basic-info-wrap [data-testid="stPills"] button {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                color: #334155 !important;
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+                padding: 9px 14px !important;
+                min-height: 40px !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] [role="checkbox"],
+            .basic-info-wrap [data-testid*="stPill"] [role="radio"],
+            .basic-info-wrap [data-testid*="stPill"] [role="option"],
+            .basic-info-wrap [data-testid*="stPill"] [data-baseweb="button"] {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                color: #334155 !important;
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] button[aria-pressed="true"],
+            .basic-info-wrap [data-testid*="stPill"] button[data-selected="true"],
+            .basic-info-wrap [data-testid="stPills"] button[aria-pressed="true"],
+            .basic-info-wrap [data-testid="stPills"] button[data-selected="true"] {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+                color: #166534 !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] [aria-selected="true"],
+            .basic-info-wrap [data-testid*="stPill"] [aria-checked="true"],
+            .basic-info-wrap [data-testid*="stPill"] [data-baseweb="button"][data-selected="true"],
+            .basic-info-wrap [data-testid*="stPill"] [data-baseweb="button"][aria-pressed="true"] {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+                color: #166534 !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] * {
+                color: inherit !important;
+            }
+            /* Hard fallback for DOM variants: style all option-like buttons in details form */
+            body:has(.details-stage-lock) [data-testid="stForm"] button:not([kind]) {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                color: #334155 !important;
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+                padding: 9px 14px !important;
+                min-height: 40px !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] button:not([kind])[aria-pressed="true"],
+            body:has(.details-stage-lock) [data-testid="stForm"] button:not([kind])[aria-selected="true"],
+            body:has(.details-stage-lock) [data-testid="stForm"] button:not([kind])[aria-checked="true"],
+            body:has(.details-stage-lock) [data-testid="stForm"] [aria-pressed="true"] > button:not([kind]),
+            body:has(.details-stage-lock) [data-testid="stForm"] [aria-selected="true"] > button:not([kind]),
+            body:has(.details-stage-lock) [data-testid="stForm"] [aria-checked="true"] > button:not([kind]) {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+                color: #166534 !important;
+            }
+            .basic-info-wrap [data-testid="stMultiSelect"] [data-baseweb="tag"] {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.55) !important;
+                background: #dcfce7 !important;
+                color: #166534 !important;
+                font-weight: 700 !important;
+            }
             body:has(.details-stage-lock) [data-testid="stFormSubmitButton"] button[kind="primary"] {
                 background: #25d366 !important;
                 color: #ffffff !important;
@@ -2473,10 +2623,84 @@ def render_onboarding_wizard():
                     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }}
                 .stage {{
-                    min-height: 120px;
+                    min-height: 190px;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-start;
+                }}
+                .live-value {{
+                    text-align: center;
+                    font-size: 2.2rem;
+                    line-height: 1;
+                    font-weight: 900;
+                    color: #26314d;
+                    margin: 0.1rem 0 0.5rem 0;
+                }}
+                .live-value small {{
+                    font-size: 0.52em;
+                    font-weight: 750;
+                    color: #6b7280;
+                    margin-left: 5px;
+                }}
+                .live-bmi-card {{
+                    margin-top: 0.65rem;
+                    border: 1px solid rgba(31, 41, 55, 0.1);
+                    border-radius: 14px;
+                    padding: 0.6rem 0.75rem 0.65rem 0.75rem;
+                    background: #fbfcfc;
+                    width: min(92vw, 760px);
+                }}
+                .live-bmi-head {{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    gap: 8px;
+                    margin-bottom: 0.42rem;
+                }}
+                .live-bmi-title {{
+                    font-size: 1.02rem;
+                    font-weight: 800;
+                    color: #1f2937;
+                }}
+                .live-bmi-score {{
+                    font-size: 1.45rem;
+                    font-weight: 900;
+                    color: #1f2937;
+                }}
+                .live-bmi-score span {{
+                    font-size: 0.62em;
+                    font-weight: 800;
+                    margin-left: 4px;
+                    color: #16a34a;
+                }}
+                .live-bmi-scale {{
+                    display: flex;
+                    width: 100%;
+                    height: 10px;
+                    border-radius: 999px;
+                    overflow: hidden;
+                    margin: 0.15rem 0 0.35rem 0;
+                }}
+                .live-bmi-seg {{
+                    flex: 1 1 0;
+                    height: 100%;
+                }}
+                .live-bmi-seg-under {{ background: #7dd3fc; }}
+                .live-bmi-seg-ideal {{ background: #86efac; }}
+                .live-bmi-seg-over {{ background: #fde68a; }}
+                .live-bmi-seg-obese {{ background: #fca5a5; }}
+                .live-bmi-labels {{
+                    display: grid;
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                    gap: 4px;
+                    margin-top: 0.08rem;
+                }}
+                .live-bmi-labels span {{
+                    text-align: center;
+                    color: #9aa3b2;
+                    font-size: 0.86rem;
+                    font-weight: 700;
                 }}
                 .ruler {{
                     position: relative;
@@ -2534,9 +2758,28 @@ def render_onboarding_wizard():
         </head>
         <body>
             <div class="stage">
+                <div id="liveWeight" class="live-value"></div>
                 <div id="ruler" class="ruler">
                     <div id="track" class="track"></div>
                     <div class="pointer"></div>
+                </div>
+                <div class="live-bmi-card">
+                    <div class="live-bmi-head">
+                        <div class="live-bmi-title">Your BMI</div>
+                        <div id="liveBmiScore" class="live-bmi-score"></div>
+                    </div>
+                    <div class="live-bmi-scale">
+                        <div class="live-bmi-seg live-bmi-seg-under"></div>
+                        <div class="live-bmi-seg live-bmi-seg-ideal"></div>
+                        <div class="live-bmi-seg live-bmi-seg-over"></div>
+                        <div class="live-bmi-seg live-bmi-seg-obese"></div>
+                    </div>
+                    <div class="live-bmi-labels">
+                        <span>Underweight</span>
+                        <span>Ideal</span>
+                        <span>Overweight</span>
+                        <span>Obese</span>
+                    </div>
                 </div>
             </div>
             <script>
@@ -2546,6 +2789,8 @@ def render_onboarding_wizard():
                 const heightCm = {height_for_bmi:.1f};
                 const ruler = document.getElementById("ruler");
                 const track = document.getElementById("track");
+                const liveWeight = document.getElementById("liveWeight");
+                const liveBmiScore = document.getElementById("liveBmiScore");
                 let current = {current_weight:.1f};
                 let dragging = false;
                 let dragStartX = 0;
@@ -2588,9 +2833,15 @@ def render_onboarding_wizard():
 
                     const bmi = current / Math.pow(heightCm / 100, 2);
                     let bmiLabel = "Obese";
+                    let bmiColor = "#fca5a5";
                     if (bmi < 18.5) bmiLabel = "Underweight";
                     else if (bmi < 25) bmiLabel = "Ideal";
                     else if (bmi < 30) bmiLabel = "Overweight";
+                    if (bmiLabel === "Underweight") bmiColor = "#7dd3fc";
+                    else if (bmiLabel === "Ideal") bmiColor = "#86efac";
+                    else if (bmiLabel === "Overweight") bmiColor = "#fde68a";
+                    if (liveWeight) liveWeight.innerHTML = `${{current.toFixed(1)}}<small>kg</small>`;
+                    if (liveBmiScore) liveBmiScore.innerHTML = `${{bmi.toFixed(1)}}<span style="color:${{bmiColor}}">${{bmiLabel}}</span>`;
                 }}
                 function commitWeightToApp() {{
                     // Avoid top-level URL mutations from inside iframe.
@@ -2659,36 +2910,9 @@ def render_onboarding_wizard():
         </body>
         </html>
         """
-        components.html(weight_ruler_component_html, height=140, scrolling=False)
+        components.html(weight_ruler_component_html, height=220, scrolling=False)
         picked_weight = float(st.session_state.get("onboarding_weight_kg", current_weight))
         st.session_state["onboarding_weight_kg"] = float(picked_weight)
-        st.markdown(
-            f'<div id="weight-live-value" class="weight-value">{picked_weight:.1f}<small>kg</small></div>',
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            f"""
-                <div class="bmi-card">
-                    <div class="bmi-head">
-                        <div class="bmi-title">Your BMI</div>
-                        <div id="bmi-live-score" class="bmi-score">{bmi:.1f}<span>{bmi_label}</span></div>
-                    </div>
-                    <div class="bmi-scale-4">
-                        <div class="bmi-seg bmi-seg-under"></div>
-                        <div class="bmi-seg bmi-seg-ideal"></div>
-                        <div class="bmi-seg bmi-seg-over"></div>
-                        <div class="bmi-seg bmi-seg-obese"></div>
-                    </div>
-                    <div class="bmi-scale-labels">
-                        <span>Underweight</span>
-                        <span>Ideal</span>
-                        <span>Overweight</span>
-                        <span>Obese</span>
-                    </div>
-                </div>
-            """,
-            unsafe_allow_html=True,
-        )
         st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
         if st.button("Next", use_container_width=True, key="weight_next_btn"):
             st.session_state["onboarding_stage"] = "age"
@@ -3075,10 +3299,37 @@ def render_onboarding_wizard():
                     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }}
                 .stage {{
-                    min-height: 120px;
+                    min-height: 190px;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-start;
+                }}
+                .live-value {{
+                    text-align: center;
+                    font-size: 2.2rem;
+                    line-height: 1;
+                    font-weight: 900;
+                    color: #26314d;
+                    margin: 0.1rem 0 0.5rem 0;
+                }}
+                .live-value small {{
+                    font-size: 0.52em;
+                    font-weight: 750;
+                    color: #6b7280;
+                    margin-left: 5px;
+                }}
+                .live-goal {{
+                    margin-top: 0.6rem;
+                    border: 1px solid rgba(31, 41, 55, 0.1);
+                    border-radius: 12px;
+                    padding: 0.45rem 0.7rem 0.55rem 0.7rem;
+                    background: #fbfcfc;
+                    width: min(92vw, 760px);
+                    text-align: center;
+                    color: #1f2937;
+                    font-size: 1.02rem;
+                    font-weight: 800;
                 }}
                 .ruler {{
                     position: relative;
@@ -3136,10 +3387,12 @@ def render_onboarding_wizard():
         </head>
         <body>
             <div class="stage">
+                <div id="liveGoal" class="live-value"></div>
                 <div id="ruler" class="ruler">
                     <div id="track" class="track"></div>
                     <div class="pointer"></div>
                 </div>
+                <div id="liveGoalMeta" class="live-goal"></div>
             </div>
             <script>
                 const minW = 35.0, maxW = 250.0;
@@ -3147,6 +3400,8 @@ def render_onboarding_wizard():
                 const currentWeight = {current_weight:.2f};
                 const ruler = document.getElementById("ruler");
                 const track = document.getElementById("track");
+                const liveGoal = document.getElementById("liveGoal");
+                const liveGoalMeta = document.getElementById("liveGoalMeta");
                 let current = {current_goal_weight:.1f};
                 let dragging = false;
                 let dragStartX = 0;
@@ -3186,6 +3441,8 @@ def render_onboarding_wizard():
                     track.style.transform = `translateX(${{Math.round(tx)}}px)`;
                     const pct = ((currentWeight - current) / Math.max(currentWeight, 1)) * 100;
                     const mode = pct >= 0 ? "lose" : "gain";
+                    if (liveGoal) liveGoal.innerHTML = `${{current.toFixed(1)}}<small>kg</small>`;
+                    if (liveGoalMeta) liveGoalMeta.textContent = `Goal change: ${{Math.abs(pct).toFixed(1)}}% ${{mode}}`;
                 }}
                 function commitGoalWeightToApp() {{
                     // Avoid top-level URL mutations from inside iframe.
@@ -3241,27 +3498,9 @@ def render_onboarding_wizard():
         </body>
         </html>
         """
-        components.html(goal_ruler_component_html, height=140, scrolling=False)
+        components.html(goal_ruler_component_html, height=220, scrolling=False)
         picked_goal_weight = float(st.session_state.get("onboarding_goal_weight_kg", current_goal_weight))
         st.session_state["onboarding_goal_weight_kg"] = float(picked_goal_weight)
-        st.markdown(
-            f'<div id="goal-live-value" class="weight-value">{picked_goal_weight:.1f}<small>kg</small></div>',
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            f"""
-                <div class="bmi-card" style="margin-top:0.75rem;">
-                    <div class="bmi-head">
-                        <div class="bmi-title">Goal Progress</div>
-                        <div id="goal-percent-live" class="bmi-score">{abs(delta_pct):.1f}% {mode_label}</div>
-                    </div>
-                    <div id="goal-note-live" class="bmi-note" style="margin:0; color:#4b5563; font-size:0.98rem; font-weight:700;">
-                        You are aiming for a {abs(delta_pct):.1f}% {mode_label} change. We will support you all the way.
-                    </div>
-                </div>
-            """,
-            unsafe_allow_html=True,
-        )
         st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
         if st.button("Next", use_container_width=True, key="goal_weight_next_btn"):
             st.session_state["onboarding_stage"] = "goal_timeline"
@@ -3696,6 +3935,14 @@ def render_onboarding_wizard():
     def _safe_index(options: list[str], value: str) -> int:
         return options.index(value) if value in options else 0
 
+    def _normalize_health_conditions(selected: list[str] | None) -> list[str]:
+        values = [v for v in (selected or []) if v in health_options]
+        if not values:
+            return ["None"]
+        if "None" in values and len(values) > 1:
+            values = [v for v in values if v != "None"]
+        return values or ["None"]
+
     with st.form("basic_information_form"):
         schedule_type = st.radio(
             "What is your daily schedule like?",
@@ -3745,13 +3992,22 @@ def render_onboarding_wizard():
         default_conditions = [c for c in default_conditions if c in health_options]
         if not default_conditions:
             default_conditions = ["None"]
-        default_health_choice = default_conditions[0]
-        health_condition = st.radio(
-            "Do you have any injuries or health conditions?",
-            health_options,
-            index=_safe_index(health_options, default_health_choice),
-            horizontal=True,
-        )
+        st.markdown("**Do you have any injuries or health conditions?**")
+        picked_conditions: list[str] = []
+        pills_per_row = 4
+        for row_start in range(0, len(health_options), pills_per_row):
+            row_options = health_options[row_start : row_start + pills_per_row]
+            row_cols = st.columns(len(row_options), gap="small")
+            for idx, (col, option) in enumerate(zip(row_cols, row_options)):
+                option_key = f"onboarding_health_condition_{row_start + idx}"
+                with col:
+                    is_selected = st.checkbox(
+                        option,
+                        value=option in default_conditions,
+                        key=option_key,
+                    )
+                if is_selected:
+                    picked_conditions.append(option)
         submitted = st.form_submit_button("Next", type="primary", use_container_width=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
@@ -3767,7 +4023,7 @@ def render_onboarding_wizard():
     goal_timeline_weeks = int(st.session_state.get("onboarding_goal_weeks", 12))
     workout_time_to_days = {"15-20 minutes": 3, "30-45 minutes": 4, "60+ minutes": 5}
     days_per_week = int(workout_time_to_days.get(workout_time, defaults["days_per_week"]))
-    health_conditions = [health_condition] if health_condition else ["None"]
+    health_conditions = _normalize_health_conditions(picked_conditions)
     lifestyle_text = (
         f"{schedule_type.lower()} schedule. "
         f"Prefers {workout_location.lower()} workouts and {workout_time} sessions. "
@@ -3997,6 +4253,14 @@ def render_profile_form_ui(defaults: dict) -> dict | None:
     def _safe_index(options: list[str], value: str) -> int:
         return options.index(value) if value in options else 0
 
+    def _normalize_health_conditions(selected: list[str] | None) -> list[str]:
+        values = [v for v in (selected or []) if v in health_options]
+        if not values:
+            return ["None"]
+        if "None" in values and len(values) > 1:
+            values = [v for v in values if v != "None"]
+        return values or ["None"]
+
     with st.form("profile_form"):
         st.subheader("Tell us about you")
         age = st.slider("Age", 16, 75, int(defaults.get("age", 24)))
@@ -4049,13 +4313,22 @@ def render_profile_form_ui(defaults: dict) -> dict | None:
         default_conditions = [c for c in default_conditions if c in health_options]
         if not default_conditions:
             default_conditions = ["None"]
-        default_health_choice = default_conditions[0]
-        health_condition = st.radio(
-            "Do you have any injuries or health conditions?",
-            health_options,
-            index=_safe_index(health_options, default_health_choice),
-            horizontal=True,
-        )
+        st.markdown("**Do you have any injuries or health conditions?**")
+        picked_conditions: list[str] = []
+        pills_per_row = 4
+        for row_start in range(0, len(health_options), pills_per_row):
+            row_options = health_options[row_start : row_start + pills_per_row]
+            row_cols = st.columns(len(row_options), gap="small")
+            for idx, (col, option) in enumerate(zip(row_cols, row_options)):
+                option_key = f"profile_health_condition_{row_start + idx}"
+                with col:
+                    is_selected = st.checkbox(
+                        option,
+                        value=option in default_conditions,
+                        key=option_key,
+                    )
+                if is_selected:
+                    picked_conditions.append(option)
         lifestyle_text = st.text_area(
             "Lifestyle description",
             value=defaults.get(
@@ -4071,7 +4344,7 @@ def render_profile_form_ui(defaults: dict) -> dict | None:
 
     if not submitted:
         return None
-    health_conditions = [health_condition] if health_condition else ["None"]
+    health_conditions = _normalize_health_conditions(picked_conditions)
     return {
         "age": age,
         "sex": sex,
