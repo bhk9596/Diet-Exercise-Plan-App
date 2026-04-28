@@ -4771,7 +4771,13 @@ def render_plan_screen(plan_data: dict) -> None:
         days_per_week=plan_data["days_per_week"],
     )
     st.markdown("<div style='height:1.05rem'></div>", unsafe_allow_html=True)
-    st.progress(1.0, text="Goal alignment progress: 100%")
+    goal_progress = float(plan_data.get("goal_progress", 0.0))
+    goal_progress = max(0.0, min(1.0, goal_progress))
+    goal_percent = round(goal_progress * 100)
+    st.progress(
+        goal_progress,
+        text=f"Goal alignment progress: {goal_percent}%"
+    )
     st.markdown("<div style='height:1.2rem'></div>", unsafe_allow_html=True)
     render_twin_section(plan_data["twin"])
     tab_meals, tab_workouts, tab_lifestyle = st.tabs(["Diet Plan", "Lift Plan", "Lifestyle Fit"])
