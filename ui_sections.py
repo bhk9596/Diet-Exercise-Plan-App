@@ -3880,8 +3880,30 @@ def render_diet_plan_tab(meals: pd.DataFrame) -> None:
     )
 
 
-def render_lifestyle_fit_tab(lifestyle: dict) -> None:
+def render_lifestyle_fit_tab(
+    lifestyle: dict,
+    lifestyle_fit: dict | None = None,
+    recommendations: list[str] | None = None,
+) -> None:
     st.markdown('<div class="section-title">Why This Plan Fits Your Lifestyle</div>', unsafe_allow_html=True)
+    if lifestyle_fit:
+        f1, f2, f3 = st.columns(3)
+        f1.metric("Lifestyle Fit", f"{lifestyle_fit['score']:.0f} / 100", lifestyle_fit["label"])
+        f2.metric("Predicted Pattern", lifestyle_fit["pattern"])
+        f3.metric("Model Confidence", f"{lifestyle_fit['pattern_confidence']:.0%}")
+
+        st.markdown(
+            f"""
+            <div class="block-card">
+                <b>Machine learning output:</b> A Random Forest model predicts that this plan has a
+                <b>{str(lifestyle_fit['label']).lower()}</b> for your current routine. The raw model estimate was
+                <b>{lifestyle_fit['raw_score']:.0f}%</b>, then the app applied small safety adjustments for sleep,
+                injuries, and medical constraints.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
     cues = lifestyle.get("matched_cues", [])
     if cues:
         st.markdown("- " + "\n- ".join([f"We adjusted recommendations because {c}." for c in cues[:5]]))
@@ -3892,6 +3914,46 @@ def render_lifestyle_fit_tab(lifestyle: dict) -> None:
         )
     if lifestyle.get("injury_care") or lifestyle.get("low_sleep"):
         st.info("Recovery-sensitive mode is on: prioritize consistency and moderate intensity.")
+
+    if recommendations:
+        st.markdown("### Fit Recommendations")
+        for recommendation in recommendations:
+            st.markdown(f"- {recommendation}")
+
+    if lifestyle_fit:
+        st.markdown("### Strongest Model Drivers")
+        driver_labels = {
+            "age": "Age",
+            "height_cm": "Height",
+            "weight_kg": "Weight",
+            "sex_bin": "Sex",
+            "night_shift": "Night shift schedule",
+            "sugar_craving": "Sweet/snack cravings",
+            "home_workout": "Home workout preference",
+            "vegetarian_pref": "Vegetarian preference",
+            "high_stress": "High stress",
+            "short_sessions": "Short workout sessions",
+            "goal_direction": "Goal direction",
+        }
+        driver_df = lifestyle_fit["top_features"].reset_index()
+        driver_df.columns = ["Feature", "Importance"]
+        driver_df["Feature"] = driver_df["Feature"].map(driver_labels).fillna(driver_df["Feature"])
+        driver_df["Importance"] = (driver_df["Importance"] * 100).round(1)
+        _render_mint_table(driver_df)
+
+        with st.expander("How the lifestyle model works"):
+            st.markdown(
+                f"""
+                The app trains a `RandomForestRegressor` on `data/diet_lifestyle_profiles.csv`.
+                Inputs are age, height, weight, sex, goal direction, and lifestyle flags such as
+                night shift, cravings, home workouts, vegetarian preference, high stress, and short sessions.
+
+                The target is historical `adherence_score`, so the output is an estimated likelihood that the
+                generated plan matches the user's routine. A companion `RandomForestClassifier` predicts the
+                closest diet pattern label. On the current holdout split, the adherence model has MAE
+                `{lifestyle_fit['metrics']['mae']:.1f}` points and R2 `{lifestyle_fit['metrics']['r2']:.2f}`.
+                """
+            )
 
 
 def render_profile_form_ui(defaults: dict) -> dict | None:
@@ -4126,7 +4188,11 @@ def render_plan_screen(plan_data: dict) -> None:
     with tab_workouts:
         render_workout_plan_tab(plan_data["workouts"], plan_data["lifestyle"])
     with tab_lifestyle:
-        render_lifestyle_fit_tab(plan_data["lifestyle"])
+        render_lifestyle_fit_tab(
+            plan_data["lifestyle"],
+            plan_data.get("lifestyle_fit"),
+            plan_data.get("lifestyle_recommendations"),
+        )
     st.markdown(
         """
             </div>
