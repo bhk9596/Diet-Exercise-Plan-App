@@ -15,7 +15,7 @@ import streamlit.components.v1 as components
 
 
 _ONBOARDING_GENDER_AVATAR_WIDTH_PX = 288
-WELCOME_VIDEO = Path(r"c:\Users\Administrator\Downloads\4777126_Woman_Runner_3840x2160.mp4")
+WELCOME_VIDEO = Path(__file__).parent / "img" / "welcome_video.mp4"
 WELCOME_FALLBACK_IMAGE = Path(
     "/Users/bztr1ng2l1ve/.cursor/projects/Users-bztr1ng2l1ve-Desktop-ml-diet-twin-app/assets/image-f734546c-2013-4351-aaf2-4302d0c6611d.png"
 )
@@ -451,6 +451,10 @@ def apply_custom_theme_styles() -> None:
                 margin: 0 !important;
                 z-index: 1;
             }
+            .welcome-bleed,
+            .welcome-bleed * {
+                color: #ffffff !important;
+            }
             .welcome-hero {
                 width: 100%;
                 height: 100%;
@@ -654,10 +658,6 @@ def render_welcome_page_layout(video_uri: str, image_uri: str) -> None:
                 }
                 .welcome-bleed {
                     margin-top: 0 !important;
-                }
-                .stButton,
-                [data-testid="stFormSubmitButton"] {
-                    display: none !important;
                 }
             </style>
             """
@@ -1743,6 +1743,55 @@ def render_onboarding_wizard():
                 border: none !important;
                 box-shadow: none !important;
                 outline: none !important;
+            }
+            /* Cross-device fallback (no :has support): style onboarding Next buttons by wrapper classes */
+            .weight-page-shell [data-testid="stButton"] {
+                display: flex !important;
+                justify-content: center !important;
+            }
+            .weight-page-shell [data-testid="stButton"] > button {
+                width: min(92%, 720px) !important;
+                margin: 0 auto !important;
+                border-radius: 999px !important;
+                background: #25d366 !important;
+                border: none !important;
+                color: #ffffff !important;
+                font-size: 1.95rem !important;
+                font-weight: 900 !important;
+                min-height: 62px !important;
+                letter-spacing: 0 !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+                margin-top: 1.05rem !important;
+            }
+            .weight-page-shell [data-testid="stButton"] > button,
+            .weight-page-shell [data-testid="stButton"] > button * {
+                color: #ffffff !important;
+                font-weight: 900 !important;
+            }
+            .weight-page-shell [data-testid="stButton"] > button:hover,
+            .weight-page-shell [data-testid="stButton"] > button:focus,
+            .weight-page-shell [data-testid="stButton"] > button:focus-visible {
+                background: #22c55e !important;
+                color: #ffffff !important;
+                border: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+            .basic-info-wrap [data-testid="stFormSubmitButton"] {
+                display: flex !important;
+                justify-content: center !important;
+            }
+            .basic-info-wrap [data-testid="stFormSubmitButton"] button[kind="primary"] {
+                width: min(92%, 720px) !important;
+                border-radius: 999px !important;
+                background: #25d366 !important;
+                border: none !important;
+                color: #ffffff !important;
+                font-weight: 900 !important;
+                font-size: 1.95rem !important;
+                min-height: 62px !important;
+                margin-top: 1.05rem !important;
             }
             body:has(.weight-stage-lock) [data-testid="stButton"],
             body:has(.age-stage-lock) [data-testid="stButton"],
@@ -2997,6 +3046,7 @@ def render_onboarding_wizard():
         </html>
         """
         components.html(age_wheel_component_html, height=360, scrolling=False)
+        st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
         if st.button("Next", use_container_width=True, key="age_next_btn"):
             today = date.today()
             by = int(st.session_state.get("onboarding_birth_year", today.year - int(defaults["age"])))
@@ -3016,6 +3066,7 @@ def render_onboarding_wizard():
             st.session_state["onboarding_age"] = age_years
             st.session_state["onboarding_stage"] = "goal_weight"
             st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-card
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-page-shell
         return None
@@ -3565,6 +3616,7 @@ def render_onboarding_wizard():
         </html>
         """
         components.html(goal_time_component_html, height=380, scrolling=False)
+        st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
         if st.button("Next", use_container_width=True, key="goal_time_next_btn"):
             goal_y = int(st.session_state.get("onboarding_goal_year", default_goal_year))
             goal_m = int(st.session_state.get("onboarding_goal_month", default_goal_month))
@@ -3585,6 +3637,7 @@ def render_onboarding_wizard():
             )
             st.session_state["onboarding_stage"] = "plan_intro"
             st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-card
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-page-shell
         return None
@@ -3634,9 +3687,11 @@ def render_onboarding_wizard():
             """,
             unsafe_allow_html=True,
         )
+        st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
         if st.button("Next", use_container_width=True, key="plan_intro_next_btn"):
             st.session_state["onboarding_stage"] = "details"
             st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-page-shell
         return None
 
