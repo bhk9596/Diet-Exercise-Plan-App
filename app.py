@@ -210,7 +210,13 @@ def build_lifestyle_fit_model(diet_df: pd.DataFrame):
     }
 
 
-def predict_lifestyle_fit(model_bundle: dict, user_vector: np.ndarray, lifestyle: dict):
+def predict_lifestyle_fit(
+    model_bundle: dict,
+    user_vector: np.ndarray,
+    lifestyle: dict,
+    twin_adherence_score: float | None = None,
+    twin_similarity: float = 0.0,
+):
     user_row = pd.DataFrame([user_vector], columns=LIFESTYLE_FIT_FEATURE_COLS)
     user_row = user_row.fillna(model_bundle["feature_medians"])
 
@@ -236,7 +242,16 @@ def predict_lifestyle_fit(model_bundle: dict, user_vector: np.ndarray, lifestyle
     if lifestyle["home_workout"]:
         score_adjustment += 2
 
-    fit_score = float(np.clip(raw_score + score_adjustment, 0, 100))
+    adjusted_score = float(np.clip(raw_score + score_adjustment, 0, 100))
+    if twin_adherence_score is None or pd.isna(twin_adherence_score):
+        fit_score = adjusted_score
+        twin_weight = 0.0
+        twin_adherence = None
+    else:
+        twin_adherence = float(np.clip(twin_adherence_score, 0, 100))
+        twin_weight = float(np.clip(twin_similarity, 0, 1)) * 0.30
+        fit_score = float(np.clip((adjusted_score * (1 - twin_weight)) + (twin_adherence * twin_weight), 0, 100))
+
     if fit_score >= 78:
         label = "Strong fit"
     elif fit_score >= 62:
@@ -249,9 +264,12 @@ def predict_lifestyle_fit(model_bundle: dict, user_vector: np.ndarray, lifestyle
     return {
         "score": fit_score,
         "raw_score": raw_score,
+        "adjusted_score": adjusted_score,
         "label": label,
         "pattern": pattern.replace("_", " ").title(),
         "pattern_confidence": pattern_confidence,
+        "twin_adherence_score": twin_adherence,
+        "twin_influence": twin_weight,
         "top_features": model_bundle["importances"].head(4),
         "metrics": model_bundle["metrics"],
     }
@@ -300,6 +318,10 @@ def lifestyle_fit_recommendations(lifestyle: dict, fit_result: dict, calorie_tar
     else:
         recommendations.append(
             "Weekly execution target: review the plan every Sunday, choose the meals you will repeat, and schedule workouts on your calendar before the week starts."
+        )
+    if fit_result.get("twin_adherence_score") is not None:
+        recommendations.append(
+            f"Diet twin signal: your closest matched profile averaged {fit_result['twin_adherence_score']:.0f}% adherence, so the lifestyle fit score is partially anchored to that real matched outcome."
         )
     return recommendations[:6]
 
@@ -384,7 +406,14 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     )
     twin, similarity = retrieve_diet_twin(user_vector, diet_df)
     lifestyle_model = build_lifestyle_fit_model(diet_df)
-    lifestyle_fit = predict_lifestyle_fit(lifestyle_model, user_vector, lifestyle)
+    twin_adherence_score = float(twin.get("adherence_score", np.nan))
+    lifestyle_fit = predict_lifestyle_fit(
+        lifestyle_model,
+        user_vector,
+        lifestyle,
+        twin_adherence_score=twin_adherence_score,
+        twin_similarity=similarity,
+    )
     lifestyle_recommendations = lifestyle_fit_recommendations(lifestyle, lifestyle_fit, calorie_target)
     meals = pick_meals(food_df, calorie_target, lifestyle["vegetarian_pref"])
     workouts = pick_workouts(gym_df, lifestyle["home_workout"], lifestyle["short_sessions"], days_per_week)

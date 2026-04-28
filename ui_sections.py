@@ -4404,10 +4404,15 @@ def render_lifestyle_fit_tab(
 ) -> None:
     st.markdown('<div class="section-title">Why This Plan Fits Your Lifestyle</div>', unsafe_allow_html=True)
     if lifestyle_fit:
-        f1, f2, f3 = st.columns(3)
+        f1, f2, f3, f4 = st.columns(4)
         f1.metric("Lifestyle Fit", f"{lifestyle_fit['score']:.0f} / 100", lifestyle_fit["label"])
         f2.metric("Predicted Pattern", lifestyle_fit["pattern"])
-        f3.metric("Model Confidence", f"{lifestyle_fit['pattern_confidence']:.0%}")
+        twin_adherence = lifestyle_fit.get("twin_adherence_score")
+        f3.metric(
+            "Twin Adherence",
+            f"{twin_adherence:.0f}%" if twin_adherence is not None else "N/A",
+        )
+        f4.metric("Model Confidence", f"{lifestyle_fit['pattern_confidence']:.0%}")
 
         st.markdown(
             f"""
@@ -4415,7 +4420,9 @@ def render_lifestyle_fit_tab(
                 <b>Machine learning output:</b> A Random Forest model predicts that this plan has a
                 <b>{str(lifestyle_fit['label']).lower()}</b> for your current routine. The raw model estimate was
                 <b>{lifestyle_fit['raw_score']:.0f}%</b>, then the app applied small safety adjustments for sleep,
-                injuries, and medical constraints.
+                injuries, and medical constraints. The final score is also blended with your closest diet twin's
+                historical adherence score using a <b>{lifestyle_fit.get('twin_influence', 0) * 100:.0f}%</b>
+                twin influence weight.
             </div>
             """,
             unsafe_allow_html=True,
@@ -4439,6 +4446,8 @@ def render_lifestyle_fit_tab(
 
     if lifestyle_fit:
         st.markdown("### Strongest Model Drivers")
+        expander_twin_score = lifestyle_fit.get("twin_adherence_score")
+        expander_twin_text = f"{expander_twin_score:.0f}" if expander_twin_score is not None else "unavailable"
         driver_labels = {
             "age": "Age",
             "height_cm": "Height",
@@ -4467,8 +4476,11 @@ def render_lifestyle_fit_tab(
 
                 The target is historical `adherence_score`, so the output is an estimated likelihood that the
                 generated plan matches the user's routine. A companion `RandomForestClassifier` predicts the
-                closest diet pattern label. On the current holdout split, the adherence model has MAE
-                `{lifestyle_fit['metrics']['mae']:.1f}` points and R2 `{lifestyle_fit['metrics']['r2']:.2f}`.
+                closest diet pattern label. The final visible score blends the model-adjusted score
+                `{lifestyle_fit['adjusted_score']:.0f}` with the matched diet twin's adherence score
+                `{expander_twin_text}` when available. On the current holdout split,
+                the adherence model has MAE `{lifestyle_fit['metrics']['mae']:.1f}` points and R2
+                `{lifestyle_fit['metrics']['r2']:.2f}`.
                 """
             )
 
