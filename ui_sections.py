@@ -2359,20 +2359,6 @@ def render_onboarding_wizard():
                     const translateY = centerY - yForHeight(current);
                     track.style.transform = `translateY(${{Math.round(translateY)}}px)`;
                     readout.innerHTML = `${{current}}<small>cm</small>`;
-                    try {{
-                        const parentDoc = window.parent && window.parent.document;
-                        if (parentDoc) {{
-                            const nextLink = parentDoc.getElementById("height-next-link");
-                            if (nextLink) {{
-                                nextLink.setAttribute(
-                                    "href",
-                                    `?onboarding_sex={selected_sex_for_link}&onboarding_height=${{current}}&onboarding_next=1`
-                                );
-                            }}
-                        }}
-                    }} catch (_err) {{
-                        // Ignore cross-context issues.
-                    }}
                 }}
 
                 function onMoveClientY(clientY) {{
@@ -2605,31 +2591,11 @@ def render_onboarding_wizard():
                     if (bmi < 18.5) bmiLabel = "Underweight";
                     else if (bmi < 25) bmiLabel = "Ideal";
                     else if (bmi < 30) bmiLabel = "Overweight";
-                    try {{
-                        const parentDoc = window.parent && window.parent.document;
-                        if (parentDoc) {{
-                            const liveWeight = parentDoc.getElementById("weight-live-value");
-                            if (liveWeight) {{
-                                liveWeight.innerHTML = `${{current.toFixed(1)}}<small>kg</small>`;
-                            }}
-                            const liveBmi = parentDoc.getElementById("bmi-live-score");
-                            if (liveBmi) {{
-                                liveBmi.innerHTML = `${{bmi.toFixed(1)}}<span>${{bmiLabel}}</span>`;
-                            }}
-                        }}
-                    }} catch (_err) {{
-                        // Ignore cross-context access issues; commit-on-release still works.
-                    }}
-                    try {{
-                        const stateUrl = `?onboarding_weight=${{current.toFixed(1)}}`;
-                        window.top.history.replaceState({{}}, "", stateUrl);
-                    }} catch (_err) {{
-                        // URL sync is best-effort only.
-                    }}
                 }}
                 function commitWeightToApp() {{
-                    const url = `?onboarding_weight=${{current.toFixed(1)}}`;
-                    window.top.location.assign(url);
+                    // Avoid top-level URL mutations from inside iframe.
+                    // They can trigger Streamlit removeChild errors on some browsers.
+                    return;
                 }}
                 function onMoveClientX(clientX) {{
                     if (!dragging) return;
@@ -3220,21 +3186,11 @@ def render_onboarding_wizard():
                     track.style.transform = `translateX(${{Math.round(tx)}}px)`;
                     const pct = ((currentWeight - current) / Math.max(currentWeight, 1)) * 100;
                     const mode = pct >= 0 ? "lose" : "gain";
-                    try {{
-                        const parentDoc = window.parent && window.parent.document;
-                        if (parentDoc) {{
-                            const liveGoal = parentDoc.getElementById("goal-live-value");
-                            if (liveGoal) liveGoal.innerHTML = `${{current.toFixed(1)}}<small>kg</small>`;
-                            const livePct = parentDoc.getElementById("goal-percent-live");
-                            if (livePct) livePct.textContent = `${{Math.abs(pct).toFixed(1)}}% ${{mode}}`;
-                            const liveNote = parentDoc.getElementById("goal-note-live");
-                            if (liveNote) liveNote.textContent = `You are aiming for a ${{Math.abs(pct).toFixed(1)}}% ${{mode}} change. We will support you all the way.`;
-                        }}
-                    }} catch (_err) {{}}
                 }}
                 function commitGoalWeightToApp() {{
-                    const url = `?onboarding_goal_weight=${{current.toFixed(1)}}`;
-                    window.top.location.assign(url);
+                    // Avoid top-level URL mutations from inside iframe.
+                    // They can trigger Streamlit removeChild errors on some browsers.
+                    return;
                 }}
                 function onMoveClientX(clientX) {{
                     if (!dragging) return;
