@@ -12,8 +12,20 @@ if str(parent_dir) not in sys.path:
 
 from diet_twin_finder import DietTwinFinder
 from meal_generator import MealGenerator
-from app import estimate_calories, get_activity_multiplier, DIET_FEATURE_COLS, DIET_FEATURE_WEIGHTS
+import numpy as np
+from app import estimate_calories, get_activity_multiplier
 
+DIET_FEATURE_COLS = [
+    'age', 'height_cm', 'weight_kg', 'sex_bin', 
+    'night_shift', 'sugar_craving', 'home_workout', 
+    'vegetarian_pref', 'high_stress', 'short_sessions', 'goal_direction'
+]
+DIET_FEATURE_WEIGHTS = np.array([
+    1.0, 1.0, 1.0, 1.0,    # body profile base weights
+    1.2, 1.2, 1.0,         # lifestyle and preference
+    1.0, 1.5, 1.0,         # behavioral flags (stress is highly weighted)
+    1.5                    # goal direction is crucial
+])
 st.set_page_config(page_title="Algorithm Testing Dashboard", layout="wide")
 
 st.title("Diet Recommendation Algorithm Testing")
