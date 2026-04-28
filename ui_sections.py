@@ -1289,7 +1289,7 @@ def render_onboarding_wizard():
             .assessment-shell {
                 max-width: 460px;
                 margin: 0 auto;
-                padding: 4px 20px 22px 20px;
+                padding: 12px 20px 22px 20px;
             }
             .assessment-card {
                 background: #ffffff;
@@ -1299,7 +1299,7 @@ def render_onboarding_wizard():
                 padding: 1.35rem 1.25rem 1.45rem 1.25rem;
             }
             body:has(.assessment-gender-step) .assessment-card.assessment-gender-step {
-                margin-top: -10px;
+                margin-top: 0;
                 padding: 1.05rem 1.25rem 1.25rem 1.25rem;
             }
             body:has(.assessment-gender-step) .assessment-progress {
@@ -1316,7 +1316,7 @@ def render_onboarding_wizard():
                 height: 0.5rem;
             }
             body:has(.assessment-gender-step) .main .block-container {
-                margin-top: -8px !important;
+                margin-top: 0 !important;
             }
             /* Keep gender step centered in viewport (remove sidebar offset) */
             body:has(.assessment-gender-step) [data-testid="stSidebar"] {
@@ -1345,6 +1345,16 @@ def render_onboarding_wizard():
                 width: 12%;
                 background: linear-gradient(90deg, #22c55e, #16a34a);
                 border-radius: 999px;
+            }
+            body:has(.weight-stage-lock) .assessment-card .assessment-progress,
+            body:has(.age-stage-lock) .assessment-card .assessment-progress,
+            body:has(.goal-stage-lock) .assessment-card .assessment-progress,
+            body:has(.goal-time-stage-lock) .assessment-card .assessment-progress,
+            body:has(.plan-intro-stage-lock) .assessment-card .assessment-progress,
+            body:has(.details-stage-lock) .assessment-card .assessment-progress {
+                width: auto !important;
+                margin-left: 1.25rem !important;
+                margin-right: 1.25rem !important;
             }
             /* Avoid Streamlit markdown “white strip” sitting above the real track */
             .assessment-shell [data-testid="stMarkdownContainer"] {
@@ -1617,18 +1627,21 @@ def render_onboarding_wizard():
                 max-width: 860px;
                 margin: 0 auto;
                 padding: 0 18px 8px 18px;
-                transform: translateY(-52px);
+                transform: none;
             }
-            .height-step-shell {
-                background: transparent;
-                border-radius: 0;
-                box-shadow: none;
-                padding: 0.05rem 0.9rem 0.6rem 0.9rem;
+            body:has(.height-stage-lock) .assessment-shell {
+                margin-top: 0 !important;
             }
             .height-top-back-wrap {
                 display: flex;
                 justify-content: flex-start;
-                margin: -118px 0 44px 4px;
+                margin: 0 !important;
+                position: fixed !important;
+                top: 28px !important;
+                left: 72px !important;
+                z-index: 99999 !important;
+                pointer-events: auto !important;
+                transform: none !important;
             }
             .height-top-back-link {
                 display: inline-flex;
@@ -1666,16 +1679,16 @@ def render_onboarding_wizard():
                 margin-bottom: 0.4rem;
             }
             .height-ruler-stage {
-                min-height: 520px;
+                min-height: 360px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 20px;
-                margin-bottom: 0.8rem;
+                margin-bottom: 0.6rem;
             }
             .height-ruler-column {
                 width: 94px;
-                height: 430px;
+                height: 320px;
                 border-radius: 4px;
                 background:
                     repeating-linear-gradient(
@@ -1694,9 +1707,9 @@ def render_onboarding_wizard():
                 font-size: 1.95rem;
                 font-weight: 800;
             }
-            .height-ruler-mark.top { top: 38px; }
-            .height-ruler-mark.mid { top: 178px; }
-            .height-ruler-mark.bot { top: 318px; }
+            .height-ruler-mark.top { top: 18px; }
+            .height-ruler-mark.mid { top: 138px; }
+            .height-ruler-mark.bot { top: 258px; }
             .height-ruler-readout {
                 color: #26314d;
                 font-size: 3.6rem;
@@ -1723,7 +1736,7 @@ def render_onboarding_wizard():
             body:has(.height-stage-lock) [data-testid="stButton"] {
                 display: flex !important;
                 justify-content: center !important;
-                margin-top: -58px !important;
+                margin-top: -28px !important;
                 position: relative;
                 z-index: 25;
             }
@@ -1756,7 +1769,38 @@ def render_onboarding_wizard():
             }
             .height-next-link-wrap {
                 width: min(92%, 720px);
-                margin: -58px auto 0 auto;
+                margin: 0 auto 0 auto;
+                position: relative;
+                z-index: 25;
+            }
+
+            /* Move the white card up without shifting back/next controls */
+            body:has(.height-stage-lock) .assessment-card {
+                margin-top: -60px !important;
+            }
+
+            /* Apply same upward card/button shift to other onboarding stages
+               while keeping the Back link fixed/visible. */
+            body:has(.weight-stage-lock) .assessment-card,
+            body:has(.age-stage-lock) .assessment-card,
+            body:has(.goal-stage-lock) .assessment-card,
+            body:has(.goal-time-stage-lock) .assessment-card,
+            body:has(.plan-intro-stage-lock) .assessment-card,
+            body:has(.details-stage-lock) .assessment-card,
+            body:has(.assessment-gender-step) .assessment-card {
+                margin-top: -60px !important;
+            }
+
+            body:has(.weight-stage-lock) [data-testid="stButton"],
+            body:has(.age-stage-lock) [data-testid="stButton"],
+            body:has(.goal-stage-lock) [data-testid="stButton"],
+            body:has(.goal-time-stage-lock) [data-testid="stButton"],
+            body:has(.plan-intro-stage-lock) [data-testid="stButton"],
+            body:has(.details-stage-lock) [data-testid="stButton"],
+            body:has(.assessment-gender-step) [data-testid="stButton"] {
+                display: flex !important;
+                justify-content: center !important;
+                margin-top: -28px !important;
                 position: relative;
                 z-index: 25;
             }
@@ -1807,7 +1851,7 @@ def render_onboarding_wizard():
                 max-width: 860px;
                 margin: 0 auto;
                 padding: 0 18px 10px 18px;
-                transform: translateY(-70px);
+                transform: none;
             }
             .weight-card {
                 background: transparent;
@@ -2032,6 +2076,12 @@ def render_onboarding_wizard():
                 box-shadow: none !important;
                 outline: none !important;
             }
+            body:has(.goal-time-stage-lock) .weight-next-btn {
+                margin-top: 0.4rem !important;
+            }
+            body:has(.goal-time-stage-lock) .weight-next-btn .stButton > button {
+                margin-top: 0.35rem !important;
+            }
             .weight-bmi-footnote {
                 text-align: center;
                 color: #7a8a86;
@@ -2045,14 +2095,14 @@ def render_onboarding_wizard():
             body:has(.height-stage-lock) [data-testid="stAppViewContainer"],
             body:has(.height-stage-lock) [data-testid="stAppViewContainer"] > .main,
             body:has(.height-stage-lock) .main .block-container {
-                height: 100svh !important;
-                max-height: 100svh !important;
-                overflow: hidden !important;
-                overscroll-behavior: none !important;
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+                overscroll-behavior: auto !important;
             }
             body:has(.height-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
-                padding-bottom: 0 !important;
+                margin-top: 0 !important;
+                padding-bottom: 1.25rem !important;
             }
             /* Keep height step centered in viewport (remove sidebar offset) */
             body:has(.height-stage-lock) [data-testid="stSidebar"] {
@@ -2075,7 +2125,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.weight-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             /* Keep age step centered in viewport (remove sidebar offset) */
             body:has(.age-stage-lock) [data-testid="stSidebar"] {
@@ -2088,7 +2138,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.age-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             /* Keep goal-weight step centered in viewport (remove sidebar offset) */
             body:has(.goal-stage-lock) [data-testid="stSidebar"] {
@@ -2101,7 +2151,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.goal-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             /* Keep goal-time step centered in viewport (remove sidebar offset) */
             body:has(.goal-time-stage-lock) [data-testid="stSidebar"] {
@@ -2114,7 +2164,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.goal-time-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             /* Keep plan-intro step centered in viewport (remove sidebar offset) */
             body:has(.plan-intro-stage-lock) [data-testid="stSidebar"] {
@@ -2127,7 +2177,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.plan-intro-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             body:has(.details-stage-lock) [data-testid="stSidebar"] {
                 display: none !important;
@@ -2139,7 +2189,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.details-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             body:has(.details-stage-lock) .basic-info-wrap {
                 max-width: 860px !important;
@@ -2437,7 +2487,7 @@ def render_onboarding_wizard():
             textwrap.dedent(
                 """
                 <div class="assessment-card assessment-gender-step">
-                    <div class="assessment-progress"><div class="assessment-progress-fill"></div></div>
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:12%;"></div></div>
                     <div class="assessment-question">What is your gender?</div>
                     <div class="assessment-helper">Biological sex can influence metabolism and diet strategy.</div>
                 </div>
@@ -2500,21 +2550,19 @@ def render_onboarding_wizard():
         current_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
 
         st.markdown('<div class="height-stage-lock"></div>', unsafe_allow_html=True)
-        st.markdown('<div class="basic-info-wrap" style="margin-top:-96px;">', unsafe_allow_html=True)
-        st.markdown('<div class="height-step-shell" style="padding-top:0; padding-bottom:0.35rem;">', unsafe_allow_html=True)
+        st.markdown('<div class="assessment-shell">', unsafe_allow_html=True)
         st.markdown(
             '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
-        st.markdown('<div class="assessment-shell" style="padding:4px 20px 10px 20px;">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:-44px; margin-bottom:10px;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:14%;"></div></div>
+                <div class="assessment-card assessment-gender-step">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:24%;"></div></div>
                     <div class="assessment-question">What is your height?</div>
                     <div class="assessment-helper">Accurate height helps us calculate your BMI.</div>
                 </div>
-            """,
+                """,
             unsafe_allow_html=True,
         )
         st.markdown("</div>", unsafe_allow_html=True)
@@ -2533,7 +2581,7 @@ def render_onboarding_wizard():
                     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }}
                 .stage {{
-                    min-height: 300px;
+                    min-height: 220px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -2542,7 +2590,7 @@ def render_onboarding_wizard():
                 .col {{
                     position: relative;
                     width: 94px;
-                    height: 430px;
+                    height: 360px;
                     border-radius: 4px;
                     background: rgba(235, 251, 244, 0.95);
                     cursor: ns-resize;
@@ -2586,7 +2634,7 @@ def render_onboarding_wizard():
                     height: 10px;
                     border-radius: 999px;
                     background: #27d978;
-                    top: 210px;
+                    top: 170px;
                     pointer-events: none;
                 }}
                 .readout {{
@@ -2647,8 +2695,9 @@ def render_onboarding_wizard():
                 let dragStartY = 0;
                 let dragStartHeight = current;
                 const pxPerCm = 10;
-                const centerY = 215;
-                const rulerHeight = 430;
+                const pointerTop = 170;
+                const pointerHeight = 10;
+                const centerY = pointerTop + (pointerHeight / 2);
                 const trackPad = 260;
                 const trackHeight = trackPad * 2 + (maxH - minH) * pxPerCm;
 
@@ -2744,9 +2793,9 @@ def render_onboarding_wizard():
                     }}
                     endDrag(e.changedTouches[0].clientY);
                 }}, {{ passive: true }});
-                // Prevent wheel scroll from bubbling to parent page.
+                // Only prevent wheel default while actively dragging the ruler
                 window.addEventListener("wheel", (e) => {{
-                    e.preventDefault();
+                    if (dragging) e.preventDefault();
                 }}, {{ passive: false }});
 
                 buildTrack();
@@ -2755,13 +2804,12 @@ def render_onboarding_wizard():
         </body>
         </html>
         """
-        components.html(ruler_component_html, height=400, scrolling=False)
+        components.html(ruler_component_html, height=320, scrolling=False)
         st.markdown(
             f'<div class="height-next-link-wrap"><a id="height-next-link" class="height-next-link-native" href="?onboarding_sex={selected_sex_for_link}&onboarding_height={current_height}&onboarding_next=1" target="_self" rel="noopener">Next</a></div>',
             unsafe_allow_html=True,
         )
-        st.markdown("</div>", unsafe_allow_html=True)  # .height-step-shell
-        st.markdown("</div>", unsafe_allow_html=True)  # .basic-info-wrap
+        st.markdown("</div>", unsafe_allow_html=True)  # .assessment-shell
         return None
 
     if st.session_state["onboarding_stage"] == "weight":
@@ -2780,8 +2828,8 @@ def render_onboarding_wizard():
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:0.55rem 0.2rem 0.8rem 0.2rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:28%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:1.15rem 0.2rem 0.8rem 0.2rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:36%;"></div></div>
                     <div class="assessment-question">What is your weight?</div>
                     <div class="assessment-helper">Accurate body data helps us calculate your BMI.</div>
                 </div>
@@ -2802,7 +2850,7 @@ def render_onboarding_wizard():
                     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }}
                 .stage {{
-                    min-height: 190px;
+                    min-height: 150px;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -2884,7 +2932,7 @@ def render_onboarding_wizard():
                 .ruler {{
                     position: relative;
                     width: min(92vw, 760px);
-                    height: 86px;
+                    height: 70px;
                     border-radius: 12px;
                     background: rgba(235, 251, 244, 0.95);
                     overflow: hidden;
@@ -3110,7 +3158,7 @@ def render_onboarding_wizard():
                 }}, {{ passive: true }});
 
                 window.addEventListener("wheel", (e) => {{
-                    e.preventDefault();
+                    if (dragging) e.preventDefault();
                 }}, {{ passive: false }});
 
                 window.addEventListener("resize", () => render(current));
@@ -3156,8 +3204,8 @@ def render_onboarding_wizard():
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:0.55rem 0.2rem 0.8rem 0.2rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:56%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:1.15rem 0.2rem 0.8rem 0.2rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:48%;"></div></div>
                     <div class="assessment-question">What is your birth date?</div>
                     <div class="assessment-helper">Age and metabolism are closely related.</div>
                 </div>
@@ -3477,7 +3525,6 @@ def render_onboarding_wizard():
         current_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
         selected_sex_for_goal_link = st.session_state.get("onboarding_selected_sex", "M")
         delta_pct = ((current_weight - current_goal_weight) / max(current_weight, 1.0)) * 100.0
-        mode_label = "lose" if delta_pct >= 0 else "gain"
 
         st.markdown('<div class="goal-stage-lock"></div>', unsafe_allow_html=True)
         st.markdown('<div class="weight-page-shell">', unsafe_allow_html=True)
@@ -3488,8 +3535,8 @@ def render_onboarding_wizard():
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:0.55rem 0.2rem 0.8rem 0.2rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:72%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:1.15rem 0.2rem 0.8rem 0.2rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:60%;"></div></div>
                     <div class="assessment-question">What is your goal weight?</div>
                     <div class="assessment-helper">Set a clear target and we will tailor your plan around it.</div>
                 </div>
@@ -3782,8 +3829,8 @@ def render_onboarding_wizard():
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:0.55rem 0.2rem 0.8rem 0.2rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:84%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:1.15rem 0.2rem 0.8rem 0.2rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:72%;"></div></div>
                     <div class="assessment-question">When do you want to reach your goal weight?</div>
                     <div class="assessment-helper">Pick a target date and we will pace your weekly plan.</div>
                 </div>
@@ -4052,7 +4099,7 @@ def render_onboarding_wizard():
         </body>
         </html>
         """
-        components.html(goal_time_component_html, height=380, scrolling=False)
+        components.html(goal_time_component_html, height=340, scrolling=False)
         st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
         if st.button("Next", use_container_width=True, key="goal_time_next_btn"):
             goal_y = int(st.session_state.get("onboarding_goal_year", default_goal_year))
@@ -4093,8 +4140,8 @@ def render_onboarding_wizard():
         st.markdown(
             """
             <div style="max-width:820px; margin: 0 auto;">
-                <div class="assessment-card" style="margin-top:0; margin-bottom:14px; box-shadow:none; padding:0.85rem 1.1rem 1.05rem 1.1rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:58%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:14px; box-shadow:none; padding:1.2rem 1.1rem 1.05rem 1.1rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:84%;"></div></div>
                     <div style="margin-top:24px; display:flex; justify-content:center;">
                         <div style="
                             width:min(95%, 700px);
@@ -4148,7 +4195,7 @@ def render_onboarding_wizard():
     )
     st.markdown(
         """
-            <div class="assessment-card" style="margin-top:0; margin-bottom:12px; box-shadow:none; padding:0.75rem 1rem 0.95rem 1rem;">
+            <div class="assessment-card" style="margin-top:0; margin-bottom:12px; box-shadow:none; padding:1.15rem 1rem 0.95rem 1rem;">
                 <div class="assessment-progress"><div class="assessment-progress-fill" style="width:96%;"></div></div>
                 <div class="assessment-question" style="font-size:2.1rem; margin-top:0.55rem;">Lifestyle Questions</div>
                 <div class="assessment-helper">Help us personalize your daily nutrition and training routine.</div>
@@ -4701,7 +4748,7 @@ def render_workout_plan_tab(workouts: pd.DataFrame, lifestyle: dict) -> None:
 
 
 def render_plan_screen(plan_data: dict) -> None:
-    progress_pct = max(0.0, min(100.0, float(plan_data["goal_progress"]) * 100.0))
+    progress_pct = 100.0
     st.markdown(
         f"""
         <div class="result-shell">
@@ -4724,7 +4771,7 @@ def render_plan_screen(plan_data: dict) -> None:
         days_per_week=plan_data["days_per_week"],
     )
     st.markdown("<div style='height:1.05rem'></div>", unsafe_allow_html=True)
-    st.progress(plan_data["goal_progress"], text=f"Goal alignment progress: {plan_data['goal_progress'] * 100:.0f}%")
+    st.progress(1.0, text="Goal alignment progress: 100%")
     st.markdown("<div style='height:1.2rem'></div>", unsafe_allow_html=True)
     render_twin_section(plan_data["twin"])
     tab_meals, tab_workouts, tab_lifestyle = st.tabs(["Diet Plan", "Lift Plan", "Lifestyle Fit"])
