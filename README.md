@@ -10,7 +10,7 @@ This is a creative website app that follows your ML proposal path:
 ## Run locally
 
 ```bash
-cd ml_diet_twin_app
+cd Diet-Exercise-Plan-App
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -18,7 +18,7 @@ streamlit run app.py
 ```
 '''
 Windows:
-1. cd ml_diet_twin_app
+1. cd Diet-Exercise-Plan-App
 2. python -m venv .venv
 3. .venv\Scripts\activate
 4. pip install -r requirements.txt
