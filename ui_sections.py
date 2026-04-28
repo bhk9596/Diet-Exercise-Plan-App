@@ -929,6 +929,8 @@ def render_onboarding_wizard():
     param_goal_year_raw = _qp_str("onboarding_goal_year")
     param_next = _qp_str("onboarding_next", "0")
     param_age_next = _qp_str("onboarding_age_next", "0")
+    param_weight_next = _qp_str("onboarding_weight_next", "0")
+    param_goal_weight_next = _qp_str("onboarding_goal_weight_next", "0")
     param_back = _qp_str("onboarding_back", "0")
     param_weight_back = _qp_str("onboarding_weight_back", "0")
     param_age_back = _qp_str("onboarding_age_back", "0")
@@ -952,6 +954,17 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
         st.session_state["onboarding_stage"] = "weight"
         params.clear()
         st.rerun()
@@ -961,6 +974,24 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
         st.session_state["onboarding_stage"] = "age"
         params.clear()
         st.rerun()
@@ -970,6 +1001,24 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
         st.session_state["onboarding_stage"] = "goal_weight"
         params.clear()
         st.rerun()
@@ -979,6 +1028,24 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
         st.session_state["onboarding_stage"] = "goal_timeline"
         params.clear()
         st.rerun()
@@ -988,6 +1055,24 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
         st.session_state["onboarding_stage"] = "plan_intro"
         params.clear()
         st.rerun()
@@ -1022,8 +1107,6 @@ def render_onboarding_wizard():
             current_goal_state = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
             if abs(current_goal_state - parsed_goal_weight) >= 0.05:
                 st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
-                params.clear()
-                st.rerun()
     if param_birth_month_raw.isdigit():
         m = int(param_birth_month_raw)
         if 1 <= m <= 12:
@@ -1070,9 +1153,41 @@ def render_onboarding_wizard():
         st.session_state["onboarding_stage"] = "goal_weight"
         params.clear()
         st.rerun()
+    if param_weight_next == "1":
+        st.session_state["onboarding_selected_sex"] = (
+            param_sex
+            if param_sex in {"M", "F"}
+            else st.session_state.get("onboarding_selected_sex", "M")
+        )
+        st.session_state["onboarding_stage"] = "age"
+        params.clear()
+        st.rerun()
+    if param_goal_weight_next == "1":
+        st.session_state["onboarding_selected_sex"] = (
+            param_sex
+            if param_sex in {"M", "F"}
+            else st.session_state.get("onboarding_selected_sex", "M")
+        )
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
+        st.session_state["onboarding_stage"] = "goal_timeline"
+        params.clear()
+        st.rerun()
     if param_sex in {"M", "F"}:
         st.session_state["onboarding_selected_sex"] = param_sex
-        if param_next != "1":
+        if param_next != "1" and param_weight_next != "1" and param_goal_weight_next != "1":
             params.clear()
             st.rerun()
     if param_next == "1":
@@ -1086,6 +1201,61 @@ def render_onboarding_wizard():
         st.rerun()
     selected_sex = st.session_state.get("onboarding_selected_sex")
     show_gender_page = selected_sex is None
+    bridge_sex = selected_sex if selected_sex in {"M", "F"} else "M"
+    bridge_weight = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
+    bridge_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+    bridge_script_html = """
+        <script>
+            (function () {
+                if (window.__onboardingBridgeInit) return;
+                window.__onboardingBridgeInit = true;
+                const defaultSex = "__BRIDGE_SEX__";
+                const defaultWeight = "__BRIDGE_WEIGHT__";
+                const defaultHeight = "__BRIDGE_HEIGHT__";
+
+                function updateLink(id, href) {
+                    const link = document.getElementById(id);
+                    if (link) link.setAttribute("href", href);
+                }
+
+                window.addEventListener("message", function (event) {
+                    const data = event && event.data ? event.data : {};
+                    if (!data || typeof data !== "object") return;
+
+                    if (data.type === "onboarding-height") {
+                        const value = Number(data.value);
+                        const sex = String(data.sex || defaultSex).toUpperCase() === "F" ? "F" : "M";
+                        if (!Number.isFinite(value)) return;
+                        updateLink("height-next-link", `?onboarding_sex=${sex}&onboarding_height=${Math.round(value)}&onboarding_next=1`);
+                        return;
+                    }
+
+                    if (data.type === "onboarding-weight") {
+                        const value = Number(data.value);
+                        const sex = String(data.sex || defaultSex).toUpperCase() === "F" ? "F" : "M";
+                        if (!Number.isFinite(value)) return;
+                        updateLink("weight-next-link", `?onboarding_sex=${sex}&onboarding_height=${defaultHeight}&onboarding_weight=${value.toFixed(1)}&onboarding_weight_next=1`);
+                        return;
+                    }
+
+                    if (data.type === "onboarding-goal-weight") {
+                        const value = Number(data.value);
+                        const sex = String(data.sex || defaultSex).toUpperCase() === "F" ? "F" : "M";
+                        if (!Number.isFinite(value)) return;
+                        updateLink("goal-weight-next-link", `?onboarding_sex=${sex}&onboarding_height=${defaultHeight}&onboarding_weight=${defaultWeight}&onboarding_goal_weight=${value.toFixed(1)}&onboarding_goal_weight_next=1`);
+                        updateLink("goal-weight-back-link", `?onboarding_sex=${sex}&onboarding_height=${defaultHeight}&onboarding_weight=${defaultWeight}&onboarding_goal_weight=${value.toFixed(1)}&onboarding_goal_back=1`);
+                    }
+                });
+            })();
+        </script>
+        """
+    st.html(
+        bridge_script_html
+        .replace("__BRIDGE_SEX__", bridge_sex)
+        .replace("__BRIDGE_WEIGHT__", f"{bridge_weight:.1f}")
+        .replace("__BRIDGE_HEIGHT__", str(bridge_height)),
+        unsafe_allow_javascript=True,
+    )
 
     def bmi_status_label(bmi_value: float) -> str:
         if bmi_value < 18.5:
@@ -2509,6 +2679,15 @@ def render_onboarding_wizard():
                     const translateY = centerY - yForHeight(current);
                     track.style.transform = `translateY(${{Math.round(translateY)}}px)`;
                     readout.innerHTML = `${{current}}<small>cm</small>`;
+                    try {{
+                        window.parent.postMessage({{
+                            type: "onboarding-height",
+                            value: current,
+                            sex: "{selected_sex_for_link}",
+                        }}, "*");
+                    }} catch (e) {{
+                        // Ignore bridge failures.
+                    }}
                 }}
 
                 function onMoveClientY(clientY) {{
@@ -2754,6 +2933,28 @@ def render_onboarding_wizard():
                     background: #27d978;
                     pointer-events: none;
                 }}
+                .next-wrap {{
+                    margin-top: 14px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                }}
+                .next-btn {{
+                    width: min(92%, 720px);
+                    border: none;
+                    border-radius: 999px;
+                    background: #25d366;
+                    color: #ffffff;
+                    font-size: 1.95rem;
+                    font-weight: 900;
+                    min-height: 56px;
+                    letter-spacing: 0.01em;
+                    cursor: pointer;
+                    text-decoration: none;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }}
             </style>
         </head>
         <body>
@@ -2842,6 +3043,15 @@ def render_onboarding_wizard():
                     else if (bmiLabel === "Overweight") bmiColor = "#fde68a";
                     if (liveWeight) liveWeight.innerHTML = `${{current.toFixed(1)}}<small>kg</small>`;
                     if (liveBmiScore) liveBmiScore.innerHTML = `${{bmi.toFixed(1)}}<span style="color:${{bmiColor}}">${{bmiLabel}}</span>`;
+                    try {{
+                        window.parent.postMessage({{
+                            type: "onboarding-weight",
+                            value: current,
+                            sex: "{selected_sex_for_back}",
+                        }}, "*");
+                    }} catch (e) {{
+                        // Ignore bridge failures.
+                    }}
                 }}
                 function commitWeightToApp() {{
                     // Avoid top-level URL mutations from inside iframe.
@@ -2911,13 +3121,10 @@ def render_onboarding_wizard():
         </html>
         """
         components.html(weight_ruler_component_html, height=220, scrolling=False)
-        picked_weight = float(st.session_state.get("onboarding_weight_kg", current_weight))
-        st.session_state["onboarding_weight_kg"] = float(picked_weight)
-        st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
-        if st.button("Next", use_container_width=True, key="weight_next_btn"):
-            st.session_state["onboarding_stage"] = "age"
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="weight-next-btn"><a id="weight-next-link" class="height-next-link-native" href="?onboarding_sex={selected_sex_for_back}&onboarding_height={int(round(height_for_bmi))}&onboarding_weight={current_weight:.1f}&onboarding_weight_next=1" target="_self" rel="noopener">Next</a></div>',
+            unsafe_allow_html=True,
+        )
         st.markdown(
             """
                 <div class="weight-bmi-footnote">
@@ -2936,11 +3143,14 @@ def render_onboarding_wizard():
         default_year = int(st.session_state.get("onboarding_birth_year", today.year - int(defaults["age"])))
         default_month = int(st.session_state.get("onboarding_birth_month", 1))
         default_day = int(st.session_state.get("onboarding_birth_day", 1))
+        current_height_for_back = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+        current_weight_for_back = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
+        selected_sex_for_age_back = st.session_state.get("onboarding_selected_sex", "M")
 
         st.markdown('<div class="age-stage-lock"></div>', unsafe_allow_html=True)
         st.markdown('<div class="weight-page-shell">', unsafe_allow_html=True)
         st.markdown(
-            '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_age_back=1" target="_self" rel="noopener">Back</a></div>',
+            f'<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_sex={selected_sex_for_age_back}&onboarding_height={current_height_for_back}&onboarding_weight={current_weight_for_back:.1f}&onboarding_age_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
@@ -3264,13 +3474,15 @@ def render_onboarding_wizard():
     if st.session_state["onboarding_stage"] == "goal_weight":
         current_weight = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
         current_goal_weight = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
+        current_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+        selected_sex_for_goal_link = st.session_state.get("onboarding_selected_sex", "M")
         delta_pct = ((current_weight - current_goal_weight) / max(current_weight, 1.0)) * 100.0
         mode_label = "lose" if delta_pct >= 0 else "gain"
 
         st.markdown('<div class="goal-stage-lock"></div>', unsafe_allow_html=True)
         st.markdown('<div class="weight-page-shell">', unsafe_allow_html=True)
         st.markdown(
-            '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_goal_back=1" target="_self" rel="noopener">Back</a></div>',
+            f'<div class="height-top-back-wrap"><a id="goal-weight-back-link" class="height-top-back-link" href="?onboarding_sex={selected_sex_for_goal_link}&onboarding_height={current_height}&onboarding_weight={current_weight:.1f}&onboarding_goal_weight={current_goal_weight:.1f}&onboarding_goal_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
@@ -3383,6 +3595,28 @@ def render_onboarding_wizard():
                     background: #27d978;
                     pointer-events: none;
                 }}
+                .next-wrap {{
+                    margin-top: 14px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                }}
+                .next-btn {{
+                    width: min(92%, 720px);
+                    border: none;
+                    border-radius: 999px;
+                    background: #25d366;
+                    color: #ffffff;
+                    font-size: 1.95rem;
+                    font-weight: 900;
+                    min-height: 56px;
+                    letter-spacing: 0.01em;
+                    cursor: pointer;
+                    text-decoration: none;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }}
             </style>
         </head>
         <body>
@@ -3443,6 +3677,15 @@ def render_onboarding_wizard():
                     const mode = pct >= 0 ? "lose" : "gain";
                     if (liveGoal) liveGoal.innerHTML = `${{current.toFixed(1)}}<small>kg</small>`;
                     if (liveGoalMeta) liveGoalMeta.textContent = `Goal change: ${{Math.abs(pct).toFixed(1)}}% ${{mode}}`;
+                    try {{
+                        window.parent.postMessage({{
+                            type: "onboarding-goal-weight",
+                            value: current,
+                            sex: "{selected_sex_for_goal_link}",
+                        }}, "*");
+                    }} catch (e) {{
+                        // Ignore bridge failures.
+                    }}
                 }}
                 function commitGoalWeightToApp() {{
                     // Avoid top-level URL mutations from inside iframe.
@@ -3499,13 +3742,10 @@ def render_onboarding_wizard():
         </html>
         """
         components.html(goal_ruler_component_html, height=220, scrolling=False)
-        picked_goal_weight = float(st.session_state.get("onboarding_goal_weight_kg", current_goal_weight))
-        st.session_state["onboarding_goal_weight_kg"] = float(picked_goal_weight)
-        st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
-        if st.button("Next", use_container_width=True, key="goal_weight_next_btn"):
-            st.session_state["onboarding_stage"] = "goal_timeline"
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="weight-next-btn"><a id="goal-weight-next-link" class="height-next-link-native" href="?onboarding_sex={selected_sex_for_goal_link}&onboarding_height={current_height}&onboarding_weight={current_weight:.1f}&onboarding_goal_weight={current_goal_weight:.1f}&onboarding_goal_weight_next=1" target="_self" rel="noopener">Next</a></div>',
+            unsafe_allow_html=True,
+        )
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-card
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-page-shell
         return None
@@ -3514,6 +3754,8 @@ def render_onboarding_wizard():
         today = date.today()
         current_weight = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
         goal_weight = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
+        current_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+        selected_sex_for_goal_time_back = st.session_state.get("onboarding_selected_sex", "M")
 
         default_goal_year = int(st.session_state.get("onboarding_goal_year", today.year))
         default_goal_month = int(st.session_state.get("onboarding_goal_month", today.month))
@@ -3534,7 +3776,7 @@ def render_onboarding_wizard():
         st.markdown('<div class="goal-time-stage-lock"></div>', unsafe_allow_html=True)
         st.markdown('<div class="weight-page-shell">', unsafe_allow_html=True)
         st.markdown(
-            '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_goal_time_back=1" target="_self" rel="noopener">Back</a></div>',
+            f'<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_sex={selected_sex_for_goal_time_back}&onboarding_height={current_height}&onboarding_weight={current_weight:.1f}&onboarding_goal_weight={goal_weight:.1f}&onboarding_goal_time_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
@@ -3838,10 +4080,14 @@ def render_onboarding_wizard():
         return None
 
     if st.session_state["onboarding_stage"] == "plan_intro":
+        current_weight_for_back = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
+        current_goal_weight_for_back = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
+        current_height_for_back = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+        selected_sex_for_back = st.session_state.get("onboarding_selected_sex", "M")
         st.markdown('<div class="plan-intro-stage-lock"></div>', unsafe_allow_html=True)
         st.markdown('<div class="weight-page-shell">', unsafe_allow_html=True)
         st.markdown(
-            '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_plan_intro_back=1" target="_self" rel="noopener">Back</a></div>',
+            f'<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_sex={selected_sex_for_back}&onboarding_height={current_height_for_back}&onboarding_weight={current_weight_for_back:.1f}&onboarding_goal_weight={current_goal_weight_for_back:.1f}&onboarding_plan_intro_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
         st.markdown(
@@ -3890,10 +4136,14 @@ def render_onboarding_wizard():
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-page-shell
         return None
 
+    current_weight_for_back = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
+    current_goal_weight_for_back = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
+    current_height_for_back = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+    selected_sex_for_back = st.session_state.get("onboarding_selected_sex", "M")
     st.markdown('<div class="details-stage-lock"></div>', unsafe_allow_html=True)
     st.markdown('<div class="basic-info-wrap">', unsafe_allow_html=True)
     st.markdown(
-        '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_details_back=1" target="_self" rel="noopener">Back</a></div>',
+        f'<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_sex={selected_sex_for_back}&onboarding_height={current_height_for_back}&onboarding_weight={current_weight_for_back:.1f}&onboarding_goal_weight={current_goal_weight_for_back:.1f}&onboarding_details_back=1" target="_self" rel="noopener">Back</a></div>',
         unsafe_allow_html=True,
     )
     st.markdown(
