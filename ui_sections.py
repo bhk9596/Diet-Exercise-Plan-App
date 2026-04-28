@@ -4448,7 +4448,6 @@ def render_plan_screen(plan_data: dict) -> None:
                     <div class="result-top-progress-fill" style="width:{progress_pct:.0f}%"></div>
                 </div>
                 <div class="result-ready-title">Your personalized result is ready.</div>
-                <div class="result-ready-sub">A focused green-and-white plan based on your profile.</div>
         """,
         unsafe_allow_html=True,
     )
