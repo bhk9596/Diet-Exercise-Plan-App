@@ -2576,7 +2576,7 @@ def render_onboarding_wizard():
         </body>
         </html>
         """
-        components.html(ruler_component_html, height=500, scrolling=False)
+        components.html(ruler_component_html, height=400, scrolling=False)
         st.markdown(
             f'<div class="height-next-link-wrap"><a id="height-next-link" class="height-next-link-native" href="?onboarding_sex={selected_sex_for_link}&onboarding_height={current_height}&onboarding_next=1" target="_self" rel="noopener">Next</a></div>',
             unsafe_allow_html=True,
