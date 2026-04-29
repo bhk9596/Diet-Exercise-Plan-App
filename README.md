@@ -78,8 +78,8 @@ Diet-Exercise-Plan-App/
 
 ## Methods implemented
 
-- **Diet Twin Retrieval (From Scratch)**: k-NN using purely NumPy. Computes Standardisation, applies behavioural weighting, and uses Cosine Similarity to find the most behaviourally similar user.
-- **Meal Generator (From Scratch)**: Monte Carlo optimization algorithm using pure NumPy/Pandas. Runs 10,000 iterations to minimize macro target errors to find the optimal 7-dish combination.
+- **Diet Twin Retrieval (From Scratch )**: k-NN using purely NumPy. Computes Standardisation, applies behavioural weighting, and uses Cosine Similarity to find the most behaviourally similar user.
+- **Meal Generator**: Monte Carlo optimization algorithm using pure NumPy/Pandas. Runs 10,000 iterations to minimize macro target errors to find the optimal 7-dish combination.
 - **Classification & Regression**: RandomForest model predicting body-type and lifestyle fit scores from user vectors.
 - **Safe Workout Picker**: Strict injury rule-based filtering to select home/gym workouts avoiding compromised joints.
 
