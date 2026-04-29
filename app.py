@@ -378,17 +378,12 @@ def pick_workouts(
     health_text = " ".join([str(x).lower().strip() for x in health_conditions])
     avoid_keywords = []
 
-    if injury_care:
-        avoid_keywords += [
-            "jump", "squat", "lunge", "burpee", "step", "run",
-            "mountain climber", "high knees"
-        ]
-
     if "knee" in health_text:
         avoid_keywords += [
             "squat", "lunge", "jump", "step", "run",
             "groiner", "hip circle", "side leg raise", "leg raise",
-            "ankle", "calf", "calves", "leg", "hip"
+            "ankle", "calf", "calves", "leg", "hip",
+            "kneeling", "kneel"
         ]
 
     if "back" in health_text:
@@ -409,7 +404,8 @@ def pick_workouts(
         avoid_keywords += [
             "jump", "run", "burpee", "squat", "lunge", "step",
             "mountain climber", "high knees", "plank", "push up",
-            "push-up", "twist", "rotation", "dip", "press"
+            "push-up", "twist", "rotation", "dip", "press",
+            "kneeling", "kneel"
         ]
 
     if avoid_keywords:
@@ -434,9 +430,6 @@ def pick_workouts(
 
         if short_sessions:
             d = d[d["duration_min"] <= 25]
-
-        if injury_care:
-            d = d[d["difficulty"] <= 2]
 
     weekly_count = min(max(days_per_week, 3), 6)
     return d.sort_values(by=["difficulty", "duration_min"]).head(weekly_count)
