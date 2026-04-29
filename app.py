@@ -117,6 +117,7 @@ def parse_lifestyle(profile: dict):
         "vegetarian_pref": int(diet_preference == "Vegetarian" or any(k in t for k in ["vegetarian", "plant-based", "vegan"])),
         "high_stress": int(stress_level == "High" or any(k in t for k in ["stress", "busy", "anxious", "burnout", "overwhelmed"])),
         "short_sessions": int(workout_time == "15-20 minutes" or any(k in t for k in ["20 minutes", "15 minutes", "short workout", "quick workout"])),
+        "long_sessions": int(workout_time == "60+ minutes" or any(k in t for k in ["60 minutes", "60+ minutes", "long workout"])),
         "low_sleep": int(sleep_quality == "Poor" or any(k in t for k in ["sleep 5", "sleep 4", "insomnia", "poor sleep"])),
         "injury_care": int(
             any(c in health_conditions for c in ["Knee pain", "Back pain", "Shoulder injury", "Joint pain", "Severe Arthritis"])
@@ -364,81 +365,132 @@ def pick_meals(food_df: pd.DataFrame, calorie_target: int, vegetarian_pref: int)
 
 def pick_workouts(
     gym_df: pd.DataFrame,
-    home_workout: int,
+    workout_location: str,
     short_sessions: int,
+    long_sessions: int,
     days_per_week: int,
     injury_care: int = 0,
     health_conditions=None,
 ):
     d = gym_df.copy()
 
-    if home_workout:
-        d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+    workout_location = str(workout_location).lower().strip()
 
-    if short_sessions:
-        d = d[d["duration_min"] <= 25]
+    home_equipment = ["bodyweight", "dumbbell", "resistance_band", "bands"]
+    gym_equipment = ["barbell", "machine", "cable", "other", "dumbbell", "bands"]
 
     if health_conditions is None:
         health_conditions = []
 
     health_text = " ".join([str(x).lower().strip() for x in health_conditions])
+
     avoid_keywords = []
 
+    knee_keywords = [
+        "knee", "squat", "lunge", "jump", "run", "running",
+        "step", "step-up", "step up", "box jump", "burpee",
+        "mountain climber", "high knees", "leg press",
+        "leg extension", "leg curl", "calf", "calves",
+        "ankle", "quad", "quadriceps", "hamstring",
+        "glute", "glutes", "hip thrust", "hip lift",
+        "bridge", "good morning", "side leg", "leg raise",
+        "groiner", "kneeling", "kneel"
+    ]
+
+    back_keywords = [
+        "back", "lower back", "spine", "deadlift",
+        "good morning", "row", "bent-over", "bent over",
+        "superman", "hyperextension", "extension",
+        "crunch", "sit up", "sit-up", "twist",
+        "rotation", "russian twist", "plank"
+    ]
+
+    shoulder_keywords = [
+        "shoulder", "overhead", "press", "push up", "push-up",
+        "dip", "dips", "raise", "lateral raise", "front raise",
+        "upright row", "row", "fly", "arm circle",
+        "bench press", "chest press", "plank"
+    ]
+
+    joint_keywords = [
+        "jump", "run", "running", "burpee", "squat",
+        "lunge", "step", "mountain climber", "high knees",
+        "push up", "push-up", "dip", "press",
+        "twist", "rotation", "kneeling", "kneel"
+    ]
+
     if "knee" in health_text:
-        avoid_keywords += [
-            "squat", "lunge", "jump", "step", "run",
-            "groiner", "hip circle", "side leg raise", "leg raise",
-            "ankle", "calf", "calves", "leg", "hip",
-            "kneeling", "kneel"
-        ]
+        avoid_keywords += knee_keywords
 
     if "back" in health_text:
-        avoid_keywords += [
-            "back", "spine", "twist", "rotation", "bend",
-            "deadlift", "row", "crunch", "sit up", "sit-up",
-            "superman", "bridge", "extension", "plank"
-        ]
+        avoid_keywords += back_keywords
 
     if "shoulder" in health_text:
-        avoid_keywords += [
-            "shoulder", "press", "push up", "push-up", "plank",
-            "dip", "raise", "row", "overhead", "arm circle",
-            "lateral", "fly"
-        ]
+        avoid_keywords += shoulder_keywords
 
     if "joint" in health_text or "arthritis" in health_text:
-        avoid_keywords += [
-            "jump", "run", "burpee", "squat", "lunge", "step",
-            "mountain climber", "high knees", "plank", "push up",
-            "push-up", "twist", "rotation", "dip", "press",
-            "kneeling", "kneel"
-        ]
+        avoid_keywords += joint_keywords
+    safe_base = d.copy()
 
     if avoid_keywords:
-        pattern = "|".join(avoid_keywords)
-        d = d[
-            ~d["exercise_name"].str.lower().str.contains(pattern, na=False)
-            & ~d["muscle_group"].str.lower().str.contains(
-                "adductor|abductor|quadriceps|hamstring|glutes|calves|lower back|lats|traps|shoulders",
-                na=False
-            )
-        ]
+        pattern = "|".join(re.escape(k) for k in set(avoid_keywords))
+
+        text_cols = ["exercise_name", "muscle_group", "equipment"]
+        combined_text = safe_base[text_cols].fillna("").astype(str).agg(" ".join, axis=1).str.lower()
+
+        safe_base = safe_base[~combined_text.str.contains(pattern, na=False, regex=True)]
 
     if injury_care:
-        d = d[d["difficulty"] <= 2]
+        safe_base = safe_base[safe_base["difficulty"] <= 2]
+    if safe_base.empty:
+        safe_base = gym_df.copy()
+        if injury_care:
+            safe_base = safe_base[safe_base["difficulty"] <= 2]
 
+    d = safe_base.copy()
+    if workout_location == "home":
+        loc_d = d[d["equipment"].isin(home_equipment)]
+        if not loc_d.empty:
+            d = loc_d
+
+    elif workout_location == "gym":
+        loc_d = d[d["equipment"].isin(gym_equipment)]
+        if not loc_d.empty:
+            d = loc_d
+
+    elif workout_location == "both":
+        loc_d = d[d["equipment"].isin(list(set(home_equipment + gym_equipment)))]
+        if not loc_d.empty:
+            d = loc_d
+    if short_sessions:
+        time_d = d[d["duration_min"] <= 25]
+        if not time_d.empty:
+            d = time_d
+
+    elif long_sessions:
+        time_d = d[d["duration_min"] >= 45]
+        if not time_d.empty:
+            d = time_d
+        else:
+            time_d = d[d["duration_min"] >= 30]
+            if not time_d.empty:
+                d = time_d
+
+    else:
+        time_d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
+        if not time_d.empty:
+            d = time_d
     if d.empty:
-        st.warning("No safe workouts found for your condition. Showing light general exercises.")
-        d = gym_df[gym_df["difficulty"] <= 1]
-
-        if home_workout:
-            d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
-
-        if short_sessions:
-            d = d[d["duration_min"] <= 25]
+        st.warning("No exact workouts found for your selected preferences. Showing closest safe available exercises.")
+        d = safe_base.copy()
 
     weekly_count = min(max(days_per_week, 3), 6)
-    return d.sort_values(by=["difficulty", "duration_min"]).head(weekly_count)
+
+    return (
+        d.sort_values(by=["difficulty", "duration_min"])
+        .drop_duplicates(subset=["exercise_name"])
+        .head(weekly_count)
+    )
 
 
 
@@ -557,8 +609,9 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     # --- Workout recommendations (uses main's updated signature) ---
     workouts = pick_workouts(
         gym_df,
-        lifestyle["home_workout"],
+        profile.get("workout_location", "Home"),
         lifestyle["short_sessions"],
+        lifestyle["long_sessions"],
         days_per_week,
         lifestyle["injury_care"],
         profile.get("health_conditions", []),
@@ -566,7 +619,6 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
 
     # MealGenerator expects columns: Name, Calories, Protein, Carbs, Fat
     meal_food_df = food_df.rename(columns={
-
         "food_name": "Name", "calories": "Calories",
         "protein_g": "Protein", "carbs_g": "Carbs", "fat_g": "Fat",
     })
