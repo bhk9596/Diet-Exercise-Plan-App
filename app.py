@@ -1,5 +1,4 @@
 from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -357,8 +356,30 @@ def pick_meals(food_df: pd.DataFrame, calorie_target: int, vegetarian_pref: int)
     return pd.concat(meal_plan, ignore_index=True)
 
 
-def pick_workouts(gym_df: pd.DataFrame, home_workout: int, short_sessions: int, days_per_week: int):
+def pick_workouts(
+    gym_df,
+    home_workout,
+    short_sessions,
+    days_per_week,
+    health_conditions,
+    workout_time,):
     d = gym_df.copy()
+    conditions = [c.lower() for c in health_conditions]
+    avoid_keywords = []
+    if any(c in conditions for c in ["knee pain", "joint pain", "severe arthritis"]):
+        avoid_keywords += ["leg", "knee", "hip", "groin", "squat", "lunge"]
+
+
+    if "back pain" in conditions:
+        avoid_keywords += ["deadlift", "row", "back", "twist"]
+
+    
+    if "shoulder injury" in conditions:
+        avoid_keywords += ["press", "push", "raise", "dip"]
+
+    if avoid_keywords:
+        pattern = "|".join(avoid_keywords)
+        d = d[~d["exercise_name"].str.lower().str.contains(pattern, na=False)]
     if home_workout:
         d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
     if short_sessions:
@@ -416,7 +437,14 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     )
     lifestyle_recommendations = lifestyle_fit_recommendations(lifestyle, lifestyle_fit, calorie_target)
     meals = pick_meals(food_df, calorie_target, lifestyle["vegetarian_pref"])
-    workouts = pick_workouts(gym_df, lifestyle["home_workout"], lifestyle["short_sessions"], days_per_week)
+    workouts = pick_workouts(
+    gym_df,
+    lifestyle["home_workout"],
+    lifestyle["short_sessions"],
+    days_per_week,
+    profile["health_conditions"],  
+    profile["workout_time"],        
+)
     bmi = weight_kg / ((height_cm / 100) ** 2)
     goal_progress = max(0.0, min(1.0, 1.0 - abs(goal_weight_kg - weight_kg) / max(weight_kg, 1)))
 
