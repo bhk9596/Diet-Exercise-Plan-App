@@ -371,6 +371,8 @@ def pick_workouts(
 
     if short_sessions:
         d = d[d["duration_min"] <= 25]
+    if not short_sessions:
+        d = d[d["duration_min"] >= 45]
 
     if health_conditions is None:
         health_conditions = []
