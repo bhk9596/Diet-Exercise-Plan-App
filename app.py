@@ -699,19 +699,24 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     # =========================================================
     # MEAL PLAN: MealGenerator (10,000-iteration Monte Carlo)
     # =========================================================
-    # Determine macro split based on goal
+    # Determine base macro split based on goal
     if goal_direction < 0:   # Weight Loss: high protein
-        target_pro   = round(calorie_target * 0.40 / 4)
-        target_carbs = round(calorie_target * 0.30 / 4)
-        target_fat   = round(calorie_target * 0.30 / 9)
+        base_pro, base_carbs, base_fat = 0.40, 0.30, 0.30
     elif goal_direction > 0: # Muscle Gain: high carbs
-        target_pro   = round(calorie_target * 0.30 / 4)
-        target_carbs = round(calorie_target * 0.50 / 4)
-        target_fat   = round(calorie_target * 0.20 / 9)
+        base_pro, base_carbs, base_fat = 0.30, 0.50, 0.20
     else:                    # Maintenance: balanced
-        target_pro   = round(calorie_target * 0.30 / 4)
-        target_carbs = round(calorie_target * 0.40 / 4)
-        target_fat   = round(calorie_target * 0.30 / 9)
+        base_pro, base_carbs, base_fat = 0.30, 0.40, 0.30
+
+    # Override/shift based on explicit diet pattern (Low Carb / High Protein)
+    if diet_pattern_enc_user == 0.0: # "higher_protein" from UI preference
+        # Shift 10% from carbs to protein
+        base_pro += 0.10
+        base_carbs -= 0.10
+
+    # Calculate absolute grams
+    target_pro   = round(calorie_target * base_pro / 4)
+    target_carbs = round(calorie_target * base_carbs / 4)
+    target_fat   = round(calorie_target * base_fat / 9)
 
     # --- Workout recommendations (uses main's updated signature) ---
     workouts = pick_workouts(
