@@ -426,7 +426,8 @@ def pick_workouts(
         d = d[d["difficulty"] <= 2]
 
     if d.empty:
-        d = gym_df.copy()
+        st.warning("No safe workouts found for your condition. Showing light general exercises.")
+        d = gym_df[gym_df["difficulty"] <= 1]
 
         if home_workout:
             d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
