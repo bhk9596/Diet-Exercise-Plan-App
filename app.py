@@ -504,7 +504,7 @@ def pick_workouts(
         safe_base = safe_base[
             safe_base["muscle_group"].str.lower().isin([
                 "chest", "biceps", "triceps"
-            ])
+            ])]
         safe_base = safe_base[
             ~safe_base["exercise_name"].str.lower().str.contains(
             "press|overhead|shoulder press",
