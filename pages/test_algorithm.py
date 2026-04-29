@@ -265,8 +265,8 @@ default_fat = st.session_state.get("calc_fat", 70)
 # Macro Input Sliders
 mcol1, mcol2, mcol3 = st.columns(3)
 target_pro = mcol1.slider("Target Protein (g)", 30, 400, default_pro, step=5)
-target_carbs = mcol2.slider("Target Carbs (g)", 50, 400, default_carbs, step=10)
-target_fat = mcol3.slider("Target Fat (g)", 20, 150, default_fat, step=5)
+target_carbs = mcol2.slider("Target Carbs (g)", 50, 600, default_carbs, step=10)
+target_fat = mcol3.slider("Target Fat (g)", 20, 300, default_fat, step=5)
 
 # Mathematically valid calorie calculation (Pro*4 + Carb*4 + Fat*9)
 calculated_cals = (target_pro * 4) + (target_carbs * 4) + (target_fat * 9)
