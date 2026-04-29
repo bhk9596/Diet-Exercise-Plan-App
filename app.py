@@ -376,7 +376,7 @@ def pick_workouts(
     workout_location = str(workout_location).lower().strip()
 
     home_equipment = ["bodyweight", "dumbbell", "resistance_band", "bands"]
-    gym_equipment = ["barbell", "machine", "cable", "other", "dumbbell", "bands"]
+    gym_equipment = ["barbell", "machine", "cable"]
 
     if health_conditions is None:
         health_conditions = []
