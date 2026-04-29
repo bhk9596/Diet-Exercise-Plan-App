@@ -105,9 +105,12 @@ def parse_lifestyle(profile: dict):
         "long_sessions": int(workout_time == "60+ minutes" or any(k in t for k in ["60 minutes", "60+ minutes", "long workout"])),
         "low_sleep": int(sleep_quality == "Poor" or any(k in t for k in ["sleep 5", "sleep 4", "insomnia", "poor sleep"])),
         "injury_care": int(
-            any(c in health_conditions for c in ["Knee pain", "Back pain", "Shoulder injury", "Joint pain", "Severe Arthritis"])
-            or any(k in t for k in ["injury", "knee pain", "back pain", "joint pain"])
-        ),
+        any(str(c).lower().strip() != "none" for c in health_conditions)
+        or any(k in t for k in [
+        "injury", "pain", "hurt", "sore",
+        "knee", "back", "shoulder", "joint", "arthritis"
+    ])
+),
         "medical_condition": int("None" not in health_conditions),
     }
     matched_cues = []
@@ -379,81 +382,118 @@ def pick_workouts(
 
     health_text = " ".join([str(x).lower().strip() for x in health_conditions])
 
-    avoid_keywords = []
+    def contains_any(text, words):
+        return any(w in text for w in words)
 
-    knee_keywords = [
-        "knee", "squat", "lunge", "jump", "run", "running",
-        "step", "step-up", "step up", "box jump", "burpee",
-        "mountain climber", "high knees", "leg press",
-        "leg extension", "leg curl", "calf", "calves",
-        "ankle", "quad", "quadriceps", "hamstring",
-        "glute", "glutes", "hip thrust", "hip lift",
-        "bridge", "good morning", "side leg", "leg raise",
-        "groiner", "kneeling", "kneel"
-    ]
+    has_knee = contains_any(health_text, ["knee"])
+    has_back = contains_any(health_text, ["back"])
+    has_shoulder = contains_any(health_text, ["shoulder"])
+    has_joint = contains_any(health_text, ["joint", "arthritis"])
 
-    back_keywords = [
-        "back", "lower back", "spine", "deadlift",
-        "good morning", "row", "bent-over", "bent over",
-        "superman", "hyperextension", "extension",
-        "crunch", "sit up", "sit-up", "twist",
-        "rotation", "russian twist", "plank"
-    ]
-
-    shoulder_keywords = [
-        "shoulder", "overhead", "press", "push up", "push-up",
-        "dip", "dips", "raise", "lateral raise", "front raise",
-        "upright row", "row", "fly", "arm circle",
-        "bench press", "chest press", "plank"
-    ]
-
-    joint_keywords = [
-        "jump", "run", "running", "burpee", "squat",
-        "lunge", "step", "mountain climber", "high knees",
-        "push up", "push-up", "dip", "press",
-        "twist", "rotation", "kneeling", "kneel"
-    ]
-
-    if "knee" in health_text:
-        avoid_keywords += knee_keywords
-
-    if "back" in health_text:
-        d = d[
-            ~d["muscle_group"].str.lower().str.contains(
-            "lower back|glute|hamstring|quad|leg",
-            na=False
-        )
-    ]
-        d = d[
-            ~d["exercise_name"].str.lower().str.contains(
-            "twist|rotation|bend|deadlift|row|superman|bridge|kick|slide",
-            na=False
-        )
-    ]
-
-    if "shoulder" in health_text:
-        avoid_keywords += shoulder_keywords
-
-    if "joint" in health_text or "arthritis" in health_text:
-        avoid_keywords += joint_keywords
     safe_base = d.copy()
 
-    if avoid_keywords:
-        pattern = "|".join(re.escape(k) for k in set(avoid_keywords))
+    safe_base["exercise_text"] = (
+        safe_base["exercise_name"].fillna("").astype(str).str.lower()
+        + " "
+        + safe_base["muscle_group"].fillna("").astype(str).str.lower()
+        + " "
+        + safe_base["equipment"].fillna("").astype(str).str.lower()
+    )
 
-        text_cols = ["exercise_name", "muscle_group", "equipment"]
-        combined_text = safe_base[text_cols].fillna("").astype(str).agg(" ".join, axis=1).str.lower()
+    avoid_patterns = []
 
-        safe_base = safe_base[~combined_text.str.contains(pattern, na=False, regex=True)]
+  
+    if has_knee:
+        avoid_patterns += [
+            "knee", "squat", "lunge", "jump", "run", "running",
+            "step", "step-up", "step up", "box jump", "burpee",
+            "mountain climber", "high knees", "defensive slide",
+            "slide", "kick", "leg press", "leg extension", "leg curl",
+            "calf", "calves", "ankle", "quad", "quadriceps",
+            "hamstring", "glute", "glutes", "hip thrust", "hip lift",
+            "bridge", "butt", "side leg", "leg raise", "groiner",
+            "kneeling", "kneel", "good morning"
+        ]
 
-    if injury_care:
+        avoid_muscles = [
+            "quadriceps", "hamstrings", "glutes", "calves",
+            "adductors", "abductors"
+        ]
+
+        for m in avoid_muscles:
+            safe_base = safe_base[~safe_base["muscle_group"].fillna("").str.lower().str.contains(m, na=False)]
+
+
+    if has_back:
+        avoid_patterns += [
+            "back", "lower back", "spine", "deadlift", "good morning",
+            "bent-over", "bent over", "row", "superman", "hyperextension",
+            "extension", "crunch", "sit up", "sit-up", "janda",
+            "gorilla chin", "chin/crunch", "twist", "rotation",
+            "russian twist", "spell caster", "plank", "bridge",
+            "hip lift", "kick", "slide", "mountain climber",
+            "burpee", "toe touch", "bend"
+        ]
+
+        avoid_muscles = [
+            "lower back", "abdominals", "glutes",
+            "hamstrings", "quadriceps", "calves"
+        ]
+
+        for m in avoid_muscles:
+            safe_base = safe_base[~safe_base["muscle_group"].fillna("").str.lower().str.contains(m, na=False)]
+
+    # ---------- Shoulder injury ----------
+    if has_shoulder:
+        avoid_patterns += [
+            "shoulder", "overhead", "press", "bench press",
+            "chest press", "push up", "push-up", "dip", "dips",
+            "raise", "lateral raise", "front raise", "upright row",
+            "row", "fly", "arm circle", "plank", "mountain climber",
+            "burpee", "pull up", "pull-up", "chin up", "chin-up"
+        ]
+
+        avoid_muscles = [
+            "shoulders", "chest", "triceps", "lats", "traps"
+        ]
+
+        for m in avoid_muscles:
+            safe_base = safe_base[~safe_base["muscle_group"].fillna("").str.lower().str.contains(m, na=False)]
+
+    # ---------- Joint pain / arthritis ----------
+    if has_joint:
+        avoid_patterns += [
+            "jump", "run", "running", "burpee", "squat", "lunge",
+            "step", "step-up", "step up", "mountain climber",
+            "high knees", "push up", "push-up", "dip", "dips",
+            "press", "twist", "rotation", "kick", "slide",
+            "kneeling", "kneel", "box jump"
+        ]
+
+    # ---------- Apply keyword filter ----------
+    if avoid_patterns:
+        pattern = "|".join(re.escape(k) for k in set(avoid_patterns))
+        safe_base = safe_base[
+            ~safe_base["exercise_text"].str.contains(pattern, na=False, regex=True)
+        ]
+
+    # ---------- Injury difficulty limit ----------
+    if injury_care or has_knee or has_back or has_shoulder or has_joint:
         safe_base = safe_base[safe_base["difficulty"] <= 2]
+
+    # Do not fully reset to unsafe original data.
     if safe_base.empty:
+        st.warning("No fully injury-safe workouts found. Showing low-difficulty alternatives.")
         safe_base = gym_df.copy()
-        if injury_care:
-            safe_base = safe_base[safe_base["difficulty"] <= 2]
+        safe_base = safe_base[safe_base["difficulty"] <= 1]
+
+    # Remove helper column if exists
+    if "exercise_text" in safe_base.columns:
+        safe_base = safe_base.drop(columns=["exercise_text"])
 
     d = safe_base.copy()
+
+    # ---------- Location filter ----------
     if workout_location == "home":
         loc_d = d[d["equipment"].isin(home_equipment)]
         if not loc_d.empty:
@@ -468,6 +508,8 @@ def pick_workouts(
         loc_d = d[d["equipment"].isin(list(set(home_equipment + gym_equipment)))]
         if not loc_d.empty:
             d = loc_d
+
+    # ---------- Duration filter ----------
     if short_sessions:
         time_d = d[d["duration_min"] <= 25]
         if not time_d.empty:
@@ -486,6 +528,7 @@ def pick_workouts(
         time_d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
         if not time_d.empty:
             d = time_d
+
     if d.empty:
         st.warning("No exact workouts found for your selected preferences. Showing closest safe available exercises.")
         d = safe_base.copy()
