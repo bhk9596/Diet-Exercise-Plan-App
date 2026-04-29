@@ -428,14 +428,21 @@ def pick_workouts(
         d = d[d["difficulty"] <= 2]
 
     if d.empty:
-        st.warning("No safe workouts found for your condition. Showing light general exercises.")
-        d = gym_df[gym_df["difficulty"] <= 1]
+        st.warning("No exact workouts found for your selected time and condition. Showing closest available exercises.")
+        d = gym_df.copy()
 
         if home_workout:
             d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
 
         if short_sessions:
             d = d[d["duration_min"] <= 25]
+        elif long_sessions:
+            d = d[d["duration_min"] >= 45]
+        else:
+            d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
+
+        if injury_care:
+            d = d[d["difficulty"] <= 2]
 
     weekly_count = min(max(days_per_week, 3), 6)
     return d.sort_values(by=["difficulty", "duration_min"]).head(weekly_count)
