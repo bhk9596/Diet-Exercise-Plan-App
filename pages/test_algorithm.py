@@ -205,8 +205,8 @@ for i, (idx, dist) in enumerate(zip(indices, distances)):
             # High Carbs: 30% Pro, 50% Carbs, 20% Fat
             base_pro, base_carbs, base_fat = 0.30, 0.50, 0.20
         else:
-            # Balanced: 30% Pro, 40% Carbs, 30% Fat
-            base_pro, base_carbs, base_fat = 0.30, 0.40, 0.30
+            # Balanced: 40% Pro, 35% Carbs, 25% Fat (User requested 40/35/25)
+            base_pro, base_carbs, base_fat = 0.40, 0.35, 0.25
 
         # Override/shift based on explicit diet pattern (Low Carb / High Protein)
         if diet_pattern_sel == "💪 Higher Protein":

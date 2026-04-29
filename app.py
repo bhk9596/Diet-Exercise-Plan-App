@@ -696,16 +696,13 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
 
 
 
-    # =========================================================
-    # MEAL PLAN: MealGenerator (10,000-iteration Monte Carlo)
-    # =========================================================
     # Determine base macro split based on goal
     if goal_direction < 0:   # Weight Loss: high protein
         base_pro, base_carbs, base_fat = 0.40, 0.30, 0.30
     elif goal_direction > 0: # Muscle Gain: high carbs
         base_pro, base_carbs, base_fat = 0.30, 0.50, 0.20
-    else:                    # Maintenance: balanced
-        base_pro, base_carbs, base_fat = 0.30, 0.40, 0.30
+    else:                    # Maintenance: balanced (User requested 40/35/25)
+        base_pro, base_carbs, base_fat = 0.40, 0.35, 0.25
 
     # Override/shift based on explicit diet pattern (Low Carb / High Protein)
     if diet_pattern_enc_user == 0.0: # "higher_protein" from UI preference
