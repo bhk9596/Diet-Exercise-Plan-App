@@ -70,8 +70,11 @@ Diet-Exercise-Plan-App/
 
 ## Division of Labor
 
-*   **Gaohong**: Designed and implemented the Diet Recommendation Engine. Built the `DietTwinFinder` (k-NN retrieval using pure NumPy and Cosine similarity) and the `MealGenerator` (Monte Carlo optimization algorithm). Developed the standalone `test_algorithm.py` dashboard for mathematical validation.
-*   **Teammates**: Developed the Physical Stats & Body Type Classification model (RandomForest). Implemented the Safe Workout Picker (injury rule-based filtering). Built the Streamlit UI/UX architecture and form handlers (`ui_sections.py`).
+*   **Boren**: Streamlit UI/UX architecture and overall frontend design (`ui_sections.py`).
+*   **Jiahao**: Engineered the 3 Input modules, parsing physical stats and lifestyle questionnaire data into machine-readable structures.
+*   **Gaohong**: Implemented the Diet output module. Built the `DietTwinFinder` (k-NN retrieval using pure NumPy and Cosine similarity) and the `MealGenerator` (Monte Carlo optimization algorithm).
+*   **Jason**: Implemented the Exercise output module. Developed the Safe Workout Picker using rule-based injury filtering.
+*   **Ben**: Implemented the Lifestyle Fit output module. Developed the RandomForest models for body-type classification and lifestyle pattern prediction.
 
 ## Methods implemented
 
