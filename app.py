@@ -359,7 +359,7 @@ def pick_meals(food_df: pd.DataFrame, calorie_target: int, vegetarian_pref: int)
 
 def pick_workouts(
     gym_df: pd.DataFrame,
-    home_workout: int,
+    workout_location: str,
     short_sessions: int,
     long_sessions: int,
     days_per_week: int,
@@ -368,24 +368,31 @@ def pick_workouts(
 ):
     d = gym_df.copy()
 
-    if home_workout:
-        d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+    workout_location = str(workout_location).lower().strip()
+
+    home_equipment = ["bodyweight", "dumbbell", "resistance_band", "bands"]
+    gym_equipment = ["barbell", "machine", "cable", "other", "dumbbell", "bands"]
+
+    if workout_location == "home":
+        d = d[d["equipment"].isin(home_equipment)]
+    elif workout_location == "gym":
+        d = d[d["equipment"].isin(gym_equipment)]
+    elif workout_location == "both":
+        d = d[d["equipment"].isin(home_equipment + gym_equipment)]
 
     if short_sessions:
         d = d[d["duration_min"] <= 25]
-
     elif long_sessions:
         long_d = d[d["duration_min"] >= 45]
         if not long_d.empty:
             d = long_d
         else:
             d = d[d["duration_min"] >= 30]
-
     else:
         mid_d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
         if not mid_d.empty:
             d = mid_d
-    
+
     if health_conditions is None:
         health_conditions = []
 
@@ -436,18 +443,28 @@ def pick_workouts(
         d = d[d["difficulty"] <= 2]
 
     if d.empty:
-        st.warning("No exact workouts found for your selected time and condition. Showing closest available exercises.")
+        st.warning("No exact workouts found for your selected preferences. Showing closest available exercises.")
         d = gym_df.copy()
 
-        if home_workout:
-            d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+        if workout_location == "home":
+            d = d[d["equipment"].isin(home_equipment)]
+        elif workout_location == "gym":
+            d = d[d["equipment"].isin(gym_equipment)]
+        elif workout_location == "both":
+            d = d[d["equipment"].isin(home_equipment + gym_equipment)]
 
         if short_sessions:
             d = d[d["duration_min"] <= 25]
         elif long_sessions:
-            d = d[d["duration_min"] >= 45]
+            long_d = d[d["duration_min"] >= 45]
+            if not long_d.empty:
+                d = long_d
+            else:
+                d = d[d["duration_min"] >= 30]
         else:
-            d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
+            mid_d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
+            if not mid_d.empty:
+                d = mid_d
 
         if injury_care:
             d = d[d["difficulty"] <= 2]
@@ -505,7 +522,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     meals = pick_meals(food_df, calorie_target, lifestyle["vegetarian_pref"])
     workouts = pick_workouts(
     gym_df,
-    lifestyle["home_workout"],
+    profile.get("workout_location", "Home"),
     lifestyle["short_sessions"],
     lifestyle["long_sessions"],
     days_per_week,
