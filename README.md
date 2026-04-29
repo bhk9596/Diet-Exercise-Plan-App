@@ -68,6 +68,11 @@ Diet-Exercise-Plan-App/
 └── README.md                  # Project overview and run instructions
 ```
 
+## Division of Labor
+
+*   **Gaohong**: Designed and implemented the Diet Recommendation Engine. Built the `DietTwinFinder` (k-NN retrieval using pure NumPy and Cosine similarity) and the `MealGenerator` (Monte Carlo optimization algorithm). Developed the standalone `test_algorithm.py` dashboard for mathematical validation.
+*   **Teammates**: Developed the Physical Stats & Body Type Classification model (RandomForest). Implemented the Safe Workout Picker (injury rule-based filtering). Built the Streamlit UI/UX architecture and form handlers (`ui_sections.py`).
+
 ## Methods implemented
 
 - **Diet Twin Retrieval (From Scratch)**: k-NN using purely NumPy. Computes Standardisation, applies behavioural weighting, and uses Cosine Similarity to find the most behaviourally similar user.
