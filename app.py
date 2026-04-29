@@ -390,12 +390,22 @@ def pick_workouts(
         "ankle", "calf", "calves", "leg", "hip"
     ]
 
+    if "Back pain" in health_conditions:
+        avoid_keywords += [
+        "back", "spine", "twist", "rotation", "bend",
+        "deadlift", "row", "crunch", "sit up", "sit-up",
+        "superman", "bridge", "extension", "plank"
+    ]
+
     if avoid_keywords:
-        pattern = "|".join(avoid_keywords)
-        d = d[
-            ~d["exercise_name"].str.lower().str.contains(pattern, na=False)
-            & ~d["muscle_group"].str.lower().str.contains("adductor|abductor|quadriceps|hamstring|glutes|calves",na=False)
-        ]
+    pattern = "|".join(avoid_keywords)
+    d = d[
+        ~d["exercise_name"].str.lower().str.contains(pattern, na=False)
+        & ~d["muscle_group"].str.lower().str.contains(
+            "adductor|abductor|quadriceps|hamstring|glutes|calves|lower back|lats|traps",
+            na=False
+        )
+    ]
 
     if d.empty:
         d = gym_df.copy()
