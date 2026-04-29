@@ -375,46 +375,67 @@ def pick_workouts(
     if health_conditions is None:
         health_conditions = []
 
+    health_text = " ".join([str(x).lower().strip() for x in health_conditions])
     avoid_keywords = []
 
     if injury_care:
         avoid_keywords += [
             "jump", "squat", "lunge", "burpee", "step", "run",
-            "knee", "leg raise", "hip circle", "groiner", "mountain climber"
+            "mountain climber", "high knees"
         ]
-
-    health_text = " ".join([str(x).lower().strip() for x in health_conditions])
 
     if "knee" in health_text:
         avoid_keywords += [
-        "squat", "lunge", "jump", "step", "run",
-        "groiner", "hip circle", "side leg raise", "leg raise",
-        "ankle", "calf", "calves", "leg", "hip"
-    ]
+            "squat", "lunge", "jump", "step", "run",
+            "groiner", "hip circle", "side leg raise", "leg raise",
+            "ankle", "calf", "calves", "leg", "hip"
+        ]
 
     if "back" in health_text:
         avoid_keywords += [
-        "back", "spine", "twist", "rotation", "bend",
-        "deadlift", "row", "crunch", "sit up", "sit-up",
-        "superman", "bridge", "extension", "plank"
-    ]
+            "back", "spine", "twist", "rotation", "bend",
+            "deadlift", "row", "crunch", "sit up", "sit-up",
+            "superman", "bridge", "extension", "plank"
+        ]
+
+    if "shoulder" in health_text:
+        avoid_keywords += [
+            "shoulder", "press", "push up", "push-up", "plank",
+            "dip", "raise", "row", "overhead", "arm circle",
+            "lateral", "fly"
+        ]
+
+    if "joint" in health_text or "arthritis" in health_text:
+        avoid_keywords += [
+            "jump", "run", "burpee", "squat", "lunge", "step",
+            "mountain climber", "high knees", "plank", "push up",
+            "push-up", "twist", "rotation", "dip", "press"
+        ]
 
     if avoid_keywords:
-    pattern = "|".join(avoid_keywords)
-    d = d[
-        ~d["exercise_name"].str.lower().str.contains(pattern, na=False)
-        & ~d["muscle_group"].str.lower().str.contains(
-        "adductor|abductor|quadriceps|hamstring|glutes|calves|lower back|lats|traps",
-        na=False
-    )
-    ]
+        pattern = "|".join(avoid_keywords)
+        d = d[
+            ~d["exercise_name"].str.lower().str.contains(pattern, na=False)
+            & ~d["muscle_group"].str.lower().str.contains(
+                "adductor|abductor|quadriceps|hamstring|glutes|calves|lower back|lats|traps|shoulders",
+                na=False
+            )
+        ]
+
+    if injury_care:
+        d = d[d["difficulty"] <= 2]
 
     if d.empty:
         d = gym_df.copy()
+
         if home_workout:
             d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+
         if short_sessions:
             d = d[d["duration_min"] <= 25]
+
+        if injury_care:
+            d = d[d["difficulty"] <= 2]
 
     weekly_count = min(max(days_per_week, 3), 6)
     return d.sort_values(by=["difficulty", "duration_min"]).head(weekly_count)
