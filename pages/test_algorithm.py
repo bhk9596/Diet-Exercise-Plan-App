@@ -95,7 +95,6 @@ st.markdown("---")
 # INPUT 2: Lifestyle Data
 # ==========================================
 st.header("Input 2: Lifestyle Data")
-st.caption("(模拟由大语言模型从用户文本中提取出的结构化数据)")
 
 col2_1, col2_2, col2_3 = st.columns(3)
 night_shift = col2_1.radio("Works Night Shifts", ["No", "Yes"])
