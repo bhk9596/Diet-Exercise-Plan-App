@@ -404,7 +404,7 @@ def pick_workouts(
             "squat", "lunge", "jump", "step", "run",
             "groiner", "hip circle", "side leg raise", "leg raise",
             "ankle", "calf", "calves", "leg", "hip",
-            "kneeling", "kneel","butt", "bridge", "hip lift", "good morning"
+            "kneeling", "kneel","butt", "bridge", "hip lift", "good morning","sit up", "sit-up", "janda", "spell caster", "twist"
         ]
 
     if "back" in health_text:
