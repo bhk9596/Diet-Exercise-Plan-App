@@ -474,32 +474,14 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
 
     # --- Lifestyle fit model (Random Forest) --- kept completely unchanged ---
     lifestyle_model = build_lifestyle_fit_model(diet_df)
-    twin_adherence_score = float(twin.get("adherence_score", np.nan))
-    lifestyle_fit = predict_lifestyle_fit(
-        lifestyle_model,
-        user_vector,
-        lifestyle,
-        twin_adherence_score=twin_adherence_score,
-        twin_similarity=similarity,
-    )
-    lifestyle_recommendations = lifestyle_fit_recommendations(lifestyle, lifestyle_fit, calorie_target)
-
-    # --- Workout recommendations (uses main's updated signature with injury/health params) ---
-    workouts = pick_workouts(
-        gym_df,
-        lifestyle["home_workout"],
-        lifestyle["short_sessions"],
-        days_per_week,
-        lifestyle["injury_care"],
-        profile.get("health_conditions", []),
-    )
 
     # =========================================================
-    # DIET TWIN: DietTwinFinder (StandardScaler + 12 features)
+    # DIET TWIN: DietTwinFinder (k-NN, numpy, no sklearn)
+    # Must run BEFORE predict_lifestyle_fit so twin + similarity are available.
     # =========================================================
-    # Encode diet_pattern_enc for the user from onboarding inputs
-    craving_level = profile.get("craving_level", "Sometimes")
-    diet_preference = profile.get("diet_preference", "No preference")
+    # Encode diet_pattern as a numeric feature from the user's onboarding answers
+    craving_level    = profile.get("craving_level", "Sometimes")
+    diet_preference  = profile.get("diet_preference", "No preference")
     if craving_level == "Often":
         diet_pattern_enc_user = 2.0   # high_sugar_snacker
     elif diet_preference == "High protein":
@@ -507,13 +489,13 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     else:
         diet_pattern_enc_user = 1.0   # mixed_balanced
 
-    # Use user-provided adherence_score if available; fall back to RF prediction
+    # Prefer user-supplied adherence_score; default to 65 if not yet available
     adherence_score_user = float(np.clip(
-        profile.get("adherence_score", lifestyle_fit["raw_score"]),
-        0, 100
+        profile.get("adherence_score", 65),
+        45, 99
     ))
 
-    # Build the 12-feature diet twin vector
+    # Build the 12-feature vector for cosine k-NN search
     diet_twin_vector = np.array(
         [
             age, height_cm, weight_kg, sex_bin,
@@ -525,7 +507,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         dtype=float,
     )
 
-    # Encode diet_pattern_enc in the dataset (once per session via cache)
+    # Numerically encode diet_pattern column in the dataset
     _DIET_PATTERN_MAP = {"higher_protein": 0, "mixed_balanced": 1, "high_sugar_snacker": 2}
     diet_df_enc = diet_df.copy()
     diet_df_enc["diet_pattern_enc"] = diet_df_enc["diet_pattern"].map(_DIET_PATTERN_MAP).fillna(1)
@@ -537,8 +519,23 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         weights=DIET_TWIN_WEIGHTS,
     )
     twin_indices, twin_distances = twin_finder.find_twin(diet_twin_vector, k=1)
-    twin = diet_df_enc.iloc[twin_indices[0]]
+    twin       = diet_df_enc.iloc[twin_indices[0]]
     similarity = float(1.0 - twin_distances[0])
+
+    # Extract twin's adherence for the lifestyle fit model
+    twin_adherence_score = float(twin.get("adherence_score", np.nan))
+
+    # --- Lifestyle fit prediction (uses twin data for richer context) ---
+    lifestyle_fit = predict_lifestyle_fit(
+        lifestyle_model,
+        user_vector,
+        lifestyle,
+        twin_adherence_score=twin_adherence_score,
+        twin_similarity=similarity,
+    )
+    lifestyle_recommendations = lifestyle_fit_recommendations(lifestyle, lifestyle_fit, calorie_target)
+
+
 
     # =========================================================
     # MEAL PLAN: MealGenerator (10,000-iteration Monte Carlo)
@@ -557,8 +554,19 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         target_carbs = round(calorie_target * 0.40 / 4)
         target_fat   = round(calorie_target * 0.30 / 9)
 
+    # --- Workout recommendations (uses main's updated signature) ---
+    workouts = pick_workouts(
+        gym_df,
+        lifestyle["home_workout"],
+        lifestyle["short_sessions"],
+        days_per_week,
+        lifestyle["injury_care"],
+        profile.get("health_conditions", []),
+    )
+
     # MealGenerator expects columns: Name, Calories, Protein, Carbs, Fat
     meal_food_df = food_df.rename(columns={
+
         "food_name": "Name", "calories": "Calories",
         "protein_g": "Protein", "carbs_g": "Carbs", "fat_g": "Fat",
     })
