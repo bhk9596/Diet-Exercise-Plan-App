@@ -418,7 +418,18 @@ def pick_workouts(
         avoid_keywords += knee_keywords
 
     if "back" in health_text:
-        avoid_keywords += back_keywords
+        d = d[
+            ~d["muscle_group"].str.lower().str.contains(
+            "lower back|glute|hamstring|quad|leg",
+            na=False
+        )
+    ]
+        d = d[
+            ~d["exercise_name"].str.lower().str.contains(
+            "twist|rotation|bend|deadlift|row|superman|bridge|kick|slide",
+            na=False
+        )
+    ]
 
     if "shoulder" in health_text:
         avoid_keywords += shoulder_keywords
