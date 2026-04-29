@@ -16,14 +16,14 @@ source .venv/bin/activate
 pip install -r requirements.txt
 streamlit run app.py
 ```
-'''
-Windows:
-1. cd ml_diet_twin_app
-2. python -m venv .venv
-3. .venv\Scripts\activate
-4. pip install -r requirements.txt
-5. streamlit run app.py
-'''	
+```Windows:
+cd ml_diet_twin_app
+python -m venv .venv
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+.venv\Scripts\activate
+pip install -r requirements.txt
+streamlit run app.py
+```
 
 ## Datasets used
 

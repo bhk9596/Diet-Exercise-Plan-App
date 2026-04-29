@@ -3752,6 +3752,14 @@ def render_onboarding_wizard():
             index=_safe_index(health_options, default_health_choice),
             horizontal=True,
         )
+        adherence_score = st.slider(
+            "How well do you usually stick to a diet plan? (Diet Adherence)",
+            min_value=45,
+            max_value=99,
+            value=int(defaults.get("adherence_score", 65)),
+            step=5,
+            help="45 = rarely follow plans, 99 = always on track. This helps match you with a realistic Diet Twin.",
+        )
         submitted = st.form_submit_button("Next", type="primary", use_container_width=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
@@ -3796,6 +3804,7 @@ def render_onboarding_wizard():
         "stress_level": stress_level,
         "sleep_quality": sleep_quality,
         "health_conditions": health_conditions,
+        "adherence_score": int(adherence_score),
     }
 
 
@@ -3876,15 +3885,38 @@ def _render_mint_table(df: pd.DataFrame) -> None:
 
 def render_diet_plan_tab(meals: pd.DataFrame) -> None:
     st.markdown('<div class="section-title">Recommended Meal Structure</div>', unsafe_allow_html=True)
-    meal_table = meals[["meal_type", "food_name", "calories", "protein_g", "carbs_g", "fat_g"]].copy()
-    meal_table.columns = ["Meal", "Food", "Calories", "Protein (g)", "Carbs (g)", "Fat (g)"]
+
+    # Aggregate 7 dishes into 3 meals
+    meal_order = ["breakfast", "lunch", "dinner"]
+    meal_emoji = {"breakfast": "🌅", "lunch": "☀️", "dinner": "🌙"}
+    rows = []
+    for meal in meal_order:
+        group = meals[meals["meal_type"] == meal]
+        if group.empty:
+            continue
+        rows.append({
+            "Meal": meal_emoji.get(meal, "") + " " + meal.capitalize(),
+            "Foods": " + ".join(str(n) for n in group["food_name"]),
+            "Calories": round(group["calories"].sum()),
+            "Protein (g)": round(group["protein_g"].sum()),
+            "Carbs (g)": round(group["carbs_g"].sum()),
+            "Fat (g)": round(group["fat_g"].sum()),
+        })
+    meal_table = pd.DataFrame(rows)
     _render_mint_table(meal_table)
+
+    total_cals    = meals["calories"].sum()  if not meals.empty else 0.0
     total_protein = meals["protein_g"].sum() if not meals.empty else 0.0
+    total_carbs   = meals["carbs_g"].sum()   if not meals.empty else 0.0
+    total_fat     = meals["fat_g"].sum()     if not meals.empty else 0.0
     st.markdown(
         f"""
         <div class="small-note">
-            Meals are selected by calorie fit and protein priority.
-            Estimated daily protein from this meal set: <b>{total_protein:.0f} g</b>.
+            Monte Carlo–optimised 7-dish plan merged into 3 meals.<br>
+            Daily total: <b>{total_cals:.0f} kcal</b> &nbsp;|&nbsp;
+            Protein: <b>{total_protein:.0f} g</b> &nbsp;|&nbsp;
+            Carbs: <b>{total_carbs:.0f} g</b> &nbsp;|&nbsp;
+            Fat: <b>{total_fat:.0f} g</b>
         </div>
         """,
         unsafe_allow_html=True,
@@ -4067,6 +4099,14 @@ def render_profile_form_ui(defaults: dict) -> dict | None:
             ),
             help="Include schedule, cravings, stress, sleep, equipment, and any injuries.",
         )
+        adherence_score = st.slider(
+            "How well do you usually stick to a diet plan? (Diet Adherence)",
+            min_value=45,
+            max_value=99,
+            value=int(defaults.get("adherence_score", 65)),
+            step=5,
+            help="45 = rarely follow plans, 99 = always on track.",
+        )
         submitted = st.form_submit_button("Save and Generate Plan")
 
     if not submitted:
@@ -4089,6 +4129,7 @@ def render_profile_form_ui(defaults: dict) -> dict | None:
         "stress_level": stress_level,
         "sleep_quality": sleep_quality,
         "health_conditions": health_conditions,
+        "adherence_score": int(adherence_score),
     }
 
 

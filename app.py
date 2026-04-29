@@ -6,7 +6,7 @@ import streamlit as st
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import NearestNeighbors
+
 from ui_sections import (
     apply_custom_theme_styles,
     render_onboarding_wizard,
@@ -14,6 +14,8 @@ from ui_sections import (
     render_profile_form_ui,
     render_welcome_page,
 )
+from diet_twin_finder import DietTwinFinder
+from meal_generator import MealGenerator
 
 
 DATA_DIR = Path(__file__).parent / "data"
@@ -31,6 +33,20 @@ LIFESTYLE_FIT_FEATURE_COLS = [
     "short_sessions",
     "goal_direction",
 ]
+
+# Diet Twin k-NN feature set (12 features, includes adherence_score and diet_pattern_enc)
+DIET_TWIN_FEATURE_COLS = [
+    "age", "height_cm", "weight_kg", "sex_bin",
+    "night_shift", "diet_pattern_enc", "home_workout",
+    "vegetarian_pref", "high_stress", "short_sessions", "goal_direction",
+    "adherence_score",
+]
+DIET_TWIN_WEIGHTS = np.array([
+    1.0, 1.0, 1.0, 1.0,
+    1.2, 1.4, 1.0,
+    1.0, 1.5, 1.0, 1.5,
+    1.5,
+], dtype=float)
 
 
 @st.cache_data
@@ -304,17 +320,7 @@ def lifestyle_fit_recommendations(lifestyle: dict, fit_result: dict, calorie_tar
     return recommendations[:6]
 
 
-def retrieve_diet_twin(user_vector: np.ndarray, diet_df: pd.DataFrame):
-    # Higher weights on lifestyle features to emphasize behavior-fit over pure body stats.
-    weights = np.array([1.0, 1.0, 1.0, 1.0, 2.3, 2.6, 2.2, 1.8, 2.2, 2.2, 1.5], dtype=float)
-    weighted_matrix = diet_df[LIFESTYLE_FIT_FEATURE_COLS].values * weights
-    weighted_user = user_vector * weights
-    nn = NearestNeighbors(n_neighbors=3, metric="cosine")
-    nn.fit(weighted_matrix)
-    distances, indices = nn.kneighbors(weighted_user.reshape(1, -1))
-    best_idx = indices[0][0]
-    similarity = 1 - distances[0][0]
-    return diet_df.iloc[best_idx], float(similarity)
+# NOTE: retrieve_diet_twin() removed — replaced by DietTwinFinder in diet_twin_finder.py
 
 
 def pick_meals(food_df: pd.DataFrame, calorie_target: int, vegetarian_pref: int):
@@ -366,28 +372,120 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     )
     goal_direction = int(goal_weight_kg > weight_kg) - int(goal_weight_kg < weight_kg)
 
+    # --- 11-feature vector: used ONLY for lifestyle fit model (unchanged) ---
     user_vector = np.array(
         [
-            age,
-            height_cm,
-            weight_kg,
-            sex_bin,
-            lifestyle["night_shift"],
-            lifestyle["sugar_craving"],
-            lifestyle["home_workout"],
-            lifestyle["vegetarian_pref"],
-            lifestyle["high_stress"],
-            lifestyle["short_sessions"],
+            age, height_cm, weight_kg, sex_bin,
+            lifestyle["night_shift"], lifestyle["sugar_craving"],
+            lifestyle["home_workout"], lifestyle["vegetarian_pref"],
+            lifestyle["high_stress"], lifestyle["short_sessions"],
             goal_direction,
         ],
         dtype=float,
     )
-    twin, similarity = retrieve_diet_twin(user_vector, diet_df)
+
+    # --- Lifestyle fit model (Random Forest) --- kept completely unchanged ---
     lifestyle_model = build_lifestyle_fit_model(diet_df)
     lifestyle_fit = predict_lifestyle_fit(lifestyle_model, user_vector, lifestyle)
     lifestyle_recommendations = lifestyle_fit_recommendations(lifestyle, lifestyle_fit, calorie_target)
-    meals = pick_meals(food_df, calorie_target, lifestyle["vegetarian_pref"])
+
+    # --- Workout recommendations --- kept completely unchanged ---
     workouts = pick_workouts(gym_df, lifestyle["home_workout"], lifestyle["short_sessions"], days_per_week)
+
+    # =========================================================
+    # DIET TWIN: DietTwinFinder (StandardScaler + 12 features)
+    # =========================================================
+    # Encode diet_pattern_enc for the user from onboarding inputs
+    craving_level = profile.get("craving_level", "Sometimes")
+    diet_preference = profile.get("diet_preference", "No preference")
+    if craving_level == "Often":
+        diet_pattern_enc_user = 2.0   # high_sugar_snacker
+    elif diet_preference == "High protein":
+        diet_pattern_enc_user = 0.0   # higher_protein
+    else:
+        diet_pattern_enc_user = 1.0   # mixed_balanced
+
+    # Use user-provided adherence_score if available; fall back to RF prediction
+    adherence_score_user = float(np.clip(
+        profile.get("adherence_score", lifestyle_fit["raw_score"]),
+        0, 100
+    ))
+
+    # Build the 12-feature diet twin vector
+    diet_twin_vector = np.array(
+        [
+            age, height_cm, weight_kg, sex_bin,
+            lifestyle["night_shift"], diet_pattern_enc_user,
+            lifestyle["home_workout"], lifestyle["vegetarian_pref"],
+            lifestyle["high_stress"], lifestyle["short_sessions"],
+            goal_direction, adherence_score_user,
+        ],
+        dtype=float,
+    )
+
+    # Encode diet_pattern_enc in the dataset (once per session via cache)
+    _DIET_PATTERN_MAP = {"higher_protein": 0, "mixed_balanced": 1, "high_sugar_snacker": 2}
+    diet_df_enc = diet_df.copy()
+    diet_df_enc["diet_pattern_enc"] = diet_df_enc["diet_pattern"].map(_DIET_PATTERN_MAP).fillna(1)
+
+    twin_finder = DietTwinFinder(
+        diet_df_enc,
+        metric="cosine",
+        feature_cols=DIET_TWIN_FEATURE_COLS,
+        weights=DIET_TWIN_WEIGHTS,
+    )
+    twin_indices, twin_distances = twin_finder.find_twin(diet_twin_vector, k=1)
+    twin = diet_df_enc.iloc[twin_indices[0]]
+    similarity = float(1.0 - twin_distances[0])
+
+    # =========================================================
+    # MEAL PLAN: MealGenerator (10,000-iteration Monte Carlo)
+    # =========================================================
+    # Determine macro split based on goal
+    if goal_direction < 0:   # Weight Loss: high protein
+        target_pro   = round(calorie_target * 0.40 / 4)
+        target_carbs = round(calorie_target * 0.30 / 4)
+        target_fat   = round(calorie_target * 0.30 / 9)
+    elif goal_direction > 0: # Muscle Gain: high carbs
+        target_pro   = round(calorie_target * 0.30 / 4)
+        target_carbs = round(calorie_target * 0.50 / 4)
+        target_fat   = round(calorie_target * 0.20 / 9)
+    else:                    # Maintenance: balanced
+        target_pro   = round(calorie_target * 0.30 / 4)
+        target_carbs = round(calorie_target * 0.40 / 4)
+        target_fat   = round(calorie_target * 0.30 / 9)
+
+    # MealGenerator expects columns: Name, Calories, Protein, Carbs, Fat
+    meal_food_df = food_df.rename(columns={
+        "food_name": "Name", "calories": "Calories",
+        "protein_g": "Protein", "carbs_g": "Carbs", "fat_g": "Fat",
+    })
+    # Vegetarian filter
+    if lifestyle["vegetarian_pref"] and "vegetarian" in meal_food_df.columns:
+        veg_only = meal_food_df[meal_food_df["vegetarian"] == 1]
+        if not veg_only.empty:
+            meal_food_df = veg_only
+
+    generator = MealGenerator(meal_food_df)
+    best_plan_df, _best_error, _actual_totals = generator.generate_meal_plan(
+        calorie_target, target_pro, target_carbs, target_fat,
+        num_meals=7, iterations=10000,
+    )
+
+    # Convert MealGenerator output → schema expected by ui_sections.render_diet_plan_tab
+    # Expected: meal_type, food_name, calories, protein_g, carbs_g, fat_g
+    meal_labels = [
+        "breakfast", "breakfast",
+        "lunch", "lunch", "lunch",
+        "dinner", "dinner",
+    ]
+    meals = best_plan_df.rename(columns={
+        "Name": "food_name", "Calories": "calories",
+        "Protein": "protein_g", "Carbs": "carbs_g", "Fat": "fat_g",
+    }).reset_index(drop=True)
+    meals.insert(0, "meal_type", meal_labels)
+
+    # =========================================================
     bmi = weight_kg / ((height_cm / 100) ** 2)
     goal_progress = max(0.0, min(1.0, 1.0 - abs(goal_weight_kg - weight_kg) / max(weight_kg, 1)))
 
@@ -415,7 +513,7 @@ def render_onboarding_form(existing_profile=None):
 
 
 def main():
-    st.set_page_config(page_title="Diet Twin Planner", layout="wide", initial_sidebar_state="collapsed")
+    st.set_page_config(page_title="Diet Twin Planner", layout="wide", initial_sidebar_state="auto")
     apply_custom_theme()
     params = st.query_params
     onboarding_param_keys = {

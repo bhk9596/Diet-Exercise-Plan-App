@@ -16,17 +16,19 @@ import numpy as np
 from app import estimate_calories, get_activity_multiplier
 
 DIET_FEATURE_COLS = [
-    'age', 'height_cm', 'weight_kg', 'sex_bin', 
-    'night_shift', 'sugar_craving', 'home_workout', 
-    'vegetarian_pref', 'high_stress', 'short_sessions', 'goal_direction'
+    'age', 'height_cm', 'weight_kg', 'sex_bin',
+    'night_shift', 'diet_pattern_enc', 'home_workout',
+    'vegetarian_pref', 'high_stress', 'short_sessions', 'goal_direction',
+    'adherence_score'
 ]
 DIET_FEATURE_WEIGHTS = np.array([
     1.0, 1.0, 1.0, 1.0,    # body profile base weights
-    1.2, 1.2, 1.0,         # lifestyle and preference
+    1.2, 1.4, 1.0,         # lifestyle: night_shift, diet_pattern_enc (3-level richer signal), home_workout
     1.0, 1.5, 1.0,         # behavioral flags (stress is highly weighted)
-    1.5                    # goal direction is crucial
+    1.5,                   # goal direction is crucial
+    1.5                    # adherence capacity: matching realistic behavioral ceiling is equally critical
 ])
-st.set_page_config(page_title="Algorithm Testing Dashboard", layout="wide")
+st.set_page_config(page_title="Algorithm Testing Dashboard", layout="wide", initial_sidebar_state="expanded")
 
 st.title("Diet Recommendation Algorithm Testing")
 st.markdown("This dashboard perfectly reflects the 3-input architecture defined in our project methods.")
@@ -53,6 +55,10 @@ try:
 except Exception as e:
     st.error(f"Failed to load dataset: {e}")
     st.stop()
+
+# Encode diet_pattern as ordinal: higher_protein=0, mixed_balanced=1, high_sugar_snacker=2
+DIET_PATTERN_MAP = {'higher_protein': 0, 'mixed_balanced': 1, 'high_sugar_snacker': 2}
+df['diet_pattern_enc'] = df['diet_pattern'].map(DIET_PATTERN_MAP).fillna(1)
 
 # Extract numerical columns to ensure we build the user_vector in the exact correct order
 numerical_cols = df.select_dtypes(include=[np.number]).columns.tolist()
@@ -93,7 +99,11 @@ st.caption("(模拟由大语言模型从用户文本中提取出的结构化数�
 
 col2_1, col2_2, col2_3 = st.columns(3)
 night_shift = col2_1.radio("Works Night Shifts", ["No", "Yes"])
-sugar_craving = col2_2.radio("Craves Sugar", ["No", "Yes"])
+diet_pattern_sel = col2_2.radio(
+    "Diet Pattern",
+    ["💪 Higher Protein", "🥗 Mixed / Balanced", "🍬 High Sugar Snacker"],
+    help="Replaces simple sugar craving flag — captures eating style at 3 levels"
+)
 high_stress = col2_3.radio("High Stress Level", ["No", "Yes"])
 
 col2_4, col2_5, col2_6 = st.columns(3)
@@ -115,13 +125,19 @@ adh_min, adh_max, adh_mean = float(df['adherence_score'].min()), float(df['adher
 adherence_score = col3_2.slider("Diet Adherence Score (Self-assessed)", min_value=adh_min, max_value=adh_max, value=adh_mean, step=1.0)
 
 # Build the feature dictionary mapping
+_diet_pattern_enc_val = {
+    "💪 Higher Protein": 0.0,
+    "🥗 Mixed / Balanced": 1.0,
+    "🍬 High Sugar Snacker": 2.0,
+}[diet_pattern_sel]
+
 user_input_map = {
     'age': age,
     'height_cm': height_cm,
     'weight_kg': weight_kg,
     'sex_bin': 1.0 if sex == "Female" else 0.0,
     'night_shift': 1.0 if night_shift == "Yes" else 0.0,
-    'sugar_craving': 1.0 if sugar_craving == "Yes" else 0.0,
+    'diet_pattern_enc': _diet_pattern_enc_val,
     'high_stress': 1.0 if high_stress == "Yes" else 0.0,
     'vegetarian_pref': 1.0 if vegetarian_pref == "Yes" else 0.0,
     'home_workout': 1.0 if workout_pref == "Home Workout" else 0.0,
@@ -272,16 +288,25 @@ if st.button("Generate Meal Plan"):
         tcol3.metric("Carbs", f"{actual_totals['Carbs']:.0f} g")
         tcol4.metric("Fat", f"{actual_totals['Fat']:.0f} g")
         
-        # Display Recommended Meals
-        st.write("### Recommended 7-Dish Daily Plan")
-        labels = [
-            "Breakfast (Dish 1)", "Breakfast (Dish 2)", 
-            "Lunch (Dish 1)", "Lunch (Dish 2)", "Lunch (Dish 3)", 
-            "Dinner (Dish 1)", "Dinner (Dish 2)"
-        ]
+        # Display Recommended Meals — aggregated into 3 meals
+        st.write("### Recommended Daily Meal Plan")
         
-        for i, (idx, row) in enumerate(best_plan_df.iterrows()):
-            with st.container():
-                st.markdown(f"**{labels[i]}**: {row['Name']}")
-                st.caption(f"Calories: {row['Calories']} | Protein: {row['Protein']}g | Carbs: {row['Carbs']}g | Fat: {row['Fat']}g")
-                st.divider()
+        dishes = list(best_plan_df.itertuples(index=False))
+        meal_groups = {
+            "🌅 Breakfast": dishes[0:2],
+            "☀️ Lunch":     dishes[2:5],
+            "🌙 Dinner":    dishes[5:7],
+        }
+        
+        for meal_name, meal_dishes in meal_groups.items():
+            total_cal = sum(d.Calories for d in meal_dishes)
+            total_pro = sum(d.Protein for d in meal_dishes)
+            total_carbs = sum(d.Carbs for d in meal_dishes)
+            total_fat = sum(d.Fat for d in meal_dishes)
+            dish_names = " + ".join(d.Name for d in meal_dishes)
+            
+            col_a, col_b = st.columns([2, 1])
+            col_a.markdown(f"**{meal_name}**  \n{dish_names}")
+            col_b.metric("Total Calories", f"{total_cal:.0f} kcal")
+            st.caption(f"Protein: {total_pro:.0f}g | Carbs: {total_carbs:.0f}g | Fat: {total_fat:.0f}g")
+            st.divider()

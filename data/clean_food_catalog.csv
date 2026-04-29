@@ -1,13 +1,13 @@
 RecipeId,Name,Calories,Fat,Carbs,Protein
 89307,Delicious Oven-Roasted Potatoes,556.9,22.4,78.0,13.5
 280831,Roasted Asparagus and Potatoes With Dijon Balsamic Vinaigrette,168.7,6.1,25.7,5.4
-532262,Sauteed Squash &amp; Veggies,41.5,0.6,8.1,2.3
+532262,Sauteed Squash & Veggies,41.5,0.6,8.1,2.3
 312947,Easy Brownies,183.4,8.7,24.3,2.4
 91611,Mexican Nacho Dip,662.8,52.2,11.6,36.2
 430167,Pumpernickel Rye Bread (Abm),223.9,3.7,43.0,6.1
 400514,Rocky Mountain Ginger Crisp by Cheri Loughlin,0.0,0.0,0.0,0.0
 77174,Roszke aka Nuthorns,440.9,36.6,23.6,8.9
-228711,Petits Farcis - Proven&ccedil;e Stuffed Baked Vegetables,1067.6,78.3,42.3,47.0
+228711,Petits Farcis - Provençe Stuffed Baked Vegetables,1067.6,78.3,42.3,47.0
 269616,The Eatingwell Tuna Melt,238.6,6.7,16.3,28.6
 341176,Coconut Whipped Cream - Sugar Free,190.9,18.6,5.3,1.1
 444477,Cabbage Roll Stir Fry,357.0,17.8,25.9,25.7
@@ -17,7 +17,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 274725,Auntie Em's Pineapple and Cabbage Slaw,110.1,2.6,21.2,1.9
 212152,Old-Fashioned  Peach Butter - Crock Pot,369.7,0.7,94.1,2.2
 521345,6WBM Pineapple Chicken,130.8,5.2,8.7,12.1
-324859,Cheesy Rice &amp; Broccoli Casserole,477.5,28.4,46.1,11.4
+324859,Cheesy Rice & Broccoli Casserole,477.5,28.4,46.1,11.4
 166218,Lemon Ricotta Muffins,263.3,11.9,34.2,5.5
 4843,Deluxe Macaroni and Cheese,340.6,18.9,22.9,19.2
 275599,Autumn Greens and Apple Salad,242.5,19.2,15.9,4.9
@@ -26,7 +26,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 422534,Sour Cherry Preserve -- Visino Glyko,829.6,0.6,213.9,2.1
 24799,Hard-Boiled Eggs,71.5,4.8,0.4,6.3
 506097,"Almond, Cheese and Rosemary Omelet",338.3,25.8,2.4,23.0
-469662,Sear-Roasted Halibut With Tomatoes &amp; Capers,306.6,9.3,21.5,33.7
+469662,Sear-Roasted Halibut With Tomatoes & Capers,306.6,9.3,21.5,33.7
 139304,Apple Maple Cream Pie,436.0,20.3,61.6,3.6
 518399,Plum Jam,2625.0,4.2,671.2,10.5
 337569,Simple Beef Chili With Beans,758.0,43.7,48.7,49.8
@@ -88,7 +88,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 484485,Randy's Moroccan Spice Mix and Rub,6.5,0.2,1.2,0.3
 358806,Falafel Patties,236.0,1.3,43.0,16.2
 354180,Cheesy Hash Brown Chili,707.7,35.2,58.8,41.9
-426893,"Chipotle Chile, Chicken &amp; Black Bean Soup",324.2,12.4,23.6,29.5
+426893,"Chipotle Chile, Chicken & Black Bean Soup",324.2,12.4,23.6,29.5
 273178,Andes Double Chocolate Chip Mint  Cookies,108.8,4.9,16.0,1.7
 28195,Lemon Blueberry Trifle,247.7,5.5,46.0,5.2
 21936,Wendy's Chili Clone,432.9,18.8,34.6,33.3
@@ -103,7 +103,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 295311,Homemade Whole Wheat Blueberry Muffins,263.1,9.4,42.0,5.0
 215422,Blueberry-Pineapple Coffee Cake,387.7,16.7,57.1,4.5
 277280,Lemon Chicken Skewers,196.5,8.2,3.0,26.7
-387852,Pasta With Leek &amp; Bacon,993.1,57.2,82.9,36.2
+387852,Pasta With Leek & Bacon,993.1,57.2,82.9,36.2
 244279,Hawaiian Chicken (Oamc Dump),260.7,8.8,17.3,28.3
 326513,Cranberry Walnut Crescent Rolls,250.7,8.0,39.3,6.4
 146486,Italian Spaghetti Soup With Garlic,323.0,9.9,47.3,13.1
@@ -154,7 +154,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 107429,Mocha Biscotti,134.1,5.0,20.6,2.6
 39858,Church supper chops,312.9,19.3,8.6,24.8
 36458,Okra Medley--Great As a Side or a Main Dish,159.9,13.7,9.4,1.6
-282070,Creamy Caribbean Chicken &amp; Coconut Soup,434.2,29.0,25.0,20.6
+282070,Creamy Caribbean Chicken & Coconut Soup,434.2,29.0,25.0,20.6
 284660,Meat Pie,432.8,25.3,35.1,16.9
 269666,Beverly's Anytime Salsa Dip,1129.6,69.5,98.8,34.7
 154415,Lapsee ( Cracked Wheat Pudding),810.4,53.4,86.2,2.5
@@ -177,7 +177,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 224902,Chunky Carrot Cake,421.4,24.5,47.4,5.4
 420439,Oatmeal Cookies,154.8,8.0,18.6,3.2
 85825,Sour Cream Enchilada Casserole,687.1,48.9,20.2,41.4
-342849,Gran Couva Cr&eacute;meux,240.8,22.6,4.6,4.8
+342849,Gran Couva Crémeux,240.8,22.6,4.6,4.8
 241811,Cottage Cheese and Cheddar Muffins,102.6,4.7,8.4,6.4
 409598,Texas Two-Step Chicken,317.1,13.7,16.4,31.9
 415180,Ww Red Velvet Angel Food Cake,192.9,5.1,30.0,7.3
@@ -204,7 +204,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 229642,Razzamatazz,44.0,0.0,4.6,0.0
 440968,Fauxtatoes - They'll Never Know!,243.8,11.4,32.4,6.8
 158158,Edible Peanut Butter Clay,137.6,8.3,11.3,6.5
-358461,Chicken &amp; Tomato,475.0,27.9,6.3,48.3
+358461,Chicken & Tomato,475.0,27.9,6.3,48.3
 490052,Skillet-Baked Chicken Parmesan and Penne,734.4,27.1,79.4,45.8
 378310,Roasted Vegetable Couscous Salad,242.0,9.1,35.6,6.9
 255723,Once-A-Week Vinaigrette - Sara's Secrets,1435.4,162.2,0.4,0.2
@@ -302,7 +302,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 265319,Roast-Mary Spice Mix,93.7,1.5,21.8,3.2
 66478,Fresh Sweet Corn Salad,129.4,7.7,15.5,2.7
 391216,Roasted Tomato Soup,95.3,3.0,16.3,3.2
-193175,Cheddar Squash &amp; Pasta,328.9,9.0,44.1,17.6
+193175,Cheddar Squash & Pasta,328.9,9.0,44.1,17.6
 471011,Pumpkin Shortbreads,65.0,3.5,8.2,1.0
 10862,Heavenly Cheesecake Swirl Brownies,149.5,6.3,21.5,1.9
 63079,Chicken Almondine,235.1,15.3,4.7,16.8
@@ -320,13 +320,13 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 249582,Curried Sweet Potato Bisque,154.5,2.3,27.4,7.3
 363713,Chocolate Sauce (A La the Joy of Cooking),153.0,15.7,6.5,3.0
 154188,Groovy Green Goddess Dip,330.3,31.5,4.8,6.5
-316357,Apple &amp; Ricotta Slice,756.0,48.8,67.9,13.2
+316357,Apple & Ricotta Slice,756.0,48.8,67.9,13.2
 360851,Asian Stuffed Eggplant With Hawaiian-Style Pork (Or Turkey) Hash,644.0,30.7,57.2,40.5
 294641,Quiche,182.7,7.4,17.5,12.3
 524281,Peanut Butter and Grape Trifle,159.3,8.2,20.2,4.0
 533517,Sausage and Spinach Bread Stuffing,221.7,9.5,20.1,14.2
-322743,Awesome Ice Cream Sandwich &quot;cake&quot;,584.1,20.5,100.9,7.9
-242374,Lea &amp; Perrins Cowboy Marinade,1031.2,109.3,11.3,2.3
+322743,"Awesome Ice Cream Sandwich ""cake""",584.1,20.5,100.9,7.9
+242374,Lea & Perrins Cowboy Marinade,1031.2,109.3,11.3,2.3
 481371,Cottage Cheese Icebox Cookies,38.8,1.9,4.9,0.5
 460164,Tarragon-Orange Chicken,353.6,8.2,37.8,33.2
 523079,Stuffed Peppers,444.1,36.1,11.9,21.9
@@ -352,7 +352,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 188264,Habanero Sherry Sauce,482.9,1.4,43.0,6.9
 38927,Heavenly Pudding,79.9,0.5,17.4,2.2
 507571,Pontchartrain Sauce (Pappadeaux's),339.1,31.0,8.1,6.6
-398635,Meat &amp; Potato Patties for Dogs,118.7,5.7,9.4,7.4
+398635,Meat & Potato Patties for Dogs,118.7,5.7,9.4,7.4
 132308,White Kidney Bean Soup,820.6,53.0,39.8,46.1
 246441,Shar's Roast Chicken,0.0,0.0,0.0,0.0
 240363,Chilaquiles Con Pollo Y Queso:,558.1,33.6,48.4,20.0
@@ -372,7 +372,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 101947,Margarita Knox Blox,41.9,0.0,9.6,1.2
 304799,Summer Cobb Salad With Lemon-Chive Dressing,456.1,30.6,41.6,10.7
 312970,Falmouth Codfish Cakes and Bacon,321.3,25.1,14.7,9.0
-427043,&quot; Chicken With 40 Cloves of Garlic &quot; Casserole,461.1,32.5,10.8,27.0
+427043,""" Chicken With 40 Cloves of Garlic "" Casserole",461.1,32.5,10.8,27.0
 511178,Classic Grilled Two Cheeses,402.9,25.4,26.0,17.6
 508945,Taco Beef Bake With Cheddar Biscuit Topping,480.1,21.9,46.0,26.4
 492040,Sunshine Smoothie,109.9,0.9,23.9,3.5
@@ -413,11 +413,11 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 460767,Sauteed Chicken Tenders With Veggies,562.3,6.1,89.4,35.2
 42314,Pumpkin Figs Pie,166.7,7.6,24.0,2.1
 428422,Bourbon Baked Beans,293.9,9.2,36.2,11.3
-25319,Broccoli With Orange &amp; Yogurt,112.9,7.0,10.6,3.4
+25319,Broccoli With Orange & Yogurt,112.9,7.0,10.6,3.4
 217225,Fruit and Wild Rice Pilaf,221.5,13.1,26.4,4.0
 178307,Boeuf Bourguignon With Shiitakes,514.1,14.0,21.1,62.8
 429559,Hamlet’s Martini,158.5,0.0,3.3,0.4
-36929,Couscous With Apples &amp; Chives,368.5,1.5,73.1,14.0
+36929,Couscous With Apples & Chives,368.5,1.5,73.1,14.0
 365988,Black Bean Soup,52.6,0.2,10.2,3.0
 216791,Grandma's Potato Salad,518.9,20.0,79.8,8.1
 499380,Winnie's Applesauce Cake,769.4,37.1,105.4,7.1
@@ -507,7 +507,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 44694,Orange Marinated Chicken Wings,748.9,51.9,5.0,61.9
 538750,MARINATED OVEN BAKED CHICKEN THIGHS,101.2,6.2,2.4,8.8
 45197,Deep Dish Chicken-Feta Pizza,202.8,2.3,36.1,8.3
-200704,"Chicken With Artichokes, Black Olives &amp; Vermicelli",1534.7,53.0,167.2,88.3
+200704,"Chicken With Artichokes, Black Olives & Vermicelli",1534.7,53.0,167.2,88.3
 478397,Bacon and Cheddar Shortbreads With Rosemary,146.6,12.0,5.9,4.3
 408899,Carne Asada Jalisco,5.1,0.1,1.3,0.2
 209263,Frosty the Cupcake,168.0,1.0,39.0,1.5
@@ -538,7 +538,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 427940,Gone-In-A-Minute Rubbed Ribs,61.7,0.5,14.8,0.5
 147986,Millionaire Shortbread,777.0,35.1,105.3,12.6
 143986,S'more Fluffernuggets,68.3,3.5,9.1,0.8
-343074,Cheesy Bacon Jalape&ntilde;o Dip,476.9,47.7,5.2,8.6
+343074,Cheesy Bacon Jalapeño Dip,476.9,47.7,5.2,8.6
 365378,Kathy's Mushy Potatoes,300.9,14.9,38.3,5.1
 351301,Minted Bernaise Sauce,116.1,12.6,0.7,0.3
 186249,Authentic Hungarian Chicken Paprikash,367.1,20.0,14.3,33.5
@@ -568,12 +568,12 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 408401,Turkey Soup With Tarragon,384.0,9.7,38.8,34.2
 108155,Broiled Chicken With Fig Sauce,403.1,8.5,46.7,27.4
 70490,Vegetable Cutlets With Green Chutney,360.2,7.1,66.9,10.0
-526570,Georgian Fried Spicy Meatballs &ndash; Apkhazura,0.0,0.0,0.0,0.0
+526570,Georgian Fried Spicy Meatballs – Apkhazura,0.0,0.0,0.0,0.0
 151091,Cheesy Hash Browns Casserole,473.4,30.6,37.1,15.9
 371707,Roast Ostrich,24.9,0.1,5.9,0.6
 218158,Easy Skillet Tacos,613.1,33.5,36.2,43.0
 197961,Easy Spinach Quiche,36.6,0.9,3.1,5.2
-415607,Bow Ties With Spring Vegetables &amp; Roasted Garlic,609.0,21.1,81.6,26.9
+415607,Bow Ties With Spring Vegetables & Roasted Garlic,609.0,21.1,81.6,26.9
 111042,Peppery Bravas Potatoes  (red or Yukon Wedges),645.6,27.8,93.8,9.0
 25363,Creamy Dill Dressing,184.1,15.0,7.0,6.5
 329663,Cucumber and Wakame Pickles (Kyuuri to Wakame No Amasuzuke),29.6,0.1,7.5,0.5
@@ -597,14 +597,14 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 226817,Baked Cinnamon Toast,617.6,24.0,87.3,14.1
 271379,Green Feta Dip,643.4,59.2,7.6,22.0
 470342,Chicken Spaghetti,388.9,17.9,27.5,28.0
-339077,Makeover Tempting Tortellini &amp; Ham,175.8,8.3,10.6,14.7
+339077,Makeover Tempting Tortellini & Ham,175.8,8.3,10.6,14.7
 513315,Roast Chicken Rub,17.0,0.3,3.8,0.7
 344677,Squash Quesadilla,577.0,28.6,58.0,26.9
-177341,Grilled Cheesy Bacon &amp; Chicken Sandwiches,619.3,37.9,29.1,38.3
+177341,Grilled Cheesy Bacon & Chicken Sandwiches,619.3,37.9,29.1,38.3
 161721,Sweet 'n' Spicy Ribs,1079.1,71.2,40.2,66.1
 465707,Pork Shanks (Chamorra) in Mole- Super Easy Slow Cooker,38.5,1.1,3.2,3.7
-511472,"Crab, Shrimp, &amp; Potato Chowder",453.1,31.8,28.7,15.8
-273654,Super Simple &quot; Eye&quot;talian Meatball Casserole,398.6,10.8,57.0,19.9
+511472,"Crab, Shrimp, & Potato Chowder",453.1,31.8,28.7,15.8
+273654,"Super Simple "" Eye""talian Meatball Casserole",398.6,10.8,57.0,19.9
 69536,Gnocchi with parsley olive pesto and cherry tomatoes,312.2,29.2,10.8,5.0
 377599,Stuffed Flank Steak (La Bistecca Di Fianco Imbottita),357.4,20.9,8.4,30.1
 495108,Lemony-Herbed Shrimp Gyros With Ranch-Tzatziki #RSC,603.1,34.8,42.7,30.3
@@ -681,7 +681,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 76237,Snickerdoodles from Cake Mix,95.8,4.0,14.2,1.0
 121296,Vanilla Orange Smoothies,71.9,0.8,13.4,2.9
 462405,Pepper Popper Sliders,357.8,14.4,33.6,22.4
-64135,French Apricot &amp; Almond Tart,359.7,14.7,48.5,9.0
+64135,French Apricot & Almond Tart,359.7,14.7,48.5,9.0
 314419,Georgia Fresh Peach Cobbler,322.8,5.7,66.0,4.2
 166813,Angel Food Ice Cream Cake,258.4,8.7,42.4,5.1
 28169,Lemon-Sesame Asparagus,45.1,1.9,5.9,3.3
@@ -735,7 +735,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 259797,Glossy Sugar Cookie Icing,21.6,0.0,5.5,0.0
 325667,Sweet Potato and Pineapple Spoon Bread,522.1,18.3,80.8,9.6
 420792,Paloma Cooler,3.9,0.0,1.4,0.1
-431292,Grandma Peggys Chicken &amp; Artichoke a La Creme,210.1,9.6,13.3,18.4
+431292,Grandma Peggys Chicken & Artichoke a La Creme,210.1,9.6,13.3,18.4
 406995,Braised Portuguese Sausage and Blue Lake Green Beans,736.0,39.2,66.4,23.3
 444018,Asian-Spiced Salmon Kedgeree (Nigella Lawson),460.1,16.9,29.4,46.5
 109723,Scallops in Tomato Sauce,52.2,0.5,6.3,6.2
@@ -782,7 +782,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 516897,Baja Citrus Marinade (Chicken or Pork Chops),279.3,18.1,7.0,21.3
 346772,Summer Pasta Salad,635.3,50.9,40.1,8.4
 423380,Abba's Whole Wheat Corn Muffins,537.4,18.3,88.2,9.3
-454644,Ethiopian Tomato &amp; Cucumber Salad,54.2,2.5,7.8,1.4
+454644,Ethiopian Tomato & Cucumber Salad,54.2,2.5,7.8,1.4
 119394,Sloppy Joes (Sbd),130.8,8.3,6.6,9.9
 9769,Crock Pot Pot Pie,434.9,13.7,55.9,22.2
 243581,Crab and Pasta Salad,285.9,8.5,40.5,12.5
@@ -872,14 +872,14 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 47533,Great Butter Tarts,175.2,9.3,23.4,1.2
 281856,Better-Than-Grilled-Cheese,246.5,6.6,39.4,12.1
 345683,Chili Compound Butter,152.2,17.0,0.7,0.3
-221558,Banana-Coconut &quot; Cream Pie&quot; Smoothie,154.7,0.4,38.7,1.3
-383664,Sterling's Restaurant Chicken &amp; Beef Fajitas,1369.6,90.5,72.4,68.2
+221558,"Banana-Coconut "" Cream Pie"" Smoothie",154.7,0.4,38.7,1.3
+383664,Sterling's Restaurant Chicken & Beef Fajitas,1369.6,90.5,72.4,68.2
 162169,Rocky Road Cake,674.7,59.1,40.6,13.7
 355645,Cranberry Cake With Cream Cheese Icing,397.0,18.6,55.1,3.4
 227184,Warm (Or Cold) Potato Salad,249.7,11.8,31.4,5.3
 468666,Easy Potluck Chicken Salad,131.1,9.2,1.1,10.8
 7115,Sugar  Pie,382.5,20.9,46.1,3.6
-437214,Kona K's Beef With Broccoli (&amp; Other Veggies!) Stirfry,175.5,8.4,20.0,8.1
+437214,Kona K's Beef With Broccoli (& Other Veggies!) Stirfry,175.5,8.4,20.0,8.1
 493094,Reindeer Treat,153.3,6.4,22.7,2.6
 180936,Pat's Southern Fried Chicken,543.9,5.3,101.4,20.1
 264145,Lemon Curd Tart,163.3,6.9,24.4,1.9
@@ -897,7 +897,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 14857,Caramel Chocolate Delices,117.8,4.1,19.4,2.3
 195970,Never-Fail Meatloaf,361.3,22.0,3.8,34.8
 252353,Apple-Cherry Fruit Spread,143.8,0.5,38.2,0.7
-371372,Gourmet Grilled Turkey &amp; Cheese,593.1,18.9,72.3,29.6
+371372,Gourmet Grilled Turkey & Cheese,593.1,18.9,72.3,29.6
 244555,Mexican Roll Wraps,362.1,12.2,32.6,28.1
 171851,Guacamole Cheese Dip,97.5,9.2,3.3,1.6
 39574,Raymond Anderson's Original Okra Supreme,226.1,12.8,16.3,13.6
@@ -930,7 +930,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 232820,Cheesy Stuffed Onions,0.0,0.0,0.0,0.0
 476808,Double Garlic Potato Dip,43.1,1.9,5.9,0.9
 276921,Olive Garden Chicken Giardino,610.7,13.3,80.0,34.7
-523304,&ldquo;Chili&rsquo;s Restaurant Style&rdquo; Mexican Salsa,31.0,0.2,7.0,1.3
+523304,“Chili’s Restaurant Style” Mexican Salsa,31.0,0.2,7.0,1.3
 301690,Mystery Pie,340.0,18.7,41.0,4.2
 196311,Pretty Berry Cherry Punch,100.7,0.2,25.8,0.7
 47450,Frosted Apricot Cookies,81.0,4.2,10.8,0.7
@@ -944,7 +944,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 274773,Mushroom Pork Chops,266.4,17.1,3.4,23.3
 15722,Stir-Fry Pita Sandwiches,408.3,13.3,43.0,28.4
 227807,Tarragon Salad Dressing,154.6,16.4,2.6,0.0
-135351,Gary Rhodes - Vegetable Soup With Cheddar &amp; Bacon,422.9,21.8,37.0,22.0
+135351,Gary Rhodes - Vegetable Soup With Cheddar & Bacon,422.9,21.8,37.0,22.0
 539827,Homemade Mexican Refried Beans,96.5,4.6,12.3,4.5
 401841,Healthy Sweet Potato and Apples Roasted,217.9,4.3,44.5,2.4
 351729,Ambrosia Cocktail,96.1,3.6,16.9,1.2
@@ -976,7 +976,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 322817,Salmon Cakes With Lemon Herb Sauce,388.3,25.4,20.9,19.0
 516748,Cool Cucumber and Rice Salad,260.1,7.9,42.4,5.0
 328742,Tria Market's Beet and Asparagus Salad,334.9,28.1,14.9,9.7
-520329,Quick &amp; Easy Crab Dip With a Kick,101.5,9.9,1.8,1.9
+520329,Quick & Easy Crab Dip With a Kick,101.5,9.9,1.8,1.9
 139585,Pork Chops and Pierogies for 2,524.0,31.5,40.7,20.2
 298475,Golden Delicious,0.0,0.0,0.0,0.0
 473065,Sauteed Cod With Pea Cream,386.5,17.1,17.2,40.1
@@ -995,11 +995,11 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 286753,Glazed Orange Bread (Healthier!),0.0,0.0,0.0,0.0
 534332,Banh Xeo,882.7,54.1,85.9,13.2
 253158,Mom's Beet Pickles,472.4,0.8,112.0,7.6
-392836,Vegetable &amp; Gravy Pot Roast,899.9,56.7,38.6,52.8
+392836,Vegetable & Gravy Pot Roast,899.9,56.7,38.6,52.8
 300434,Polenta and Grilled Vegetables With Roasted Red Pepper Sauce,222.8,9.3,28.7,12.4
 111011,Veronica's Bloomin Onion,115.0,10.1,5.1,1.8
 38559,Vegetable-Bulgur Salad with Buttermilk Dressing,54.1,0.3,11.6,2.2
-410793,Oat &amp; Raisin Cookies,136.0,8.5,13.5,2.8
+410793,Oat & Raisin Cookies,136.0,8.5,13.5,2.8
 57061,Panned Creole Shrimp,504.7,38.4,3.4,36.2
 18802,"Cucumber, Bean and Olive Salad",135.3,10.2,11.5,2.4
 492383,Chicken Armondo,573.0,28.1,24.4,50.1
@@ -1031,7 +1031,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 31470,Mirj's Apres Pta Chicken Dinner,407.4,17.7,32.9,33.7
 156913,Grilled Turkey and Muenster Sandwiches,616.2,33.0,34.6,44.7
 154873,Tropical Dump Cake,652.7,38.3,76.9,6.2
-522807,Parsee Alpaca &amp; Potato Curry Masala,1470.4,53.2,235.3,14.6
+522807,Parsee Alpaca & Potato Curry Masala,1470.4,53.2,235.3,14.6
 368643,Black-Eyed Pea Salad,209.1,18.4,10.3,2.8
 461504,Baked Steak a La Lois,616.9,35.0,21.3,49.6
 45663,Banana Cream Pie With Caramel Drizzle,733.9,51.6,65.5,5.1
@@ -1049,7 +1049,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 402409,Frijoles,387.9,23.5,30.0,15.2
 222528,Potato Side,206.9,8.2,24.5,9.3
 177024,Mini's Spicy Black Bean Soup,424.3,10.4,59.6,24.9
-378161,Jen's Crock Pot Macaroni &amp; Cheese,469.1,31.1,27.5,19.9
+378161,Jen's Crock Pot Macaroni & Cheese,469.1,31.1,27.5,19.9
 320258,Chocolate Buttercream Frosting... Shots?,216.7,8.2,36.9,0.9
 124367,Zabar's Cream Cheese Spread,461.9,45.6,5.3,9.7
 117720,Orange Breakfast Dream,59.8,0.2,14.2,0.7
@@ -1058,7 +1058,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 418082,Rice With Onion (Mashkoul),377.3,12.6,60.0,6.2
 427219,"Finnish Tiikerikkakku, Tiger Cake",225.8,10.5,30.2,3.1
 505510,Beef Rub,236.8,5.6,49.0,10.0
-343808,Sausage &amp; Pepper Bread,1980.8,69.2,241.0,94.8
+343808,Sausage & Pepper Bread,1980.8,69.2,241.0,94.8
 359391,Acadia's Mushroom Pepper Onion Stir Fry,92.7,4.5,10.3,5.3
 494253,Green Beans Gremolata,152.8,12.6,8.3,3.9
 329057,Pasta With Butternut Squash and Pecans,606.6,46.7,37.9,16.2
@@ -1068,7 +1068,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 523675,Twice-Baked Jumbo Mini Cheesecakes,183.1,12.5,15.9,2.4
 239197,Spinach Tomato Phyllo Bake,272.1,11.7,26.8,17.0
 494496,Classic Turkey Pesto Sandwich,537.1,14.5,75.8,26.2
-535799,PERFECT WHIPPED CREAM EVERY TIME &ndash; Tips &amp; Tricks,864.3,88.1,15.2,4.9
+535799,PERFECT WHIPPED CREAM EVERY TIME – Tips & Tricks,864.3,88.1,15.2,4.9
 378939,Starbucks Mocha Slush,118.0,6.4,14.9,7.2
 318627,Crock Pot Porcupine Meatballs,380.2,13.3,36.3,27.9
 448799,Kuchen Borracho (Chilean Drunken Apple Cake),441.8,18.9,61.4,5.1
@@ -1090,7 +1090,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 138104,California Orange Honey Muffins,121.3,4.8,17.4,2.8
 51514,Tasty Texas Caviar,38.9,2.9,3.0,0.7
 92496,Puff Pastry Cheese Stick Appetizers,53.5,3.7,3.7,1.5
-534095,Coconut &amp; Pineapple Sorbet,292.7,10.2,52.0,1.4
+534095,Coconut & Pineapple Sorbet,292.7,10.2,52.0,1.4
 414635,Chocolate Pound Cake,867.8,41.0,117.0,10.2
 87794,Wisconsin Cheese 'N Beer Soup,340.2,22.4,19.2,14.4
 529021,West Coast Style Fish and Chips,978.3,24.5,75.9,106.8
@@ -1104,8 +1104,8 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 196854,Palt,175.2,1.0,36.8,7.6
 326185,Bacon-Wrapped Beef Patties,294.8,15.7,14.5,23.0
 61826,Indian-Style Potatoes - Khatta Aloo,132.2,7.2,16.6,2.2
-290839,Chicken Tagine With Green Olives &amp; Preserved Lemon,221.0,13.9,8.3,17.8
-396916,American Green Salad With Cheddar Cheese &amp; Panko Topping,249.4,13.4,23.4,9.6
+290839,Chicken Tagine With Green Olives & Preserved Lemon,221.0,13.9,8.3,17.8
+396916,American Green Salad With Cheddar Cheese & Panko Topping,249.4,13.4,23.4,9.6
 514940,Potato Bake #SP5,338.1,26.8,8.4,16.2
 417038,Toasted Coconut Chocolate Chunk Cookies,2333.7,114.9,321.5,30.1
 481962,Spanish Cod,172.4,6.8,6.2,21.7
@@ -1172,7 +1172,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 393683,Leek and Pepper Omelette,120.3,8.0,5.3,7.0
 100836,Liver Sausage Cream Cheese Ball,800.4,79.1,8.5,17.4
 407874,Best Old Fashioned Coconut Cream Pie,405.1,27.4,35.4,5.5
-514656,Blue Cheese &amp; Chive Potato Poppers #SP5,214.2,19.4,2.4,7.6
+514656,Blue Cheese & Chive Potato Poppers #SP5,214.2,19.4,2.4,7.6
 460576,Healthy Vegan Cocoa Tofu Brownies,71.9,0.9,15.6,2.5
 513372,Mustardy Beef,162.7,3.9,21.1,8.3
 75638,Cinnamon Butter Puffs,303.8,17.2,35.3,3.1
@@ -1213,14 +1213,14 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 25355,Baby's Favorite Prune Cake,355.2,11.3,61.9,5.6
 367728,Chocolate Syrup (For Ice Cream),217.7,1.4,52.5,1.4
 30551,Swiss Steak,301.0,12.5,10.2,35.8
-131492,My Daily Multi Grain Power Granola (Thorsten's M&uuml;sli),115.4,1.5,24.1,4.4
+131492,My Daily Multi Grain Power Granola (Thorsten's Müsli),115.4,1.5,24.1,4.4
 383631,Best Taco Salad!,855.3,58.1,62.2,24.7
 41136,Appetizer Spareribs,630.0,34.4,45.8,34.9
 316128,Super Yummy Peanut Noodles,721.5,27.2,95.2,27.5
 124834,Cuban Spaghetti,692.2,31.4,54.4,48.1
 466408,Mitzi's Chicken Fingers,889.1,40.4,84.3,46.2
 218135,Slime Green Waffle Sauce,335.8,23.2,30.6,3.2
-240864,Easy No-Boil Macaroni &amp; Cheese,546.2,31.1,41.3,25.2
+240864,Easy No-Boil Macaroni & Cheese,546.2,31.1,41.3,25.2
 98393,Toffee Apple Cake,302.3,15.6,37.0,4.2
 533889,Almond-Amaretto Cheesecake (McCall's),463.1,34.3,34.0,6.7
 473771,Gfcf Brown Rice Porridge,377.9,23.7,38.7,5.8
@@ -1233,7 +1233,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 162492,Sardine Fritters from Molto Mario,180.1,8.6,7.1,17.4
 471075,German Beef Roll-Ups Rouladen,93.9,3.0,14.9,2.7
 437524,Hot Knots With Sweet Onion Dip,19.1,1.1,2.2,0.1
-513371,Garlic Lemon &amp; Pepper Pork Schnitzels,353.2,18.7,1.7,42.4
+513371,Garlic Lemon & Pepper Pork Schnitzels,353.2,18.7,1.7,42.4
 512962,Easy Regrigerator Protein Energy Bars,32.2,3.2,1.2,0.5
 56986,Slow Cooker Sugared Pecans & Walnuts,349.5,34.9,10.5,3.6
 433047,Healthified Marinated Pork With Summer Corn Salad,330.7,14.9,26.1,25.0
@@ -1298,7 +1298,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 132853,Nutty Carrot Sandwich,148.8,13.2,7.9,2.2
 436106,Pat Nixon's Dat-Nut Bread,2445.0,46.1,494.6,38.4
 208105,More Than One and Less Than 2,178.1,8.3,25.0,2.0
-299432,Shaved Carrot &amp; Pear Salad With Curry Vinaigrette,254.4,14.2,33.2,2.2
+299432,Shaved Carrot & Pear Salad With Curry Vinaigrette,254.4,14.2,33.2,2.2
 39113,Salsa Chicken Parmesan,237.6,8.7,4.7,34.3
 54355,Chicken Athena,740.2,53.7,11.7,52.0
 31102,Homemade Freezer Pizza,573.6,31.4,43.2,28.3
@@ -1316,7 +1316,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 299878,Chicken Salad Habanera,389.2,38.1,14.2,2.2
 142228,One Pot Pesto Penne With Green Beans and Potatoes,529.5,2.6,118.2,12.9
 260469,"Chicken Cutlets With Bacon, Rosemary and Lemon",276.3,14.9,2.3,31.4
-495088,&quot;Green&quot; Baking Soda Cleanser,2.7,0.0,0.0,0.0
+495088,"""Green"" Baking Soda Cleanser",2.7,0.0,0.0,0.0
 169020,Chocolate Raspberry Torte,11.7,0.0,2.8,0.0
 495616,Braised Short Ribs With Dark Beer and Root Vegetables,413.7,22.7,42.2,5.0
 426785,Basic Pan Gravy from Drippings,17.4,0.2,3.1,0.7
@@ -1324,7 +1324,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 128424,Poppy Seed Cake,416.1,24.8,42.5,5.1
 477536,Pistachio and Quinoa Tabbouli (Gluten-Free),341.7,16.7,40.4,10.9
 264053,Pot Roast Lamb With Lemon,664.9,55.5,1.7,37.8
-335461,Rice With Veggies &amp; Herbes De Provence,481.9,11.4,82.3,10.9
+335461,Rice With Veggies & Herbes De Provence,481.9,11.4,82.3,10.9
 138098,Baked Chicken Breasts in Red Wine (Easy),234.7,4.8,10.3,29.1
 270317,Cocktail Meatballs,325.2,24.3,9.1,17.4
 229793,Sweet Yogurt Shake (Tara),516.0,7.6,88.0,25.7
@@ -1336,9 +1336,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 209107,That Casserole,533.6,31.7,27.5,34.3
 205726,Corned Beef,1485.0,120.4,17.9,77.0
 400893,Roasted Sweet-Potato Rounds With Garlic Oil and Fried Sage,263.2,15.8,29.0,2.3
-47113,French Silk Mocha - Coffee &amp; Chocolate Dry Mix in Bulk,68.6,1.5,12.9,1.4
+47113,French Silk Mocha - Coffee & Chocolate Dry Mix in Bulk,68.6,1.5,12.9,1.4
 178002,Pineapple Wine Cooler,162.7,0.1,19.1,0.5
-355259,Sweet Potato &amp; Ham Fritters (Rachael Ray),625.9,40.3,46.5,20.8
+355259,Sweet Potato & Ham Fritters (Rachael Ray),625.9,40.3,46.5,20.8
 50621,Baked Brie,467.5,32.0,38.6,7.9
 221744,Orange-Flavored Chicken,1934.1,169.2,66.6,39.6
 528964,Jin's Morning Mishmash,162.8,2.7,31.3,3.0
@@ -1365,7 +1365,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 491098,Pumpkin White Chip Nut Bars,144.3,8.0,17.1,1.6
 63861,Too Easy Chicken,223.7,10.6,6.0,24.5
 538808,Perfectly Portioned Meatballs,294.5,16.6,4.5,29.9
-52065,"Mozzarella, Tomato, &amp; White Bean Salad",419.2,27.9,22.3,20.4
+52065,"Mozzarella, Tomato, & White Bean Salad",419.2,27.9,22.3,20.4
 485266,British Plum Pudding,653.1,21.6,98.0,11.5
 263433,Creamy Alfredo Shrimp Casserole,501.0,15.7,56.6,31.4
 312911,Walnut Berry Tarts,84.3,2.2,16.8,0.7
@@ -1399,7 +1399,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 166298,Chamomile Granita (Ice Water),68.2,0.0,18.8,0.1
 447991,Sugar-Free Cream Cheese Frosting,275.8,19.5,16.2,8.3
 272936,Lentil Salad,372.1,14.5,50.3,11.8
-58075,Focaccia Bread Herbed With Black Olive &amp; Fresh Rosemary,1949.5,46.9,333.1,45.3
+58075,Focaccia Bread Herbed With Black Olive & Fresh Rosemary,1949.5,46.9,333.1,45.3
 432691,Skillet Peach Cobbler,511.4,16.9,88.0,7.9
 194310,Southern Style Cobb Salad,348.6,21.6,15.2,25.9
 412606,"Chili With Buffalo Meat - Home, Home on the Range!",140.0,1.1,21.0,12.9
@@ -1412,7 +1412,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 248595,Grilled Chili-Rubbed Lamb Chops,830.2,51.3,62.2,31.7
 209222,Dry Ranch Salad Dressing Mix,25.3,0.4,3.4,2.2
 42652,Smoked Trout & Potato Salad,292.2,11.0,21.6,25.9
-287363,&Egrave;ve's Cold Crab Dip,544.2,9.9,5.7,101.5
+287363,Ève's Cold Crab Dip,544.2,9.9,5.7,101.5
 363777,Texas Two Meat Chili,288.4,6.3,26.0,30.0
 77991,Easy Egg Wraps,502.7,18.8,59.3,22.0
 213705,Hot Enchilada Dip- Homemade Gourmet,258.1,18.1,10.2,13.8
@@ -1452,7 +1452,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 96137,Kfc Fried Chicken,1881.0,177.3,27.2,47.0
 426437,Addicting German Chocolate Cake,805.9,49.1,89.2,11.5
 233859,Spinach Salad,68.8,5.3,4.1,2.5
-332011,Curried Carrot &amp; Parsnip Soup,138.5,6.8,19.1,1.9
+332011,Curried Carrot & Parsnip Soup,138.5,6.8,19.1,1.9
 371276,Shrimp and Roasted Red Pepper Canapes,12.6,0.5,0.7,1.3
 203609,Perfect Sausage Pinwheels,451.9,29.6,31.6,13.6
 265778,Japanese Salad for 2 (Low Carb),113.5,1.8,7.5,16.5
@@ -1529,13 +1529,13 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 200494,Delicious Nutritious Salad,216.0,3.1,41.4,12.4
 129226,Vegetable Broth,247.2,1.3,57.6,6.4
 448502,Salmon Patties,214.7,5.7,23.8,19.1
-501912,Quick &amp; Easy Sandwich Sauce,269.4,20.9,20.6,2.3
+501912,Quick & Easy Sandwich Sauce,269.4,20.9,20.6,2.3
 143168,Fettuccine With Chicken and Bell Pepper Cream Sauce,471.2,11.6,57.2,33.5
 267366,Double Melon Delight,89.5,0.1,21.5,1.8
 86037,Low Fat Chili-cheese Cornbread,100.5,2.7,14.8,4.5
 101863,Whiskey Sour Balls,71.8,3.6,8.2,1.0
 431999,Tumbleweed Mushrooms,288.9,23.8,12.0,7.8
-101609,Dj's Chicken &amp; Portabella Mushrooms,63.4,0.7,12.8,3.8
+101609,Dj's Chicken & Portabella Mushrooms,63.4,0.7,12.8,3.8
 170372,Maple Pecan Buttermilk Muffins,257.4,16.0,25.9,4.3
 374852,Italian Salmon Burgers,167.5,4.9,10.2,20.2
 430893,Rhubarb and Custard Fool (Matt Preston),582.4,41.0,53.5,6.5
@@ -1551,7 +1551,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 448653,Garlic Onion Mayo Mayonnaise,38.9,3.3,2.5,0.1
 369441,Ninfa's Avocado Sauce,41.5,3.6,2.4,0.7
 452152,Tomatoey Macaroni and Cheese,733.2,51.5,37.8,30.8
-157473,Cheese &amp; Spinach Stuffed Meatloaf,636.0,39.4,27.0,43.3
+157473,Cheese & Spinach Stuffed Meatloaf,636.0,39.4,27.0,43.3
 238938,Sweet Potato Casserole With Pecan Streusel Topping,724.8,30.9,109.3,7.8
 173511,Cheesy-Cheese Baked Macaroni,522.4,25.5,49.6,23.1
 290251,Korean Spicy Chicken Wings - Restaurant Recipe!,286.8,14.2,22.8,18.6
@@ -1613,7 +1613,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 447074,Herb-Roasted Potatoes,97.7,0.2,22.0,2.7
 190524,Rejuvenator Smoothie,90.3,0.4,21.5,2.3
 337089,Skillet-Roasted Potatoes With Lemon and Chives,244.7,9.3,36.5,4.4
-381385,Chocolate Oatmeal Pancakes (Guilt-Free &amp; Gluten Free),116.8,2.1,19.7,6.5
+381385,Chocolate Oatmeal Pancakes (Guilt-Free & Gluten Free),116.8,2.1,19.7,6.5
 83775,Oyster stew,516.2,33.6,30.0,24.4
 384245,Dillicious Jicama Dip,49.6,4.5,2.0,0.6
 518788,Orecchiette With Broccoli Rabe (Orecchiette Con Cime Rabe) - Lid,596.4,25.8,64.8,28.1
@@ -1630,10 +1630,10 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 513367,Healthy Breakfast Scramble,376.0,28.1,9.3,21.6
 273222,Sugar Cream Pie,541.0,33.1,57.5,5.0
 335879,Herb Seasoned Chicken Breasts,309.6,20.2,0.1,30.2
-494301,Tortelini in Garlic Broth With Beans &amp; Greens - Weight Watch,169.8,2.3,27.1,11.6
+494301,Tortelini in Garlic Broth With Beans & Greens - Weight Watch,169.8,2.3,27.1,11.6
 64013,Baked Veal With Marsala Glaze,91.4,8.4,1.0,0.2
 162378,Awesome Egg-Drop Vegetable Ramen Soup,366.9,21.8,31.4,16.3
-535765,Pressure Cooker Lemon Butter Shrimp &amp; Orzo Dinner,504.9,15.2,60.5,41.0
+535765,Pressure Cooker Lemon Butter Shrimp & Orzo Dinner,504.9,15.2,60.5,41.0
 285547,Frozen Orange Dessert,61.6,0.2,15.4,1.2
 465693,Weeknight Ham and Cheese Bake,300.6,13.3,26.3,18.4
 110241,Cuban Pork Chops,295.2,21.1,3.0,22.9
@@ -1688,7 +1688,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 71055,Steak Sauce,308.5,1.0,76.1,6.3
 379039,Summer Salad,554.6,19.8,92.1,9.0
 175156,Vegetarian Lunch Tortillas,774.6,43.5,62.6,37.1
-63346,&quot;Don't Knock It Until You Try It&quot; Beet Cake!!,474.7,26.4,55.4,6.5
+63346,"""Don't Knock It Until You Try It"" Beet Cake!!",474.7,26.4,55.4,6.5
 79966,Bell Pepper Relish,697.5,2.3,167.3,9.2
 288822,Fruit and Yogurt Breakfast Couscous,626.2,12.4,118.6,16.3
 254081,Shrimp Pasta,680.7,46.5,57.0,10.2
@@ -1770,12 +1770,12 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 384938,Twisted Iceberg Lettuce Salad With Warm Gorgonzola Dressing,267.3,24.2,6.4,7.7
 508303,Asian Seared Beef Tenderloin,147.1,10.9,0.3,11.3
 254011,Banana Snack Cake (Gift Mix in a Jar),435.5,21.4,56.5,6.9
-361927,&quot;no Fettuccine&quot; Spaghetti Alfredo,749.2,53.2,37.7,25.6
+361927,"""no Fettuccine"" Spaghetti Alfredo",749.2,53.2,37.7,25.6
 512925,Blueberry Biscuits,170.6,5.7,26.4,3.3
 123025,Hidden Garden Pasta Sauce for Children,208.0,7.8,34.6,5.9
 362199,Bagel French Toast Casserole,404.1,18.8,38.1,20.1
 256336,Corn Tortillas Enchiladas,518.5,32.7,25.1,31.3
-341056,Cranberry &amp; Sausage Stuffing Logs (Oamc),283.4,24.7,4.6,10.3
+341056,Cranberry & Sausage Stuffing Logs (Oamc),283.4,24.7,4.6,10.3
 52024,Curry Powder,515.7,15.6,99.7,19.2
 399456,White Queso Sauce,284.3,22.7,9.4,11.8
 65491,Flour Tortillas,161.9,5.6,23.9,3.2
@@ -1793,7 +1793,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 328834,Super  Muffuletta Sandwich,535.9,36.9,28.8,23.0
 330553,Thai Red Curry Squash,507.7,33.7,53.2,7.9
 123331,Malvern Pudding,384.6,22.0,44.1,5.6
-432292,Rosemary &amp; Olive Focaccia,2005.3,49.0,337.8,46.9
+432292,Rosemary & Olive Focaccia,2005.3,49.0,337.8,46.9
 138314,Pumpkin Chili Mexicana,324.7,11.9,36.0,23.1
 268279,Curried Pumpkin Soup,255.1,12.8,27.0,8.1
 10663,Coconut Prawns,429.9,37.0,19.5,6.8
@@ -1835,7 +1835,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 373556,Apple Cabbage Slaw,129.1,9.8,10.7,1.7
 470361,Spinach and Strawberry Salad,193.3,16.1,10.6,5.1
 54325,Grilled Cheese for Grown-Ups,146.2,1.8,27.8,5.3
-468663,Cinnamon Rolls &ndash; a Clone of Cinnabon,472.5,16.3,76.0,6.8
+468663,Cinnamon Rolls – a Clone of Cinnabon,472.5,16.3,76.0,6.8
 18491,BBQ Sauce,353.5,1.3,85.1,5.3
 384695,Pig Pickin' Cake,480.4,25.4,59.7,5.1
 366784,Duke's Mac and Cheese,676.8,45.6,41.9,25.4
@@ -1879,13 +1879,13 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 462586,Quesadillas in a Jiffy for One - Got Soup?,254.1,12.2,25.4,11.0
 458354,Red Velvet Cheese Cake,272.8,16.5,26.0,5.9
 87862,Bavarian Torte Bars,292.1,22.5,20.3,4.6
-119209,Mini M &amp; M Cookies,139.7,6.2,19.7,1.7
+119209,Mini M & M Cookies,139.7,6.2,19.7,1.7
 165885,Splatter-Free Potato Latkes,251.8,2.1,51.1,8.2
 356478,Ground Turkey Meatloaf,268.1,11.0,20.1,22.6
 16889,Apple Pear Compote,72.2,0.2,15.3,0.3
 369534,Sweet and Salty Honey Cheese Spread,449.8,30.2,29.0,19.2
 101306,Stir Fry Chicken and Broccoli With Peanuts,259.6,11.0,10.3,30.6
-289251,"Cheesy Spinach, Artichoke, &amp; Chicken Casserole/Dip",466.7,27.2,13.6,43.0
+289251,"Cheesy Spinach, Artichoke, & Chicken Casserole/Dip",466.7,27.2,13.6,43.0
 254783,Nutty Monkey Mocha,45.5,1.2,8.0,0.7
 354913,Turkey Meatballs in Paprika Tomato Sauce,304.6,15.8,17.2,23.9
 462490,Scrambled Eggs and Mushrooms (1953),311.1,24.7,5.1,18.1
@@ -1903,7 +1903,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 180351,Prosciutto-Wrapped Breadsticks,412.0,9.5,68.4,12.0
 491063,The Spice Hunter's Satay Sauce,464.6,28.2,49.0,8.8
 260110,Really Yummy Red Salsa,15.9,0.2,3.5,0.7
-225637,Herbed &amp; Crumbed Lamb Racks or Cutlets,0.0,0.0,0.0,0.0
+225637,Herbed & Crumbed Lamb Racks or Cutlets,0.0,0.0,0.0,0.0
 53647,Spinach and Tasso Bread Pudding with Gruyere cheese,956.7,46.9,87.0,43.2
 166675,Guava Mojito,216.0,0.0,6.6,0.1
 78880,Surprise Chocolate Fudge,78.1,2.8,13.2,0.9
@@ -1926,16 +1926,16 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 461714,Maxine's Sweetheart Salad,1036.7,67.9,107.8,7.8
 482232,Cabbage Pie,289.8,17.4,28.2,8.3
 217168,Bacon and Feta Green Beans,216.3,18.0,6.8,7.8
-509459,Onion &quot;Jam&quot;,1972.0,46.5,387.2,16.0
+509459,"Onion ""Jam""",1972.0,46.5,387.2,16.0
 314893,Cuban Blueberry Pudding,400.5,6.9,84.2,3.3
 197503,Sweet Couscous,308.0,0.7,71.2,7.1
 67881,Great Beef Jerky,550.9,25.1,4.2,64.8
-128401,Simple Soy &amp; Ginger Marinade for Pork,127.9,0.1,18.7,15.1
+128401,Simple Soy & Ginger Marinade for Pork,127.9,0.1,18.7,15.1
 197453,Southern Fried Pork Chops With Creamy Pan Gravy,482.1,27.1,17.9,39.5
 81649,Cranberry Pecan Tart,474.7,26.9,56.4,6.1
 322120,Strawberry Kiwi Smoothie,142.6,0.6,36.2,1.6
 496973,Tuna and White Bean Quesedillas,733.5,20.9,93.0,41.6
-361468,Decadent Lobster &amp; Scallop Risotto,523.1,13.7,72.6,13.2
+361468,Decadent Lobster & Scallop Risotto,523.1,13.7,72.6,13.2
 235526,Simple Apple Pie Spice,22.4,0.8,4.5,0.3
 206519,White Bread,147.9,3.1,25.4,4.1
 465562,Smothered Pork Roast over Rice,905.4,47.9,11.4,101.0
@@ -1952,7 +1952,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 171776,French Kiss,205.5,8.3,0.6,0.5
 219453,Old English Spiced and Fruited Sugar for Apple Pies Etc!,796.3,1.3,203.7,0.5
 39930,Homemade Shake and Bake,886.8,42.6,78.7,44.5
-460643,"Rustic Carrot, Pumpkin &amp; Lentil Soup",102.9,0.6,18.8,6.5
+460643,"Rustic Carrot, Pumpkin & Lentil Soup",102.9,0.6,18.8,6.5
 282325,Low Fat Mushrooms in Cream Sauce,44.3,0.8,6.2,4.9
 471883,Spicy Vodka Sauce,306.6,19.6,10.8,3.1
 90835,"Fast, Easy and Delicious Marinade for All Types of Meat",247.8,27.1,2.3,0.3
@@ -1962,7 +1962,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 202302,Carrots Provencale,110.0,7.0,11.8,1.1
 126196,Lime Squares  Cookies,220.4,10.6,29.3,3.2
 207232,Pumpkin Up-Side Down Cake,574.9,33.9,63.0,7.4
-413725,&quot;pasguetti&quot; a La Tomasil,550.7,12.2,88.7,20.4
+413725,"""pasguetti"" a La Tomasil",550.7,12.2,88.7,20.4
 18663,Easy Mango Chicken,367.3,19.6,16.1,31.3
 296028,Portuguese (Acorean) Shrimp,227.3,8.2,9.2,25.1
 455010,Cafe Osage Potato Salad,177.3,7.9,24.9,2.6
@@ -1970,7 +1970,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 331800,Dakota Bread Pudding,511.5,21.4,71.3,9.8
 19447,roasted rack of lamb with mint crust,516.9,24.4,60.8,7.2
 355491,Kraut Salad,598.3,45.2,48.5,1.2
-444447,Cheesy Bacon &quot;fun-Due&quot;,91.2,7.2,1.5,5.0
+444447,"Cheesy Bacon ""fun-Due""",91.2,7.2,1.5,5.0
 213360,Munaga Aaku Charu (Drumstick Leaves Soup),71.9,0.5,16.4,2.5
 426682,Best Smoothie Everrrr!,365.6,5.9,84.4,6.0
 149202,Chocodamia Coconut Delights,145.0,9.0,15.8,1.8
@@ -1999,7 +1999,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 211596,A Simply Grand Napoleon Dessert,625.3,44.7,51.5,8.7
 204287,Salmon Burgers With Ginger-Wasabi Mayo,547.7,24.0,40.2,41.7
 126467,Ww 6 Points - Herbed Beef Burgers,334.9,13.8,22.3,28.6
-458843,School of Fish-Presented in Technicolor&trade; by -Tasty Dish--,21.0,0.5,4.4,0.3
+458843,School of Fish-Presented in Technicolor™ by -Tasty Dish--,21.0,0.5,4.4,0.3
 194891,Honey Mustard Chicken Breast,264.1,6.7,23.4,28.4
 82211,Garlic Beef Dip,99.2,9.9,0.8,2.2
 99661,Light 'n' Fluffy Scones,376.7,12.6,57.4,9.9
@@ -2051,7 +2051,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 310063,Chile-Lime Peanuts,401.2,35.2,12.2,15.9
 159329,Cranberry Orange Chutney,98.7,0.1,25.0,0.5
 128958,Apple French Toast,815.5,44.7,77.5,14.0
-340027,Spanish Rice - Arroz Estilo Espa&ntilde;ol,500.9,27.6,34.9,27.3
+340027,Spanish Rice - Arroz Estilo Español,500.9,27.6,34.9,27.3
 232093,Fluffy Apple Pudding,170.3,3.0,33.0,3.2
 530458,Spaghetti Squash and Turkey Meatballs,256.6,14.5,12.8,19.7
 340941,Candy Cane Hot Cocoa Mix,750.8,28.1,139.1,11.4
@@ -2155,7 +2155,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 333512,Cheesecake Pie,52.8,1.0,4.7,6.1
 119023,Jamaican (Cornmeal) Porridge,190.1,4.2,33.1,5.4
 281805,Janet's Favorite Spaghetti Sauce,363.6,17.8,26.9,25.7
-398810,Josh's &quot;omg You Made That Yourself?&quot; Meatballs,306.5,9.4,34.7,21.5
+398810,"Josh's ""omg You Made That Yourself?"" Meatballs",306.5,9.4,34.7,21.5
 201930,Mushroom Gravy,215.1,14.8,15.9,6.6
 455864,Cinnamon Chocolate Chip Banana Bread,505.4,14.8,95.1,8.2
 532544,Beet Salad With Citrus Vinaigrette,412.9,21.9,46.9,15.1
@@ -2167,7 +2167,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 478224,Easy Oven Steak With Creamy Tomato Gravy,166.2,11.6,14.1,3.8
 55163,Mock Margarita,0.1,0.0,0.0,0.0
 95217,Copycat Orange Julius,184.4,0.3,41.5,3.6
-220762,Easter Egg Dye ---All Natural &amp; Safe!,755.0,50.2,3.8,66.3
+220762,Easter Egg Dye ---All Natural & Safe!,755.0,50.2,3.8,66.3
 532012,Tacos Al Pastor,787.4,48.3,28.1,58.9
 434399,Brine for Smoked Fish,532.2,3.9,103.5,22.6
 39966,Cuban Black Bean Soup,453.2,24.4,49.9,9.7
@@ -2179,7 +2179,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 342505,Iron Crazy Juice,250.5,5.0,50.7,7.4
 144887,Emeril's Con Queso,370.2,30.5,4.7,19.8
 423777,Dahi Barfi (Sweet Yogurt Bars),266.0,9.3,40.6,7.1
-538592,Shrimp Tacos - Cook&rsquo;s Country Methodology,643.5,38.6,40.9,35.4
+538592,Shrimp Tacos - Cook’s Country Methodology,643.5,38.6,40.9,35.4
 300106,Chocolate Chip Waffles,262.6,7.4,42.8,7.5
 471085,Chilihouse Grilled Chicken and Sausage Jambalaya,936.6,39.4,97.5,46.8
 140275,Lobster and Asparagus With Lemon Butter Sauce,182.4,14.1,12.4,5.8
@@ -2194,10 +2194,10 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 519821,No Fuss Gluten Free Pizza,248.2,17.4,11.2,11.2
 153871,Golden Macaroni and Cheese,545.2,32.2,38.1,25.3
 124604,Beef and Snow Pea Casserole,405.4,22.6,22.3,27.8
-174463,Fresh Mozzarella &amp; Tomatoes With Anchovy,207.0,13.8,4.9,16.1
+174463,Fresh Mozzarella & Tomatoes With Anchovy,207.0,13.8,4.9,16.1
 184539,Sourdough Feta Dill Bread (Bread Machine),187.2,4.0,31.1,6.0
 535589,Diet Recipe of Apple Muffins With Cinnamon-Pecan Streusel,366.7,14.9,48.9,10.2
-344562,Oma's Country Green Beans With Bacon &amp; Onion (Gruene Bohnen),57.5,1.4,9.0,2.3
+344562,Oma's Country Green Beans With Bacon & Onion (Gruene Bohnen),57.5,1.4,9.0,2.3
 186142,Polenta and Pine Nuts,188.0,11.6,16.7,5.7
 459192,Summer Nights Punch,92.5,0.1,4.1,0.3
 444288,Bran Flax Muffins - My Healthier Version,151.1,6.3,22.5,4.5
@@ -2205,7 +2205,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 433193,Sweet Little Zucchini Bites,66.4,2.8,9.9,1.0
 143156,Kentucky Christmas Cake,488.7,33.7,43.2,6.3
 90533,Chicken and Fruit Curry Salad,282.4,17.5,21.3,13.1
-209780,Cheddar Potatoes &amp; Onions,158.2,4.8,23.3,6.2
+209780,Cheddar Potatoes & Onions,158.2,4.8,23.3,6.2
 350284,Mocha Muffins,273.2,12.5,36.2,4.4
 90662,Crack'in Good Tuna Mornay,779.4,41.3,53.1,47.5
 98560,Swiss Steak and Gravy  (crock Pot),428.2,19.2,10.6,51.0
@@ -2240,7 +2240,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 11695,Swiss Steak,12.4,0.1,2.8,0.5
 238129,Baked Potato Black Bean and Tuna Jackets,443.5,2.5,61.8,43.1
 227632,Holiday Green Beans,125.1,8.6,11.9,2.7
-335752,"Tarragon-Thyme Chicken Salad W/C. Ginger, Pecans, &amp; Craisins",366.9,22.0,7.8,34.1
+335752,"Tarragon-Thyme Chicken Salad W/C. Ginger, Pecans, & Craisins",366.9,22.0,7.8,34.1
 505502,Cajun Rub,306.9,4.1,70.9,9.7
 282633,Chili Lime Salsa,138.1,5.2,23.6,3.4
 184679,Garlic Roasted Chicken in the Crock Pot,670.0,54.2,0.9,42.6
@@ -2288,7 +2288,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 405493,Cranberry Fluffy Stuff,182.0,10.6,22.3,1.4
 125809,Fresh Peach Pie,281.5,9.9,47.4,2.7
 493358,Chocolate Caramel Candy Bars,48.1,2.7,5.4,0.7
-331532,"Andouille/Beef Burgers, Spicy Mayo &amp; Caramelized Onions",880.6,57.0,48.9,44.8
+331532,"Andouille/Beef Burgers, Spicy Mayo & Caramelized Onions",880.6,57.0,48.9,44.8
 115324,Pine Nut Veggie Stir Fry,195.4,16.1,10.7,6.5
 339743,Sobolik's Oatmeal Bread,111.8,1.6,21.2,3.0
 404598,Mexican Stuffed Shells,653.8,41.9,36.3,31.8
@@ -2309,7 +2309,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 245071,Divatini,87.6,0.0,4.8,0.1
 179453,Campfire Caramel Apples,173.8,3.1,39.2,1.0
 119079,Taco Soup,158.9,3.6,23.4,9.6
-338479,Ch&aacute;y&egrave;d&agrave;n- Chinese Tea Eggs,91.3,4.8,3.1,8.8
+338479,Cháyèdàn- Chinese Tea Eggs,91.3,4.8,3.1,8.8
 434293,Eastern Mediterranean Lentil Soup,235.4,4.7,36.4,12.6
 216334,Delicious Pickled Fish,601.0,0.4,131.5,2.5
 537407,Copycat Shake Shack Salted Peanut Butter Hot Chocolate,515.4,42.4,33.9,17.1
@@ -2324,7 +2324,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 105271,Cheese and Garlic Crisps,51.6,3.4,4.3,1.0
 198046,Marinated Veggie Salad,349.2,14.7,51.8,6.4
 445067,Cream Cheese Icing,984.0,80.9,52.5,17.7
-190472,Easy &quot;mickey Mouse&quot; Snack,72.0,4.5,0.8,6.9
+190472,"Easy ""mickey Mouse"" Snack",72.0,4.5,0.8,6.9
 92902,Homemade Corn Tortillas,124.9,1.4,23.8,4.0
 179531,Chocolate Mint Cookies,71.4,2.2,12.8,1.1
 455800,Brazilian-Style Liver,1278.5,15.7,177.5,95.2
@@ -2458,7 +2458,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 516326,Ham and Broccoli Breakfast Casserole With Extra-Sharp Cheddar,365.5,20.4,16.8,28.8
 417796,Lobster Sliders,124.5,8.6,4.3,7.9
 322546,Ranch and Avocado Pasta Salad,465.6,15.6,59.6,21.8
-81030,Chipotle &amp; Corn Chowder,270.7,6.3,49.2,10.4
+81030,Chipotle & Corn Chowder,270.7,6.3,49.2,10.4
 74965,Super Easy and Good Nacho Casserole,147.5,10.0,2.5,11.8
 472935,Spinach Dip,551.2,42.2,40.4,8.9
 239077,Tuscan White Bean Soup With Prosciutto,439.8,4.0,75.5,29.1
@@ -2483,11 +2483,11 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 416259,Mr Coffee Caramel Cappuccino Frappe,320.3,2.3,75.1,3.6
 280052,Hungry Girl Crunch Wrap Supreme,102.4,4.7,6.8,8.7
 94035,Butterscotch Waffles,854.9,47.0,88.2,20.4
-48157,Icaac Mizrahi's Favorite Macaroni &amp; Cheese,584.9,40.9,28.7,25.6
+48157,Icaac Mizrahi's Favorite Macaroni & Cheese,584.9,40.9,28.7,25.6
 398275,Thai Peanut Chicken (Hacked Chicken),400.6,18.0,3.6,54.4
 229507,Stone Fruit Zurra,286.4,0.5,37.9,2.5
 528253,Low Carb Pancakes,240.4,20.3,7.6,7.8
-285140,Low Carb &quot;oatmeal&quot;,290.5,21.0,5.0,20.2
+285140,"Low Carb ""oatmeal""",290.5,21.0,5.0,20.2
 408546,Crepes Suzette (Weight Watchers),192.9,7.9,26.8,4.9
 208368,Smoky Meatloaf (Cameron's Smoker),433.5,29.1,4.1,36.4
 432806,At Home Slushies,129.0,0.0,33.3,0.0
@@ -2522,8 +2522,8 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 60908,Bar-B-Q Japanese Steak,830.5,51.8,2.1,67.6
 203275,Brandy Pecan Bundt Cake,592.8,30.4,68.7,7.1
 456693,James Beard's  Old-Fashioned Meat Loaf,843.8,54.7,16.5,67.0
-541178,Delicious Chocolate Chip &amp; Walnut Cookies,230.6,11.4,30.0,3.0
-489707,&quot;Stuffed Cabbage&quot; Soup,182.1,6.7,26.4,6.0
+541178,Delicious Chocolate Chip & Walnut Cookies,230.6,11.4,30.0,3.0
+489707,"""Stuffed Cabbage"" Soup",182.1,6.7,26.4,6.0
 348934,Buffalo Wing Soup,364.6,24.5,14.1,21.9
 7406,Mock Hollandaise Sauce,100.4,8.2,5.1,2.2
 87623,Chocolate Cream Cheese Cupcakes,221.9,12.3,27.0,2.5
@@ -2544,7 +2544,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 195425,Creamy Spiced Pumpkin,115.8,0.3,28.8,2.0
 193054,Curried Lentil and Spinach En Croute,580.2,36.9,49.5,16.4
 469175,Salmon With Sage Sauce and Steamed Spinach With Glucomannan,432.4,17.4,10.5,51.3
-361546,My Bisquick &quot; Irish Soda Bread &quot;,262.8,14.6,29.4,4.2
+361546,"My Bisquick "" Irish Soda Bread """,262.8,14.6,29.4,4.2
 18577,Baked Green Beans with Feta Cheese,110.6,7.4,9.2,3.7
 274294,Choros a La Chalaca,22.3,0.4,2.6,2.2
 42783,Mustard and Honey Glazed Parsnips,267.6,7.8,50.0,3.1
@@ -2653,7 +2653,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 295531,Tres Leches Cake (Easy),1074.8,52.0,134.2,20.7
 462555,Curried Shrimp With Marmalade Soy Dip,178.6,6.8,8.8,19.6
 284559,Apricot Lemon Warmer,157.6,0.2,40.9,0.8
-391390,&quot;green&quot; Soup,500.7,8.2,83.9,26.2
+391390,"""green"" Soup",500.7,8.2,83.9,26.2
 290072,Barbecued Italian Sausage and Bean Salad,828.1,55.2,43.5,41.4
 384718,Asian Chicken Salad,302.8,16.9,14.0,25.7
 103463,Hawaiian Beef Casserole,530.2,12.7,76.7,30.5
@@ -2678,7 +2678,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 205601,Country Gravy,296.9,25.3,12.0,5.9
 508976,Butternut Squash and Apple Soup,256.8,2.8,61.0,4.7
 213209,High Protein Trail Mix,198.6,6.7,24.1,16.6
-531772,Rich &amp; Creamy Scalloped Potatoes,634.6,49.4,33.4,16.6
+531772,Rich & Creamy Scalloped Potatoes,634.6,49.4,33.4,16.6
 54088,Pickled Shrimp,127.4,6.8,2.9,12.2
 473192,Vegan Hungarian Mushroom Soup,113.6,7.7,9.7,5.2
 209686,Salsa (Step by Step 4 Kids),50.4,0.4,11.6,2.2
@@ -2732,7 +2732,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 65768,Chicken Lazone,484.5,28.8,3.2,51.3
 360989,Roasted Green Beans,130.3,7.0,16.2,4.1
 462127,Chocolate Coconut Pots De Creme,549.1,35.5,65.8,5.8
-216189,Coconut &amp; Apricot Energy Smoothie,303.4,27.1,14.4,5.3
+216189,Coconut & Apricot Energy Smoothie,303.4,27.1,14.4,5.3
 95709,Fiesta Corn Bake,173.3,1.2,41.8,5.2
 62476,Baked Prawns With Pepper and Garlic,188.7,11.5,3.4,17.3
 50576,Jerk Chicken (Bbq'd) With Mango Salsa,316.4,8.6,25.7,35.6
@@ -2765,7 +2765,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 53433,Inez's Buttermilk Blueberry Muffins,127.6,0.5,27.9,2.9
 38748,Chinese Fried Rice,497.8,16.3,64.6,22.3
 247947,Rachel Sandwich,688.0,36.5,43.6,45.8
-446617,The &quot;best&quot; Refried Beans,89.9,4.3,9.8,3.4
+446617,"The ""best"" Refried Beans",89.9,4.3,9.8,3.4
 211892,Food and Wine Magazine's Malt Ball Cake,871.3,57.8,83.3,7.8
 26956,Mushroom Curry,200.4,14.5,16.0,5.9
 69262,Chicken Fried Rice,646.2,23.8,86.3,20.5
@@ -2883,7 +2883,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 526300,Roasted Corn Soup With Chicken,308.3,11.6,32.2,20.7
 278003,Vbs Rice Krispy Cookies,169.1,8.4,21.6,2.4
 36300,Caramel Banana Crescent Puffs,493.5,9.7,97.4,7.3
-238681,Kerris' Mums Sweet &amp; Sour Beef,156.6,4.3,24.2,7.6
+238681,Kerris' Mums Sweet & Sour Beef,156.6,4.3,24.2,7.6
 96096,Prize Italian Frosting,565.2,40.5,48.8,2.6
 16711,Cindy's Jumbo Sugar Cookies,111.4,5.5,14.3,1.4
 211805,Chicken Breasts - Stuffed,653.8,68.3,4.0,9.1
@@ -2896,7 +2896,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 177762,Strawberry Mallow Slice,320.2,27.5,17.3,3.4
 252359,Hot Raspberry Rum Toddy,104.9,0.0,10.5,0.0
 106086,Chocolate Silk Pecan Pie,458.4,30.8,46.0,5.1
-259493,Bean &amp; Beef Hotpot,237.7,7.4,31.6,8.6
+259493,Bean & Beef Hotpot,237.7,7.4,31.6,8.6
 523498,Potato Cheese Balls,172.1,7.0,22.2,5.4
 447771,"Low-Fat, Lower Calorie and Great-Tasting Crepes",220.8,4.1,31.9,11.7
 8449,Fast and Easy Fish Soup With Garlic Aioli,333.2,14.7,20.8,29.5
@@ -2924,7 +2924,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 169800,Lemon Cream (Citronfromage),270.7,15.8,24.9,8.5
 345118,Roasted Vegetables With Garlic Aioli,1481.0,133.4,69.2,12.2
 109045,Potato Skins With Cheese and Bacon,102.4,2.3,15.2,5.3
-518654,Mint Filled DelightFulls&trade; Chocolate Chip Cookies,1206.9,66.7,140.6,16.9
+518654,Mint Filled DelightFulls™ Chocolate Chip Cookies,1206.9,66.7,140.6,16.9
 240376,South African Rusks / Biscuits,148.1,4.9,23.9,2.2
 50181,Savory Tofu Sauce,433.8,37.4,12.8,18.5
 157843,Garlic Garbanzo Dip,137.3,5.2,19.7,3.7
@@ -2933,12 +2933,12 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 188139,Spinach and Bechamel Gratin,410.7,33.5,15.2,17.8
 386388,Pineapple Sage Tea - Hot or Iced,172.8,0.2,48.7,1.0
 537160,Creamy Garlic Shrimp With Angel Hair Pasta,482.2,6.1,76.3,31.2
-345977,Spicy &amp; Orange Cranberry Sauce,192.6,0.1,50.3,0.3
+345977,Spicy & Orange Cranberry Sauce,192.6,0.1,50.3,0.3
 418168,Lemon Coconut Sour Cream Pie,276.1,15.5,32.0,3.0
 142634,Cranberry-Peach Cobbler,343.5,16.0,49.2,2.5
 63615,Indonesian Barbecue Sauce,540.3,16.4,95.7,12.3
 453339,Bacon Balsamic Deviled Eggs,46.9,3.1,0.9,3.5
-495972,Simply Sensational Loaded &quot;No-Bake&quot; Potato Soup #5FIX,421.1,30.4,21.6,16.2
+495972,"Simply Sensational Loaded ""No-Bake"" Potato Soup #5FIX",421.1,30.4,21.6,16.2
 307285,Panforte Di Siena - Traditional Tuscan Honey / Nut  Cake,208.5,10.8,27.4,4.4
 19542,Blue Cheese Dressing,237.3,21.6,2.7,8.8
 44435,Roast Beef Salad,30.9,0.5,5.3,2.2
@@ -2953,7 +2953,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 500736,Latina Lasagna,992.2,74.3,35.0,45.0
 250177,Ww 4 Points - Yogurt With Honey and Walnuts,177.4,9.0,22.4,4.4
 417655,Quick Slap-Dash Cioppino,196.3,3.2,15.1,12.8
-257409,&quot; the Mooch&quot;  - Zucchini Sandwich,384.4,9.7,66.9,15.2
+257409,""" the Mooch""  - Zucchini Sandwich",384.4,9.7,66.9,15.2
 169199,No Bake Strawberry Dessert,85.7,1.8,15.9,2.3
 105901,Dairy-Free Vegan Cranberry Muffins,221.7,8.1,34.5,3.5
 492885,Brooks,490.1,28.7,31.9,25.2
@@ -3007,7 +3007,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 417679,Firefighter's Chicken Spaghetti,675.2,29.4,49.5,52.9
 404843,Pineapple and Passionfruit Jam,1059.6,1.8,270.0,5.8
 144772,Deep-Fried Sweet Potato Chips With Mozzarella,493.4,12.7,77.3,18.4
-523412,Alfhild&rsquo;s Fish Cakes,108.2,3.2,3.4,15.4
+523412,Alfhild’s Fish Cakes,108.2,3.2,3.4,15.4
 493560,Mixed-Up Mushroom Barley Soup,161.1,6.9,16.7,8.3
 477055,Peruvian Mixed Cebiche (Ceviche Mixto),223.1,2.0,16.6,36.4
 83791,French Toast Sandwiches,692.9,24.4,85.4,31.2
@@ -3111,7 +3111,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 69891,Spinach & Bacon Salad,327.7,31.2,5.1,8.3
 149634,Lucky Black-Eyed Peas,329.3,19.9,10.7,25.8
 381568,Denver Mile-High Burgers,849.9,41.1,53.4,61.9
-499879,Honey Mustard Plaintain &amp; Chicken Salad (Paleo),688.7,39.2,66.4,24.8
+499879,Honey Mustard Plaintain & Chicken Salad (Paleo),688.7,39.2,66.4,24.8
 389908,Red Velvet Sandwich Cookies,589.8,33.5,69.0,5.8
 406709,Strawberry-Lemon Syrup,460.3,0.7,118.0,1.5
 398671,Cinnamon Raisin Bread (Abm),256.1,3.3,50.7,6.6
@@ -3148,7 +3148,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 442333,Salsa,35.4,0.4,8.0,1.6
 168510,Consume Rice,180.0,3.1,31.5,5.7
 285329,James Martin - Chocolate Cheesecake With Cardamom Creme Anglaise,2583.8,178.0,244.2,39.0
-525534,PEAS &amp; MUSHROOM SOUP,59.7,1.3,10.0,2.8
+525534,PEAS & MUSHROOM SOUP,59.7,1.3,10.0,2.8
 30875,Awesome Appys,59.7,3.2,2.9,4.8
 248891,Budweiser BBQ Sauce,63.3,0.5,14.2,0.6
 192749,Super Moist Chicken,260.2,13.4,1.0,32.2
@@ -3188,7 +3188,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 356011,Chocolate Peanut Butter Whoopie Pies,374.3,15.6,55.3,6.1
 232965,"Slow Cooked Chicken With Tomatillos, Potatoes, Jalapenos and Fre",341.8,7.1,38.9,31.4
 46525,Italian Style Roasted Potatoes,699.4,40.8,62.5,23.1
-457382,"Curried Chicken With Apples, Carrots, &amp; Yams",1118.8,21.2,144.8,75.6
+457382,"Curried Chicken With Apples, Carrots, & Yams",1118.8,21.2,144.8,75.6
 81700,Copycat Trader Vic's Mai Tai,154.5,0.0,7.6,0.2
 332421,Sausage Balls,253.8,17.4,12.9,10.9
 518880,Polish Mistakes,194.9,14.4,4.0,11.7
@@ -3201,7 +3201,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 527490,Japanese Cucumber Salad,49.6,1.7,8.2,1.3
 130799,Crock Pot Barbecue Ribs,844.8,63.5,21.2,44.0
 513771,One Pot Spaghettie on Toast,1689.0,49.2,237.5,76.3
-344613,Maltese Pork &amp; Potatoes &quot;bhal Fil-Forn&quot;,875.3,38.9,72.0,58.4
+344613,"Maltese Pork & Potatoes ""bhal Fil-Forn""",875.3,38.9,72.0,58.4
 130293,Easy Cheesy Pork Casserole,524.9,17.6,43.2,47.2
 297028,Tender Pot Roast,814.1,55.7,19.9,53.6
 301800,Mussels in Spicy Coconut Broth,436.8,10.6,27.9,54.8
@@ -3238,7 +3238,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 371517,Upside Down Rhubarb and Ginger Cake,250.8,10.0,37.1,3.9
 498850,Pigs in a Blanket,1773.5,138.9,72.6,54.8
 441853,Fennel Gratin With Pecorino and Lemon,171.3,11.0,17.0,3.2
-195387,Fresh Green Bean &amp; Potato Casserole,316.0,8.8,49.3,11.7
+195387,Fresh Green Bean & Potato Casserole,316.0,8.8,49.3,11.7
 187464,Slow Cooker Italian Meatloaf,489.2,25.3,13.1,48.9
 171430,Peanut Butter Kiss Cookies,310.2,16.3,35.7,7.0
 47855,Camper's Special Casserole,418.1,10.1,57.8,28.5
@@ -3252,7 +3252,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 174982,Pear Chutney,762.4,14.6,164.6,5.2
 322206,Creole Pork Chops,354.6,23.3,7.4,28.2
 535840,East Medi Bowl With Falafel Waffle,0.0,0.0,0.0,0.0
-539371,Cuccia (Wheatberry &amp; Ricotta),224.9,12.0,20.3,10.4
+539371,Cuccia (Wheatberry & Ricotta),224.9,12.0,20.3,10.4
 296404,Cabbage and Jicama Slaw,122.2,1.1,25.4,4.5
 360625,Shrimp Wok,907.9,54.8,85.2,30.8
 289817,Chicken and Rice Casserole,682.8,40.6,48.4,31.7
@@ -3313,7 +3313,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 323872,Key Lime Cupcakes,424.2,22.9,51.4,4.7
 116976,Fudgy Cherry-Cheesecake Brownie Bars,299.9,16.8,35.7,4.8
 373890,Avocado Stuffed With Dates - Portuguese Cape Verde,210.1,14.8,19.5,2.3
-400044,Chad's Triple S BBQ &amp; Wing Sauce,2.2,0.1,0.4,0.1
+400044,Chad's Triple S BBQ & Wing Sauce,2.2,0.1,0.4,0.1
 411872,Blueberry Gateau,308.8,13.0,45.8,3.7
 164161,Chicken Alfredo Lasagna,1659.4,101.5,64.1,117.8
 253450,Raspberry Chipotle Pork Chops,443.1,22.6,4.8,52.3
@@ -3391,7 +3391,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 327792,Pineapple Pie,415.8,18.2,60.8,4.9
 321233,"Watermelon, Cucumber and Feta Salad",97.3,3.5,15.0,3.6
 84259,Coconut Brownie Pie,853.8,55.7,83.9,14.2
-201112,Clauser's Bed &amp; Breakfast Creme Brulee French Toast,807.1,41.5,85.9,23.0
+201112,Clauser's Bed & Breakfast Creme Brulee French Toast,807.1,41.5,85.9,23.0
 529810,Madawaska County BBQ Dipping Sauce,74.3,0.2,18.0,0.8
 222515,Coconut Orange Cupcakes,234.0,10.9,32.0,2.9
 244299,Poppys' Hobo Chicken,425.0,15.1,53.4,19.5
@@ -3415,7 +3415,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 338856,Candied Sweet Potato Casserole,382.8,5.9,81.6,3.2
 472302,Liver and Onion,643.1,22.1,27.9,36.8
 450261,Creole Shrimp,164.3,4.8,2.8,26.0
-475653,Crawfish &amp; Sausage Brown Rice Jambalaya!,472.4,22.8,42.1,23.8
+475653,Crawfish & Sausage Brown Rice Jambalaya!,472.4,22.8,42.1,23.8
 230163,Swiss Ranch French Bread for the Grill,379.9,19.0,40.2,11.8
 151857,Chicken and Cheese Chowder,323.2,18.0,26.8,16.5
 439254,Creamy Garlic Soup,580.3,29.1,51.5,17.6
@@ -3444,7 +3444,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 122093,Yummy Round Steak With Rich Gravy,263.4,9.2,7.6,35.8
 209765,Jello Salad,51.3,0.1,17.4,2.5
 239221,Iranian Rice - a Different Way...,825.7,53.1,70.8,17.5
-316870,Venison Steaks W/ Creamy Pepper &amp; Brandy Sauce,444.0,21.4,4.1,40.9
+316870,Venison Steaks W/ Creamy Pepper & Brandy Sauce,444.0,21.4,4.1,40.9
 185649,Jambalaya Magnifique!,362.6,17.5,33.8,16.0
 220179,Warm Grape Tomatoes over Greens,291.0,14.4,12.6,4.0
 71558,Our Favorite Chicken,464.3,17.9,50.0,29.8
@@ -3481,7 +3481,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 231180,Maggie Beer's Caponata,75.4,1.1,16.9,2.0
 215549,Tea Smoked Chicken,662.5,41.6,17.8,51.3
 33287,Monterey Fondue,382.3,29.7,7.8,22.3
-193390,Tomato &amp; Red Onion Salad,85.5,7.1,5.7,1.2
+193390,Tomato & Red Onion Salad,85.5,7.1,5.7,1.2
 145803,Escabeche (Sweet and Sour Fish),556.1,17.3,48.0,50.5
 444763,Brown Rice Stuffing,148.3,5.8,20.9,2.2
 375886,Green Window Cleaner That Costs Pennies!,0.6,0.0,0.0,0.0
@@ -3512,7 +3512,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 259514,Salmon With Mint Couscous,239.7,4.1,21.2,27.5
 61007,Stuffed Mushrooms With Scallops,76.7,5.8,3.2,3.2
 275852,Soft Gingerbread,334.2,16.4,44.5,3.4
-417589,Broccoli Saut&eacute;ed in Wine and Garlic over Bulgur Wheat Pil,590.0,33.4,56.0,16.3
+417589,Broccoli Sautéed in Wine and Garlic over Bulgur Wheat Pil,590.0,33.4,56.0,16.3
 226333,Salsa Turkey Meatloaf,314.3,11.8,27.5,24.6
 19490,Campbell's Monterey Chicken Fajitas,780.3,38.1,66.8,41.5
 202060,Very Basic Chicken and Dumplings,562.4,39.0,25.0,27.1
@@ -3534,7 +3534,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 482505,"Mixed Lettuces With Strawberries, Goat Cheese and Pecans",164.1,15.0,7.8,0.7
 372744,Pamela's Coleslaw,101.7,5.2,14.0,1.3
 170077,Drumstick Cheesecake,482.2,34.8,36.1,9.8
-393301,Beet Greens &amp; Mushrooms,68.7,4.8,4.5,2.9
+393301,Beet Greens & Mushrooms,68.7,4.8,4.5,2.9
 139841,Garlic Grilled Leg of Lamb,352.1,20.5,7.5,28.7
 513899,Asian Sweet Chili Grilled Chicken,207.8,6.6,11.0,25.3
 285114,Chilled Mocha,356.4,9.8,64.0,4.8
@@ -3551,7 +3551,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 58939,Margaritaville Shrimp Cocktails,116.3,6.8,6.7,8.7
 396065,Hellboy's Fried Rice,574.4,19.1,82.8,15.7
 404430,Gluten Free Tater Tot Casserole,684.4,40.6,53.1,28.0
-466256,Celery &quot;stuffing&quot; - Hcg P2,24.2,0.3,5.0,1.0
+466256,"Celery ""stuffing"" - Hcg P2",24.2,0.3,5.0,1.0
 147127,Shannon's Curry Chicken That Firefighter Hubby Loves!,589.3,38.3,27.1,36.7
 175450,My Favorite Caramel Frosting,1329.8,41.4,243.5,5.3
 392407,Grandmother's Pumpkin Pie,1964.0,97.3,271.2,11.8
@@ -3641,7 +3641,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 50825,Oriental Chicken Salad with Crunchy Ramen Noodles,636.1,51.8,25.9,22.2
 286905,Homemade Granola,490.1,25.2,59.9,11.6
 21750,Hamburger-Rice Soup,306.5,11.8,24.6,25.6
-534230,Bacon &amp; Egg Muffins,0.0,0.0,0.0,0.0
+534230,Bacon & Egg Muffins,0.0,0.0,0.0,0.0
 343143,Sugar-Free Cheesecake,284.9,18.8,25.1,4.8
 484941,Indian Cold Coffee,240.2,13.6,21.9,8.5
 227919,Wow This is the Best BLT Dip I Have Ever Had,254.8,21.5,5.2,10.6
@@ -3688,7 +3688,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 291001,Whole Wheat Chocolate Chip Cookies,298.4,16.5,39.1,3.0
 513756,Curied Egg and Avocado Sandwiches,322.9,17.0,32.4,11.7
 507090,Almond Milk Creamed Spinach,206.2,12.1,18.0,8.3
-234094,Stir- Fried Zucchini &amp; Onions,112.5,8.3,8.1,2.9
+234094,Stir- Fried Zucchini & Onions,112.5,8.3,8.1,2.9
 131544,Sauteed Green Beans,151.0,10.4,14.2,3.6
 394584,Pinot Noir Grilled Steak Salad,444.0,26.5,14.1,32.8
 119154,Stuffed Portabella Mushrooms,174.3,13.0,8.5,7.3
@@ -3723,7 +3723,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 509001,Cream Cheese Spinach Pesto,478.5,37.3,27.9,17.0
 261887,Cajun Roast Potatoes,303.1,10.7,49.9,7.0
 143742,Yankee Oyster Pie,385.3,17.5,36.5,19.7
-338219,Roasted Pork Chops &amp; Cranberry Sauce,468.1,23.1,23.5,40.1
+338219,Roasted Pork Chops & Cranberry Sauce,468.1,23.1,23.5,40.1
 213560,Fiesta Fantasy Cake,621.7,34.4,74.2,6.1
 218119,Tailgating With Franks and Beans from Longmeadow Farm,546.5,15.6,79.6,22.8
 312844,Chicken Nicoise,383.5,27.7,15.1,17.8
@@ -3742,13 +3742,13 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 232066,Creamed Chicken,952.5,57.0,67.3,42.9
 373270,Chilled Corn and Crab Salad,212.6,10.7,24.8,8.7
 378340,Spiced Red Lentil Dip With Pita Crisps,147.7,3.2,23.8,6.9
-45414,Melted Swiss &amp; Ham on Party Rye,444.7,26.6,5.9,45.5
+45414,Melted Swiss & Ham on Party Rye,444.7,26.6,5.9,45.5
 123942,Mounds  Bars,453.2,23.7,55.8,6.6
 99361,Low Carb Baked Spaghetti Squash With Garlic Sage Cream,181.1,13.3,14.4,3.5
 470570,Spinach Balls,189.8,16.6,3.0,8.4
 82575,Caesar Salad,236.9,4.6,39.9,9.7
 406371,Sesame Shrimp With Wasabi Sauce,165.9,10.8,8.7,8.8
-259054,Spam &amp; Macaroni Summer Salad,537.3,33.3,40.1,19.5
+259054,Spam & Macaroni Summer Salad,537.3,33.3,40.1,19.5
 27086,Dark Chocolate Ice Cream,309.3,20.7,31.6,5.0
 51390,Peanut Butter Chocolate Chip Brownies,206.9,10.6,26.3,3.7
 104960,Maple Butter Cookies,168.2,6.4,26.6,1.4
@@ -3757,10 +3757,10 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 147247,Baked Sweet Potato Fries,146.5,6.8,20.3,1.7
 183087,Mahlouach-Yemenite Pancakes,442.8,18.4,60.3,8.2
 103891,Bryan's Jerk Rub: Jamiacan Style,121.2,2.6,27.5,1.9
-211527,Traditional English Beef &amp; Potato Picnic Pies - Pasties,832.0,55.0,60.4,24.7
+211527,Traditional English Beef & Potato Picnic Pies - Pasties,832.0,55.0,60.4,24.7
 224859,Chocolate Pudding Parfaits,964.4,80.0,67.5,18.3
 371999,Macaroons,273.4,10.7,41.9,4.0
-330162,Saut&eacute;ed Lemon Chicken Strips,357.4,18.7,5.0,41.4
+330162,Sautéed Lemon Chicken Strips,357.4,18.7,5.0,41.4
 151072,Bugs Bunny Bagels,535.4,18.0,77.3,19.5
 139238,Mexican Chicken With Gravy,369.9,26.8,4.8,26.6
 510869,Black Eyed Peas,458.9,4.4,68.2,38.4
@@ -3772,14 +3772,14 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 97295,Avocado Dip,699.0,64.4,31.6,8.9
 343736,Southwest-Style Chicken Burgers,552.2,29.7,33.8,36.0
 320265,Honky Tonk Badonkadonk,64.5,0.0,0.1,0.0
-224145,"Chicken, Spinach &amp; Shiitake Mushroom Soup",570.4,40.1,10.9,40.0
+224145,"Chicken, Spinach & Shiitake Mushroom Soup",570.4,40.1,10.9,40.0
 138744,Boxty,54.0,2.1,7.4,1.5
 262744,Perfect Blend Sweet and Spicy Home Style Baked Beans,172.9,1.4,38.2,4.7
 16934,Rice Krispies Funnel Kisses,309.5,8.1,58.7,2.4
 168640,Award-Winning Cabbage Rolls,578.8,20.2,72.8,29.9
 40098,The All-Purpose College Condiment,80.3,0.3,20.7,1.5
 429561,London Lemonade Martini,197.6,0.1,3.1,0.2
-441762,"Hot &amp; Spicy, Low Carb, Vegan Mac &amp; Cheese",302.5,1.4,64.8,12.7
+441762,"Hot & Spicy, Low Carb, Vegan Mac & Cheese",302.5,1.4,64.8,12.7
 10964,Never fail sponge,180.9,3.5,33.0,4.9
 181339,Chilli Tuna Pasta Salad,380.9,13.0,43.5,22.3
 289359,White Chocolate Brownies,239.9,13.4,27.0,3.5
@@ -3797,7 +3797,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 55173,Carrot Souffle,285.6,18.0,27.8,4.4
 162126,"Pasta, Sausage, Cheese Supreme",418.9,13.0,55.6,21.8
 40535,Punch for a Bunch,55.3,0.0,13.9,0.3
-432825,Gnocchi With Asparagus &amp; Olives in a Creamy Pesto Sauce,255.6,19.1,12.4,10.2
+432825,Gnocchi With Asparagus & Olives in a Creamy Pesto Sauce,255.6,19.1,12.4,10.2
 509966,Scrumptious Chocolate Mint Layer Bars,1007.6,87.8,48.1,19.4
 76143,Easy Crock Pot Pork Roast With Cranberries,660.7,46.2,21.8,38.3
 440556,Herb and Garlic Lamb Chops,930.7,87.0,5.5,31.9
@@ -3816,9 +3816,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 509563,Hard Squash Spread,124.7,11.4,5.7,1.1
 111357,Roasted Chicken Artichoke Calzones,578.8,25.2,60.9,35.3
 428190,Memaw Dip,163.7,12.6,5.3,8.1
-523411,Tilsl&oslash;rte Bondepiker &rdquo;Veiled Farm Girls&rdquo;,993.0,52.7,130.3,9.1
+523411,Tilslørte Bondepiker ”Veiled Farm Girls”,993.0,52.7,130.3,9.1
 139893,Bavarian Pork Tenderloin Stew,319.0,14.8,17.5,28.5
-439471,&quot;biggest Loser&quot; Chili,207.3,5.5,25.5,15.4
+439471,"""biggest Loser"" Chili",207.3,5.5,25.5,15.4
 139363,Creamy Chicken and Spaghetti Casserole,907.2,50.2,69.0,45.3
 375257,Lemon Rice Pilaf,347.0,10.2,53.8,8.6
 383718,Yummy Sweet Balls (No Bake) 1,59.2,1.5,10.4,1.2
@@ -3851,7 +3851,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 497712,Whole Wheat Banana Nut Bread,219.4,10.7,29.6,4.0
 15152,Mom's Apple Stack Cake,345.1,11.8,60.8,1.8
 120837,Mexican Crock Pot Chicken,629.6,28.4,38.1,54.6
-536715,Fish Pie &amp; Cauliflower Mash,279.4,12.2,15.4,24.8
+536715,Fish Pie & Cauliflower Mash,279.4,12.2,15.4,24.8
 8500,Chicken Stir-Fry,665.6,26.3,65.1,45.4
 85149,Cheesy Green Chile Corn,241.3,15.2,21.5,8.5
 314163,Mediterranean Salmon Foil Packets,257.5,14.8,6.3,25.3
@@ -3902,7 +3902,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 347230,Best Ever Pizza Crust!  (Bread Machine),440.6,6.3,81.5,13.1
 387111,Monster Sandwich,290.4,17.2,10.6,23.6
 193534,Rhubarb Butter Crunch,276.1,12.7,39.6,2.4
-114289,Hearts of Palm With Herb Pastry &amp; Spicy Tomato Sauce,593.8,40.7,46.6,14.3
+114289,Hearts of Palm With Herb Pastry & Spicy Tomato Sauce,593.8,40.7,46.6,14.3
 28387,No Bake Coconut Cake,503.2,18.6,77.4,10.0
 116644,Weird Marinade,190.0,0.0,55.2,0.0
 304197,South of the Border Burger,598.1,31.1,33.7,44.4
@@ -3921,7 +3921,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 303009,Grandma's Noodle Medley,461.9,14.2,55.7,28.6
 314594,Mexican Shepherd's Pie,526.3,23.8,60.2,22.5
 115385,Fresh Peach Pie,358.8,10.2,66.5,2.8
-251972,Stainless Steel Pots &amp; Pans Cleaner,23.1,0.0,5.5,0.0
+251972,Stainless Steel Pots & Pans Cleaner,23.1,0.0,5.5,0.0
 59000,Chocolate Chip Banana Bars,848.7,41.6,121.3,8.3
 535781,Royal Purple Blueberry Pie,545.9,32.2,60.3,6.4
 449879,Candice Kumia Figure Friendly Spinach Artichoke Dip,193.3,14.3,12.6,5.8
@@ -3972,7 +3972,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 205921,Muesli,853.4,76.4,34.2,11.7
 145644,Anjou Pear Cheese Muffins,196.1,8.2,25.2,6.0
 487365,American Kitchen Classic Oatmeal Raisin Cookies,118.5,4.9,17.4,1.7
-73011,Ham &amp; Cheddar Crescents,115.5,4.2,14.8,4.5
+73011,Ham & Cheddar Crescents,115.5,4.2,14.8,4.5
 152804,Beet Apple Walnut Salad,482.4,41.8,23.7,8.1
 117222,Thyme Marinated Grilled Asparagus,151.6,12.4,8.6,4.1
 122050,T.d. F.  Hot Bread Dip,543.0,34.1,39.4,20.1
@@ -4017,7 +4017,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 26594,Angel Pie,361.5,4.1,77.3,6.1
 128585,Spicy Meatloaf With Chipotle Sauce,453.0,31.1,7.0,34.8
 9062,"Grilled top loin pork roast, teriyaki",322.2,20.8,11.5,22.3
-209062,Peanut Butter Spread &amp; Dip,106.5,8.8,4.9,3.6
+209062,Peanut Butter Spread & Dip,106.5,8.8,4.9,3.6
 337926,Pumpkin Pie Made from a Real Pumpkin,186.7,6.0,28.1,6.4
 337937,Pico De Gallo W/Cabbage,49.2,0.4,12.2,2.3
 419744,Butterscotch Ice Cream Pie,451.3,36.9,27.7,4.0
@@ -4028,12 +4028,12 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 13032,Mixed Vegetable Salad,140.0,13.7,4.4,1.1
 448267,Fish Piccata- Easy and Economical,161.2,12.7,9.4,1.4
 399883,Orange Delight Dessert,354.6,21.5,38.8,5.0
-322813,Cheryl's Chicken &amp; Quinoa Skillet - Ww Points = 9,439.1,5.4,71.7,29.1
+322813,Cheryl's Chicken & Quinoa Skillet - Ww Points = 9,439.1,5.4,71.7,29.1
 82266,Blue Chicken Breasts,284.6,15.4,1.4,33.6
 79586,Lentil Potato Pie,553.7,11.7,95.3,20.9
 309663,Black Bean and Corn Salad,277.2,7.5,47.0,11.7
 172425,Witches' Brew for Kids,82.7,0.0,19.7,1.7
-140746,&quot;the Best &quot; Beef Stroganoff,1340.3,107.0,72.9,20.4
+140746,"""the Best "" Beef Stroganoff",1340.3,107.0,72.9,20.4
 521265,Charred Beef and Roasted Veggie Orzo Pasta Salad,548.1,11.3,99.8,17.9
 516776,Shrimp Banh Mi (Vietnamese Shrimp Sandwich),1001.1,10.6,162.8,62.6
 172739,Lemon Pineapple Cake,887.7,47.1,111.6,8.1
@@ -4050,7 +4050,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 96733,Raspberry Cheesecake Shake,330.6,15.6,45.5,4.8
 138616,Halloween Graveyard Pizza,1014.0,35.0,176.5,9.8
 24305,Churros (Mexican Crullers),26.9,0.5,4.5,1.1
-306519,Chilled Sage &amp; Herb Tea,61.6,2.5,10.7,2.5
+306519,Chilled Sage & Herb Tea,61.6,2.5,10.7,2.5
 168880,Honey Glazed Salmon Fillets,201.7,5.1,10.0,28.3
 79555,Eggnog  Fudge,129.9,5.0,21.4,0.7
 206301,Sarah's Owl Cookies,196.4,12.2,19.4,4.2
@@ -4183,7 +4183,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 46736,Vegetarian Chili,315.6,4.8,49.8,18.1
 234414,Tamarind Rum Glazed Shrimp Martini,703.7,41.1,31.5,22.4
 150199,Pan-Fried Pork Chops With Onions,410.7,22.3,13.7,36.9
-313390,Thai Shrimp &amp; Cabbage,258.2,14.2,21.2,13.6
+313390,Thai Shrimp & Cabbage,258.2,14.2,21.2,13.6
 309623,Beef Tsire Grilled in Spicy Peanut Marinade (Nigeria),361.1,26.9,5.5,26.0
 445381,Mom's Oven Potatoes,294.6,20.7,25.7,3.0
 265590,Strawberry Pretzel Delight,176.9,9.4,22.1,1.8
@@ -4202,7 +4202,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 123166,Turkish Beef Stew,463.1,36.4,6.7,26.7
 472361,Easy Quick Bread,1463.5,33.1,257.2,43.0
 510590,Raspberry Cocoa With Chocolate-Hazelnut Cream. Crock Pot Recipe,277.9,21.2,19.0,6.9
-175785,Z&uuml;rigschn&auml;tzlets (Veal in Cream Sauce- Veal Zurich),520.4,33.1,8.6,35.9
+175785,Zürigschnätzlets (Veal in Cream Sauce- Veal Zurich),520.4,33.1,8.6,35.9
 216273,Scotch Oat Cookies,84.9,4.7,9.8,1.1
 196218,Tourtiere Tarts,29.7,1.9,0.5,2.4
 31337,Cherry Tomato-Gruyere Tartlets,185.4,10.8,13.8,8.4
@@ -4254,7 +4254,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 415452,Cinnamon Swirl Bread,140.6,3.0,25.1,3.3
 25003,Caribbean Coleslaw,67.7,0.2,14.6,3.5
 133056,Tropical Pound Cake,450.7,21.4,60.1,5.6
-213027,Southwest Chicken &amp; Shrimp Sauce,1632.7,137.1,21.5,72.1
+213027,Southwest Chicken & Shrimp Sauce,1632.7,137.1,21.5,72.1
 208700,Honey Mustard Chicken Wings,937.8,48.2,73.1,55.8
 166915,Veggie Grillin...,196.3,14.1,17.4,3.6
 295838,Sesame Ginger Chicken Lettuce Cups,216.2,6.8,9.3,30.0
@@ -4289,7 +4289,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 420167,Turkey and Cheese Omelet,265.9,17.2,1.2,24.7
 211825,Bacon Wrapped Water Chestnuts,47.7,3.4,3.3,1.0
 352706,Chicken and Crabmeat Casserole With Avocado,510.5,32.2,23.9,32.1
-287212,Chocolate &amp; Vanilla Swirl Cheesecake,424.4,31.8,30.4,7.4
+287212,Chocolate & Vanilla Swirl Cheesecake,424.4,31.8,30.4,7.4
 193633,Three Cheese Veggie Quesadillas,508.9,19.0,64.2,20.3
 366547,Phyllis's Power Muffins,327.1,12.3,53.4,6.5
 144122,Tomato Salad With Tarragon Dressing,365.5,37.9,7.2,1.6
@@ -4306,7 +4306,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 315937,Mimi's Southern Style Corn,208.7,14.8,18.3,3.3
 395958,Cowboy Caviar,206.2,9.9,22.8,7.4
 127230,Onion Bhaji,2033.3,218.4,21.5,2.9
-367306,Asparagus &amp; Ricotta Strudel (Vegetarian or Not Your Choice.),144.5,3.5,22.3,6.1
+367306,Asparagus & Ricotta Strudel (Vegetarian or Not Your Choice.),144.5,3.5,22.3,6.1
 390739,Hoppin John Soup,505.2,15.6,67.9,23.6
 375897,Halvah Filo Cheesecake (Jewish),348.1,26.0,22.7,7.5
 27539,Marsala Pork Tenderloin with Sage,1091.4,69.1,10.1,53.7
@@ -4334,7 +4334,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 216564,Cottage Cheese Salad,152.4,3.0,15.2,16.6
 506630,Cinnamon Bun Bread Pudding,243.1,7.3,39.1,5.4
 360896,Smoked Ham With Apple-Riesling Sauce,898.0,48.8,12.7,94.8
-497202,Roast Pork &amp; Provolone Sandwiches,356.7,16.1,29.4,25.2
+497202,Roast Pork & Provolone Sandwiches,356.7,16.1,29.4,25.2
 63530,The Best Rosemary Focaccia Bread,2108.5,85.4,289.8,41.7
 96217,Sweet Bean Chili,1714.9,87.3,169.9,66.6
 269983,Baked Egg Custard,156.4,5.6,20.9,5.8
@@ -4342,7 +4342,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 73952,curried parsnip soup,602.0,45.4,42.6,9.5
 136556,Quick Baked Bean Soup (Vegetarian),202.1,2.0,43.1,9.7
 264687,Breakfast Pizza,942.0,47.0,70.0,56.4
-164729,Chicken &amp; Wild Rice (Crock Pot),209.5,5.9,9.4,28.3
+164729,Chicken & Wild Rice (Crock Pot),209.5,5.9,9.4,28.3
 48554,Jack's Chili,859.2,43.7,54.4,62.5
 324125,Cheese Butter,576.9,59.3,1.1,12.1
 426297,Healthy and Tasty Wraps,330.1,14.1,40.1,13.0
@@ -4385,7 +4385,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 393767,Linguine With Collard Greens and Bacon,1133.4,58.3,117.3,41.7
 41498,Cheeseburger 'n' Fries Casserole,502.5,25.3,31.6,35.8
 246938,Pomegranate-Apple Cocktail,353.1,0.0,4.7,0.0
-329349,Grilled Pork &amp; Pineapple,161.4,5.1,29.1,3.1
+329349,Grilled Pork & Pineapple,161.4,5.1,29.1,3.1
 495411,Homesteader Cider Brined Pork Chops W/ Pan Gravy-Forevermama,503.6,34.1,3.4,43.8
 281349,Celeriac and Carrot Mash,46.6,0.3,10.9,1.1
 273957,Berry Mascarpone Trifle,314.1,18.4,35.3,3.7
@@ -4433,15 +4433,15 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 472991,Shrimp and Tilapia Oreganata,354.5,14.3,24.4,33.2
 488916,Curry Chicken,1714.2,89.9,189.2,46.1
 243318,Sticky Maple Pecan Baked Apples With Toffee Fudge Sauce,643.6,45.3,63.6,3.6
-274206,Delicious M&amp;m Cookies,116.4,7.2,12.5,0.6
+274206,Delicious M&m Cookies,116.4,7.2,12.5,0.6
 417799,Crockpot Lentils,162.9,2.4,20.5,15.1
 345668,"Bang, Bang Chicken Salad",545.6,41.4,20.9,27.2
 429668,Golden Broiled Arctic Char Steaks,835.4,68.1,1.0,51.9
 382783,Tasty Fruit Bars,278.9,13.8,35.3,4.0
 398752,Cilantro-Lime Chicken Salad,109.4,6.8,4.5,8.2
 382867,Sour Cherry Crumble Pie,355.7,9.9,66.1,3.5
-88572,Corn &amp; Broccoli Casserole,89.2,3.8,13.1,3.1
-410909,"Kielbasa, Cabbage, &amp; Rice Dinner",292.3,12.2,40.7,6.3
+88572,Corn & Broccoli Casserole,89.2,3.8,13.1,3.1
+410909,"Kielbasa, Cabbage, & Rice Dinner",292.3,12.2,40.7,6.3
 481927,Indian Chicken Rub,12.8,0.5,2.3,0.6
 440385,"Ca-Ri Ga (Chicken Curry With Potatoes, Carrots and Peas)",690.8,31.2,75.5,31.3
 434951,Mashed Red Potatoes,258.0,9.7,37.7,5.6
@@ -4458,7 +4458,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 200386,Bucatini Amatriciana With Ricotta Salata,283.8,6.4,48.3,8.5
 190076,Carrot Cake Muffins With Cinnamon Glaze,193.3,6.2,32.9,2.2
 227078,Molho De Piri-Piri (Portuguese Peri-Peri Marinade Sauce),144.2,13.7,5.9,1.0
-373345,Apple &amp; Brie Half-Moon Crepes,215.7,13.0,17.7,7.7
+373345,Apple & Brie Half-Moon Crepes,215.7,13.0,17.7,7.7
 484158,Champurrado With Honey (Mexican Hot Chocolate),504.9,11.7,94.9,11.6
 166355,Mexican Chicken and Rice Soup,514.6,39.0,17.6,24.0
 154283,Quinoa With Spices,135.9,1.8,27.3,4.2
@@ -4475,7 +4475,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 12463,Chicken Dinner in a Pot,467.2,1.9,52.7,33.4
 419846,Beer Steamed Mussels,906.0,27.7,80.9,78.0
 196899,Gingery Marinated Chickpeas,141.9,5.2,18.8,5.9
-505132,&quot;Boo-Tiful&quot; JELL-O Cups,150.0,7.4,19.8,2.1
+505132,"""Boo-Tiful"" JELL-O Cups",150.0,7.4,19.8,2.1
 447177,Baked Jalapeno Bacon Poppers,87.8,6.1,6.5,1.7
 497334,Cheddar Jalapeno Chicken Burgers With Guacamole,415.4,19.0,24.5,36.6
 231263,Tandoori Chicken With Mint Drizzle,362.0,14.7,21.5,35.0
@@ -4493,7 +4493,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 323275,Mimi's Tropical Christmas Cake,342.4,21.9,34.6,4.2
 365707,Black Bean Asparagus Salad,79.2,3.0,10.4,3.9
 481780,Marinated Roasted Peppers,173.8,14.0,10.6,1.9
-216999,Fruit &amp; Greens Salad,82.0,0.5,20.1,1.9
+216999,Fruit & Greens Salad,82.0,0.5,20.1,1.9
 300722,Potato Skin Pizzas,324.3,14.2,35.0,14.7
 527922,Beef and Cauli-Mash Cottage Pie,615.2,46.5,20.6,31.6
 322489,Citrus Yogurt Cake,254.8,8.8,42.8,2.3
@@ -4528,10 +4528,10 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 315722,Nona's Soy Sauce Eggs -  Ramen Eggs,83.1,5.3,1.4,6.9
 409543,Lightened up Macaroni and Cheese,283.1,6.1,40.8,15.2
 203804,Creamy Tuna Bumsteads,316.0,15.0,27.5,17.0
-457343,"Sydney Broccoli, Red Pepper &amp; Tofu Stir Fry With Balsamic Vi",302.5,19.6,21.4,14.8
+457343,"Sydney Broccoli, Red Pepper & Tofu Stir Fry With Balsamic Vi",302.5,19.6,21.4,14.8
 494508,Poolside Dip,118.8,3.5,14.7,8.9
 285759,"Honey Garlic Home Remedy for Colds, Coughs, Sore Throat",107.3,0.4,23.8,4.6
-127320,Sweet &amp; Spicy Cashew Pork,386.7,26.6,34.5,8.0
+127320,Sweet & Spicy Cashew Pork,386.7,26.6,34.5,8.0
 328325,Homemade Soft Ice Cream,279.2,7.4,45.7,7.9
 282686,Seared Rainbow Chard With Leeks,163.2,15.5,6.3,0.8
 109475,Ki See Ming,447.9,15.8,56.8,18.7
@@ -4555,7 +4555,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 341312,Mimi's Biscorta Cookies,35.9,1.2,5.5,0.7
 60945,Minted Lemon Lamb,662.6,51.5,22.5,26.2
 500348,Tomatoey Pasta Soup,504.2,11.8,75.2,22.4
-474316,Mac &amp; Daiya Cheese,340.9,4.0,61.3,14.5
+474316,Mac & Daiya Cheese,340.9,4.0,61.3,14.5
 345518,Chocolate Covered Peanut Butter Balls,344.4,20.9,38.5,5.1
 111109,Mexican Cornbread,762.8,38.9,65.8,39.4
 300453,BBQ Beef Smoked Sausage,515.0,35.9,20.2,25.9
@@ -4609,7 +4609,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 314607,Polish Style Lasagna,476.1,29.1,45.4,9.4
 497098,Bacon-Tomato Pie,474.4,40.0,19.2,11.5
 294153,Farmer Cookies,145.5,7.4,19.3,1.5
-336040,Chicken &amp; Vegetable Fettuccine,474.6,15.1,69.5,16.9
+336040,Chicken & Vegetable Fettuccine,474.6,15.1,69.5,16.9
 81524,Old-Fashioned Teacakes,1423.8,51.4,220.0,21.6
 23385,Chicken and Sausage Gumbo,759.9,54.4,27.4,38.6
 118877,Baby Artichokes,277.8,3.2,54.0,17.1
@@ -4630,9 +4630,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 318147,Sweet Potato Souffle (Casserole),438.7,19.4,64.3,4.8
 334607,Easy Frittata,439.4,25.3,36.5,17.4
 248134,Lemon Chicken Pasta Toss,185.2,2.0,34.4,7.9
-322276,Poulet Ni&ccedil;oise (Chicken With Black Olives),357.9,17.3,13.7,33.8
+322276,Poulet Niçoise (Chicken With Black Olives),357.9,17.3,13.7,33.8
 45374,Braised Sweet Bell Peppers,170.9,10.7,13.9,6.9
-201996,Reuben Ham &amp; Cheese Wraps,551.6,30.3,39.6,30.1
+201996,Reuben Ham & Cheese Wraps,551.6,30.3,39.6,30.1
 524883,Habanero Plum Gravy,29.9,0.0,5.7,0.3
 298124,Spanakopita,535.6,41.4,24.4,18.5
 240110,Blueberry Blackberry Spice Syrup,618.9,1.5,156.6,3.9
@@ -4644,7 +4644,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 42082,Simple baked ham,438.9,1.2,110.2,1.3
 236194,No Sugar Added Cherry Turnovers,155.8,10.0,13.4,2.9
 381848,Good BBQ Sauce for the Candida Diet,124.6,1.6,27.2,6.0
-276900,Gluten-Free &quot;Rye&quot; Bread (ABM),1707.7,53.0,264.6,46.0
+276900,"Gluten-Free ""Rye"" Bread (ABM)",1707.7,53.0,264.6,46.0
 199476,Sage Wrapped Shrimp,148.8,13.8,0.5,5.8
 320269,My Family's Favorite Sloppy Joes,402.5,14.2,38.2,29.2
 77642,Stuffed Mirliton,234.2,10.0,27.9,9.1
@@ -4702,7 +4702,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 320334,Simple Pork Chops - Jamie Oliver,369.4,21.4,0.4,41.2
 111947,Chilled Cream of Vidalia Onion Soup,564.6,46.6,24.6,7.5
 401809,Whole Roasted Beef Sirloin With Chasseur Sauce,631.1,40.0,5.5,44.3
-363238,Always Delicious Chicken &amp; Cheese Enchiladas,490.9,35.2,14.0,31.4
+363238,Always Delicious Chicken & Cheese Enchiladas,490.9,35.2,14.0,31.4
 282871,Peppermint Candy Cane Cookies,78.2,4.0,9.7,0.9
 142552,Alfredo Hot Browns,1301.9,103.5,37.4,55.8
 509441,Slow Cooker Beef Barbeque,336.6,7.9,41.4,25.4
@@ -4760,7 +4760,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 102936,Three Cheese and Garlic Bread (ABM),2138.4,48.8,342.2,75.8
 200662,Olla Podrida Aussie Style,251.1,13.7,13.5,18.9
 497671,Lu Rou Fan (Taiwanese Stewed Pork With Hard-Boiled Eggs),391.7,18.0,7.9,47.5
-176531,Spinach &amp; Radicchio Salad With Mushrooms &amp; Cashews,243.9,23.6,7.0,4.0
+176531,Spinach & Radicchio Salad With Mushrooms & Cashews,243.9,23.6,7.0,4.0
 76925,Glazed Pork Chops,754.9,36.1,20.5,83.3
 214379,Buttermilk Biscuits,286.8,18.4,27.1,3.6
 491619,Mustard Tarragon Dressing,1094.1,122.3,2.8,1.3
@@ -4792,9 +4792,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 73031,Oatmeal Raisin Cookies for Spooky Girl,161.1,3.5,30.1,2.9
 7805,Liver with Onions & Sage,113.7,9.2,7.6,1.3
 174774,Key Lime Pie Martini,748.0,5.6,3.3,0.4
-343782,Rum &amp; Nut Cake With Glaze,622.6,36.2,56.8,6.8
+343782,Rum & Nut Cake With Glaze,622.6,36.2,56.8,6.8
 358355,Cheesy Dip/Fondue,183.1,14.9,2.9,9.4
-313147,Quick &amp; Creamy Potato Soup,369.5,21.3,38.0,11.8
+313147,Quick & Creamy Potato Soup,369.5,21.3,38.0,11.8
 224899,Chocolate Chip Oatmeal Cookies,202.9,9.4,27.6,3.7
 101909,Pancetta Breadsticks,38.9,2.7,0.6,3.0
 43306,Lebanese Green Bean Stew,252.7,13.8,20.3,15.1
@@ -4832,7 +4832,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 150874,Chocolate and Croissant Bread Pudding,904.1,69.2,58.5,16.2
 143834,Salt and Pepper Chicken,289.7,7.3,27.6,28.1
 103155,Deep Dish Meat Pie/Casserole,918.9,51.6,61.1,51.0
-330962,Jersey Shore Sausage &amp; Pepper Soup,327.8,7.4,41.5,24.2
+330962,Jersey Shore Sausage & Pepper Soup,327.8,7.4,41.5,24.2
 427573,Ice Cream Sundae Cupcakes,114.9,6.3,13.5,2.0
 25166,Bubble up Pizza,400.0,18.9,45.5,13.1
 49145,Thai Pork Curry,1186.5,48.4,165.1,35.1
@@ -4844,7 +4844,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 278373,Sausage-Bean Tamale Bake,598.2,30.0,56.2,28.8
 158470,Turkey Apple Sandwich,410.2,12.8,28.4,47.5
 298213,Taho,323.8,2.9,72.8,5.1
-256062,My Mom's &quot; Red Chicken &quot;,184.4,3.6,16.3,22.7
+256062,"My Mom's "" Red Chicken """,184.4,3.6,16.3,22.7
 56749,Chocolate Velvet Mousse,164.1,10.7,6.3,4.5
 509187,Spicy Chickpea Burgers,362.3,7.6,60.0,13.8
 181508,Eloise's Make Ahead Salad,288.4,18.1,24.0,9.1
@@ -4878,11 +4878,11 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 465902,Caramelized Onion Pizza,305.2,19.5,18.9,14.6
 331595,Honey Mustard Acorn Squash,127.6,6.0,20.0,1.1
 124599,Cowboy Steak,585.6,10.5,106.7,19.5
-288291,Sweet &amp; Spicy Pecans,216.5,20.8,8.4,2.4
+288291,Sweet & Spicy Pecans,216.5,20.8,8.4,2.4
 330523,"Sausage, Apple, and Cheddar Bread Pudding",219.8,10.3,14.9,17.4
 52006,Cashew Chicken,619.6,43.1,31.7,25.9
 31874,Asparagus Mamooshka,216.1,13.8,19.2,5.7
-476394,Plum &amp; Papaya Salsa,46.2,0.2,11.2,0.6
+476394,Plum & Papaya Salsa,46.2,0.2,11.2,0.6
 300574,Shantal's Ham Rolls,444.5,15.2,47.8,27.7
 524497,Pumpkin Chocolate Chip Bread,2917.8,121.7,433.0,34.8
 191092,Pistachio Pudding Fruit Fluff Recipe #219,284.3,19.9,26.6,2.9
@@ -4894,7 +4894,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 367912,Zydeco Salad,14.1,0.1,3.0,0.8
 414672,Turkey Polenta,482.0,18.2,48.1,32.7
 536181,Best Carrot Cake Recipe,661.3,34.5,84.5,7.2
-235438,Soft Scrambled Eggs &amp; Toast,276.0,11.2,26.0,16.4
+235438,Soft Scrambled Eggs & Toast,276.0,11.2,26.0,16.4
 496273,Sunday Gravy With Sausages and Meatballs,730.0,31.0,61.2,50.6
 482721,Chocolate Chip Cookie Dough Dip Ala Chocolate Covered Katie (Hea,204.9,9.9,26.6,4.0
 318429,Pecan Tart With Praline Cream,551.8,34.3,60.9,5.1
@@ -4920,7 +4920,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 430615,Lemon Zucchini,30.0,0.3,8.1,2.1
 235651,Pistachio-Grand Marnier Cake,302.3,20.3,27.6,3.1
 87317,Turkey Gravy,24.0,0.4,3.2,1.6
-234040,Roasted Whole Cauliflower With Garlic &amp; Mustard Seeds,77.0,5.3,7.5,2.4
+234040,Roasted Whole Cauliflower With Garlic & Mustard Seeds,77.0,5.3,7.5,2.4
 225566,Mango Curry Chicken Salad,740.7,36.3,30.2,74.1
 403105,Curried Tofu and Chickpeas,210.3,5.3,30.8,12.6
 115978,Pina Colada Shrimp and Rice,776.0,20.6,115.5,32.4
@@ -4973,11 +4973,11 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 296870,Orange-Kissed Turnip Custards,110.4,1.8,15.0,9.1
 104580,Pop Tart Trifle,153.8,3.6,27.7,3.5
 433678,Peachy  Cantaloupe Smoothie,76.7,0.3,18.7,1.2
-85967,Asparagus Tip &amp; Prosciutto Puffs,47.1,3.0,4.2,1.1
+85967,Asparagus Tip & Prosciutto Puffs,47.1,3.0,4.2,1.1
 511336,Strawberry-Lemon Fruit Dip,67.6,0.3,15.3,1.1
 421104,Spinach Brownies,215.6,8.0,36.0,2.6
-366365,Chicken &amp; Shrimp Jambalaya,345.6,18.4,20.1,24.0
-324462,Portuguese Ca&ccedil;oila (Alcatra),1382.2,96.3,19.8,87.2
+366365,Chicken & Shrimp Jambalaya,345.6,18.4,20.1,24.0
+324462,Portuguese Caçoila (Alcatra),1382.2,96.3,19.8,87.2
 147370,Cranberry Salad,408.9,6.6,90.9,1.6
 63379,Lavender Salad Dressing,1178.0,108.3,56.8,1.0
 277913,Fudgy Peanut Butter Sandwich Cookies,744.9,46.7,75.6,13.8
@@ -5042,7 +5042,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 272149,Mika's Cheeseburger Pizza,347.3,22.6,4.3,30.7
 408730,Choco Chip Mega Muffins,180.7,6.7,28.9,3.0
 90529,Poblano Pork Stew,322.1,17.5,23.2,18.9
-166364,Country Fried Steak &amp; Gravy - Paula Deen,779.4,46.2,73.5,20.0
+166364,Country Fried Steak & Gravy - Paula Deen,779.4,46.2,73.5,20.0
 450951,Flavored Cream Cheeses - 5 Different Flavors,273.7,27.3,3.6,4.6
 35975,Zucchini Bread,239.3,10.8,31.7,4.1
 492762,Mashed Sweet Potato With Bourbon and Vanilla,494.7,22.4,71.0,4.9
@@ -5170,7 +5170,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 390019,Festive Fusilli,445.9,9.1,73.2,19.2
 299433,Nestle Toll House Chocolate Chip Cookies (High Altitude),575.2,28.6,74.1,6.2
 10388,Red Snapper Marinated with 3 Kinds of Chilies in Banana Leaves,1826.7,59.6,266.5,65.3
-418250,"Penne Pasta With Grilled Chicken, Portabellos &amp; Scallions",514.2,4.8,68.8,48.7
+418250,"Penne Pasta With Grilled Chicken, Portabellos & Scallions",514.2,4.8,68.8,48.7
 341709,Skillet Cabbage and Ham,166.8,6.8,13.2,11.0
 262588,Harvest  Zucchini Casserole,332.4,18.1,19.4,22.8
 160470,Lori's Rye Bread,1748.1,33.2,320.9,46.4
@@ -5226,14 +5226,14 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 83525,Brick Layer,261.4,0.1,24.6,0.4
 433258,Three Layer Lasagna,621.0,29.1,52.9,35.3
 503632,Spicy Pepper Jelly Marinated Pork Tenderloin,286.2,5.4,23.2,31.5
-398948,Seafood &amp; Vegetable Chowder,583.6,27.6,47.5,39.2
+398948,Seafood & Vegetable Chowder,583.6,27.6,47.5,39.2
 205983,Stacked Crock Pot Enchiladas,807.7,31.9,77.6,55.2
 516507,No-Bake Strawberry Icebox Cake,351.6,28.0,24.9,3.4
 374905,Mamma Caye's Green Spinach Enchiladas With Cilantro Cream Sauce,459.0,30.8,35.3,14.1
 247999,Spaghetti With Clam Sauce,967.5,22.1,121.7,63.8
 222685,Horseradish and Mustard-Crusted Beef Tenderloin,1113.2,70.7,26.9,90.8
-141390,"Ramen Noodles With Cheese Sauce, Tuna &amp; Beans",674.4,33.7,64.0,29.6
-246723,Portabella &amp; Goat Cheese Salad,120.5,9.0,3.5,7.3
+141390,"Ramen Noodles With Cheese Sauce, Tuna & Beans",674.4,33.7,64.0,29.6
+246723,Portabella & Goat Cheese Salad,120.5,9.0,3.5,7.3
 468872,Cider Brine for Poultry,19.8,0.1,4.0,1.1
 415755,Turkey Meatballs With Mushroom Gravy,246.6,11.6,9.8,25.0
 503685,Easy Crockpot Chicken Broth,0.5,0.0,0.1,0.0
@@ -5283,9 +5283,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 520196,Sausage Cheese Balls,611.2,38.4,31.8,33.0
 336677,Christmas Cookie Coins,12.8,0.6,1.8,0.2
 39046,Lemon Mousse Cake,476.3,22.3,64.4,7.2
-448285,"Peach Crisp With Toffee, Pecans &amp; Amaretto",269.8,15.7,32.7,3.3
+448285,"Peach Crisp With Toffee, Pecans & Amaretto",269.8,15.7,32.7,3.3
 396659,Halloween Style Mashed Carrots,201.1,7.0,34.6,3.3
-340717,Strawberries &amp; Cream Muesli Bars,277.1,13.9,34.6,5.3
+340717,Strawberries & Cream Muesli Bars,277.1,13.9,34.6,5.3
 183980,"Pasta With Mushrooms, Sage, and Rosemary",495.8,10.7,77.9,18.6
 332632,Chicken Enchilada Stuffed Bell Peppers,542.7,25.5,36.7,41.9
 411232,Pecan Butter,210.5,21.3,5.6,1.4
@@ -5297,7 +5297,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 64661,Crock Pot Apple Butter,728.6,0.9,194.4,1.2
 3195,Lemon Cranberry Pie,417.3,14.0,68.3,6.7
 218861,Grilled Oysters and Biscuits,224.5,9.3,22.1,13.1
-494463,"Ginger Shrimp, Mango Ribbon &amp; Avocado Lettuce Wraps #RSC",874.6,72.1,57.8,12.8
+494463,"Ginger Shrimp, Mango Ribbon & Avocado Lettuce Wraps #RSC",874.6,72.1,57.8,12.8
 132351,Creamy Parmesan Cheese Sauce,740.4,65.9,13.3,25.8
 401171,Lemon Cookies,133.0,5.9,18.6,1.5
 116212,Lemon-Flax Seed Loaf Cake,242.8,7.2,40.8,4.4
@@ -5326,7 +5326,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 190436,Pork Roast With White Beans and Cranberries,668.1,36.6,32.4,50.9
 78547,Pineapple Cream Loaf Dessert (No Bake),470.9,27.9,49.7,7.1
 337970,Easy Sloppy Joe Pot Pie,327.5,18.5,15.8,23.3
-37209,Rapini With Garlic &amp; Chili Flakes,61.7,6.8,0.4,0.1
+37209,Rapini With Garlic & Chili Flakes,61.7,6.8,0.4,0.1
 478702,Apple Dumpling Pudding (1943),348.8,4.3,76.1,4.6
 281945,Spaghetti and Garlic 3-Ways,123.2,7.0,6.8,1.4
 483169,Puris (Fried Bread Puffs),50.0,1.8,7.6,1.2
@@ -5375,7 +5375,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 161467,Chocolate Pudding,254.8,10.8,37.3,5.0
 8565,Baked Mushroom Casserole,216.1,12.7,16.9,11.7
 64284,Tofu Tacos,270.1,7.4,40.4,16.6
-519828,Ham &amp; Potato Cheese Graten,236.6,16.7,15.8,6.8
+519828,Ham & Potato Cheese Graten,236.6,16.7,15.8,6.8
 399197,My Greek Salad,445.9,31.1,34.3,10.1
 441574,Chipotle Chicken Salad,491.1,30.3,11.6,41.7
 299793,Homemade Mayonnaise,1973.8,220.9,1.4,3.7
@@ -5407,7 +5407,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 309085,Mimi's Cafe Carrot Raisin Bread,494.4,20.2,74.2,6.0
 389324,No Bake Cookies V,29.0,0.5,5.0,1.3
 460538,Rickey (Non-Alcoholic),3.9,0.0,1.3,0.1
-506829,Spicy Salmon &amp; Coriander Fish Cakes,359.6,10.8,41.3,24.4
+506829,Spicy Salmon & Coriander Fish Cakes,359.6,10.8,41.3,24.4
 247670,"Roasted Sausages, Peppers, Potatoes, and Onions",626.9,44.8,31.6,25.0
 96356,Cranberry Noel Cookies,943.1,67.5,79.4,10.4
 4739,Stuffed Jalapenos,73.3,4.5,6.5,3.0
@@ -5463,7 +5463,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 54447,Amaretto Sour Jello Shots,65.2,0.0,15.5,1.3
 447885,Grilled Scallions With Bagna Cauda,547.9,59.5,1.0,4.5
 378130,Lentil and Vegetable Stew,124.5,2.0,21.3,6.7
-524543,POACHED APPLES WITH JUNIPER BERRIES &amp; SPICES,199.1,0.2,34.8,0.4
+524543,POACHED APPLES WITH JUNIPER BERRIES & SPICES,199.1,0.2,34.8,0.4
 358943,Basic Roast Beef With Gravy,640.6,42.4,3.4,57.7
 2712,Baked Fish With Orange,379.0,15.1,36.5,23.3
 442062,Green Beans With Browned Butter and Hazelnuts,146.2,11.1,10.8,3.5
@@ -5492,7 +5492,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 500157,Ethel's Sweet Potatoes and Apple Casserole,106.7,1.1,24.2,1.2
 272406,Old Fashioned Harrison Cake,474.1,10.8,90.5,6.0
 31377,"RED, WHITE and BLUE Frozen Dessert",155.4,5.7,24.0,3.7
-364027,Sweet &amp; Sour Vegetarian Golabki (Stuffed Cabbage Rolls),754.2,44.5,77.2,17.6
+364027,Sweet & Sour Vegetarian Golabki (Stuffed Cabbage Rolls),754.2,44.5,77.2,17.6
 439343,Lemon Puff Pudding,276.2,10.4,41.1,5.8
 498854,Asian Beef,355.4,12.9,32.0,28.2
 4143,Mandarin Pork Chops,477.3,21.8,27.1,42.5
@@ -5511,7 +5511,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 45665,Monterey Chicken Casserole,408.9,18.9,32.6,27.8
 372386,French Salad Dressing,348.1,27.4,27.5,0.8
 480722,Herb Rubbed Pork With Potatoes and Lemony Asparagus,422.4,15.6,36.3,35.8
-371949,Ww Weight Watchers Zucchini &amp; Portobello Stacks,399.2,5.8,73.5,13.6
+371949,Ww Weight Watchers Zucchini & Portobello Stacks,399.2,5.8,73.5,13.6
 197754,Couch Potatoes,185.0,2.6,34.1,6.4
 442716,Peanutiest Brownies With Chocolate Ganache,498.6,31.4,52.0,11.1
 496,7-Up Cake,550.2,24.5,78.7,5.6
@@ -5521,7 +5521,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 375709,Drunken Irishman Glaze,67.1,0.6,13.9,0.2
 237554,Minted Lamb With Carrot Couscous,607.8,25.7,51.1,41.0
 413073,Twice-Baked Potatoes With Mushrooms and Prosciutto,750.2,55.5,43.2,23.4
-520994,Shrimp &amp; Spinach Salad,382.0,26.3,12.8,25.0
+520994,Shrimp & Spinach Salad,382.0,26.3,12.8,25.0
 266495,Rachael Ray’s Croque Monsieur,775.0,55.3,32.7,36.1
 388330,Cherry Torte,566.7,32.2,64.0,5.9
 370856,Vegetable Paella,406.4,7.7,74.9,9.2
@@ -5544,7 +5544,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 357028,Chicken Biryani,600.5,13.4,79.4,39.8
 456454,Beef Tongue With Cranberries,589.2,32.3,52.5,23.3
 421596,Scalloped Potatoes,195.6,8.2,26.7,4.9
-134296,Chipotle Chicken Tortilla Soup -  Fast &amp; Less Than 300 Cals,294.3,14.4,21.4,21.0
+134296,Chipotle Chicken Tortilla Soup -  Fast & Less Than 300 Cals,294.3,14.4,21.4,21.0
 276800,Honey Chicken With Spring Onions,350.5,17.2,17.4,33.3
 80504,Nana's Turkey Stuffing,208.4,8.4,23.5,9.5
 458691,Easy Cavatini,771.6,48.3,28.7,53.1
@@ -5553,7 +5553,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 36686,Blueberry Grunt,349.3,4.6,74.1,5.1
 463961,Tomato Jelly,676.0,0.2,176.0,1.2
 384120,Quick Cherry Dessert,289.3,12.9,40.4,3.4
-262208,&quot; Korney&quot; Spinach Dip Stuffing  Side Dish,245.1,17.8,21.8,3.7
+262208,""" Korney"" Spinach Dip Stuffing  Side Dish",245.1,17.8,21.8,3.7
 258776,Cowboy Quiche,1502.7,121.4,42.1,57.3
 378951,Applesauce Cake,1198.8,64.6,150.1,8.8
 434883,Quick and Easy Italian Chicken and Rice,330.5,4.3,57.9,13.6
@@ -5637,7 +5637,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 297463,Sexual Trance,80.2,0.1,3.5,0.2
 403930,Homemade Peppermint Marshmallows,176.5,0.1,45.0,1.0
 420879,Creamy Fruit Dip,473.6,22.3,61.8,7.2
-484337,Food Processor Cake &ndash; Lime Chocolate Chip,367.8,24.0,36.1,4.9
+484337,Food Processor Cake – Lime Chocolate Chip,367.8,24.0,36.1,4.9
 462981,Slow Cooker French Dip,692.3,40.2,21.0,58.3
 210983,Chocolate Espresso Martini,151.7,0.2,6.1,0.2
 363585,Artichoke Cream Cheese Pasta,851.9,36.8,99.7,32.4
@@ -5645,7 +5645,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 110198,Green Salad (Mandarin/Almond/Avocado) With Poppy Seed Dressing,447.8,40.2,21.2,5.6
 352495,Taco Salad - Low Carb,506.3,43.3,9.7,20.6
 118562,Almond Cake With Roasted Pineapple and Vanilla Cream,550.1,25.0,80.3,6.3
-291521,Goulash Soup - Pork or Lamb  (J&uacute;hus Vagy Diszno Gulyas),474.7,12.1,51.6,38.9
+291521,Goulash Soup - Pork or Lamb  (Júhus Vagy Diszno Gulyas),474.7,12.1,51.6,38.9
 536433,Slow Cooker Honey Mustard Chicken,319.4,18.2,18.7,20.7
 435914,Love Me Tender Burgers,743.2,45.9,37.7,44.9
 433287,Savory Ham Spread,141.5,11.6,2.6,5.8
@@ -5665,7 +5665,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 539585,Spinach Dutch Baby,248.2,16.3,14.1,11.0
 8835,Healthy Oatmeal Yogurt Bran Muffins,245.2,7.3,40.8,6.2
 315759,Gazpacho,170.3,13.9,11.6,2.4
-154410,Hershey's Chips &amp; Macadamia Nut Shortbread Wedges,132.9,7.8,14.2,1.4
+154410,Hershey's Chips & Macadamia Nut Shortbread Wedges,132.9,7.8,14.2,1.4
 358326,Pork Chop Skillet Dinner,616.6,19.9,82.4,39.1
 531349,One Pot Pasta,514.5,10.2,77.7,27.8
 119620,Red Potato Salad,1130.8,70.8,92.8,30.8
@@ -5752,7 +5752,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 279812,French Toast Bread Pudding,429.8,17.8,50.5,16.9
 276037,Creamy Jalapeno Sushi,676.9,63.1,27.3,12.5
 399687,Blackberry Pork Chops for Grill or Whatever,341.9,12.1,17.6,38.4
-195386,Hurry-Up Beef &amp; Mixed Vegetable Supper,274.0,11.6,15.5,27.3
+195386,Hurry-Up Beef & Mixed Vegetable Supper,274.0,11.6,15.5,27.3
 157681,Easy Chocolate-Mint Ice-Cream Sandwiches,438.4,19.4,61.9,7.2
 302821,Personal Meat Loaves,572.2,33.3,26.0,40.8
 81060,Greek Marinated Mushrooms,51.6,3.8,3.3,2.9
@@ -5803,7 +5803,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 296856,Light Vinaigrette,160.5,11.8,3.8,9.3
 134007,Purple Power Blackberry Peach Smoothie,159.1,1.0,33.4,7.2
 218464,Tuna-Noodle Salad My Way,234.8,6.1,23.5,20.5
-212068,Rock &amp; Roll BBQ Salsa Ranchera,24.0,0.9,4.0,0.6
+212068,Rock & Roll BBQ Salsa Ranchera,24.0,0.9,4.0,0.6
 406988,Chili,237.9,6.7,25.8,20.0
 171969,Rigatoni With Four Cheeses,630.4,35.4,56.8,21.8
 37101,Mud Slides,544.2,33.9,54.6,7.7
@@ -5831,7 +5831,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 50244,Norwegian Labscouse,850.4,52.5,45.4,47.6
 9492,Chicken Honey Glazed,484.9,7.4,50.4,55.5
 474017,Flaky Cheese Biscuits,233.6,12.6,26.2,4.0
-455019,"Beet, Barley &amp; Walnut Salad",333.8,23.7,27.5,6.1
+455019,"Beet, Barley & Walnut Salad",333.8,23.7,27.5,6.1
 355904,Healthified Gravy,31.7,0.4,5.5,1.8
 125032,Roasted Onion Yorkshire Pudding,191.1,10.8,19.0,4.8
 308589,Nutty Chocolate Chip Picnic Cake,267.9,14.7,34.0,3.8
@@ -5908,7 +5908,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 423015,Honey Wheat Tortillas,124.7,3.9,20.9,3.3
 170884,Southwest Cheeseburgers,579.6,38.0,27.1,31.2
 465193,Kahlua Chocolate Velvet,293.8,14.8,33.8,7.3
-256530,Corned Beef &amp; Cabbage Stew,749.1,43.7,44.5,44.1
+256530,Corned Beef & Cabbage Stew,749.1,43.7,44.5,44.1
 98232,Raisin Crunch Cookie Mix (recipe in a Jar ),58.6,0.7,12.7,0.7
 523504,Summer Pasta,458.9,25.4,37.7,20.5
 318119,Hg's Miracle Mashies - Ww Points = 1,93.0,2.0,16.9,3.0
@@ -5945,7 +5945,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 313349,Serendipity Dip,214.9,21.2,4.9,1.0
 143966,Spiced-Up Nuts,799.9,69.3,35.9,21.6
 435685,Spinach Artichoke Dip,165.6,13.4,6.6,6.2
-325809,Br&ucirc;l&eacute;ed Mashed Sweet Potatoes Recipe,166.3,3.1,33.2,2.4
+325809,Brûléed Mashed Sweet Potatoes Recipe,166.3,3.1,33.2,2.4
 531869,Canada Day Burgers With Thousand Island Sauce,157.5,2.1,30.3,5.2
 502950,Hot Basil Chicken ( Cha Kdao Sach Maon ),705.0,52.1,12.4,46.4
 128926,Maple Sugar Muffins,151.5,4.2,25.5,3.1
@@ -5959,10 +5959,10 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 450089,Molasses Bar Cookies,1756.4,69.7,275.8,15.7
 505157,Fiona's Chilli,516.6,28.2,32.3,35.0
 188462,Crock Pot Meatball Stroganoff,173.1,14.5,6.6,5.1
-357936,Baked Ziti With Pumpkin &amp; Sausage,227.2,4.9,34.0,14.3
+357936,Baked Ziti With Pumpkin & Sausage,227.2,4.9,34.0,14.3
 37505,Elegantly Creamed Vegetables,302.9,20.3,22.2,10.8
 429757,Beer Batter Coconut Shrimp,562.2,29.3,48.8,23.6
-210091,Chocolate &quot;mousse&quot; ...weight Watchers Style,0.0,0.0,0.0,0.0
+210091,"Chocolate ""mousse"" ...weight Watchers Style",0.0,0.0,0.0,0.0
 85963,Blueberry Pastry Braid,1535.4,67.2,211.2,22.1
 306134,Spaghetti and Meat Sauce,558.6,5.8,109.9,18.8
 125808,Garbanzo Bean Salad,428.4,20.5,51.5,11.1
@@ -5972,12 +5972,12 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 138943,"Zucchini, Tomato and Cheese Salad",220.8,17.7,8.2,8.9
 76641,Salmon With Chili-Mango Salsa,413.1,16.5,32.7,35.2
 463688,Zucchini Spears,54.7,0.2,12.6,0.7
-478934,Meatballs &amp; Greens on Ciabatta Rolls,119.3,12.2,2.9,0.8
+478934,Meatballs & Greens on Ciabatta Rolls,119.3,12.2,2.9,0.8
 331152,Winter Bruschetta,133.2,7.4,14.3,2.4
 463431,Oatmeal Peanut Butter Energy Bars - Gluten Free,230.2,8.8,35.8,5.5
 517793,German Chocolate Cookies,147.8,8.8,17.0,1.8
 250543,Homemade BBQ Sauce,698.5,4.2,170.3,5.7
-477034,Hawaiian Sweet &amp; Sour Roasted Pineapple &amp; Bell Peppers,208.3,9.4,32.4,1.7
+477034,Hawaiian Sweet & Sour Roasted Pineapple & Bell Peppers,208.3,9.4,32.4,1.7
 164392,Super Easy and Yummy Chicken Enchiladas,463.9,27.5,25.9,27.7
 390172,Crowder Peas / Black Eyed Peas,528.9,7.6,84.8,33.8
 13594,Mushroom Stuffed Chicken Breasts with Madeira Wine Sauce,222.8,8.3,4.1,29.7
@@ -5986,7 +5986,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 328112,Oriental Salmon,186.1,10.8,1.3,19.8
 369589,Shrimp Fresh Rolls,601.5,46.6,34.2,22.1
 36845,Delightful Lemon Mousse,74.9,1.2,15.1,1.9
-519044,Bloomin&rsquo; Vegan Pull Apart Pretzel Crisps,74.1,4.0,5.7,4.7
+519044,Bloomin’ Vegan Pull Apart Pretzel Crisps,74.1,4.0,5.7,4.7
 236574,Green Beans With Balsamic Pesto,161.7,11.9,9.5,6.2
 110832,Mom's Chicken Lasagna,636.1,40.7,28.0,39.2
 14510,Clams Casino,109.3,3.9,6.2,13.8
@@ -6018,11 +6018,11 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 277540,Sturdier Whipped Cream,704.6,63.5,30.8,5.8
 258903,Homemade Tomato Soup Recipe,457.5,46.9,9.0,2.8
 524482,Honey Whole Wheat Banana Bread,327.5,11.1,55.3,7.2
-489812,PAELLa  -  EASY &amp; DELICIOUS,527.4,17.4,52.0,38.4
+489812,PAELLa  -  EASY & DELICIOUS,527.4,17.4,52.0,38.4
 245118,Tomatillo Salsa,104.9,2.0,20.8,3.1
 147714,Cherry Mini Pound Cakes,1197.3,48.9,175.9,17.3
 207673,Hearty Chicken Soup N' Stars,261.7,8.6,29.2,14.0
-201352,Mini M &amp; M's Cookies in a Jar Mix,85.2,0.5,18.6,1.8
+201352,Mini M & M's Cookies in a Jar Mix,85.2,0.5,18.6,1.8
 289443,Farmhouse Apple Tarts,406.6,24.8,44.5,3.7
 395274,Apple Crisp,316.1,4.3,71.0,2.1
 264215,Pumpkin Soup,216.5,14.4,22.1,3.7
@@ -6093,7 +6093,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 177683,Andouille and Chicken Jambalaya,635.7,34.0,54.4,26.1
 70955,Garden Bloody Mary,58.6,0.6,12.8,2.9
 369937,Australian Meatballs,579.6,23.4,65.6,27.9
-390332,Baked Tilapia With Corn &amp; Green Chili Relish,160.8,1.9,31.1,10.2
+390332,Baked Tilapia With Corn & Green Chili Relish,160.8,1.9,31.1,10.2
 281502,Wild Thing Island Smoothies,55.1,0.2,13.9,0.6
 531777,Lemon Blueberry Muffins,321.6,14.5,43.7,5.0
 519470,Shrimp and Spinach Pasta,371.7,18.5,40.4,7.9
@@ -6111,7 +6111,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 366177,Mocha Chicken,466.0,19.5,25.1,33.4
 219098,Easy Apricot/Cherry Glaze,835.8,0.4,214.5,1.8
 448442,Strawberry Ginger Lemonade,93.5,0.1,24.2,0.2
-39490,Rice &amp; Herbs,208.2,1.8,40.9,6.0
+39490,Rice & Herbs,208.2,1.8,40.9,6.0
 167496,Blarney Stone Whiskey Cake,611.8,29.1,82.7,7.7
 119748,Liptauer Cheese,205.6,20.8,1.7,3.9
 204954,Auntie's Tasty Meatloaf,598.1,29.2,43.7,40.1
@@ -6129,7 +6129,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 92369,Banana Mango Raspberry Smoothie,445.4,4.5,101.6,9.2
 196818,Cinnamon Caramel Sauce,754.1,39.2,103.5,2.2
 304107,Green Chile Chicken Enchiladas,449.7,27.5,28.6,22.1
-309656,Cannellini Bean Saut&eacute;,472.8,14.8,64.6,24.5
+309656,Cannellini Bean Sauté,472.8,14.8,64.6,24.5
 103495,Traditional English Trifle,411.1,18.9,42.0,3.5
 297927,Chocolate Covered Cherry,135.3,1.9,19.2,1.8
 361334,Frangelico Float,499.6,19.4,61.1,8.0
@@ -6162,7 +6162,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 128260,Mom's Cucumbers,226.5,0.7,54.3,4.0
 112487,Lemon Luscious Snow Cap Cookies,108.2,6.0,13.0,1.4
 67357,Solo Mustard Spam and Green Beans,512.2,48.5,8.5,13.0
-500204,Shav &ndash; Sorrel Soup With Hard Boiled Egg,292.3,11.1,35.2,14.1
+500204,Shav – Sorrel Soup With Hard Boiled Egg,292.3,11.1,35.2,14.1
 135105,Bourbon Marinade,569.4,54.6,18.8,2.1
 123534,"Garlic, Parmesan Stuffed Mushrooms",154.7,10.4,8.9,7.9
 280413,Sausage and Beef Casserole,456.9,27.4,30.9,21.6
@@ -6348,7 +6348,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 108177,Mock Mashed Potatoes/Cauliflower - Quick and Easy,161.9,13.4,6.1,6.3
 292612,Pomegranate Berry Protein Smoothie,203.4,0.8,36.7,14.8
 291298,Panera Monte Cristo Sandwiches,442.9,26.1,30.4,22.4
-260574,Low-Fat Cr&egrave;me Brulee With Raspberries,147.0,1.8,24.7,8.6
+260574,Low-Fat Crème Brulee With Raspberries,147.0,1.8,24.7,8.6
 441836,Pierogies With Meat Sauce,292.8,22.0,8.6,15.7
 483634,Tapas Salad,195.8,14.2,17.2,3.1
 302841,Microwave Crab Enchiladas,270.3,12.1,23.4,16.3
@@ -6357,7 +6357,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 398411,Buttermilk Pancakes,576.3,22.0,76.4,15.9
 308296,Quick Italian Bake,353.8,23.4,16.5,18.6
 344035,Chili Beans With Bacon,602.9,18.8,82.4,29.4
-488917,Banana Bread Muffins (Egg Free &amp; Dairy Free),63.2,4.6,6.0,0.2
+488917,Banana Bread Muffins (Egg Free & Dairy Free),63.2,4.6,6.0,0.2
 454051,Paige's Made up Mild Chili,455.6,19.6,43.6,27.2
 329210,Rhubarb Syrup,237.3,0.1,61.1,0.2
 118751,Soft Ginger Cookies With Glossy Orange Frosting,858.4,36.0,127.9,8.3
@@ -6493,7 +6493,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 104362,"Fresh Roma Tomato, Basil & Oregano Bruschetta",148.9,8.1,13.4,5.7
 426144,Rye Cheese Toast With Garlic,562.7,35.0,37.7,25.2
 492631,Indian Pancake Syrup,50.1,0.4,12.0,1.3
-189963,Birchermuesli (Uncooked Oats With Fruit &amp; Nuts),390.8,12.2,63.7,11.5
+189963,Birchermuesli (Uncooked Oats With Fruit & Nuts),390.8,12.2,63.7,11.5
 125707,Barkram (Berry Cream),162.6,0.0,41.6,0.3
 48580,Chicken Spaghetti,399.3,15.6,38.6,25.2
 193189,Gnocchi Gratin,186.6,11.8,9.8,10.5
@@ -6529,7 +6529,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 2510,Pumpkin Pie Spice Bread,392.1,15.2,60.7,4.7
 141201,Easy Beef Macaroni Leek Stew,763.9,67.8,25.6,12.3
 255177,Tomato Basil Sherry Bread,2372.8,20.3,388.6,61.8
-430022,Low Cal &amp; Low Fat Meat-Less Chili,285.6,3.1,55.7,14.8
+430022,Low Cal & Low Fat Meat-Less Chili,285.6,3.1,55.7,14.8
 484155,Bubble and Squeak,298.2,18.6,24.1,10.3
 102903,CHICKEN BREASTS with Dijon-Tarragon Sauce,378.8,13.5,5.3,55.6
 428623,Fresh Cranberry Apple Sorbet,223.7,0.1,58.0,0.2
@@ -6550,7 +6550,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 296016,Broccoli Pasta,612.0,10.2,106.8,27.0
 16880,Quick Spanish Rice,139.8,0.6,30.9,3.8
 183985,Easy Macaroni,536.8,25.9,51.8,23.6
-206700,Chicken &amp; White Bean Chili,566.0,23.6,57.1,36.6
+206700,Chicken & White Bean Chili,566.0,23.6,57.1,36.6
 492598,Perfect Patty Melt,865.4,49.3,49.5,54.2
 109745,Mom Bennetts Pickled Beets,523.8,1.3,123.2,11.0
 359687,Maple Pecan Cheesecake Eh!,462.2,32.6,36.5,7.5
@@ -6618,12 +6618,12 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 502294,Conga Lime Pork in Crock Pot,669.0,38.7,49.7,29.9
 150648,Mashed Potatoes,450.4,13.9,73.6,8.2
 197740,Almond Tree Cookies,902.7,52.6,102.8,7.1
-428409,Hob-To-Table &quot;moussaka&quot;,600.0,47.1,15.1,29.9
+428409,"Hob-To-Table ""moussaka""",600.0,47.1,15.1,29.9
 315319,Italian-Style Sauce,174.5,9.3,22.5,4.7
 288323,Mexican-Style Chicken With Penne,684.5,23.1,83.8,36.0
 477617,Delicious Homemade Cinnamon Rolls!,445.6,16.9,68.3,6.2
 31052,Fast and easy garbanzo salad,443.9,22.8,52.6,11.0
-252688,Carrot &amp; Turnip,57.1,0.3,13.3,1.4
+252688,Carrot & Turnip,57.1,0.3,13.3,1.4
 88662,Simon & Garfunkel Roast Chicken,1230.3,88.0,43.8,64.0
 385564,Easy Potato Soup,455.0,24.9,42.1,17.0
 15005,Brownie Applesauce Cake,547.9,36.9,51.0,7.9
@@ -6642,7 +6642,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 326971,American Chop Suey,312.0,10.7,31.0,22.1
 122017,Strawberry Syllabub,332.6,22.5,29.4,4.0
 418738,Cream Cheese Icing,106.2,7.1,10.4,0.6
-509722,Roasted Squash &amp; Apple Soup,128.5,1.8,23.2,6.3
+509722,Roasted Squash & Apple Soup,128.5,1.8,23.2,6.3
 379954,"Chilled Summer Lettuce, Lovage and Garden Pea Soup",83.9,0.6,16.0,5.5
 142078,Aunt Mildred's BBQ,337.9,20.3,16.7,22.2
 238682,Crunchy Almond Cake,485.8,28.9,49.1,10.4
@@ -6739,7 +6739,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 253022,Jack Daniel's Cake,518.4,29.3,52.7,6.8
 263708,Cheesy Tomato-Zucchini Casserole,348.4,24.4,19.8,14.8
 317811,Grilled Roast Chicken,1121.4,72.0,51.0,62.8
-424900,Roast Beef Open Faced Sandwich (Sm&oslash;rrebr&oslash;d),1174.8,15.0,219.1,38.6
+424900,Roast Beef Open Faced Sandwich (Smørrebrød),1174.8,15.0,219.1,38.6
 44519,Garden Quesadillas,180.1,4.1,31.0,5.7
 453574,Mango Jalapeno Jam,1975.4,2.5,509.5,5.4
 109081,Szechuan Cashew Chicken,585.9,27.7,27.0,53.0
@@ -6753,7 +6753,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 13520,Garlic Rice with Pine Nuts,443.4,9.3,80.8,8.1
 408055,Chocolate Chip Granola Bars,187.1,7.4,28.7,3.5
 309510,Honey Strawberry Cheesecake,596.4,37.0,56.6,14.2
-350503,Moms Macaroni &amp; Cheese,616.3,31.7,54.9,27.3
+350503,Moms Macaroni & Cheese,616.3,31.7,54.9,27.3
 383299,Onion Baked Chicken,377.9,22.1,0.9,41.1
 279342,Low Fat Pepper Poppers,22.5,0.5,3.5,1.1
 416734,Low Fat Low Cal Breakfast Frittata,188.8,5.3,14.5,20.6
@@ -6773,7 +6773,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 140736,Southwest Chicken Bean and Rice Casserole,512.2,18.9,45.5,38.6
 431145,Green Bean-Parmesan Soup,153.9,12.3,5.6,6.4
 407177,Pineapple Mango Salsa,44.9,0.2,11.2,0.8
-88886,Pork Chops &amp; Rice (Crock Pot),425.4,17.6,33.1,32.0
+88886,Pork Chops & Rice (Crock Pot),425.4,17.6,33.1,32.0
 489244,Good Venison Chili,338.8,7.0,40.0,28.7
 387923,Light and Creamy Chicken Tomato Linguine,542.5,13.1,70.8,33.6
 448497,Helen's High-Protein Low-Carb Pancakes,327.6,24.0,9.0,20.2
@@ -6791,7 +6791,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 263203,Graham Cookies,399.8,17.1,58.7,7.7
 391606,Chicken and Vegetable Pie,580.9,35.3,35.6,29.5
 140807,Spinach Pumpkin Quiche,184.3,11.2,15.9,6.8
-461091,Chicken Zucchini Ol&eacute;,610.2,31.5,53.0,29.7
+461091,Chicken Zucchini Olé,610.2,31.5,53.0,29.7
 291245,Weight Watchers Asian Zero Points Soup,33.6,0.2,7.2,1.7
 310744,Ocean Trout/Salmon With Lime and Lemon Grass Hollandaise,517.1,48.8,2.0,18.7
 539800,Crispy & Classic Baked Potato,193.8,3.6,37.2,4.3
@@ -6807,7 +6807,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 324693,Reuben Strata,401.4,19.7,32.8,23.4
 294347,Taco Pizza,2576.0,159.5,128.0,167.9
 521951,T-Money GORP Snack Mix,231.9,12.0,26.7,7.5
-21262,"Chicken, Spinach with Rosemary &amp; Onion",656.5,38.6,78.3,3.8
+21262,"Chicken, Spinach with Rosemary & Onion",656.5,38.6,78.3,3.8
 200512,White Chocolate Iced Cranberry Bread,228.4,9.2,33.9,3.4
 225999,Grilled Margarita Chicken Bites With Salsa-Sour Cream Dip,300.5,22.5,6.2,19.3
 39870,Haystacks,142.5,9.0,13.9,2.4
@@ -6816,7 +6816,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 346122,Chicken and Basil Calzones-Cooking Light,234.7,7.1,6.7,34.2
 17695,Hurry up Cake With Variations,269.8,10.8,39.7,3.7
 11193,My Dad's Favorite Chicken & Noodles,119.9,2.7,6.3,16.7
-514664,Honduran Chicken &amp; Rice,757.1,43.4,48.4,43.3
+514664,Honduran Chicken & Rice,757.1,43.4,48.4,43.3
 450458,Lemon-Orange Freezer Jelly,796.6,0.2,205.7,0.8
 502619,Avocado Chicken Salad,250.8,18.8,20.8,3.3
 247843,Spicy Crab Dip,340.3,26.0,4.9,21.7
@@ -6833,7 +6833,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 62533,Pumpkin Banana Muffins,219.4,8.2,35.0,4.0
 513246,Baked Limas,232.2,5.0,39.7,8.1
 220430,Banana Nut Muffins,285.3,12.3,42.1,5.0
-365150,Eggplant Stuffed With Goat Cheese &amp; Mozzarella,551.6,43.1,27.3,15.4
+365150,Eggplant Stuffed With Goat Cheese & Mozzarella,551.6,43.1,27.3,15.4
 30150,Beetroot Salad,340.3,17.3,42.0,8.4
 349572,Smoky Bourbon Pulled Pork Sandwiches from Your Crock Pot.,356.6,25.6,8.3,22.6
 530280,Spicy Pork Ole,388.5,19.2,24.7,28.8
@@ -6928,7 +6928,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 326007,Golden Rhubarb Marmalade,1630.2,0.6,420.3,2.8
 336787,Greek-Spiced Baked Shrimp,371.4,18.1,17.4,35.6
 12151,Bacon Roasted Green Beans,72.7,3.8,8.2,2.9
-535995,Ham &amp; Cheese Tortellini,941.3,39.6,97.3,49.9
+535995,Ham & Cheese Tortellini,941.3,39.6,97.3,49.9
 499609,Amazing Low Carb Waffles,108.9,10.8,1.0,2.3
 241615,Chicken and Asparagus Stir Fry,275.8,13.7,12.2,26.4
 330441,Tomato Soup With Lemon-Rosemary Cream,208.9,13.0,20.5,7.6
@@ -6986,7 +6986,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 151371,Easy Barley Chili,182.1,5.1,28.6,7.7
 218588,Artichoke Dip With Salsa Zing,365.0,25.1,24.7,15.3
 526735,"Orange, Ginger, Cinnamon Rice Pudding",153.5,0.3,34.2,2.7
-135660,Veggie Pizza  &quot;no Crust!!!&quot;,91.4,2.7,13.3,5.0
+135660,"Veggie Pizza  ""no Crust!!!""",91.4,2.7,13.3,5.0
 394017,"Fontina, Sun-Dried Tomato and Spinach Stuffed Chicken Breast",518.7,36.5,7.2,40.8
 17889,Good-'n'-Gooey Fresh Peach Cobbler,202.5,6.7,35.0,2.6
 132611,Tomato Vegetable Soup,121.4,0.9,27.6,5.5
@@ -7043,7 +7043,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 189975,Lemon Drizzle Cake,480.3,28.8,52.6,7.7
 16152,Biscuits and Gravy,353.1,26.1,11.5,17.3
 128986,Mother's Rhubarb Crunch,410.9,12.3,73.7,3.5
-313552,Asian Chicken &amp; Vegetables,259.9,7.8,10.1,36.5
+313552,Asian Chicken & Vegetables,259.9,7.8,10.1,36.5
 69796,Tuna and Tomato Casserole,123.7,7.0,9.6,6.4
 204718,Island Grilled Red Snapper,220.1,2.8,7.1,41.5
 123913,Chilled Red Pepper Soup,129.9,4.4,23.3,3.6
@@ -7055,11 +7055,11 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 3339,Moist Chewy Brownies,369.3,17.2,50.1,4.5
 394237,Ww Asian Noodle Peanut Salad,272.1,4.0,51.9,13.1
 387483,Cheese and Dill Mini Souffles,167.9,12.2,8.3,6.2
-401419,Warm Mushroom &amp; Bacon Dip,259.9,24.0,6.1,6.3
+401419,Warm Mushroom & Bacon Dip,259.9,24.0,6.1,6.3
 525566,Soymilk,1785.4,92.6,102.5,171.7
 426919,Greek Herb Rub for Fish,8.8,0.1,1.9,0.4
 88305,World's Best Chocolate Easter Eggs,307.3,28.0,18.9,5.3
-219674,&quot; White Cheesy Noodles&quot; Low Cal Fettuccine Alfredo,635.8,19.8,89.5,24.4
+219674,""" White Cheesy Noodles"" Low Cal Fettuccine Alfredo",635.8,19.8,89.5,24.4
 202146,Honey Game Hens,541.5,15.9,26.1,71.0
 15476,Stuffed Bean Curd,134.1,5.3,5.0,15.6
 46184,Ginger Pistachio Biscotti,1093.7,54.9,128.1,25.9
@@ -7134,7 +7134,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 381875,Orange Creamsicle Cake,591.0,26.6,84.6,5.5
 40257,Apple Pepper Jelly,741.4,0.5,189.3,1.1
 161498,Morning Orange Drink,127.4,1.6,26.6,2.2
-271190,Seafood &amp; Pasta Medley,378.8,15.1,48.0,10.2
+271190,Seafood & Pasta Medley,378.8,15.1,48.0,10.2
 316865,Vegetable Lo Mein With Edamame and Mustard Greens,682.3,22.1,95.1,29.8
 231951,Shrimp Chippewa,667.7,51.1,5.8,45.8
 31018,Chocolate Cherry Cordial Bars,127.2,5.5,18.0,1.5
@@ -7168,7 +7168,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 471540,Liquid Marijuana,72.2,0.0,2.0,0.0
 512328,Cooking Light Pressure-Cooker Beef Stock - 6-Qt Pressure Cooker,16.8,0.1,3.9,0.6
 225581,"Vanilla Cream Coffee, Diabetic Approved",100.9,0.9,12.4,8.3
-127155,Crab &amp; Fresh Basil Stuffed Mushrooms,272.2,14.7,10.0,25.4
+127155,Crab & Fresh Basil Stuffed Mushrooms,272.2,14.7,10.0,25.4
 514658,Greek Scalloped Potatoes #SP5,627.1,65.0,8.6,4.3
 511401,Sunset Magazine's Whole Orange Cake,399.9,16.8,58.8,4.7
 290207,Mini Toblerone Muffins,78.0,3.8,10.2,1.4
@@ -7211,7 +7211,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 312495,Moutard Salmon Fillets,436.0,26.2,3.6,41.1
 149174,Norwegian Christmas Cake,223.6,7.2,37.0,3.2
 420561,Hoosier Pork-Tenderloin Sandwich,785.8,41.3,42.9,58.8
-223077,"Dr. Fuhrman's Yummy, Quick &amp; Easy Banana/Oat Bars",184.1,5.9,30.8,4.6
+223077,"Dr. Fuhrman's Yummy, Quick & Easy Banana/Oat Bars",184.1,5.9,30.8,4.6
 290968,Super Crispy Thin Pizza Crust,411.7,1.3,85.5,12.7
 278017,Applesauce Cake,223.4,0.6,52.7,3.4
 528777,Mexican Taco Torte,582.4,39.1,25.1,32.8
@@ -7219,7 +7219,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 79673,No-Bake Cookies' N Cream Cake,330.1,20.3,33.7,4.6
 448476,Easy Phyllo Cups With Salad and Ham (Side or Snack),122.6,8.0,11.8,2.6
 360091,Oniony Braised Round Steak,352.1,20.1,5.6,35.7
-403495,"Turnip &amp; Potato Casserole, Monroe, La",235.4,16.3,17.6,5.8
+403495,"Turnip & Potato Casserole, Monroe, La",235.4,16.3,17.6,5.8
 359142,Nif's Egg in a Cup,281.3,11.4,23.8,19.8
 431801,Vanilla Ice Cream,470.1,36.4,32.3,5.0
 478288,Chinese BBQ Chicken Skewers,427.8,24.6,20.5,29.6
@@ -7264,7 +7264,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 459861,Lou Malnati's Chicago Stylepizza Crust - Dough,976.1,16.1,179.4,24.4
 385813,Potato Bread,121.0,3.9,18.6,2.8
 153066,My Mom's Shipwreck,1102.5,20.1,163.1,72.0
-346405,Spinach &amp; Pasta Bake(2.5 Ww Points),283.2,3.4,49.6,12.4
+346405,Spinach & Pasta Bake(2.5 Ww Points),283.2,3.4,49.6,12.4
 89420,Grape Granola Bars,182.2,8.2,24.7,2.8
 521139,Homemade Chocolate Pudding Recipe,220.2,7.6,35.5,5.0
 164127,Outback Steakhouse Outback Special,1251.6,77.3,7.4,123.6
@@ -7311,9 +7311,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 105345,Mint Chocolate Chip Breakfast Cookies,205.2,3.3,41.6,5.0
 186875,Ww Cinnamon  S'mores   3 Points,93.7,1.6,20.1,0.4
 210444,Mystery Pudding Dessert,422.4,27.8,38.6,6.8
-382650,Cyt Skinny Spaghetti &amp; Meatballs,492.5,15.6,50.9,34.9
+382650,Cyt Skinny Spaghetti & Meatballs,492.5,15.6,50.9,34.9
 426475,Mushroom-Stuffed Pork Chops,380.2,25.2,19.7,19.5
-207535,Broccoli &amp; Cauliflower Salad,527.0,39.8,35.6,13.0
+207535,Broccoli & Cauliflower Salad,527.0,39.8,35.6,13.0
 397559,Mother's Pistachio Mallow Salad,237.6,17.6,19.6,2.9
 223797,Stuffed Acorn Squash,502.8,18.3,81.7,10.6
 266137,Baked Creamed Corn,284.8,17.4,23.9,10.8
@@ -7377,7 +7377,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 168769,Baked Mushrooms in Tomato Wine Sauce,183.2,10.7,9.8,4.4
 312305,Parmesan Oven Fries,242.0,12.1,28.7,5.8
 377481,Breakfast Burritos,396.5,20.9,30.6,21.5
-445931,Hot Chocolate &amp; Marshmallow Buttercream Frosting,214.5,11.9,26.8,0.8
+445931,Hot Chocolate & Marshmallow Buttercream Frosting,214.5,11.9,26.8,0.8
 89158,"Heather's Avocado, Pistachio Ice Cream",1130.7,80.2,96.3,21.1
 167541,Snap Beans With Sour Cream Dressing,158.7,12.2,10.7,3.9
 447833,Alex's Seafood Soup,1182.8,24.6,159.0,79.0
@@ -7416,7 +7416,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 321530,Fluffy Pancakes,197.3,3.8,33.9,6.8
 282925,Fried Chicken Asiago W/ Artichoke Fettuccine,1193.9,81.7,75.5,44.0
 168046,7 Cheese Lasagna,643.2,42.5,22.6,45.3
-176774,Liqueur &agrave; La Sauge (Homemade Sage Liqueur),580.5,0.0,150.0,0.0
+176774,Liqueur à La Sauge (Homemade Sage Liqueur),580.5,0.0,150.0,0.0
 41460,Cappuccino Mocha Mix,98.0,3.7,16.8,0.8
 110848,Eggs Tetrazzini,464.7,18.8,53.4,19.7
 460451,Crab and Avocado Rice Paper Rolls,95.8,4.8,6.7,7.6
@@ -7480,7 +7480,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 215649,Mandarin Coleslaw,79.9,0.3,19.9,1.5
 262219,Mac and Cheese Skewers,1341.0,123.0,43.6,19.5
 128480,Pork Chop Supper,543.1,25.0,50.5,30.1
-350051,Baked Ham &amp; Swiss With Mushroom Sauce,505.1,29.1,40.0,21.7
+350051,Baked Ham & Swiss With Mushroom Sauce,505.1,29.1,40.0,21.7
 294422,Mojito Martini,142.2,0.1,3.6,0.2
 228393,Ultimate Mushroom Burger,737.7,52.0,8.2,50.4
 3744,Light Fiesta Chicken Breasts,706.9,19.3,61.6,65.9
@@ -7542,7 +7542,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 379324,Microwaved Scalloped Corn,238.7,11.2,30.4,7.2
 138494,Chewy Apple-Oatmeal Bars,1482.5,59.8,231.7,14.3
 209459,7 Layer Salad - Low Fat Version,145.2,7.2,10.9,9.8
-390094,Broccoli &amp; Carrots W/ White Rice,468.5,10.1,81.0,12.1
+390094,Broccoli & Carrots W/ White Rice,468.5,10.1,81.0,12.1
 109395,Spaghetti Bolognese,902.6,43.9,81.5,38.7
 439423,Saag Curry With Tomato and Peppers,80.2,4.0,10.8,2.1
 286907,White Wine Jelly,509.2,0.1,116.7,4.0
@@ -7597,15 +7597,15 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 101441,Company Carrots Au Gratin,101.5,4.4,13.7,2.6
 473977,Emeril Lagasse's Creole Olive Salad,396.5,43.3,3.3,0.6
 17904,"Sausage, Peppers, and Potatoes",817.1,35.0,94.4,32.3
-222671,Sopranos' Escarole &amp; Beans Soup,257.0,10.3,30.5,11.7
+222671,Sopranos' Escarole & Beans Soup,257.0,10.3,30.5,11.7
 457830,Croutes Aux Champignons (Mushrooms on Toast),292.2,17.2,19.6,8.2
 70142,Tangy Herbed Eggplant (Aubergine) Spread,8.8,0.3,1.5,0.2
 341094,Apple Normandy Cheesecake,450.9,32.5,33.1,8.3
 214405,The Gto,191.1,0.0,10.5,0.0
-534005,Spinach &amp; Strawberry Smoothie,175.9,4.5,30.4,6.8
+534005,Spinach & Strawberry Smoothie,175.9,4.5,30.4,6.8
 42134,Scalloped Tomato Casserole,213.1,13.8,19.4,4.1
 337284,Hot Dog Pizzadilla,613.5,37.8,43.5,24.6
-467795,&quot;beefy&quot; Seitan Log,49.6,1.1,6.6,5.8
+467795,"""beefy"" Seitan Log",49.6,1.1,6.6,5.8
 340902,Stuffed Chicken and Roasted Potatoes,556.1,14.0,67.7,38.3
 469347,Big Batch Veggie Chili,177.6,2.1,33.3,9.7
 95749,Swiss Fennel Bread ( Breadmaker 1 1/2 Lb. Loaf),92.9,2.3,14.6,3.6
@@ -7616,14 +7616,14 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 84844,Caesar Dip with Crudites,697.8,58.7,32.8,13.2
 522516,Lamb Kokkinisto (Greek Lamb Stew),736.1,42.2,14.2,62.2
 16494,Lemon Icebox Cookies,60.9,3.0,8.1,0.6
-494307,The Ultimate Best Homemade &quot;Ranch&quot; Dressing,32.2,2.6,2.0,0.4
+494307,"The Ultimate Best Homemade ""Ranch"" Dressing",32.2,2.6,2.0,0.4
 420326,Blackberry Limeade,55.5,0.4,13.6,1.1
 16564,Beet Koshumbir - Beet Salad with yogurt,62.1,1.2,8.6,4.5
 126855,Quick Oven-Baked Beef Stew,337.9,12.8,27.3,28.0
 91006,Blackbeard,108.0,0.0,10.8,0.1
 181412,Cranberry Liqueur (Light),180.9,0.0,24.7,0.1
 49018,Jello and Cool Whip Easy Strawberry Trifle,164.5,8.4,21.2,2.0
-390418,Alouette&reg; Caramel Apple Brie Recipe,174.2,13.0,5.0,9.8
+390418,Alouette® Caramel Apple Brie Recipe,174.2,13.0,5.0,9.8
 483956,Spanish Saffron Honey Ice Cream,315.1,23.5,23.3,4.4
 233599,Chelo Kebab Iran,337.7,26.8,3.8,19.3
 335115,Carnival Onion Marmalade,152.9,0.1,27.4,1.1
@@ -7634,7 +7634,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 464249,Hummus Pitas With Feta-Olive Salsa,287.7,7.4,50.0,10.8
 140028,Yogurt Ambrosia,150.9,3.0,27.7,5.0
 474083,Brooksters,478.1,27.6,58.1,6.5
-427710,Sweet &amp; Sour Ginger Dressing (Raw Vegan),204.2,18.0,9.6,0.9
+427710,Sweet & Sour Ginger Dressing (Raw Vegan),204.2,18.0,9.6,0.9
 296725,Italian Green Beans,85.6,3.2,11.5,4.3
 130487,Avocado Mask,403.9,38.5,17.8,4.1
 503863,Greek Shrimp and Feta Pasta,575.8,23.5,63.2,23.8
@@ -7694,7 +7694,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 469635,Olive Garden Roasted Potatoes With Red Onions and Rosemary,410.6,26.4,41.0,5.1
 519162,Pesto Pasta With Sun Dried Tomatoes and Roasted Asparagus,676.0,29.6,73.2,33.7
 165505,Tea Biscuits,356.9,13.6,50.3,7.9
-51442,Lemon &amp; Pistachio Couscous,861.5,28.7,130.7,23.6
+51442,Lemon & Pistachio Couscous,861.5,28.7,130.7,23.6
 319900,Roast Turkey With Prosciutto-Hazelnut Crust,1135.4,68.8,7.8,112.4
 375102,Mediterranean Pizza,361.2,23.2,22.1,16.1
 263624,Shrimp Jambalaya,380.1,21.1,13.2,30.2
@@ -7743,7 +7743,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 349564,Rice Pancakes,399.5,4.0,73.7,14.9
 312250,Skinny Gingies,62.0,0.2,14.0,1.3
 20472,Perfect Pilaf Rice,347.7,2.8,72.6,7.5
-332943,Spicy &amp; Rich Dressing,730.8,69.5,26.0,4.7
+332943,Spicy & Rich Dressing,730.8,69.5,26.0,4.7
 167464,Wisconsin Tuna Cake With Lemon-Dill Sauce,537.0,11.2,18.1,86.1
 324971,"Rice Atole, Hot Rice Drink",468.0,12.4,76.5,13.1
 294597,No Casings Sausage for Venison,523.4,33.9,1.8,49.9
@@ -7757,7 +7757,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 298469,Lemon-Poppy Seed Dip,696.3,54.1,49.7,9.9
 448681,Frozen Blackberry Souffle,347.2,22.5,35.0,4.2
 188694,Quick Pickles,48.6,0.3,10.2,0.7
-192893,"Tomatoes, Mozzarella &amp; Basil Sauce over Pasta",257.6,20.2,12.3,8.7
+192893,"Tomatoes, Mozzarella & Basil Sauce over Pasta",257.6,20.2,12.3,8.7
 30329,Zoo Food,128.6,8.4,11.3,3.8
 134083,Peppermint Marshmallow Ice Cream Pie,273.8,6.2,50.8,4.7
 9365,Caribbean Coconut Curry Sauce,219.4,18.0,16.2,3.6
@@ -7770,7 +7770,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 50056,Turkey Crescents,121.5,3.5,15.8,6.3
 27780,Seared Chilean Sea Bass With Shallot-Tomato-Broccoli Risotto,1071.5,49.5,96.5,58.5
 220838,Everyday Italian Lentil Soup,344.6,12.6,36.9,24.7
-223968,Chayote With Cheese (Stuffed &amp; Baked),73.6,4.2,7.2,2.7
+223968,Chayote With Cheese (Stuffed & Baked),73.6,4.2,7.2,2.7
 148419,Splenda-Id Candied Nuts That are Equal to No Other,310.1,26.4,14.4,8.9
 506337,Blackened Chicken Sandwich With Cajun Slaw,358.7,19.2,40.9,7.2
 499316,No Bake Lime Cheesecake Low Sugar,468.5,28.4,45.7,8.2
@@ -7812,7 +7812,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 44185,Pasta Salad,48.3,2.0,5.2,3.3
 399523,Tamale Pie,630.2,40.1,42.9,28.9
 536089,Spicy Marinated Bacon,434.6,41.0,2.4,13.6
-356471,"Sri Lankan Snapper, Prawn &amp; Roast Coconut Curry",271.1,15.6,30.5,4.6
+356471,"Sri Lankan Snapper, Prawn & Roast Coconut Curry",271.1,15.6,30.5,4.6
 415422,Wilton Snow White Buttercream Cake Icing,1154.0,36.8,212.3,0.0
 56090,Chicken with Apple Rice Pilaf,374.3,4.9,28.4,27.6
 309311,Crock Pot Hot Dogs / Franks and Beans -- Easy,521.6,18.6,74.1,20.1
@@ -7835,7 +7835,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 166746,Bread Machine Dinner Rolls,167.2,2.7,30.5,4.8
 369746,Lazy Stuffed Mushrooms,292.3,12.5,30.0,18.6
 375229,Sumner's Favorite Healthy Rhubarb Scones,209.5,1.4,43.7,6.4
-114782,Lavender Vanilla Cr&egrave;me Chantilly,652.9,14.7,134.4,0.8
+114782,Lavender Vanilla Crème Chantilly,652.9,14.7,134.4,0.8
 85410,Crock Pot Chicken Cacciatore,366.6,21.2,14.5,28.4
 313981,Chocolate-Zucchini Cake,811.4,47.4,94.2,8.9
 149834,Chicken Eugenie,896.6,37.7,49.3,80.7
@@ -7847,7 +7847,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 443523,Snow Flake Candy,659.5,45.6,59.9,7.1
 325077,Cheese Noodles,322.5,12.6,40.7,11.6
 60466,Ken's Goulash,490.2,15.8,61.5,25.4
-446622,Fantastico &quot;no Sin&quot; Tomato Sauce,99.8,0.6,22.6,3.6
+446622,"Fantastico ""no Sin"" Tomato Sauce",99.8,0.6,22.6,3.6
 498403,Turkey and Cheese Omelette,475.2,43.4,3.1,18.1
 45508,Spiced Pumpkin Fudge,2378.7,108.1,346.9,17.8
 438055,Buffalo Chicken Quesadillas,717.5,39.7,60.0,29.3
@@ -7910,7 +7910,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 387660,Mexico City Hominy Soup,343.9,25.6,10.1,16.6
 425088,Peking Duck (Frugal Gourmet),1527.1,137.1,30.6,41.2
 26787,BBQ Chicken Sandwiches,802.5,53.2,20.1,58.3
-158749,Cabbage &amp; Beet Slaw,217.6,20.5,8.6,1.6
+158749,Cabbage & Beet Slaw,217.6,20.5,8.6,1.6
 529237,Tuscan Navy Bean and Tomato Soup With Kale,365.8,20.4,23.3,22.1
 176634,Savory Dutch Baby,387.2,25.1,19.6,19.5
 165876,"Chicken Sausage, Pepper and Onion Subs",485.8,25.1,47.6,19.2
@@ -7919,13 +7919,13 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 16042,Almond Cardamom Cookies,1048.2,74.0,83.4,18.4
 135354,Gary Rhodes - Sticky Toffee Pudding,863.6,42.1,116.2,9.7
 20107,Roast Beef Slather,202.0,15.4,14.9,2.9
-128902,Gf &quot;rye&quot; Quick Muffins,192.8,7.1,26.5,6.6
+128902,"Gf ""rye"" Quick Muffins",192.8,7.1,26.5,6.6
 41149,Portabella Mushroom Caponata,67.6,2.7,10.8,1.8
 171566,Crock Pot Sweet and Spicy Pork or Beef Ribs and Beans,1717.4,89.9,114.8,111.4
 24415,Costa Rican Marinated Mango,112.5,0.5,29.4,0.9
 315633,Acorn Squash Soup,1000.8,88.7,55.6,7.5
 408428,Cinnamon Scented Chicken,353.9,1.6,31.0,27.9
-436664,Allspice Sweet Potato Pie (Bh&amp;g),2451.4,143.7,249.3,43.8
+436664,Allspice Sweet Potato Pie (Bh&g),2451.4,143.7,249.3,43.8
 318658,Blueberry Compote,482.3,0.5,128.5,1.5
 291790,Avocado Sandwich,458.9,31.1,43.5,8.0
 331995,Banana Cranberry Bread,216.1,13.1,23.2,2.4
@@ -7941,7 +7941,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 116263,Garlicky Hummus,985.4,43.4,123.1,36.2
 19465,Tasty Beef Filets,446.9,14.5,69.0,10.6
 130157,Gluten Free Peanut Butter Cookies,72.4,4.7,6.9,1.3
-261309,Chef Joey's Papago Tepary &amp; Black Bean Soup (Crock Pot),203.0,5.1,31.5,10.1
+261309,Chef Joey's Papago Tepary & Black Bean Soup (Crock Pot),203.0,5.1,31.5,10.1
 115652,Green Chilie Squash Casserole,357.2,27.9,15.0,12.6
 43547,Chicken Soup,151.4,4.3,19.3,10.4
 392735,Green Bean and Pearl Onion Casserole,329.4,19.7,31.1,11.2
@@ -7983,7 +7983,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 179012,Simple Stromboli,313.0,25.6,2.5,18.0
 436252,Jalapeno Popper Bites (Delicious!),115.4,10.8,3.4,1.6
 375161,Easy Chicken,477.3,36.3,5.9,30.5
-480797,Chef Boyardee&reg; Chili-Roni,100.1,0.6,17.9,6.8
+480797,Chef Boyardee® Chili-Roni,100.1,0.6,17.9,6.8
 448038,Peanut Butter Protein Cookie,66.7,5.6,2.1,3.0
 111146,Grilled (broiled) Tofu and Vegetable Dengaku,535.8,17.7,56.3,35.0
 427213,Thai Coconut Curry (Raw Vegan),166.1,14.1,10.6,1.0
@@ -7998,7 +7998,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 259588,Potato Matzo Kugel,276.6,14.7,30.6,6.2
 44771,No Bake Coconut Cookies,162.3,10.9,15.4,1.9
 255084,Grilled Chicken and Veggies With Sauces by Rachael Ray,855.2,37.5,76.7,57.6
-151163,Broccoli Cheddar &quot;pie&quot;,202.7,14.1,5.9,14.0
+151163,"Broccoli Cheddar ""pie""",202.7,14.1,5.9,14.0
 319634,Extra Lean Meatloaf,230.7,11.9,5.0,24.9
 445033,Too Easy Chicken With Leeks,135.6,6.9,7.8,0.7
 406960,Frosted Eggnog Cookies,217.1,7.7,34.9,2.5
@@ -8013,7 +8013,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 487658,Tilapia Roll With Saute Mushroom Stuffing #RSC,385.1,17.3,25.3,33.2
 476159,Dried Cranberry Vinaigrette,1504.9,162.6,16.9,1.3
 23654,Swiss gartar chicken,162.4,11.7,3.5,11.8
-52157,Easy Ham &amp; Rice Bake,258.3,9.0,30.6,12.7
+52157,Easy Ham & Rice Bake,258.3,9.0,30.6,12.7
 88536,Gingered Chicken with Baby Spring Greens,283.8,11.4,16.8,28.3
 268530,Ginger Scallops,31.3,2.0,0.6,2.6
 16897,Cinnamon Candy,65.5,0.0,17.4,0.0
@@ -8023,7 +8023,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 353045,Kittencal's Reese's Peanut Butter-Chocolate Ice Cream Dessert,976.1,67.2,85.4,20.4
 337389,Dressed-Up Ground Beef,610.7,40.5,32.7,28.5
 82172,Fudge Pie,334.0,15.8,44.4,4.5
-339004,"Healthy Broccoli, White Bean &amp; Cheddar Soup",122.4,1.0,22.0,8.4
+339004,"Healthy Broccoli, White Bean & Cheddar Soup",122.4,1.0,22.0,8.4
 158719,Chicken Teriyaki Skewers,104.0,0.9,5.4,17.7
 18715,Unstuffed Cabbage,212.8,0.4,47.3,4.9
 475714,Breakfast Anytime Casserole,216.9,9.5,20.8,11.8
@@ -8083,12 +8083,12 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 205307,Tequila Lime Chicken from Applebee's,542.7,33.8,18.4,40.5
 192188,Cranberry Squares,185.8,11.4,20.1,1.9
 513325,Southeast Asian Steak Salad,548.8,39.0,27.1,24.1
-348903,Mom's Chicken &amp; Noodles,295.9,9.2,37.5,15.0
+348903,Mom's Chicken & Noodles,295.9,9.2,37.5,15.0
 435485,"Zucchini, Mushroom and Pasta Skillet",294.3,9.4,38.7,14.6
 276349,"Wild Rice and Mushrooms, Southern Style",272.2,8.8,39.6,11.9
 372826,Vegetarian and Healthy Baked Beans,233.2,1.2,44.1,14.2
 418112,Panang Version 2,589.0,38.7,20.5,41.9
-462902,Best Light &amp; Creamy Mashed Potatoes,267.8,8.8,38.2,10.0
+462902,Best Light & Creamy Mashed Potatoes,267.8,8.8,38.2,10.0
 274306,Chicken Marsala,594.1,29.8,26.4,35.9
 172861,Perfect Stuffed Bell Peppers,313.1,16.5,19.6,22.3
 82024,Chicken Marbella,660.4,44.3,26.4,32.4
@@ -8105,7 +8105,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 312486,How to Press Tofu (For Marinades or Frying),60.5,3.7,1.8,6.5
 532301,Apple Strudel,310.1,13.6,48.4,2.5
 396632,Chocolate-Oat Balls With Marzipan,43.5,3.3,3.3,0.5
-448853,Quick &amp; Easy Crock Pot Roast,21.9,0.1,5.2,0.7
+448853,Quick & Easy Crock Pot Roast,21.9,0.1,5.2,0.7
 264610,Roasted Spring Carrots With Cumin and Lime,93.8,6.0,10.2,0.9
 405033,Traditional Apple Pie W/Grandma's Crust,744.6,38.6,92.2,9.4
 60345,Portabella Mushrooms on Tomato Basil Fettuccini,856.8,44.6,98.3,21.2
@@ -8114,7 +8114,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 486917,Cinnamon Ice Cream,330.7,25.8,22.2,3.9
 440499,Eggplant Bolognese,386.9,11.0,52.9,17.6
 211477,Roasted Garlic,97.5,0.6,20.2,4.8
-16593,Stir Fry Snow Peas &amp; Water Chestnuts,50.2,0.9,8.6,2.3
+16593,Stir Fry Snow Peas & Water Chestnuts,50.2,0.9,8.6,2.3
 42342,Applesauce Spice Ornaments,253.1,4.4,66.5,2.6
 88179,World's Best Pimento cheese,1349.1,120.5,23.1,52.0
 208296,Chicken Jhal Frezi,385.8,22.1,13.6,33.5
@@ -8172,7 +8172,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 177402,Raspberry Kiss,83.4,8.8,0.8,0.6
 81817,Easy Potatoes,34.3,0.5,7.0,1.0
 400652,Polenta With Italian Sausage and Vegetables,566.1,25.5,61.5,25.5
-403922,Chardonnay-Poached Salmon With Fennel &amp; Orange,145.6,2.1,11.3,12.2
+403922,Chardonnay-Poached Salmon With Fennel & Orange,145.6,2.1,11.3,12.2
 2460,Home Fries,820.0,1.0,186.1,21.5
 409630,Brenda's Curried Tomato Bisque,119.7,1.6,22.2,6.9
 319371,Slow-Cooker Chocolate Chip Cookies,849.1,53.8,87.4,10.9
@@ -8195,14 +8195,14 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 461227,Deep Fried Zucchini,73.9,0.4,14.0,2.4
 287932,"Crab Stuffed, Crumbed, Chicken",452.3,36.7,22.6,8.6
 536522,Toffee Pecan Chocolate Chip Blondies,171.6,10.2,19.7,1.8
-199254,Banana &amp; Walnut Cake,344.0,19.9,39.2,5.9
+199254,Banana & Walnut Cake,344.0,19.9,39.2,5.9
 389084,Peanut Butter-Brownie Trifle,778.1,71.5,23.8,18.3
 3580,Fresh Fruit Crisp,415.9,12.6,77.4,3.1
 298097,Babychops' Famous Salsa,35.6,0.4,8.0,1.3
 371617,Leche Merengada - Frozen Spanish Meringue Drink,244.2,5.7,41.2,8.0
 472109,Chocolate Caramel Heath Bar Cake,270.4,12.3,40.4,3.0
 80739,Thin and Crispy Chocolate Chip Cookies,145.6,9.0,16.3,1.3
-395955,La Choy Beef &amp; Vegetables in Peppered Soy Sauce,556.5,27.4,25.8,25.3
+395955,La Choy Beef & Vegetables in Peppered Soy Sauce,556.5,27.4,25.8,25.3
 124772,Chilled Spinach-Potato Soup With Buttermilk,139.4,1.3,26.6,8.5
 501957,Syrian Meatballs (Dawood Basha),755.1,48.4,33.5,49.7
 510819,Oven Barbecued Brisket,70.2,1.0,12.3,2.7
@@ -8273,7 +8273,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 312502,Focaccia (Blitz Bread),165.5,3.8,28.2,4.2
 95192,"Arugula, Tomato and Corn Salad",358.4,33.8,13.7,3.2
 394597,BBQ Pineapple Chicken Teriyaki,347.9,3.5,51.2,29.6
-471070,"Lemon Fettuccine, Lobster, Avocado &amp; Tomato in White Cream S",740.2,40.8,65.5,26.8
+471070,"Lemon Fettuccine, Lobster, Avocado & Tomato in White Cream S",740.2,40.8,65.5,26.8
 448923,Cherry Delight,605.1,36.5,64.4,6.5
 467136,Breakfast Rice,387.5,21.5,38.8,9.9
 239884,Fried Bologna Sandwiches (Southern Style),274.2,17.4,22.4,7.0
@@ -8344,7 +8344,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 139691,Cucumber Sandwiches,63.3,3.7,6.8,1.2
 275742,Italian Sausage Supper Stuffing,1286.6,97.1,47.3,51.5
 61134,Mapplesauce Pancakes,517.1,0.6,133.4,0.2
-139000,Ham &amp; Pineapple Topknots Recipe,158.1,9.7,11.2,7.7
+139000,Ham & Pineapple Topknots Recipe,158.1,9.7,11.2,7.7
 454935,Chicken Cauliflower Curry,343.5,15.5,31.0,23.0
 411491,Pepper Slaw - 2010 Golden Award Winner Chef Ajeen Beckford,63.8,4.0,7.4,0.4
 373569,New Potato and Roasted Pepper Salad,496.5,36.6,25.1,19.8
@@ -8465,7 +8465,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 244859,Balsamic Chicken,216.0,7.8,8.7,26.1
 510984,Chocolate Avocado Pudding,326.6,19.7,43.4,5.1
 366742,Garlic Schnitzel,40.1,2.5,0.9,3.3
-260101,Tofu &amp; Broccoli Teriyaki,179.7,14.4,5.5,9.7
+260101,Tofu & Broccoli Teriyaki,179.7,14.4,5.5,9.7
 260441,Wonderfully Moist Zucchini Bread,2469.8,117.8,331.2,24.1
 31706,Lemon Tofu Spaghetti,453.3,10.5,78.1,16.6
 468625,Quinoa Bread (Bread Machine),111.9,1.7,20.8,2.9
@@ -8506,7 +8506,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 21417,Angel Flake Cookies,989.4,54.6,126.5,10.7
 50739,Applescotch Dessert,356.9,12.4,59.4,3.3
 424345,Vegetarian Veggie Delight Pasta,1713.4,36.2,290.3,100.8
-377497,Best Mini M&amp;m Cookies,2357.9,129.7,279.2,26.3
+377497,Best Mini M&m Cookies,2357.9,129.7,279.2,26.3
 117567,Nola's Avocado Pie,594.7,40.2,52.5,10.8
 23673,Dixie Hen House Eggplant (Aubergine),167.4,10.4,9.9,10.1
 326402,Elk Tenderloin All Dressed Up,554.4,37.3,47.4,15.3
@@ -8524,12 +8524,12 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 106992,Dragon Fly,119.0,0.0,3.2,0.1
 434956,Bea's Shrimp and Green Veggie Stir Fry With Mushrooms,255.7,15.3,11.9,19.7
 115093,Super Tuna,171.9,7.7,1.5,22.6
-330636,Sesame &amp; Ginger Chicken Lettuce Wraps,207.0,6.4,7.6,29.9
+330636,Sesame & Ginger Chicken Lettuce Wraps,207.0,6.4,7.6,29.9
 417388,Civil War Applesauce Cookies,153.2,6.2,22.5,2.0
 26660,Spicy Oriental Spinach Salad,325.9,29.7,9.5,7.8
 120620,Seafood Gumbo,2227.4,162.2,97.5,93.7
 50671,Jackfruit Casserole,889.8,71.9,39.6,23.9
-289235,"Brodo With Soft Cooked Farm Egg, Shaved Artichoke &amp; Porcini",203.4,9.1,13.0,19.2
+289235,"Brodo With Soft Cooked Farm Egg, Shaved Artichoke & Porcini",203.4,9.1,13.0,19.2
 531755,Best Ever Banana Muffins,131.9,3.9,23.3,1.8
 411925,Cranberry Corn Muffins,181.3,3.1,34.7,4.0
 351606,Chicken and Wild Mushroom Fettuccini,992.7,66.2,51.5,45.5
@@ -8541,9 +8541,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 11508,Tuna Melt Sandwiches,292.2,15.6,22.9,14.5
 384387,Giada's Chicken in Lemon Cream and Penne,1053.3,60.0,94.9,37.3
 462270,Oatmeal Walnut Bread (Bread Machine),264.4,7.9,43.0,7.9
-194008,Comfort &amp; Joy - Philadelphia New York Style-Strawberry Swirl,410.4,31.4,25.3,7.8
+194008,Comfort & Joy - Philadelphia New York Style-Strawberry Swirl,410.4,31.4,25.3,7.8
 193197,Pacific Rim Chicken With Wild West Sauce,273.6,6.4,24.2,30.6
-127798,Simple &amp; Delish Chicken Marinade,282.0,16.6,5.5,27.1
+127798,Simple & Delish Chicken Marinade,282.0,16.6,5.5,27.1
 472355,Hamburger Pie,290.2,12.5,28.5,18.2
 112370,"Roasted Garlic, Artichoke and Prosciutto Pizza",121.9,0.4,27.2,7.9
 41551,Fiesta Tamale Casserole,748.9,53.9,17.6,48.6
@@ -8557,7 +8557,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 491118,Pistachio Chocolate Pretzels,80.2,5.6,8.0,2.3
 81071,Crock Pot Coca-Cola Roast,62.0,0.6,14.3,1.4
 203213,Brandied Mushroom Pies,561.1,41.5,36.9,10.8
-383342,Beef &amp; Avocado Wraps,795.3,48.8,43.5,45.3
+383342,Beef & Avocado Wraps,795.3,48.8,43.5,45.3
 533368,Caraway Rye Bread,1772.0,29.4,327.8,54.2
 210760,Gingersnaps,863.6,40.4,119.6,8.1
 24491,Honeyed Pineapple,60.5,0.1,16.2,0.3
@@ -8565,7 +8565,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 465373,Iced Espresso Con Panna,0.6,0.1,0.0,0.0
 489290,Hot Chocolate Chai Mix Recipe,655.4,38.9,72.4,7.2
 533917,Sweet Carrot Souffle,299.9,12.5,45.2,3.9
-424158,Deviled Eggs With Shrimp Filling (Krevetit&auml;idisega Munad),51.8,3.1,0.4,5.1
+424158,Deviled Eggs With Shrimp Filling (Krevetitäidisega Munad),51.8,3.1,0.4,5.1
 342732,Hg's Loaded Miracle Mashies - Ww Points = 3,120.9,0.6,25.1,5.7
 82392,Ground Turkey Baked Ziti,521.0,18.6,54.7,33.0
 90645,Favorite Chili,543.1,21.6,35.6,53.1
@@ -8634,7 +8634,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 120035,Low Carb Cream of Salmon Soup,503.7,43.8,3.3,24.5
 211602,Cottage Pie With a Bit of Zing,393.0,22.4,24.4,23.4
 314519,Caprese Salad-Insalata Caprese,549.0,45.5,10.2,26.7
-141712,&quot;twisted&quot; Chicken Salad,501.2,23.7,48.1,24.3
+141712,"""twisted"" Chicken Salad",501.2,23.7,48.1,24.3
 186834,Steamed Vegetables With Tofu and Oyster Flavored Sauce,159.8,11.4,7.5,9.9
 442888,Julie's Holiday Salad,197.2,18.8,6.4,1.9
 460486,Chris's Grilled Scallops on a Stick With Sriracha Dipping Sauce,241.1,0.6,45.5,13.8
@@ -8646,7 +8646,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 330242,Ma's Meal In-A-Dish,778.3,32.1,74.2,47.7
 210668,Apricot Chutney,426.6,0.5,108.7,2.1
 391832,Shirred Eggs,244.8,21.0,0.7,12.7
-518141,Grilled Spiced Brandy &amp; Herb Pork Chops With Pineapple Salsa,446.5,27.1,6.8,41.6
+518141,Grilled Spiced Brandy & Herb Pork Chops With Pineapple Salsa,446.5,27.1,6.8,41.6
 115996,Adzuki Bean Soup,758.5,1.5,147.9,43.9
 269394,Marsala Cake,219.6,4.3,34.1,5.4
 423078,Vanilla Crush,34.0,0.0,8.6,0.0
@@ -8678,17 +8678,17 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 182773,Scottish (Or English) Rarebit,497.3,37.2,12.8,25.6
 261094,Cranberry-Apricot Bars,151.2,5.9,24.4,1.2
 515729,Pineapple Margaritas,35.5,0.1,9.7,0.5
-119104,"Chicken, Rice &amp; Corn",176.4,14.2,2.4,10.6
+119104,"Chicken, Rice & Corn",176.4,14.2,2.4,10.6
 21714,Double-Baked Stuffed Taters,191.3,2.4,37.5,6.7
 236697,Smoked Sausage Supper,384.4,21.6,30.2,17.7
 259905,Dijon Cutlets,252.0,8.0,34.9,10.5
 373523,Jamaican Jerk Burgers With Orange-Chipotle Mayonnaise,856.6,56.2,52.2,36.8
 286055,Planet Hollywood Captain Crunch Chicken,676.8,25.9,52.4,55.8
 319482,Vegetarian Bean Soup,241.1,19.4,2.3,14.8
-218214,"Salad: Beetroot Salad With Feta, Green Beans &amp; Pine Nuts",268.5,14.1,30.5,9.1
+218214,"Salad: Beetroot Salad With Feta, Green Beans & Pine Nuts",268.5,14.1,30.5,9.1
 169813,Grilled Corn With Chili Lime Butter,215.7,13.3,24.9,4.2
 514894,Dilly Hashed Brown Potato Pancakes #SP5,139.5,9.8,10.1,2.9
-34301,Oatmeal &amp; Cream,331.8,4.0,63.0,12.4
+34301,Oatmeal & Cream,331.8,4.0,63.0,12.4
 421959,Chicken With Noodles and Vegetables (Ww),423.7,14.1,37.0,35.4
 349494,Sweet Cornbread,471.1,15.1,76.5,9.3
 411456,Dijon Dressed Slow Cooked Veggies,413.5,26.1,33.9,20.9
@@ -8700,9 +8700,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 120912,Simple Sesame Soy Oriental Noodles,293.4,8.0,47.7,7.6
 238981,Orange Chicken Skewers,362.9,10.7,38.8,27.6
 358640,Mexican Pulled Beef,628.3,35.4,35.7,40.5
-407985,Pork and Peach Chutney Saute&acute;,377.4,21.8,21.9,25.0
+407985,Pork and Peach Chutney Saute´,377.4,21.8,21.9,25.0
 511905,Braised Brussels Sprouts With Bacon and Roasted Chestnuts,143.8,4.0,23.0,5.1
-448756,Cheese Souffl&eacute;,631.0,46.2,19.2,34.8
+448756,Cheese Soufflé,631.0,46.2,19.2,34.8
 153283,Brownie Waffles,450.2,26.1,50.3,8.5
 161986,Garlic Pork Roast With Thyme,290.1,19.7,1.0,25.7
 416716,Raw Shortbread Crust,183.4,16.4,9.2,3.1
@@ -8723,7 +8723,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 92642,Ranch Red Skin Potato Salad,319.7,10.1,47.3,11.6
 376791,Barbecue Baked Beans,473.5,15.1,74.1,15.5
 32548,Traditional Lasagna,528.4,29.4,25.9,40.0
-251732,Saut&eacute;ed Broccoli and Mushrooms,89.9,2.6,6.5,3.1
+251732,Sautéed Broccoli and Mushrooms,89.9,2.6,6.5,3.1
 98038,Summertime Fresh Fruit Salad,204.4,11.5,26.6,2.3
 163846,Baked Frozen Peas,328.2,18.1,24.8,17.2
 266542,Sweet Potato Puffs,215.4,0.2,53.5,2.1
@@ -8743,7 +8743,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 306242,Jim's Honey Glazed Ham,327.2,8.5,39.8,23.9
 488572,Easy Minestrone,315.3,5.9,53.1,18.8
 66604,Lemon-Lime Layered Dessert,281.7,17.1,28.5,5.2
-251000,"Chocolate, Strawberry &amp; Cookie Parfaits",69.2,0.8,11.2,4.7
+251000,"Chocolate, Strawberry & Cookie Parfaits",69.2,0.8,11.2,4.7
 502727,Simple Kibbeh,268.4,26.9,3.1,3.5
 348512,Nj Starfish's Jello Shots,155.2,0.0,26.6,2.2
 51596,Sloppy Joes-Manwich Style,319.1,9.8,37.0,20.1
@@ -8767,7 +8767,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 139507,Apricot Lemon Chiffon Cake,281.6,11.3,42.8,3.2
 406314,Roast Chicken With Fiery Lemon Glaze,138.5,7.0,24.0,0.9
 223498,Linda's Potato Salad,664.5,25.3,97.7,15.1
-482024,Honey Sesame Shrimp &quot;on the Barbie&quot;,347.1,20.4,12.2,25.6
+482024,"Honey Sesame Shrimp ""on the Barbie""",347.1,20.4,12.2,25.6
 500979,Qatari Saloona,613.4,38.1,16.6,49.4
 25323,Trinidad Stew Chicken,112.1,6.8,13.4,0.0
 74070,Hot Buttered Rum Mix,1120.5,61.5,148.9,0.7
@@ -8843,7 +8843,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 151030,Ham Salad Sandwiches,307.2,19.5,8.3,24.1
 69134,Green Beans Southern Style,229.6,13.0,24.4,5.8
 187238,Bhupek's Lemonade,253.2,0.9,70.8,3.3
-158935,"Southern Green Beans, Ham &amp; Potatoes",106.1,1.5,21.5,3.8
+158935,"Southern Green Beans, Ham & Potatoes",106.1,1.5,21.5,3.8
 165102,Steamed Whitefish Fillets,161.1,2.2,2.7,31.0
 455020,West African Peanut Soup,381.2,26.4,29.2,13.2
 451766,Avocado Pico De Gallo,699.2,59.3,47.6,10.1
@@ -8870,8 +8870,8 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 180883,"Tuna Salad Roll Ups (Fast, Light, Low-Carb, Snack)",21.2,0.2,1.0,3.8
 181997,Home Canned Fish Stew,211.1,6.7,33.9,6.2
 218700,Creamy Vegetable Lasagna,578.1,31.6,45.9,30.0
-329118,&quot;schmeer&quot; for Roasts,16.8,0.5,3.5,0.8
-134280,Sweet &amp; Sour Ribs,1148.4,85.0,3.3,79.2
+329118,"""schmeer"" for Roasts",16.8,0.5,3.5,0.8
+134280,Sweet & Sour Ribs,1148.4,85.0,3.3,79.2
 361247,Mary's Old Virginny Pie Pastry,1546.2,139.5,66.1,10.4
 132651,Facial Hair Remover,242.1,0.0,63.8,0.1
 295586,Crock Pot Chili Cheese,762.3,42.5,63.9,32.3
@@ -8950,7 +8950,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 317098,"Easy Creamy, Cheesy Potato Soup W/ Crisp Bacon",605.5,41.3,44.7,15.8
 283540,Provencial Style Potatoes and Green Beans,135.1,9.2,12.3,1.8
 105535,Tex-Mex Pulled Pork,419.3,16.9,24.1,42.3
-126133,M&amp;m Cream Cheese Bars,187.7,13.6,14.6,2.7
+126133,M&m Cream Cheese Bars,187.7,13.6,14.6,2.7
 160428,Grape Broccoli Salad,368.0,21.6,38.3,11.1
 236124,Tomato Corn Soup,334.0,17.8,38.4,9.6
 203949,Baked Shiitake Stuffed Mushroom Caps,227.7,17.0,6.9,12.8
@@ -8968,7 +8968,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 444310,"Red Beans and Rice, I Dare You",531.5,18.6,64.5,26.8
 338217,Hamburger Bun Pizzas,168.1,5.0,22.9,7.4
 451331,Italian Wedding Soup With 5 Ingredients,199.7,6.7,18.9,14.7
-273077,Beef &amp; Cheese Manicotti,934.0,57.7,53.2,49.4
+273077,Beef & Cheese Manicotti,934.0,57.7,53.2,49.4
 345080,Broccoli and Rice Casserole,343.6,14.7,42.2,12.3
 291078,Cookie Dough Craving!,470.5,21.4,71.6,4.9
 64019,Spiced Lamb Stuffed Tomatoes,478.6,35.6,12.5,27.1
@@ -9031,7 +9031,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 16439,Fish and Veggies: for the steamer,265.3,2.4,14.8,47.7
 98198,Mussels and Shrimp With Prosciutto in Garlic Saffron Wine Sauce,398.8,16.7,14.4,34.7
 347370,Spicy Beef Noodles,589.8,29.6,42.9,37.8
-408940,Addicting Wild Rice &amp; Asparagus Salad,344.5,19.6,41.0,9.6
+408940,Addicting Wild Rice & Asparagus Salad,344.5,19.6,41.0,9.6
 319968,Turkey Scaloppine Parmesan (Weight Watchers) - Points = 4,157.5,3.6,0.2,29.1
 215981,Peach Cheesecake Ice Cream,305.8,22.3,24.0,4.0
 143239,Broccoli Custard,304.4,20.6,13.5,18.2
@@ -9084,7 +9084,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 5351,Chocolate Caramel Brownies,211.6,10.6,29.4,2.1
 76251,Angie's Roasted Harvest Vegetables,148.1,7.1,21.1,1.1
 538216,Healthy Chili,178.2,7.5,8.9,20.0
-323698,Quick &amp; Easy Chicken Cacciatore,207.5,4.0,11.8,29.3
+323698,Quick & Easy Chicken Cacciatore,207.5,4.0,11.8,29.3
 504628,Sourdough Apple Crumble Cake,298.8,13.4,43.4,4.0
 262918,Creamy Lemon Pie,479.7,24.5,58.0,8.8
 304863,Nutella Cupcakes (Diabetes Friendlier),260.6,13.9,30.9,4.7
@@ -9141,7 +9141,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 434527,Curried Lamb With Green Lentils,574.2,34.1,33.7,32.3
 471542,Milestone's Bellini,190.6,0.1,26.7,0.2
 297169,Moose Nuggets,267.8,8.6,38.5,9.0
-395490,Mushroom Polenta Canap&eacute;s,58.5,4.2,3.4,2.5
+395490,Mushroom Polenta Canapés,58.5,4.2,3.4,2.5
 220916,Orange Carrot Bundt Cake,304.1,11.6,46.1,4.2
 504239,Deli Kale Slaw (Vegan Friendly),174.2,11.2,18.0,3.4
 304154,Ziploc Bag Omelets,403.5,18.4,12.3,46.2
@@ -9162,7 +9162,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 427614,Green Lentil Soup With Saffron Scrambled Eggs,506.1,26.8,45.9,22.9
 267091,Biscuits - Vegan,122.1,4.8,16.9,2.8
 253235,Cucumber Dip With Fresh Dill,16.6,0.3,2.4,1.2
-367793,Chicken &amp; Dumplings,284.0,10.9,32.9,13.3
+367793,Chicken & Dumplings,284.0,10.9,32.9,13.3
 15524,Hot Cranberry Sangria,191.1,0.3,39.0,0.7
 444416,Gingerbread Boy Cookies,2003.9,52.7,354.6,32.4
 466229,Epicure's Stacked Turkey Tortilla Casserole,301.5,12.8,28.9,17.9
@@ -9183,7 +9183,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 57996,Melting Pot Beef,712.9,37.7,41.4,49.1
 35539,Crab Cakes,89.4,6.2,4.9,3.8
 347232,Mixed Bean and Veggie Salad,46.6,0.3,10.6,1.8
-358051,"Potato, Bacon &amp; Chilli Pizza",340.1,23.7,23.8,9.0
+358051,"Potato, Bacon & Chilli Pizza",340.1,23.7,23.8,9.0
 383056,Ricotta Tart,236.1,14.9,16.7,8.8
 366798,Mushroom and Spinach Tarts,858.9,60.4,60.4,20.3
 10991,Hot & Spice Bbq Sauces,32.1,0.2,7.7,0.5
@@ -9227,7 +9227,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 454350,Cough Syrup,44.0,0.1,10.3,1.2
 143335,Border-Style Shrimp,269.0,9.0,10.5,35.7
 399971,"Curried Carrot, Lentil and Edamame Soup (Great Winter Soup!)",259.3,4.1,42.8,14.0
-514228,Cheese &amp; Za'atar Flatbread,544.0,31.3,48.2,17.0
+514228,Cheese & Za'atar Flatbread,544.0,31.3,48.2,17.0
 59166,My Low Carb Catsup,5.6,0.0,1.1,0.2
 226101,Emeril's Fresh and Fierce Margaritas,77.9,0.1,21.8,0.5
 153959,"Pork Loin Stuffed With Shrimp, O Boy!",1250.7,82.7,9.7,113.3
@@ -9293,9 +9293,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 468057,Cornbread (Bread Machine),231.4,4.7,40.3,6.6
 227838,Curried Cauliflower With Tomatoes and Tofu,257.4,16.9,17.5,14.6
 465842,Sloppy Joes,406.2,13.5,43.1,28.2
-237492,Chocolate Ginger Pots De Cr&egrave;me,423.5,37.3,15.8,7.8
+237492,Chocolate Ginger Pots De Crème,423.5,37.3,15.8,7.8
 480318,After-Dinner-Mint Cookies,61.9,2.9,8.3,0.7
-536629,Paul&rsquo;s Chili,329.7,4.4,51.7,24.5
+536629,Paul’s Chili,329.7,4.4,51.7,24.5
 297006,Fried Green Tomatoes,116.7,2.0,20.7,4.7
 382566,Baked Spaghetti Sauce,279.7,9.2,25.0,21.2
 368285,Easy Crock Pot/Dutch Oven Rabbit,294.4,5.2,58.2,6.6
@@ -9315,7 +9315,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 190293,Oven Baked Pork Ribs,1977.7,143.8,31.1,133.7
 89142,Low Carb Waffles,167.0,12.9,2.0,9.8
 516493,Homemade Snow Cones,146.3,0.0,37.8,0.0
-493963,Shrimp &amp; Coconut Soup #RSC,491.8,28.0,46.6,20.5
+493963,Shrimp & Coconut Soup #RSC,491.8,28.0,46.6,20.5
 140320,Spinach Lasagna,471.1,15.5,62.4,22.5
 321381,Marinated Green Olives (Tapas),94.8,8.9,4.8,1.0
 208912,Carrots Au Gratin (A La Gail),157.0,8.6,15.8,5.0
@@ -9326,7 +9326,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 8974,Butter Chicken,854.0,75.0,17.0,31.3
 410956,French Potato Gratin,196.3,11.5,18.4,5.7
 248229,Basil Pork Primavera,277.5,11.6,9.3,28.4
-427812,Sarasota's French Inspired Creamy Chicken &amp; Vegetables,601.6,30.1,17.5,51.9
+427812,Sarasota's French Inspired Creamy Chicken & Vegetables,601.6,30.1,17.5,51.9
 210912,Low Cal Minestrone Soup,288.4,1.4,60.2,13.9
 491445,Beef and Eggplant Pie,269.9,21.5,9.0,11.6
 335239,Mini Club Sandwiches With Salmon Carpaccio and Maple,232.5,8.8,26.3,11.8
@@ -9379,7 +9379,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 379654,Strawberry Jello Salad,529.4,31.4,59.9,7.3
 379882,Choco-Cherry Cheesecake Bars,159.4,9.7,17.4,2.2
 3387,Cucumber Tea Sandwiches with Tarragon Butter,105.8,5.9,10.2,3.2
-427062,Haddock &amp; Bacon Rolls With Green Mayonnaise,746.7,70.7,3.3,25.6
+427062,Haddock & Bacon Rolls With Green Mayonnaise,746.7,70.7,3.3,25.6
 320952,Cafe Au Lait,55.2,3.0,4.4,2.8
 203607,Dad's Potato Salad,1152.2,56.8,132.2,32.9
 62585,Lavender scented soap sticks,0.0,0.0,0.0,0.0
@@ -9482,13 +9482,13 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 459138,Moroccan Carrot-Chickpea Salad,354.5,18.9,41.7,7.7
 173328,Canadian Meat Pie (Tourtiere),690.2,44.5,36.0,35.0
 450705,Toasted Corn Cups,36.2,2.0,4.2,0.5
-217672,Creamy Basil &amp; Tomato Pasta,534.9,23.6,66.9,15.8
+217672,Creamy Basil & Tomato Pasta,534.9,23.6,66.9,15.8
 75178,Chicago Style Hot Dogs (Vienna Beef),12.4,0.1,2.8,0.6
 192556,Hot Spinach Artichoke Dip,155.2,10.0,8.9,9.4
 102599,Prosciutto Basil Pasta Shells,271.2,17.5,14.7,13.9
 322011,Carnitas,971.8,53.1,6.0,110.3
 162587,Turkey Sloppy Joes,212.2,2.4,28.3,18.6
-323442,"Marinated Tomatoes, Onions &amp; Mushrooms",216.5,20.7,8.0,1.6
+323442,"Marinated Tomatoes, Onions & Mushrooms",216.5,20.7,8.0,1.6
 438816,Cornbread Stuffing,403.9,16.0,53.4,11.0
 35816,Yogi Yogurtfinger's Grilled Meat Torpedoes,843.1,46.5,54.1,50.2
 138464,Cheese Truffles,42.9,3.8,0.3,1.9
@@ -9536,7 +9536,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 249749,Fudgy Chocolate-Oatmeal Bars,119.6,5.3,17.1,2.0
 74138,Southern Corn Pudding,212.6,11.6,22.9,7.4
 168636,Raspberry Vinaigrette Mackerel,0.0,0.0,0.0,0.0
-402926,Cheese &amp; Vegetable Muffins,338.6,15.1,37.8,12.3
+402926,Cheese & Vegetable Muffins,338.6,15.1,37.8,12.3
 99607,Goat Cheese and Apple Omelet,911.1,79.0,14.0,38.1
 255318,Tamarind-Spiced Chickpeas and Spinach,311.0,3.0,61.0,13.0
 159767,Pitchfork Fondue (Steak Fry),17.4,0.3,4.8,0.6
@@ -9563,7 +9563,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 209144,Chocolate Coconut Snowballs,2697.7,93.7,439.2,50.4
 294143,Ww Au Gratin Potatoes,173.6,2.7,29.3,8.4
 229680,Buffet Vegetable Salad,353.4,19.6,31.9,16.1
-416101,Berries &amp; Cream Oatmeal Pudding,335.1,4.5,65.8,10.6
+416101,Berries & Cream Oatmeal Pudding,335.1,4.5,65.8,10.6
 364729,Cheeseburger Macaroni,216.5,12.9,0.0,23.4
 268062,Banana Cream Cake,218.1,8.1,34.6,2.6
 270599,The Watergate Cake,246.4,15.6,24.3,2.9
@@ -9582,7 +9582,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 278817,Cinnamon Apple Crumble,295.1,8.8,52.9,3.1
 252501,Slow-Cooker Tex-Mex Chicken,389.0,13.8,33.4,36.1
 27680,Lime Tea,414.7,0.0,105.8,0.0
-304415,Macaroni &amp; Cheese Salad,356.9,20.3,31.5,12.9
+304415,Macaroni & Cheese Salad,356.9,20.3,31.5,12.9
 171365,K's Veggie Bean Salad,186.1,1.8,36.3,10.1
 338636,Aunt Brennie's Holiday Cranberry Salad,192.4,6.5,33.6,2.9
 531904,Vanilla Bean Lemonade,79.3,0.1,20.9,0.1
@@ -9595,10 +9595,10 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 478195,Veal Tagine With Sweet Potato,216.9,10.8,12.1,17.9
 476533,Pineapple Chicken Burritos,380.0,12.4,44.6,22.3
 312613,Upside-Down Banana Cake,513.3,28.0,62.3,6.5
-388813,Blondie &amp; Chocolate Marbled Brownies,261.8,11.5,38.7,3.3
+388813,Blondie & Chocolate Marbled Brownies,261.8,11.5,38.7,3.3
 415114,Honey Lentils,387.8,2.9,78.1,18.2
 276765,Peach Custard Squares,290.9,13.3,38.7,5.7
-495236,"Cheese, Egg, &amp; Potato Casserole",726.5,44.3,45.6,36.8
+495236,"Cheese, Egg, & Potato Casserole",726.5,44.3,45.6,36.8
 90838,Coconut Cream Truffles,139.6,9.7,14.8,1.5
 297316,Potato Spanish Tortilla (Tapas),386.9,17.8,43.4,14.2
 247823,Baked Yams With Caramel and Nuts,164.3,13.5,10.8,1.4
@@ -9647,12 +9647,12 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 311173,Herb Roasted Highland Potatoes,339.5,13.9,50.9,4.9
 479288,Summer Fruit Bowl,155.4,0.2,40.6,1.7
 345648,Portabella Burger,298.9,18.0,27.3,8.6
-425359,Schwarzw&auml;lderkirschtorte,422.2,17.4,62.1,5.4
+425359,Schwarzwälderkirschtorte,422.2,17.4,62.1,5.4
 34481,Zucchini with Pesto Sauce,484.6,46.1,12.4,10.8
 498117,Tropical Carrot Cake With Silky Citrus Frosting,706.2,29.1,106.5,9.2
 209812,Espresso and Hazelnut Cookies Bash,155.8,10.0,15.3,2.3
 68657,Mama's Italian Salad Dressing,944.3,91.2,35.1,1.5
-330896,"Crock Pot Turkey, Bean &amp; Bacon Dip",292.7,11.5,35.0,14.4
+330896,"Crock Pot Turkey, Bean & Bacon Dip",292.7,11.5,35.0,14.4
 489007,Buffalo Wings New York Style,1713.3,148.6,6.3,85.3
 540468,Simple No Bake Oatmeal Balls,540.9,27.2,67.6,15.2
 487284,Onion Herb Bread,269.1,19.1,17.2,7.2
@@ -9667,9 +9667,9 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 499522,Grilled Garden Pasta,450.3,14.9,70.3,13.4
 456980,Skinny Strawberry Cheesecake Trifle,221.2,6.8,36.8,4.6
 374014,Ahi Katsu With Wasabi Ginger Butter Sauce,2629.1,252.6,67.6,30.3
-141048,"Sage Sausage, Apple &amp; Walnut Stuffing/Dressing",287.9,20.1,21.6,6.8
+141048,"Sage Sausage, Apple & Walnut Stuffing/Dressing",287.9,20.1,21.6,6.8
 378105,Omelette in a Bag,147.0,9.9,0.8,12.6
-264683,B &amp; B Homemade Granola,278.1,10.9,40.0,7.0
+264683,B & B Homemade Granola,278.1,10.9,40.0,7.0
 151790,Chicken Chili,555.6,18.6,62.8,37.9
 442256,Brown Sugar Apple Pie to Die For,2619.0,114.2,395.6,22.6
 234435,How to Boil an Egg,73.5,5.0,0.4,6.3
@@ -9692,7 +9692,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 206285,Toasty 3-Seed Crescents,104.0,6.4,10.8,1.3
 340277,Starbucks Bottled Frappuccino,121.1,0.5,18.6,9.0
 441653,Holiday Eggnog Bars,87.8,6.2,7.2,0.9
-525895,Sizzling Shrimp Saut&eacute; over Faux Rice,340.6,12.1,14.6,43.6
+525895,Sizzling Shrimp Sauté over Faux Rice,340.6,12.1,14.6,43.6
 8321,Chocolate Marble Cheesecake,363.2,26.4,25.6,6.9
 109334,Green Beans and Onions,143.4,7.1,17.3,5.7
 526460,Bang Bang Sauce,6.7,0.1,0.8,0.6
@@ -9736,7 +9736,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 4782,Mock Pecan Pie II,2922.9,75.8,528.0,45.3
 349935,Classy Girl's Sandwich,207.8,7.1,27.9,8.2
 403942,Gingerbread Biscotti,106.3,2.8,18.7,1.8
-442032,Vegan Bangers and Low Carb Mash! (Bangers &amp; Mash),69.0,0.4,15.1,3.5
+442032,Vegan Bangers and Low Carb Mash! (Bangers & Mash),69.0,0.4,15.1,3.5
 346318,Cucumber Tomato Smash Cocktail,154.6,0.3,12.3,2.4
 268948,Chocolate Mint Whoopie Pies,121.4,4.1,20.5,1.4
 419216,Chocolate Milk Mix,924.1,58.2,73.4,33.7
@@ -9772,7 +9772,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 499348,Fish Fajitas With Spicy Salsa Verde,338.1,11.2,38.2,21.9
 424809,Honey and Spice Sticky Rolls,325.7,11.5,51.7,6.5
 485369,Chicken Gizzard Casserole,287.9,14.3,12.4,17.8
-423772,Gluehwein (Non-Alcoholic) - German Apple &amp; Tea Punch,168.2,0.4,43.7,0.8
+423772,Gluehwein (Non-Alcoholic) - German Apple & Tea Punch,168.2,0.4,43.7,0.8
 458166,Cheesy Baked Egg,425.0,30.4,7.8,29.3
 366445,Chocolate Sauce (Raw),13.8,0.7,3.0,1.1
 222975,Carolyn's Ham Stew,470.3,23.8,41.5,23.8
@@ -9801,7 +9801,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 37873,Pita Pocket with Crabmeat Snack,118.2,0.6,16.7,10.5
 217502,Doritos Salad,807.4,49.7,61.6,29.2
 490837,No Roll Sweet Crust,324.1,18.6,36.4,3.4
-534334,Pinhead Oatmeal Stuffing for a Chicken Weighing 3&frac12;lbs/1.8,250.6,9.8,34.0,8.0
+534334,Pinhead Oatmeal Stuffing for a Chicken Weighing 3½lbs/1.8,250.6,9.8,34.0,8.0
 407322,"Ham, Egg and Cheese Sandwiches",521.7,26.4,36.7,33.5
 224135,Salty Peanut Chews,135.8,8.1,13.4,4.4
 169340,Sweet Lamb for Ramadhan (El Ham Lahlou - Algeria),559.4,29.7,53.4,23.8
@@ -9843,7 +9843,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 277907,Taste of Honey,216.8,11.0,12.5,0.7
 327183,Suanne and Ben's Chinese Sponge Cake,431.6,19.2,52.8,11.8
 520839,Savory Sweet Potato Stew,458.5,30.7,40.0,12.6
-307715,Garlic &amp; Chorizo Prawns,527.6,23.8,4.4,67.9
+307715,Garlic & Chorizo Prawns,527.6,23.8,4.4,67.9
 222120,Fragrant Thai Prawn  and Lychee Salad,474.2,5.2,63.3,47.5
 123121,Candied Macadamia Nuts,1108.4,101.5,56.3,10.6
 322917,American Sandwich Bread,238.1,4.8,42.5,6.0
@@ -9871,7 +9871,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 60923,Greek Spinach and Rice,112.7,0.6,23.8,3.7
 374266,Beef and Corn Casserole,1064.3,64.1,71.7,52.9
 307186,Kutum Lavagny (Stuffed Fish),143.2,10.2,13.1,2.4
-334859,"Ww Jelly, Fruit &amp; Yogurt Parfait",39.5,0.1,8.8,1.9
+334859,"Ww Jelly, Fruit & Yogurt Parfait",39.5,0.1,8.8,1.9
 374491,Parmesan Breadsticks,523.5,49.0,2.5,19.7
 380022,Portuguese Sweet Bread,262.2,7.2,41.7,7.5
 337982,Buttercup Squash Casserole,700.3,24.9,125.4,11.2
@@ -9882,7 +9882,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 243008,Anti-Seafood Jambalaya,377.6,15.2,43.6,17.3
 210234,Caramel Nut Brownie Cookies,195.9,10.7,24.6,2.7
 298367,Real New England Clam Chowder With Bacon,312.2,13.7,36.5,9.9
-137230,Hoisin &amp; Sesame Chicken W/ Roasted Parsnip &amp; Tomato,511.7,21.8,42.3,36.3
+137230,Hoisin & Sesame Chicken W/ Roasted Parsnip & Tomato,511.7,21.8,42.3,36.3
 282786,Texas Caviar,502.9,18.6,71.7,19.0
 434575,Pumpkin Pudding,120.1,2.5,22.1,3.7
 524357,Broccoli Casserole (Pareve),336.6,22.3,21.1,15.9
@@ -9894,7 +9894,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 497394,Reuben Potato Bake #5FIX,236.5,17.8,5.1,14.1
 28325,Marinated Brussels Sprouts,304.0,27.7,13.7,3.7
 426885,Slow Cooker Chicken Tortilla Soup,415.8,18.8,33.3,30.6
-201504,Macaroni &amp; Cream,493.6,20.8,62.5,13.9
+201504,Macaroni & Cream,493.6,20.8,62.5,13.9
 253585,Booberry Gobbler,214.6,0.4,52.8,1.4
 446473,Meyer Lemon and Navel Orange Marmalade,970.3,0.6,252.3,2.7
 118526,Pumpkin Stuff,783.9,47.5,84.2,9.5
@@ -9913,7 +9913,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 42036,Vinegar Pie Crust,154.2,11.0,11.9,1.9
 250910,Banana Walnut Bread,175.0,7.0,26.7,2.2
 28619,Fresh Strawberry Cobbler,321.7,13.1,48.1,4.2
-410592,Brussels Sprouts &amp; Apple Salad,92.2,2.8,15.1,3.9
+410592,Brussels Sprouts & Apple Salad,92.2,2.8,15.1,3.9
 451557,Wild Mushroom Bisque,317.9,22.9,14.3,6.3
 427801,Saliq,625.5,27.6,60.9,30.9
 490362,Famous Peanut Butter Oatmeal Cookies,118.6,6.8,14.0,2.1
@@ -9952,7 +9952,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 406637,S'mores Bars,409.4,15.6,64.9,5.9
 246519,Smashed Potatoes for Two,247.4,14.7,26.7,3.4
 9046,Green Chicken,265.5,13.4,9.8,26.4
-314806,My Version of the &quot;b.k Loaded Steakhouse Burger&quot;,694.7,41.4,38.3,41.0
+314806,"My Version of the ""b.k Loaded Steakhouse Burger""",694.7,41.4,38.3,41.0
 167717,Sopaipillas,106.0,3.4,16.4,2.2
 95167,Layered Enchilada Casserole,834.3,43.0,62.6,48.7
 141129,Sugar Plum Pops,448.1,28.9,43.8,6.4
@@ -9978,7 +9978,7 @@ RecipeId,Name,Calories,Fat,Carbs,Protein
 42040,Quick And Tasty Jeera (Cumin) Chicken,637.5,42.3,16.4,46.5
 269031,Chicken Quesadillas,673.2,27.8,60.8,43.1
 231236,Orange Sherbet Salad,599.7,2.4,141.7,9.1
-156851,Spinach &amp; Cheese Casserole,338.3,20.9,9.7,28.6
+156851,Spinach & Cheese Casserole,338.3,20.9,9.7,28.6
 176335,Easy Curried Heirloom Beans,126.8,10.6,8.2,1.7
 300850,Spicy Perogy Pizza,1685.4,68.4,219.4,54.5
 186108,Linda's English Chocolate Croissant Bread Pudding,622.5,46.1,46.8,11.9
