@@ -385,15 +385,16 @@ def pick_workouts(
 
     if "Knee pain" in health_conditions:
         avoid_keywords += [
-            "squat", "lunge", "jump", "step", "run",
-            "groiner", "hip circle", "side leg raise", "leg raise"
-        ]
+        "squat", "lunge", "jump", "step", "run",
+        "groiner", "hip circle", "side leg raise", "leg raise",
+        "ankle", "calf", "calves", "leg", "hip"
+    ]
 
     if avoid_keywords:
         pattern = "|".join(avoid_keywords)
         d = d[
             ~d["exercise_name"].str.lower().str.contains(pattern, na=False)
-            & ~d["muscle_group"].str.lower().str.contains("adductor|abductor|quadriceps|hamstring|glutes", na=False)
+            & ~d["muscle_group"].str.lower().str.contains("adductor|abductor|quadriceps|hamstring|glutes|calves",na=False)
         ]
 
     if d.empty:
