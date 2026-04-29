@@ -383,14 +383,16 @@ def pick_workouts(
             "knee", "leg raise", "hip circle", "groiner", "mountain climber"
         ]
 
-    if "Knee pain" in health_conditions:
+    health_text = " ".join([str(x).lower().strip() for x in health_conditions])
+
+    if "knee" in health_text:
         avoid_keywords += [
         "squat", "lunge", "jump", "step", "run",
         "groiner", "hip circle", "side leg raise", "leg raise",
         "ankle", "calf", "calves", "leg", "hip"
     ]
 
-    if "Back pain" in health_conditions:
+    if "back" in health_text:
         avoid_keywords += [
         "back", "spine", "twist", "rotation", "bend",
         "deadlift", "row", "crunch", "sit up", "sit-up",
@@ -402,9 +404,9 @@ def pick_workouts(
     d = d[
         ~d["exercise_name"].str.lower().str.contains(pattern, na=False)
         & ~d["muscle_group"].str.lower().str.contains(
-            "adductor|abductor|quadriceps|hamstring|glutes|calves|lower back|lats|traps",
-            na=False
-        )
+        "adductor|abductor|quadriceps|hamstring|glutes|calves|lower back|lats|traps",
+        na=False
+    )
     ]
 
     if d.empty:
