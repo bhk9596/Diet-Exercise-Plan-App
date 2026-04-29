@@ -489,6 +489,30 @@ def pick_workouts(
 
         for word in joint_bad_words:
             safe_base = safe_base[~safe_base["exercise_text"].str.contains(re.escape(word), na=False)]
+        # =========================
+    
+    # =========================
+
+    if has_knee:
+        safe_base = safe_base[
+            safe_base["muscle_group"].str.lower().isin([
+                "chest", "biceps", "triceps", "shoulders"
+            ])
+        ]
+
+    if has_back:
+        safe_base = safe_base[
+            safe_base["muscle_group"].str.lower().isin([
+                "chest", "biceps", "triceps"
+            ])
+        ]
+
+    if has_shoulder:
+        safe_base = safe_base[
+            ~safe_base["muscle_group"].str.lower().isin([
+                "shoulders", "chest", "triceps"
+            ])
+        ]
 
     # =========================
     # 5. Injury difficulty limit
