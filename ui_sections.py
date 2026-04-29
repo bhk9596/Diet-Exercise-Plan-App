@@ -4429,15 +4429,56 @@ def _render_mint_table(df: pd.DataFrame) -> None:
 
 def render_diet_plan_tab(meals: pd.DataFrame) -> None:
     st.markdown('<div class="section-title">Recommended Meal Structure</div>', unsafe_allow_html=True)
+    total_protein = float(meals["protein_g"].sum()) if not meals.empty else 0.0
+    top_food = str(meals.sort_values(by="protein_g", ascending=False).iloc[0]["food_name"]) if not meals.empty else "N/A"
+
+    st.markdown('<div class="section-title">Daily Meal Cards</div>', unsafe_allow_html=True)
+    if meals.empty:
+        st.info("No meal suggestions available yet.")
+    else:
+        meal_order = {"breakfast": 0, "lunch": 1, "dinner": 2, "snack": 3}
+        meal_labels = {
+            "breakfast": "Breakfast",
+            "lunch": "Lunch",
+            "dinner": "Dinner",
+            "snack": "Snack",
+        }
+        cards_df = meals.copy()
+        cards_df["_order"] = cards_df["meal_type"].astype(str).str.lower().map(meal_order).fillna(99)
+        cards_df = cards_df.sort_values("_order").drop(columns=["_order"])
+
+        for idx, row in cards_df.reset_index(drop=True).iterrows():
+            meal_type_raw = str(row.get("meal_type", f"Meal {idx + 1}")).strip().lower()
+            meal_title = meal_labels.get(meal_type_raw, meal_type_raw.title())
+            food_name = html.escape(str(row.get("food_name", "Suggested meal")))
+            calories = float(row.get("calories", 0.0))
+            protein_g = float(row.get("protein_g", 0.0))
+            carbs_g = float(row.get("carbs_g", 0.0))
+            fat_g = float(row.get("fat_g", 0.0))
+            st.markdown(
+                f"""
+                <div class="block-card" style="border-left:4px solid #16a34a; margin-bottom:10px;">
+                    <div class="small-note" style="margin-bottom:2px;">Meal {idx + 1}</div>
+                    <div style="font-size:1.85rem; font-weight:900; color:#14532d; margin-bottom:6px;">{meal_title}</div>
+                    <div style="font-size:1.05rem; font-weight:750; color:#1f2937; margin-bottom:7px;">{food_name}</div>
+                    <span class="chip">{calories:.0f} kcal</span>
+                    <span class="chip">Protein: {protein_g:.0f} g</span>
+                    <span class="chip">Carbs: {carbs_g:.0f} g</span>
+                    <span class="chip">Fat: {fat_g:.0f} g</span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
     meal_table = meals[["meal_type", "food_name", "calories", "protein_g", "carbs_g", "fat_g"]].copy()
     meal_table.columns = ["Meal", "Food", "Calories", "Protein (g)", "Carbs (g)", "Fat (g)"]
     _render_mint_table(meal_table)
-    total_protein = meals["protein_g"].sum() if not meals.empty else 0.0
     st.markdown(
         f"""
         <div class="small-note">
             Meals are selected by calorie fit and protein priority.
             Estimated daily protein from this meal set: <b>{total_protein:.0f} g</b>.
+            Top protein item today: <b>{html.escape(top_food)}</b>.
         </div>
         """,
         unsafe_allow_html=True,
@@ -4738,8 +4779,7 @@ def render_workout_plan_tab(workouts: pd.DataFrame, lifestyle: dict) -> None:
         workout_table = workouts[["exercise_name", "muscle_group", "difficulty", "equipment", "duration_min"]].copy()
         workout_table.insert(0, "Day", [f"Day {i + 1}" for i in range(len(workout_table))])
         workout_table.columns = ["Day", "Exercise", "Muscle Group", "Difficulty", "Equipment", "Duration (min)"]
-        with st.expander("View workout table", expanded=False):
-            _render_mint_table(workout_table)
+        _render_mint_table(workout_table)
 
     if lifestyle["home_workout"]:
         st.info("This plan prioritizes home-friendly exercises based on your profile.")
