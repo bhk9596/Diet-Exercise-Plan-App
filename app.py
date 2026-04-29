@@ -111,7 +111,7 @@ def parse_lifestyle(profile: dict):
         "knee", "back", "shoulder", "joint", "arthritis"
     ])
 ),
-),
+
         "medical_condition": int("None" not in health_conditions),
     }
     matched_cues = []
