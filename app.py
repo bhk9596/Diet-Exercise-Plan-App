@@ -101,6 +101,7 @@ def parse_lifestyle(profile: dict):
         "vegetarian_pref": int(diet_preference == "Vegetarian" or any(k in t for k in ["vegetarian", "plant-based", "vegan"])),
         "high_stress": int(stress_level == "High" or any(k in t for k in ["stress", "busy", "anxious", "burnout", "overwhelmed"])),
         "short_sessions": int(workout_time == "15-20 minutes" or any(k in t for k in ["20 minutes", "15 minutes", "short workout", "quick workout"])),
+        "long_sessions": int(workout_time == "60+ minutes" or any(k in t for k in ["60 minutes", "60+ minutes", "long workout"])),
         "low_sleep": int(sleep_quality == "Poor" or any(k in t for k in ["sleep 5", "sleep 4", "insomnia", "poor sleep"])),
         "injury_care": int(
             any(c in health_conditions for c in ["Knee pain", "Back pain", "Shoulder injury", "Joint pain", "Severe Arthritis"])
@@ -360,6 +361,7 @@ def pick_workouts(
     gym_df: pd.DataFrame,
     home_workout: int,
     short_sessions: int,
+    long_sessions: int,
     days_per_week: int,
     injury_care: int = 0,
     health_conditions=None,
@@ -371,8 +373,10 @@ def pick_workouts(
 
     if short_sessions:
         d = d[d["duration_min"] <= 25]
-    if not short_sessions:
+    elif long_sessions:
         d = d[d["duration_min"] >= 45]
+    else:
+        d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
 
     if health_conditions is None:
         health_conditions = []
@@ -488,6 +492,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     gym_df,
     lifestyle["home_workout"],
     lifestyle["short_sessions"],
+    lifestyle["long_sessions"],
     days_per_week,
     lifestyle["injury_care"],
     profile.get("health_conditions", []),
