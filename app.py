@@ -1,5 +1,4 @@
 from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -357,14 +356,64 @@ def pick_meals(food_df: pd.DataFrame, calorie_target: int, vegetarian_pref: int)
     return pd.concat(meal_plan, ignore_index=True)
 
 
-def pick_workouts(gym_df: pd.DataFrame, home_workout: int, short_sessions: int, days_per_week: int):
+def pick_workouts(
+    gym_df: pd.DataFrame,
+    home_workout: int,
+    short_sessions: int,
+    days_per_week: int,
+    injury_care: int = 0,
+    health_conditions=None,
+):
     d = gym_df.copy()
+
     if home_workout:
         d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+
     if short_sessions:
         d = d[d["duration_min"] <= 25]
+
+    if health_conditions is None:
+        health_conditions = []
+
+    avoid_keywords = []
+
+    if injury_care:
+        avoid_keywords += [
+            "jump", "squat", "lunge", "burpee", "step", "run",
+            "knee", "leg raise", "hip circle", "groiner", "mountain climber"
+        ]
+
+    if "Knee pain" in health_conditions:
+        avoid_keywords += [
+        "squat", "lunge", "jump", "step", "run",
+        "groiner", "hip circle", "side leg raise", "leg raise",
+        "ankle", "calf", "calves", "leg", "hip"
+    ]
+
+    if "Back pain" in health_conditions:
+        avoid_keywords += [
+        "back", "spine", "twist", "rotation", "bend",
+        "deadlift", "row", "crunch", "sit up", "sit-up",
+        "superman", "bridge", "extension", "plank"
+    ]
+
+    if avoid_keywords:
+    pattern = "|".join(avoid_keywords)
+    d = d[
+        ~d["exercise_name"].str.lower().str.contains(pattern, na=False)
+        & ~d["muscle_group"].str.lower().str.contains(
+            "adductor|abductor|quadriceps|hamstring|glutes|calves|lower back|lats|traps",
+            na=False
+        )
+    ]
+
     if d.empty:
         d = gym_df.copy()
+        if home_workout:
+            d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+        if short_sessions:
+            d = d[d["duration_min"] <= 25]
+
     weekly_count = min(max(days_per_week, 3), 6)
     return d.sort_values(by=["difficulty", "duration_min"]).head(weekly_count)
 
@@ -416,7 +465,14 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     )
     lifestyle_recommendations = lifestyle_fit_recommendations(lifestyle, lifestyle_fit, calorie_target)
     meals = pick_meals(food_df, calorie_target, lifestyle["vegetarian_pref"])
-    workouts = pick_workouts(gym_df, lifestyle["home_workout"], lifestyle["short_sessions"], days_per_week)
+    workouts = pick_workouts(
+    gym_df,
+    lifestyle["home_workout"],
+    lifestyle["short_sessions"],
+    days_per_week,
+    lifestyle["injury_care"],
+    profile.get("health_conditions", []),
+)
     bmi = weight_kg / ((height_cm / 100) ** 2)
     goal_progress = max(0.0, min(1.0, 1.0 - abs(goal_weight_kg - weight_kg) / max(weight_kg, 1)))
 
