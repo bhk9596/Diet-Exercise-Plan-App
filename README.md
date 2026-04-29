@@ -54,15 +54,26 @@ This overwrites:
 - `data/diet_lifestyle_profiles.csv`
 - `data/megagym_subset.csv`
 
+## Repo structure
+```text
+Diet-Exercise-Plan-App/
+├── app.py                     # Main Streamlit application and ML orchestration
+├── diet_twin_finder.py        # Custom pure-NumPy k-NN implementation for Diet Twin
+├── meal_generator.py          # Custom pure-NumPy Monte Carlo optimizer for Meal Planning
+├── ui_sections.py             # Streamlit UI components and layout rendering
+├── pages/
+│   └── test_algorithm.py      # Standalone testing dashboard to validate math/algorithms
+├── data/                      # Directory for CSV datasets (NHANES, diets, workouts)
+├── scripts/                   # Utility scripts for data cleaning and preparation
+└── README.md                  # Project overview and run instructions
+```
+
 ## Methods implemented
 
-- **Classification**: RandomForest body-type model from age, sex, height, weight.
-- **Lifestyle NLP extraction**: keyword features from user narrative (night shift, sugar cravings, stress, etc.).
-- **Retrieval**: k-NN with cosine similarity to match the nearest diet twin.
-- **Plan generation**:
-  - calorie target from BMR/TDEE + goal adjustment,
-  - meal picks based on calorie fit and protein bias,
-  - workout picks constrained by available equipment and session length.
+- **Diet Twin Retrieval (From Scratch)**: k-NN using purely NumPy. Computes Standardisation, applies behavioural weighting, and uses Cosine Similarity to find the most behaviourally similar user.
+- **Meal Generator (From Scratch)**: Monte Carlo optimization algorithm using pure NumPy/Pandas. Runs 10,000 iterations to minimize macro target errors to find the optimal 7-dish combination.
+- **Classification & Regression**: RandomForest model predicting body-type and lifestyle fit scores from user vectors.
+- **Safe Workout Picker**: Strict injury rule-based filtering to select home/gym workouts avoiding compromised joints.
 
 ## Notes
 
