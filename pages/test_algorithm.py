@@ -272,11 +272,15 @@ st.info(f"ðŸ’¡ **Calculated Target Calories:** {calculated_cals} kcal (Protein Ã
 if st.button("Generate Meal Plan"):
     with st.spinner("Running deep Monte Carlo simulation (10000 iterations)..."):
         generator = MealGenerator(food_df)
-        best_plan_df, best_error, actual_totals = generator.generate_meal_plan(
+        best_plan_df, best_error, actual_totals, error_history = generator.generate_meal_plan(
             calculated_cals, target_pro, target_carbs, target_fat, num_meals=7, iterations=10000
         )
         
         st.success(f"Meal Plan Generated! Total Error Score: {best_error:.4f}")
+        
+        # Display Monte Carlo Convergence Chart
+        st.write("### Optimization Convergence (10,000 Iterations)")
+        st.line_chart(error_history)
         
         # Display Totals Comparison
         st.write("### Target vs. Actual Macros")

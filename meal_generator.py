@@ -31,6 +31,7 @@ class MealGenerator:
         """
         best_error = float('inf')
         best_indices = None
+        error_history = []
         
         # We now include a Balance weight to ensure calories are spread sensibly
         weights = {
@@ -98,6 +99,9 @@ class MealGenerator:
             if total_error < best_error:
                 best_error = total_error
                 best_indices = idx
+            
+            # Track history for visualization
+            error_history.append(best_error)
                 
         # Fetch the winning recipes from the dataframe
         best_plan_df = self.food_df.iloc[best_indices].copy()
@@ -109,4 +113,4 @@ class MealGenerator:
             'Fat': np.sum(fat_array[best_indices])
         }
         
-        return best_plan_df, best_error, actual_totals
+        return best_plan_df, best_error, actual_totals, error_history

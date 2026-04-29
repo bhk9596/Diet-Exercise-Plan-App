@@ -629,7 +629,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
             meal_food_df = veg_only
 
     generator = MealGenerator(meal_food_df)
-    best_plan_df, _best_error, _actual_totals = generator.generate_meal_plan(
+    best_plan_df, _best_error, _actual_totals, _error_history = generator.generate_meal_plan(
         calorie_target, target_pro, target_carbs, target_fat,
         num_meals=7, iterations=10000,
     )
