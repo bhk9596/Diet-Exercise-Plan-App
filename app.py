@@ -111,12 +111,31 @@ def parse_lifestyle(profile: dict):
     health_conditions = profile.get("health_conditions", ["None"])
     if isinstance(health_conditions, str):
         health_conditions = [x.strip() for x in health_conditions.split(",") if x.strip()]
+    high_stress_text_cues = [
+        "high stress",
+        "very stressed",
+        "stressed out",
+        "extremely stressed",
+        "burnout",
+        "overwhelmed",
+        "anxious",
+    ]
+    stress_level = str(stress_level).strip().title()
+    if stress_level not in {"Low", "Medium", "High"}:
+        stress_level = "Medium"
+    if any(k in t for k in high_stress_text_cues):
+        stress_level = "High"
+    stress_load = {"Low": 0, "Medium": 1, "High": 2}[stress_level]
     tags = {
         "night_shift": int(schedule_type == "Night shift" or any(k in t for k in ["night shift", "overnight", "late shift"])),
         "sugar_craving": int(craving_level == "Often" or any(k in t for k in ["sugar", "dessert", "sweet", "crave", "snack at night"])),
         "home_workout": int(workout_location == "Home" or any(k in t for k in ["home", "apartment", "no gym"])),
         "vegetarian_pref": int(diet_preference == "Vegetarian" or any(k in t for k in ["vegetarian", "plant-based", "vegan"])),
-        "high_stress": int(stress_level == "High" or any(k in t for k in ["stress", "busy", "anxious", "burnout", "overwhelmed"])),
+        "low_stress": int(stress_level == "Low"),
+        "medium_stress": int(stress_level == "Medium"),
+        "high_stress": int(stress_level == "High"),
+        "stress_load": stress_load,
+        "stress_level": stress_level,
         "short_sessions": int(workout_time == "15-20 minutes" or any(k in t for k in ["20 minutes", "15 minutes", "short workout", "quick workout"])),
         "long_sessions": int(workout_time == "60+ minutes" or any(k in t for k in ["60 minutes", "60+ minutes", "long workout"])),
         "low_sleep": int(sleep_quality == "Poor" or any(k in t for k in ["sleep 5", "sleep 4", "insomnia", "poor sleep"])),
@@ -139,6 +158,10 @@ def parse_lifestyle(profile: dict):
         matched_cues.append("you prefer home-based training")
     if tags["sugar_craving"]:
         matched_cues.append("you flagged sugar/snack cravings")
+    if tags["low_stress"]:
+        matched_cues.append("you reported low stress")
+    if tags["medium_stress"]:
+        matched_cues.append("you reported moderate stress")
     if tags["high_stress"]:
         matched_cues.append("you described high stress or burnout")
     if tags["low_sleep"]:
@@ -262,6 +285,14 @@ def predict_lifestyle_fit(
         score_adjustment += 3
     if lifestyle["home_workout"]:
         score_adjustment += 2
+    stress_score_adjustment = 0
+    if lifestyle.get("low_stress"):
+        stress_score_adjustment = 2
+    elif lifestyle.get("medium_stress"):
+        stress_score_adjustment = -1
+    elif lifestyle.get("high_stress"):
+        stress_score_adjustment = -4
+    score_adjustment += stress_score_adjustment
 
     adjusted_score = float(np.clip(raw_score + score_adjustment, 0, 100))
     if twin_adherence_score is None or pd.isna(twin_adherence_score):
@@ -289,6 +320,8 @@ def predict_lifestyle_fit(
         "label": label,
         "pattern": pattern.replace("_", " ").title(),
         "pattern_confidence": pattern_confidence,
+        "stress_level": lifestyle.get("stress_level", "Medium"),
+        "stress_adjustment": stress_score_adjustment,
         "twin_adherence_score": twin_adherence,
         "twin_influence": twin_weight,
         "top_features": model_bundle["importances"].head(4),
@@ -307,7 +340,15 @@ def lifestyle_fit_recommendations(lifestyle: dict, fit_result: dict, calorie_tar
         recommendations.append(
             "Sweet/snack cravings: pre-plan one controlled sweet option per day, such as Greek yogurt with fruit, a protein bar, or oatmeal with cinnamon. Eat it after a protein-rich meal instead of grazing between meals."
         )
-    if lifestyle["high_stress"]:
+    if lifestyle.get("low_stress"):
+        recommendations.append(
+            "Low-stress routine: use the extra bandwidth to plan ahead. Prep one protein option and one vegetable or fruit option before the week starts so the plan stays easy when the week gets busier."
+        )
+    elif lifestyle.get("medium_stress"):
+        recommendations.append(
+            "Moderate-stress routine: keep the plan simple and repeatable. Choose two default meals and one backup snack so normal busy days do not turn into last-minute food decisions."
+        )
+    elif lifestyle["high_stress"]:
         recommendations.append(
             "High-stress days: use a simple backup menu instead of improvising. Pick two repeatable meals, such as chicken/rice/vegetables or eggs/toast/fruit, and keep them ready for days when decision-making is low."
         )
