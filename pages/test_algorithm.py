@@ -95,7 +95,6 @@ st.markdown("---")
 # INPUT 2: Lifestyle Data
 # ==========================================
 st.header("Input 2: Lifestyle Data")
-st.caption("(模拟由大语言模型从用户文本中提取出的结构化数据)")
 
 col2_1, col2_2, col2_3 = st.columns(3)
 night_shift = col2_1.radio("Works Night Shifts", ["No", "Yes"])
@@ -201,19 +200,23 @@ for i, (idx, dist) in enumerate(zip(indices, distances)):
         # Standard Macro Splits based on goal
         if goal == "Weight Loss":
             # High Protein: 40% Pro, 30% Carbs, 30% Fat
-            calc_pro = (calc_cals * 0.40) / 4
-            calc_carbs = (calc_cals * 0.30) / 4
-            calc_fat = (calc_cals * 0.30) / 9
+            base_pro, base_carbs, base_fat = 0.40, 0.30, 0.30
         elif goal == "Muscle Gain":
             # High Carbs: 30% Pro, 50% Carbs, 20% Fat
-            calc_pro = (calc_cals * 0.30) / 4
-            calc_carbs = (calc_cals * 0.50) / 4
-            calc_fat = (calc_cals * 0.20) / 9
+            base_pro, base_carbs, base_fat = 0.30, 0.50, 0.20
         else:
-            # Balanced: 30% Pro, 40% Carbs, 30% Fat
-            calc_pro = (calc_cals * 0.30) / 4
-            calc_carbs = (calc_cals * 0.40) / 4
-            calc_fat = (calc_cals * 0.30) / 9
+            # Balanced: 40% Pro, 35% Carbs, 25% Fat (User requested 40/35/25)
+            base_pro, base_carbs, base_fat = 0.40, 0.35, 0.25
+
+        # Override/shift based on explicit diet pattern (Low Carb / High Protein)
+        if diet_pattern_sel == "💪 Higher Protein":
+            # Shift 10% from carbs to protein
+            base_pro += 0.10
+            base_carbs -= 0.10
+
+        calc_pro = (calc_cals * base_pro) / 4
+        calc_carbs = (calc_cals * base_carbs) / 4
+        calc_fat = (calc_cals * base_fat) / 9
 
         st.markdown("#### Scientifically Calculated Macro Targets")
         m_col1, m_col2, m_col3, m_col4 = st.columns(4)
@@ -261,9 +264,9 @@ default_fat = st.session_state.get("calc_fat", 70)
 
 # Macro Input Sliders
 mcol1, mcol2, mcol3 = st.columns(3)
-target_pro = mcol1.slider("Target Protein (g)", 30, 250, default_pro, step=5)
-target_carbs = mcol2.slider("Target Carbs (g)", 50, 400, default_carbs, step=10)
-target_fat = mcol3.slider("Target Fat (g)", 20, 150, default_fat, step=5)
+target_pro = mcol1.slider("Target Protein (g)", 30, 400, default_pro, step=5)
+target_carbs = mcol2.slider("Target Carbs (g)", 50, 600, default_carbs, step=10)
+target_fat = mcol3.slider("Target Fat (g)", 20, 300, default_fat, step=5)
 
 # Mathematically valid calorie calculation (Pro*4 + Carb*4 + Fat*9)
 calculated_cals = (target_pro * 4) + (target_carbs * 4) + (target_fat * 9)
@@ -271,7 +274,14 @@ st.info(f"💡 **Calculated Target Calories:** {calculated_cals} kcal (Protein �
 
 if st.button("Generate Meal Plan"):
     with st.spinner("Running deep Monte Carlo simulation (10000 iterations)..."):
-        generator = MealGenerator(food_df)
+        # Apply Vegetarian Filter (Syncs with app.py logic)
+        meal_food_df = food_df.copy()
+        if vegetarian_pref == "Yes" and "vegetarian" in meal_food_df.columns:
+            veg_only = meal_food_df[meal_food_df["vegetarian"] == 1]
+            if not veg_only.empty:
+                meal_food_df = veg_only
+
+        generator = MealGenerator(meal_food_df)
         best_plan_df, best_error, actual_totals, error_history = generator.generate_meal_plan(
             calculated_cals, target_pro, target_carbs, target_fat, num_meals=7, iterations=10000
         )
