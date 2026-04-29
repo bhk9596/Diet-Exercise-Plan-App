@@ -4439,7 +4439,7 @@ def _render_mint_table(df: pd.DataFrame) -> None:
 
 
 def render_diet_plan_tab(meals: pd.DataFrame) -> None:
-    st.markdown('<div class="section-title">Recommended Meal Structure</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Daily Meal Cards</div>', unsafe_allow_html=True)
 
     # Aggregate the 7 Monte Carlo dishes into 3 meals (breakfast / lunch / dinner)
     meal_order = ["breakfast", "lunch", "dinner"]
@@ -4457,8 +4457,31 @@ def render_diet_plan_tab(meals: pd.DataFrame) -> None:
             "Carbs (g)": round(group["carbs_g"].sum()),
             "Fat (g)": round(group["fat_g"].sum()),
         })
-    meal_table = pd.DataFrame(rows)
-    _render_mint_table(meal_table)
+
+    if not rows:
+        st.info("No meal suggestions available yet.")
+    else:
+        for idx, row_data in enumerate(rows):
+            meal_title = row_data["Meal"]
+            food_name = html.escape(str(row_data["Foods"]))
+            calories = row_data["Calories"]
+            protein_g = row_data["Protein (g)"]
+            carbs_g = row_data["Carbs (g)"]
+            fat_g = row_data["Fat (g)"]
+            st.markdown(
+                f"""
+                <div class="block-card" style="border-left:4px solid #16a34a; margin-bottom:10px;">
+                    <div class="small-note" style="margin-bottom:2px;">Meal {idx + 1}</div>
+                    <div style="font-size:1.85rem; font-weight:900; color:#14532d; margin-bottom:6px;">{meal_title}</div>
+                    <div style="font-size:1.05rem; font-weight:750; color:#1f2937; margin-bottom:7px;">{food_name}</div>
+                    <span class="chip">{calories:.0f} kcal</span>
+                    <span class="chip">Protein: {protein_g:.0f} g</span>
+                    <span class="chip">Carbs: {carbs_g:.0f} g</span>
+                    <span class="chip">Fat: {fat_g:.0f} g</span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
     total_cals    = meals["calories"].sum()  if not meals.empty else 0.0
     total_protein = meals["protein_g"].sum() if not meals.empty else 0.0
