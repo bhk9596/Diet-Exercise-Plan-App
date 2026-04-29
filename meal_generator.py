@@ -94,6 +94,12 @@ class MealGenerator:
                     abs(dinner_cals - expected_dinner_cals)
                 ) / max(target_cals, 1)
                 
+                # Strict User Constraint: Breakfast must NOT exceed Lunch or Dinner
+                if breakfast_cals > lunch_cals:
+                    err_cal_balance += ((breakfast_cals - lunch_cals) / max(target_cals, 1)) * 10.0
+                if breakfast_cals > dinner_cals:
+                    err_cal_balance += ((breakfast_cals - dinner_cals) / max(target_cals, 1)) * 10.0
+                
                 err_pro_balance = (
                     abs(breakfast_pro - expected_breakfast_pro) +
                     abs(lunch_pro - expected_lunch_pro) +
