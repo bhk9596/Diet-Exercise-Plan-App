@@ -438,6 +438,23 @@ def apply_custom_theme_styles() -> None:
             [data-testid="stExpander"] summary:hover {
                 background: #dcfce7 !important;
             }
+            [data-testid="stExpander"] [data-testid="stMarkdownContainer"],
+            [data-testid="stExpander"] [data-testid="stMarkdownContainer"] * {
+                color: #1f2937 !important;
+            }
+            [data-testid="stExpander"] code {
+                background: #ecfdf3 !important;
+                color: #166534 !important;
+                border: 1px solid #bbf7d0 !important;
+                border-radius: 6px !important;
+                padding: 1px 6px !important;
+            }
+            [data-testid="stExpander"] pre,
+            [data-testid="stExpander"] pre code {
+                background: #f8fafc !important;
+                color: #1f2937 !important;
+                border: 1px solid #d1fae5 !important;
+            }
             /* Plan screen: force all text to black */
             body:has(.result-shell) .result-shell,
             body:has(.result-shell) .result-shell * {
@@ -3447,6 +3464,9 @@ def render_onboarding_wizard():
                         }}, 90);
                     }};
                     wheel.addEventListener("scroll", onScroll, {{ passive: true }});
+                    wheel.addEventListener("wheel", (e) => {{
+                        e.preventDefault();
+                    }}, {{ passive: false }});
 
                     // Drag-to-scroll support for desktop and touch-pointer devices
                     let isDragging = false;
@@ -3461,6 +3481,12 @@ def render_onboarding_wizard():
                     }};
                     const onPointerMove = (e) => {{
                         if (!isDragging) return;
+                        // If mouse button is no longer pressed, force-stop drag.
+                        if (e.pointerType === "mouse" && (e.buttons & 1) !== 1) {{
+                            isDragging = false;
+                            wheel.classList.remove("dragging");
+                            return;
+                        }}
                         const dy = e.clientY - startY;
                         wheel.scrollTop = startScrollTop - dy;
                     }};
@@ -3472,9 +3498,9 @@ def render_onboarding_wizard():
                         snapToNearest();
                     }};
                     wheel.addEventListener("pointerdown", onPointerDown);
-                    wheel.addEventListener("pointermove", onPointerMove);
-                    wheel.addEventListener("pointerup", onPointerUp);
-                    wheel.addEventListener("pointercancel", onPointerUp);
+                    window.addEventListener("pointermove", onPointerMove);
+                    window.addEventListener("pointerup", onPointerUp);
+                    window.addEventListener("pointercancel", onPointerUp);
                 }}
 
                 makeItems(wm, months.map((_, i) => i + 1), v => months[v - 1]);
@@ -4056,6 +4082,9 @@ def render_onboarding_wizard():
                         }}, 90);
                     }};
                     wheel.addEventListener("scroll", onScroll, {{ passive: true }});
+                    wheel.addEventListener("wheel", (e) => {{
+                        e.preventDefault();
+                    }}, {{ passive: false }});
 
                     let isDragging = false;
                     let startY = 0;
@@ -4069,6 +4098,12 @@ def render_onboarding_wizard():
                     }};
                     const onPointerMove = (e) => {{
                         if (!isDragging) return;
+                        // If mouse button is no longer pressed, force-stop drag.
+                        if (e.pointerType === "mouse" && (e.buttons & 1) !== 1) {{
+                            isDragging = false;
+                            wheel.classList.remove("dragging");
+                            return;
+                        }}
                         const dy = e.clientY - startY;
                         wheel.scrollTop = startScrollTop - dy;
                     }};
@@ -4080,9 +4115,9 @@ def render_onboarding_wizard():
                         snapToNearest();
                     }};
                     wheel.addEventListener("pointerdown", onPointerDown);
-                    wheel.addEventListener("pointermove", onPointerMove);
-                    wheel.addEventListener("pointerup", onPointerUp);
-                    wheel.addEventListener("pointercancel", onPointerUp);
+                    window.addEventListener("pointermove", onPointerMove);
+                    window.addEventListener("pointerup", onPointerUp);
+                    window.addEventListener("pointercancel", onPointerUp);
                 }}
 
                 makeItems(wm, months.map((_, i) => i + 1), v => months[v - 1]);
