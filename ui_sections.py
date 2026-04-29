@@ -929,6 +929,8 @@ def render_onboarding_wizard():
     param_goal_year_raw = _qp_str("onboarding_goal_year")
     param_next = _qp_str("onboarding_next", "0")
     param_age_next = _qp_str("onboarding_age_next", "0")
+    param_weight_next = _qp_str("onboarding_weight_next", "0")
+    param_goal_weight_next = _qp_str("onboarding_goal_weight_next", "0")
     param_back = _qp_str("onboarding_back", "0")
     param_weight_back = _qp_str("onboarding_weight_back", "0")
     param_age_back = _qp_str("onboarding_age_back", "0")
@@ -952,6 +954,17 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
         st.session_state["onboarding_stage"] = "weight"
         params.clear()
         st.rerun()
@@ -961,6 +974,24 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
         st.session_state["onboarding_stage"] = "age"
         params.clear()
         st.rerun()
@@ -970,6 +1001,24 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
         st.session_state["onboarding_stage"] = "goal_weight"
         params.clear()
         st.rerun()
@@ -979,6 +1028,24 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
         st.session_state["onboarding_stage"] = "goal_timeline"
         params.clear()
         st.rerun()
@@ -988,6 +1055,24 @@ def render_onboarding_wizard():
             if param_sex in {"M", "F"}
             else st.session_state.get("onboarding_selected_sex", "M")
         )
+        if param_height_raw.isdigit():
+            parsed_height = int(param_height_raw)
+            if 145 <= parsed_height <= 230:
+                st.session_state["onboarding_height_cm"] = parsed_height
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
         st.session_state["onboarding_stage"] = "plan_intro"
         params.clear()
         st.rerun()
@@ -1022,8 +1107,6 @@ def render_onboarding_wizard():
             current_goal_state = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
             if abs(current_goal_state - parsed_goal_weight) >= 0.05:
                 st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
-                params.clear()
-                st.rerun()
     if param_birth_month_raw.isdigit():
         m = int(param_birth_month_raw)
         if 1 <= m <= 12:
@@ -1070,9 +1153,41 @@ def render_onboarding_wizard():
         st.session_state["onboarding_stage"] = "goal_weight"
         params.clear()
         st.rerun()
+    if param_weight_next == "1":
+        st.session_state["onboarding_selected_sex"] = (
+            param_sex
+            if param_sex in {"M", "F"}
+            else st.session_state.get("onboarding_selected_sex", "M")
+        )
+        st.session_state["onboarding_stage"] = "age"
+        params.clear()
+        st.rerun()
+    if param_goal_weight_next == "1":
+        st.session_state["onboarding_selected_sex"] = (
+            param_sex
+            if param_sex in {"M", "F"}
+            else st.session_state.get("onboarding_selected_sex", "M")
+        )
+        if param_weight_raw:
+            try:
+                parsed_weight = float(param_weight_raw)
+            except ValueError:
+                parsed_weight = None
+            if parsed_weight is not None and 35.0 <= parsed_weight <= 250.0:
+                st.session_state["onboarding_weight_kg"] = parsed_weight
+        if param_goal_weight_raw:
+            try:
+                parsed_goal_weight = float(param_goal_weight_raw)
+            except ValueError:
+                parsed_goal_weight = None
+            if parsed_goal_weight is not None and 35.0 <= parsed_goal_weight <= 250.0:
+                st.session_state["onboarding_goal_weight_kg"] = parsed_goal_weight
+        st.session_state["onboarding_stage"] = "goal_timeline"
+        params.clear()
+        st.rerun()
     if param_sex in {"M", "F"}:
         st.session_state["onboarding_selected_sex"] = param_sex
-        if param_next != "1":
+        if param_next != "1" and param_weight_next != "1" and param_goal_weight_next != "1":
             params.clear()
             st.rerun()
     if param_next == "1":
@@ -1086,6 +1201,61 @@ def render_onboarding_wizard():
         st.rerun()
     selected_sex = st.session_state.get("onboarding_selected_sex")
     show_gender_page = selected_sex is None
+    bridge_sex = selected_sex if selected_sex in {"M", "F"} else "M"
+    bridge_weight = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
+    bridge_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+    bridge_script_html = """
+        <script>
+            (function () {
+                if (window.__onboardingBridgeInit) return;
+                window.__onboardingBridgeInit = true;
+                const defaultSex = "__BRIDGE_SEX__";
+                const defaultWeight = "__BRIDGE_WEIGHT__";
+                const defaultHeight = "__BRIDGE_HEIGHT__";
+
+                function updateLink(id, href) {
+                    const link = document.getElementById(id);
+                    if (link) link.setAttribute("href", href);
+                }
+
+                window.addEventListener("message", function (event) {
+                    const data = event && event.data ? event.data : {};
+                    if (!data || typeof data !== "object") return;
+
+                    if (data.type === "onboarding-height") {
+                        const value = Number(data.value);
+                        const sex = String(data.sex || defaultSex).toUpperCase() === "F" ? "F" : "M";
+                        if (!Number.isFinite(value)) return;
+                        updateLink("height-next-link", `?onboarding_sex=${sex}&onboarding_height=${Math.round(value)}&onboarding_next=1`);
+                        return;
+                    }
+
+                    if (data.type === "onboarding-weight") {
+                        const value = Number(data.value);
+                        const sex = String(data.sex || defaultSex).toUpperCase() === "F" ? "F" : "M";
+                        if (!Number.isFinite(value)) return;
+                        updateLink("weight-next-link", `?onboarding_sex=${sex}&onboarding_height=${defaultHeight}&onboarding_weight=${value.toFixed(1)}&onboarding_weight_next=1`);
+                        return;
+                    }
+
+                    if (data.type === "onboarding-goal-weight") {
+                        const value = Number(data.value);
+                        const sex = String(data.sex || defaultSex).toUpperCase() === "F" ? "F" : "M";
+                        if (!Number.isFinite(value)) return;
+                        updateLink("goal-weight-next-link", `?onboarding_sex=${sex}&onboarding_height=${defaultHeight}&onboarding_weight=${defaultWeight}&onboarding_goal_weight=${value.toFixed(1)}&onboarding_goal_weight_next=1`);
+                        updateLink("goal-weight-back-link", `?onboarding_sex=${sex}&onboarding_height=${defaultHeight}&onboarding_weight=${defaultWeight}&onboarding_goal_weight=${value.toFixed(1)}&onboarding_goal_back=1`);
+                    }
+                });
+            })();
+        </script>
+        """
+    st.html(
+        bridge_script_html
+        .replace("__BRIDGE_SEX__", bridge_sex)
+        .replace("__BRIDGE_WEIGHT__", f"{bridge_weight:.1f}")
+        .replace("__BRIDGE_HEIGHT__", str(bridge_height)),
+        unsafe_allow_javascript=True,
+    )
 
     def bmi_status_label(bmi_value: float) -> str:
         if bmi_value < 18.5:
@@ -1119,7 +1289,7 @@ def render_onboarding_wizard():
             .assessment-shell {
                 max-width: 460px;
                 margin: 0 auto;
-                padding: 4px 20px 22px 20px;
+                padding: 12px 20px 22px 20px;
             }
             .assessment-card {
                 background: #ffffff;
@@ -1129,7 +1299,7 @@ def render_onboarding_wizard():
                 padding: 1.35rem 1.25rem 1.45rem 1.25rem;
             }
             body:has(.assessment-gender-step) .assessment-card.assessment-gender-step {
-                margin-top: -10px;
+                margin-top: 0;
                 padding: 1.05rem 1.25rem 1.25rem 1.25rem;
             }
             body:has(.assessment-gender-step) .assessment-progress {
@@ -1146,7 +1316,7 @@ def render_onboarding_wizard():
                 height: 0.5rem;
             }
             body:has(.assessment-gender-step) .main .block-container {
-                margin-top: -8px !important;
+                margin-top: 0 !important;
             }
             /* Keep gender step centered in viewport (remove sidebar offset) */
             body:has(.assessment-gender-step) [data-testid="stSidebar"] {
@@ -1175,6 +1345,16 @@ def render_onboarding_wizard():
                 width: 12%;
                 background: linear-gradient(90deg, #22c55e, #16a34a);
                 border-radius: 999px;
+            }
+            body:has(.weight-stage-lock) .assessment-card .assessment-progress,
+            body:has(.age-stage-lock) .assessment-card .assessment-progress,
+            body:has(.goal-stage-lock) .assessment-card .assessment-progress,
+            body:has(.goal-time-stage-lock) .assessment-card .assessment-progress,
+            body:has(.plan-intro-stage-lock) .assessment-card .assessment-progress,
+            body:has(.details-stage-lock) .assessment-card .assessment-progress {
+                width: auto !important;
+                margin-left: 1.25rem !important;
+                margin-right: 1.25rem !important;
             }
             /* Avoid Streamlit markdown “white strip” sitting above the real track */
             .assessment-shell [data-testid="stMarkdownContainer"] {
@@ -1447,18 +1627,21 @@ def render_onboarding_wizard():
                 max-width: 860px;
                 margin: 0 auto;
                 padding: 0 18px 8px 18px;
-                transform: translateY(-52px);
+                transform: none;
             }
-            .height-step-shell {
-                background: transparent;
-                border-radius: 0;
-                box-shadow: none;
-                padding: 0.05rem 0.9rem 0.6rem 0.9rem;
+            body:has(.height-stage-lock) .assessment-shell {
+                margin-top: 0 !important;
             }
             .height-top-back-wrap {
                 display: flex;
                 justify-content: flex-start;
-                margin: -118px 0 44px 4px;
+                margin: 0 !important;
+                position: fixed !important;
+                top: 28px !important;
+                left: 72px !important;
+                z-index: 99999 !important;
+                pointer-events: auto !important;
+                transform: none !important;
             }
             .height-top-back-link {
                 display: inline-flex;
@@ -1496,16 +1679,16 @@ def render_onboarding_wizard():
                 margin-bottom: 0.4rem;
             }
             .height-ruler-stage {
-                min-height: 520px;
+                min-height: 360px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 20px;
-                margin-bottom: 0.8rem;
+                margin-bottom: 0.6rem;
             }
             .height-ruler-column {
                 width: 94px;
-                height: 430px;
+                height: 320px;
                 border-radius: 4px;
                 background:
                     repeating-linear-gradient(
@@ -1524,9 +1707,9 @@ def render_onboarding_wizard():
                 font-size: 1.95rem;
                 font-weight: 800;
             }
-            .height-ruler-mark.top { top: 38px; }
-            .height-ruler-mark.mid { top: 178px; }
-            .height-ruler-mark.bot { top: 318px; }
+            .height-ruler-mark.top { top: 18px; }
+            .height-ruler-mark.mid { top: 138px; }
+            .height-ruler-mark.bot { top: 258px; }
             .height-ruler-readout {
                 color: #26314d;
                 font-size: 3.6rem;
@@ -1553,7 +1736,7 @@ def render_onboarding_wizard():
             body:has(.height-stage-lock) [data-testid="stButton"] {
                 display: flex !important;
                 justify-content: center !important;
-                margin-top: -58px !important;
+                margin-top: -28px !important;
                 position: relative;
                 z-index: 25;
             }
@@ -1586,7 +1769,38 @@ def render_onboarding_wizard():
             }
             .height-next-link-wrap {
                 width: min(92%, 720px);
-                margin: -58px auto 0 auto;
+                margin: 0 auto 0 auto;
+                position: relative;
+                z-index: 25;
+            }
+
+            /* Move the white card up without shifting back/next controls */
+            body:has(.height-stage-lock) .assessment-card {
+                margin-top: -60px !important;
+            }
+
+            /* Apply same upward card/button shift to other onboarding stages
+               while keeping the Back link fixed/visible. */
+            body:has(.weight-stage-lock) .assessment-card,
+            body:has(.age-stage-lock) .assessment-card,
+            body:has(.goal-stage-lock) .assessment-card,
+            body:has(.goal-time-stage-lock) .assessment-card,
+            body:has(.plan-intro-stage-lock) .assessment-card,
+            body:has(.details-stage-lock) .assessment-card,
+            body:has(.assessment-gender-step) .assessment-card {
+                margin-top: -60px !important;
+            }
+
+            body:has(.weight-stage-lock) [data-testid="stButton"],
+            body:has(.age-stage-lock) [data-testid="stButton"],
+            body:has(.goal-stage-lock) [data-testid="stButton"],
+            body:has(.goal-time-stage-lock) [data-testid="stButton"],
+            body:has(.plan-intro-stage-lock) [data-testid="stButton"],
+            body:has(.details-stage-lock) [data-testid="stButton"],
+            body:has(.assessment-gender-step) [data-testid="stButton"] {
+                display: flex !important;
+                justify-content: center !important;
+                margin-top: -28px !important;
                 position: relative;
                 z-index: 25;
             }
@@ -1637,7 +1851,7 @@ def render_onboarding_wizard():
                 max-width: 860px;
                 margin: 0 auto;
                 padding: 0 18px 10px 18px;
-                transform: translateY(-70px);
+                transform: none;
             }
             .weight-card {
                 background: transparent;
@@ -1862,6 +2076,12 @@ def render_onboarding_wizard():
                 box-shadow: none !important;
                 outline: none !important;
             }
+            body:has(.goal-time-stage-lock) .weight-next-btn {
+                margin-top: 0.4rem !important;
+            }
+            body:has(.goal-time-stage-lock) .weight-next-btn .stButton > button {
+                margin-top: 0.35rem !important;
+            }
             .weight-bmi-footnote {
                 text-align: center;
                 color: #7a8a86;
@@ -1875,14 +2095,14 @@ def render_onboarding_wizard():
             body:has(.height-stage-lock) [data-testid="stAppViewContainer"],
             body:has(.height-stage-lock) [data-testid="stAppViewContainer"] > .main,
             body:has(.height-stage-lock) .main .block-container {
-                height: 100svh !important;
-                max-height: 100svh !important;
-                overflow: hidden !important;
-                overscroll-behavior: none !important;
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+                overscroll-behavior: auto !important;
             }
             body:has(.height-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
-                padding-bottom: 0 !important;
+                margin-top: 0 !important;
+                padding-bottom: 1.25rem !important;
             }
             /* Keep height step centered in viewport (remove sidebar offset) */
             body:has(.height-stage-lock) [data-testid="stSidebar"] {
@@ -1905,7 +2125,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.weight-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             /* Keep age step centered in viewport (remove sidebar offset) */
             body:has(.age-stage-lock) [data-testid="stSidebar"] {
@@ -1918,7 +2138,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.age-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             /* Keep goal-weight step centered in viewport (remove sidebar offset) */
             body:has(.goal-stage-lock) [data-testid="stSidebar"] {
@@ -1931,7 +2151,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.goal-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             /* Keep goal-time step centered in viewport (remove sidebar offset) */
             body:has(.goal-time-stage-lock) [data-testid="stSidebar"] {
@@ -1944,7 +2164,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.goal-time-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             /* Keep plan-intro step centered in viewport (remove sidebar offset) */
             body:has(.plan-intro-stage-lock) [data-testid="stSidebar"] {
@@ -1957,7 +2177,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.plan-intro-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             body:has(.details-stage-lock) [data-testid="stSidebar"] {
                 display: none !important;
@@ -1969,7 +2189,7 @@ def render_onboarding_wizard():
                 margin-left: 0 !important;
             }
             body:has(.details-stage-lock) .main .block-container {
-                padding-top: 0.1rem !important;
+                padding-top: 0.35rem !important;
             }
             body:has(.details-stage-lock) .basic-info-wrap {
                 max-width: 860px !important;
@@ -2062,6 +2282,156 @@ def render_onboarding_wizard():
                 height: 0 !important;
                 pointer-events: none !important;
             }
+            /* Render health conditions with checkbox-pills that match radio pill style */
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] {
+                margin: 0 0 8px 0 !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] label {
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                min-height: 40px !important;
+                width: 100% !important;
+                padding: 9px 14px !important;
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+                cursor: pointer !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] label > div:first-child,
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] [data-baseweb="checkbox"] > div:first-child,
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] [role="checkbox"],
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] svg {
+                display: none !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] label p {
+                margin: 0 !important;
+                font-size: 1rem !important;
+                font-weight: 800 !important;
+                color: #334155 !important;
+                line-height: 1.25 !important;
+                text-align: center !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"]:has(input:checked) label {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"]:has(input:checked) label p {
+                color: #166534 !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] [data-testid="stCheckbox"] input[type="checkbox"] {
+                position: absolute !important;
+                opacity: 0 !important;
+                width: 0 !important;
+                height: 0 !important;
+                pointer-events: none !important;
+                display: none !important;
+            }
+            /* Match multi-select pills to the same style as other question choices */
+            body:has(.details-stage-lock) [data-testid="stPills"] [data-baseweb="button-group"] {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 8px 10px !important;
+                margin-top: 4px !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stPills"] button {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                color: #334155 !important;
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+                padding: 9px 14px !important;
+                min-height: 40px !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stPills"] button[aria-pressed="true"],
+            body:has(.details-stage-lock) [data-testid="stPills"] button[data-selected="true"] {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+                color: #166534 !important;
+            }
+            /* Fallback selectors for browsers/DOM variants */
+            .basic-info-wrap [data-testid*="stPill"] [data-baseweb="button-group"],
+            .basic-info-wrap [data-testid="stPills"] [data-baseweb="button-group"] {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 8px 10px !important;
+                margin-top: 4px !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] button,
+            .basic-info-wrap [data-testid="stPills"] button {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                color: #334155 !important;
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+                padding: 9px 14px !important;
+                min-height: 40px !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] [role="checkbox"],
+            .basic-info-wrap [data-testid*="stPill"] [role="radio"],
+            .basic-info-wrap [data-testid*="stPill"] [role="option"],
+            .basic-info-wrap [data-testid*="stPill"] [data-baseweb="button"] {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                color: #334155 !important;
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] button[aria-pressed="true"],
+            .basic-info-wrap [data-testid*="stPill"] button[data-selected="true"],
+            .basic-info-wrap [data-testid="stPills"] button[aria-pressed="true"],
+            .basic-info-wrap [data-testid="stPills"] button[data-selected="true"] {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+                color: #166534 !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] [aria-selected="true"],
+            .basic-info-wrap [data-testid*="stPill"] [aria-checked="true"],
+            .basic-info-wrap [data-testid*="stPill"] [data-baseweb="button"][data-selected="true"],
+            .basic-info-wrap [data-testid*="stPill"] [data-baseweb="button"][aria-pressed="true"] {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+                color: #166534 !important;
+            }
+            .basic-info-wrap [data-testid*="stPill"] * {
+                color: inherit !important;
+            }
+            /* Hard fallback for DOM variants: style all option-like buttons in details form */
+            body:has(.details-stage-lock) [data-testid="stForm"] button:not([kind]) {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.28) !important;
+                background: #ffffff !important;
+                color: #334155 !important;
+                font-size: 1rem !important;
+                font-weight: 700 !important;
+                padding: 9px 14px !important;
+                min-height: 40px !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+            }
+            body:has(.details-stage-lock) [data-testid="stForm"] button:not([kind])[aria-pressed="true"],
+            body:has(.details-stage-lock) [data-testid="stForm"] button:not([kind])[aria-selected="true"],
+            body:has(.details-stage-lock) [data-testid="stForm"] button:not([kind])[aria-checked="true"],
+            body:has(.details-stage-lock) [data-testid="stForm"] [aria-pressed="true"] > button:not([kind]),
+            body:has(.details-stage-lock) [data-testid="stForm"] [aria-selected="true"] > button:not([kind]),
+            body:has(.details-stage-lock) [data-testid="stForm"] [aria-checked="true"] > button:not([kind]) {
+                background: #dcfce7 !important;
+                border-color: rgba(34, 197, 94, 0.68) !important;
+                color: #166534 !important;
+            }
+            .basic-info-wrap [data-testid="stMultiSelect"] [data-baseweb="tag"] {
+                border-radius: 999px !important;
+                border: 1px solid rgba(34, 197, 94, 0.55) !important;
+                background: #dcfce7 !important;
+                color: #166534 !important;
+                font-weight: 700 !important;
+            }
             body:has(.details-stage-lock) [data-testid="stFormSubmitButton"] button[kind="primary"] {
                 background: #25d366 !important;
                 color: #ffffff !important;
@@ -2117,7 +2487,7 @@ def render_onboarding_wizard():
             textwrap.dedent(
                 """
                 <div class="assessment-card assessment-gender-step">
-                    <div class="assessment-progress"><div class="assessment-progress-fill"></div></div>
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:12%;"></div></div>
                     <div class="assessment-question">What is your gender?</div>
                     <div class="assessment-helper">Biological sex can influence metabolism and diet strategy.</div>
                 </div>
@@ -2180,21 +2550,19 @@ def render_onboarding_wizard():
         current_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
 
         st.markdown('<div class="height-stage-lock"></div>', unsafe_allow_html=True)
-        st.markdown('<div class="basic-info-wrap" style="margin-top:-96px;">', unsafe_allow_html=True)
-        st.markdown('<div class="height-step-shell" style="padding-top:0; padding-bottom:0.35rem;">', unsafe_allow_html=True)
+        st.markdown('<div class="assessment-shell">', unsafe_allow_html=True)
         st.markdown(
             '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
-        st.markdown('<div class="assessment-shell" style="padding:4px 20px 10px 20px;">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:-44px; margin-bottom:10px;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:14%;"></div></div>
+                <div class="assessment-card assessment-gender-step">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:24%;"></div></div>
                     <div class="assessment-question">What is your height?</div>
                     <div class="assessment-helper">Accurate height helps us calculate your BMI.</div>
                 </div>
-            """,
+                """,
             unsafe_allow_html=True,
         )
         st.markdown("</div>", unsafe_allow_html=True)
@@ -2213,7 +2581,7 @@ def render_onboarding_wizard():
                     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }}
                 .stage {{
-                    min-height: 300px;
+                    min-height: 220px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -2222,7 +2590,7 @@ def render_onboarding_wizard():
                 .col {{
                     position: relative;
                     width: 94px;
-                    height: 430px;
+                    height: 360px;
                     border-radius: 4px;
                     background: rgba(235, 251, 244, 0.95);
                     cursor: ns-resize;
@@ -2266,7 +2634,7 @@ def render_onboarding_wizard():
                     height: 10px;
                     border-radius: 999px;
                     background: #27d978;
-                    top: 210px;
+                    top: 170px;
                     pointer-events: none;
                 }}
                 .readout {{
@@ -2327,8 +2695,9 @@ def render_onboarding_wizard():
                 let dragStartY = 0;
                 let dragStartHeight = current;
                 const pxPerCm = 10;
-                const centerY = 215;
-                const rulerHeight = 430;
+                const pointerTop = 170;
+                const pointerHeight = 10;
+                const centerY = pointerTop + (pointerHeight / 2);
                 const trackPad = 260;
                 const trackHeight = trackPad * 2 + (maxH - minH) * pxPerCm;
 
@@ -2359,6 +2728,15 @@ def render_onboarding_wizard():
                     const translateY = centerY - yForHeight(current);
                     track.style.transform = `translateY(${{Math.round(translateY)}}px)`;
                     readout.innerHTML = `${{current}}<small>cm</small>`;
+                    try {{
+                        window.parent.postMessage({{
+                            type: "onboarding-height",
+                            value: current,
+                            sex: "{selected_sex_for_link}",
+                        }}, "*");
+                    }} catch (e) {{
+                        // Ignore bridge failures.
+                    }}
                 }}
 
                 function onMoveClientY(clientY) {{
@@ -2415,9 +2793,9 @@ def render_onboarding_wizard():
                     }}
                     endDrag(e.changedTouches[0].clientY);
                 }}, {{ passive: true }});
-                // Prevent wheel scroll from bubbling to parent page.
+                // Only prevent wheel default while actively dragging the ruler
                 window.addEventListener("wheel", (e) => {{
-                    e.preventDefault();
+                    if (dragging) e.preventDefault();
                 }}, {{ passive: false }});
 
                 buildTrack();
@@ -2426,13 +2804,12 @@ def render_onboarding_wizard():
         </body>
         </html>
         """
-        components.html(ruler_component_html, height=500, scrolling=False)
+        components.html(ruler_component_html, height=320, scrolling=False)
         st.markdown(
             f'<div class="height-next-link-wrap"><a id="height-next-link" class="height-next-link-native" href="?onboarding_sex={selected_sex_for_link}&onboarding_height={current_height}&onboarding_next=1" target="_self" rel="noopener">Next</a></div>',
             unsafe_allow_html=True,
         )
-        st.markdown("</div>", unsafe_allow_html=True)  # .height-step-shell
-        st.markdown("</div>", unsafe_allow_html=True)  # .basic-info-wrap
+        st.markdown("</div>", unsafe_allow_html=True)  # .assessment-shell
         return None
 
     if st.session_state["onboarding_stage"] == "weight":
@@ -2451,8 +2828,8 @@ def render_onboarding_wizard():
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:0.55rem 0.2rem 0.8rem 0.2rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:28%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:1.15rem 0.2rem 0.8rem 0.2rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:36%;"></div></div>
                     <div class="assessment-question">What is your weight?</div>
                     <div class="assessment-helper">Accurate body data helps us calculate your BMI.</div>
                 </div>
@@ -2473,15 +2850,89 @@ def render_onboarding_wizard():
                     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }}
                 .stage {{
-                    min-height: 120px;
+                    min-height: 150px;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-start;
+                }}
+                .live-value {{
+                    text-align: center;
+                    font-size: 2.2rem;
+                    line-height: 1;
+                    font-weight: 900;
+                    color: #26314d;
+                    margin: 0.1rem 0 0.5rem 0;
+                }}
+                .live-value small {{
+                    font-size: 0.52em;
+                    font-weight: 750;
+                    color: #6b7280;
+                    margin-left: 5px;
+                }}
+                .live-bmi-card {{
+                    margin-top: 0.65rem;
+                    border: 1px solid rgba(31, 41, 55, 0.1);
+                    border-radius: 14px;
+                    padding: 0.6rem 0.75rem 0.65rem 0.75rem;
+                    background: #fbfcfc;
+                    width: min(92vw, 760px);
+                }}
+                .live-bmi-head {{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: baseline;
+                    gap: 8px;
+                    margin-bottom: 0.42rem;
+                }}
+                .live-bmi-title {{
+                    font-size: 1.02rem;
+                    font-weight: 800;
+                    color: #1f2937;
+                }}
+                .live-bmi-score {{
+                    font-size: 1.45rem;
+                    font-weight: 900;
+                    color: #1f2937;
+                }}
+                .live-bmi-score span {{
+                    font-size: 0.62em;
+                    font-weight: 800;
+                    margin-left: 4px;
+                    color: #16a34a;
+                }}
+                .live-bmi-scale {{
+                    display: flex;
+                    width: 100%;
+                    height: 10px;
+                    border-radius: 999px;
+                    overflow: hidden;
+                    margin: 0.15rem 0 0.35rem 0;
+                }}
+                .live-bmi-seg {{
+                    flex: 1 1 0;
+                    height: 100%;
+                }}
+                .live-bmi-seg-under {{ background: #7dd3fc; }}
+                .live-bmi-seg-ideal {{ background: #86efac; }}
+                .live-bmi-seg-over {{ background: #fde68a; }}
+                .live-bmi-seg-obese {{ background: #fca5a5; }}
+                .live-bmi-labels {{
+                    display: grid;
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                    gap: 4px;
+                    margin-top: 0.08rem;
+                }}
+                .live-bmi-labels span {{
+                    text-align: center;
+                    color: #9aa3b2;
+                    font-size: 0.86rem;
+                    font-weight: 700;
                 }}
                 .ruler {{
                     position: relative;
                     width: min(92vw, 760px);
-                    height: 86px;
+                    height: 70px;
                     border-radius: 12px;
                     background: rgba(235, 251, 244, 0.95);
                     overflow: hidden;
@@ -2530,13 +2981,54 @@ def render_onboarding_wizard():
                     background: #27d978;
                     pointer-events: none;
                 }}
+                .next-wrap {{
+                    margin-top: 14px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                }}
+                .next-btn {{
+                    width: min(92%, 720px);
+                    border: none;
+                    border-radius: 999px;
+                    background: #25d366;
+                    color: #ffffff;
+                    font-size: 1.95rem;
+                    font-weight: 900;
+                    min-height: 56px;
+                    letter-spacing: 0.01em;
+                    cursor: pointer;
+                    text-decoration: none;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }}
             </style>
         </head>
         <body>
             <div class="stage">
+                <div id="liveWeight" class="live-value"></div>
                 <div id="ruler" class="ruler">
                     <div id="track" class="track"></div>
                     <div class="pointer"></div>
+                </div>
+                <div class="live-bmi-card">
+                    <div class="live-bmi-head">
+                        <div class="live-bmi-title">Your BMI</div>
+                        <div id="liveBmiScore" class="live-bmi-score"></div>
+                    </div>
+                    <div class="live-bmi-scale">
+                        <div class="live-bmi-seg live-bmi-seg-under"></div>
+                        <div class="live-bmi-seg live-bmi-seg-ideal"></div>
+                        <div class="live-bmi-seg live-bmi-seg-over"></div>
+                        <div class="live-bmi-seg live-bmi-seg-obese"></div>
+                    </div>
+                    <div class="live-bmi-labels">
+                        <span>Underweight</span>
+                        <span>Ideal</span>
+                        <span>Overweight</span>
+                        <span>Obese</span>
+                    </div>
                 </div>
             </div>
             <script>
@@ -2546,6 +3038,8 @@ def render_onboarding_wizard():
                 const heightCm = {height_for_bmi:.1f};
                 const ruler = document.getElementById("ruler");
                 const track = document.getElementById("track");
+                const liveWeight = document.getElementById("liveWeight");
+                const liveBmiScore = document.getElementById("liveBmiScore");
                 let current = {current_weight:.1f};
                 let dragging = false;
                 let dragStartX = 0;
@@ -2588,9 +3082,24 @@ def render_onboarding_wizard():
 
                     const bmi = current / Math.pow(heightCm / 100, 2);
                     let bmiLabel = "Obese";
+                    let bmiColor = "#fca5a5";
                     if (bmi < 18.5) bmiLabel = "Underweight";
                     else if (bmi < 25) bmiLabel = "Ideal";
                     else if (bmi < 30) bmiLabel = "Overweight";
+                    if (bmiLabel === "Underweight") bmiColor = "#7dd3fc";
+                    else if (bmiLabel === "Ideal") bmiColor = "#86efac";
+                    else if (bmiLabel === "Overweight") bmiColor = "#fde68a";
+                    if (liveWeight) liveWeight.innerHTML = `${{current.toFixed(1)}}<small>kg</small>`;
+                    if (liveBmiScore) liveBmiScore.innerHTML = `${{bmi.toFixed(1)}}<span style="color:${{bmiColor}}">${{bmiLabel}}</span>`;
+                    try {{
+                        window.parent.postMessage({{
+                            type: "onboarding-weight",
+                            value: current,
+                            sex: "{selected_sex_for_back}",
+                        }}, "*");
+                    }} catch (e) {{
+                        // Ignore bridge failures.
+                    }}
                 }}
                 function commitWeightToApp() {{
                     // Avoid top-level URL mutations from inside iframe.
@@ -2649,7 +3158,7 @@ def render_onboarding_wizard():
                 }}, {{ passive: true }});
 
                 window.addEventListener("wheel", (e) => {{
-                    e.preventDefault();
+                    if (dragging) e.preventDefault();
                 }}, {{ passive: false }});
 
                 window.addEventListener("resize", () => render(current));
@@ -2659,41 +3168,11 @@ def render_onboarding_wizard():
         </body>
         </html>
         """
-        components.html(weight_ruler_component_html, height=140, scrolling=False)
-        picked_weight = float(st.session_state.get("onboarding_weight_kg", current_weight))
-        st.session_state["onboarding_weight_kg"] = float(picked_weight)
+        components.html(weight_ruler_component_html, height=220, scrolling=False)
         st.markdown(
-            f'<div id="weight-live-value" class="weight-value">{picked_weight:.1f}<small>kg</small></div>',
+            f'<div class="weight-next-btn"><a id="weight-next-link" class="height-next-link-native" href="?onboarding_sex={selected_sex_for_back}&onboarding_height={int(round(height_for_bmi))}&onboarding_weight={current_weight:.1f}&onboarding_weight_next=1" target="_self" rel="noopener">Next</a></div>',
             unsafe_allow_html=True,
         )
-        st.markdown(
-            f"""
-                <div class="bmi-card">
-                    <div class="bmi-head">
-                        <div class="bmi-title">Your BMI</div>
-                        <div id="bmi-live-score" class="bmi-score">{bmi:.1f}<span>{bmi_label}</span></div>
-                    </div>
-                    <div class="bmi-scale-4">
-                        <div class="bmi-seg bmi-seg-under"></div>
-                        <div class="bmi-seg bmi-seg-ideal"></div>
-                        <div class="bmi-seg bmi-seg-over"></div>
-                        <div class="bmi-seg bmi-seg-obese"></div>
-                    </div>
-                    <div class="bmi-scale-labels">
-                        <span>Underweight</span>
-                        <span>Ideal</span>
-                        <span>Overweight</span>
-                        <span>Obese</span>
-                    </div>
-                </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
-        if st.button("Next", use_container_width=True, key="weight_next_btn"):
-            st.session_state["onboarding_stage"] = "age"
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
         st.markdown(
             """
                 <div class="weight-bmi-footnote">
@@ -2712,18 +3191,21 @@ def render_onboarding_wizard():
         default_year = int(st.session_state.get("onboarding_birth_year", today.year - int(defaults["age"])))
         default_month = int(st.session_state.get("onboarding_birth_month", 1))
         default_day = int(st.session_state.get("onboarding_birth_day", 1))
+        current_height_for_back = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+        current_weight_for_back = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
+        selected_sex_for_age_back = st.session_state.get("onboarding_selected_sex", "M")
 
         st.markdown('<div class="age-stage-lock"></div>', unsafe_allow_html=True)
         st.markdown('<div class="weight-page-shell">', unsafe_allow_html=True)
         st.markdown(
-            '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_age_back=1" target="_self" rel="noopener">Back</a></div>',
+            f'<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_sex={selected_sex_for_age_back}&onboarding_height={current_height_for_back}&onboarding_weight={current_weight_for_back:.1f}&onboarding_age_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:0.55rem 0.2rem 0.8rem 0.2rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:56%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:1.15rem 0.2rem 0.8rem 0.2rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:48%;"></div></div>
                     <div class="assessment-question">What is your birth date?</div>
                     <div class="assessment-helper">Age and metabolism are closely related.</div>
                 </div>
@@ -3040,20 +3522,21 @@ def render_onboarding_wizard():
     if st.session_state["onboarding_stage"] == "goal_weight":
         current_weight = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
         current_goal_weight = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
+        current_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+        selected_sex_for_goal_link = st.session_state.get("onboarding_selected_sex", "M")
         delta_pct = ((current_weight - current_goal_weight) / max(current_weight, 1.0)) * 100.0
-        mode_label = "lose" if delta_pct >= 0 else "gain"
 
         st.markdown('<div class="goal-stage-lock"></div>', unsafe_allow_html=True)
         st.markdown('<div class="weight-page-shell">', unsafe_allow_html=True)
         st.markdown(
-            '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_goal_back=1" target="_self" rel="noopener">Back</a></div>',
+            f'<div class="height-top-back-wrap"><a id="goal-weight-back-link" class="height-top-back-link" href="?onboarding_sex={selected_sex_for_goal_link}&onboarding_height={current_height}&onboarding_weight={current_weight:.1f}&onboarding_goal_weight={current_goal_weight:.1f}&onboarding_goal_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:0.55rem 0.2rem 0.8rem 0.2rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:72%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:1.15rem 0.2rem 0.8rem 0.2rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:60%;"></div></div>
                     <div class="assessment-question">What is your goal weight?</div>
                     <div class="assessment-helper">Set a clear target and we will tailor your plan around it.</div>
                 </div>
@@ -3075,10 +3558,37 @@ def render_onboarding_wizard():
                     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }}
                 .stage {{
-                    min-height: 120px;
+                    min-height: 190px;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-start;
+                }}
+                .live-value {{
+                    text-align: center;
+                    font-size: 2.2rem;
+                    line-height: 1;
+                    font-weight: 900;
+                    color: #26314d;
+                    margin: 0.1rem 0 0.5rem 0;
+                }}
+                .live-value small {{
+                    font-size: 0.52em;
+                    font-weight: 750;
+                    color: #6b7280;
+                    margin-left: 5px;
+                }}
+                .live-goal {{
+                    margin-top: 0.6rem;
+                    border: 1px solid rgba(31, 41, 55, 0.1);
+                    border-radius: 12px;
+                    padding: 0.45rem 0.7rem 0.55rem 0.7rem;
+                    background: #fbfcfc;
+                    width: min(92vw, 760px);
+                    text-align: center;
+                    color: #1f2937;
+                    font-size: 1.02rem;
+                    font-weight: 800;
                 }}
                 .ruler {{
                     position: relative;
@@ -3132,14 +3642,38 @@ def render_onboarding_wizard():
                     background: #27d978;
                     pointer-events: none;
                 }}
+                .next-wrap {{
+                    margin-top: 14px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                }}
+                .next-btn {{
+                    width: min(92%, 720px);
+                    border: none;
+                    border-radius: 999px;
+                    background: #25d366;
+                    color: #ffffff;
+                    font-size: 1.95rem;
+                    font-weight: 900;
+                    min-height: 56px;
+                    letter-spacing: 0.01em;
+                    cursor: pointer;
+                    text-decoration: none;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }}
             </style>
         </head>
         <body>
             <div class="stage">
+                <div id="liveGoal" class="live-value"></div>
                 <div id="ruler" class="ruler">
                     <div id="track" class="track"></div>
                     <div class="pointer"></div>
                 </div>
+                <div id="liveGoalMeta" class="live-goal"></div>
             </div>
             <script>
                 const minW = 35.0, maxW = 250.0;
@@ -3147,6 +3681,8 @@ def render_onboarding_wizard():
                 const currentWeight = {current_weight:.2f};
                 const ruler = document.getElementById("ruler");
                 const track = document.getElementById("track");
+                const liveGoal = document.getElementById("liveGoal");
+                const liveGoalMeta = document.getElementById("liveGoalMeta");
                 let current = {current_goal_weight:.1f};
                 let dragging = false;
                 let dragStartX = 0;
@@ -3186,6 +3722,17 @@ def render_onboarding_wizard():
                     track.style.transform = `translateX(${{Math.round(tx)}}px)`;
                     const pct = ((currentWeight - current) / Math.max(currentWeight, 1)) * 100;
                     const mode = pct >= 0 ? "lose" : "gain";
+                    if (liveGoal) liveGoal.innerHTML = `${{current.toFixed(1)}}<small>kg</small>`;
+                    if (liveGoalMeta) liveGoalMeta.textContent = `Goal change: ${{Math.abs(pct).toFixed(1)}}% ${{mode}}`;
+                    try {{
+                        window.parent.postMessage({{
+                            type: "onboarding-goal-weight",
+                            value: current,
+                            sex: "{selected_sex_for_goal_link}",
+                        }}, "*");
+                    }} catch (e) {{
+                        // Ignore bridge failures.
+                    }}
                 }}
                 function commitGoalWeightToApp() {{
                     // Avoid top-level URL mutations from inside iframe.
@@ -3241,32 +3788,11 @@ def render_onboarding_wizard():
         </body>
         </html>
         """
-        components.html(goal_ruler_component_html, height=140, scrolling=False)
-        picked_goal_weight = float(st.session_state.get("onboarding_goal_weight_kg", current_goal_weight))
-        st.session_state["onboarding_goal_weight_kg"] = float(picked_goal_weight)
+        components.html(goal_ruler_component_html, height=220, scrolling=False)
         st.markdown(
-            f'<div id="goal-live-value" class="weight-value">{picked_goal_weight:.1f}<small>kg</small></div>',
+            f'<div class="weight-next-btn"><a id="goal-weight-next-link" class="height-next-link-native" href="?onboarding_sex={selected_sex_for_goal_link}&onboarding_height={current_height}&onboarding_weight={current_weight:.1f}&onboarding_goal_weight={current_goal_weight:.1f}&onboarding_goal_weight_next=1" target="_self" rel="noopener">Next</a></div>',
             unsafe_allow_html=True,
         )
-        st.markdown(
-            f"""
-                <div class="bmi-card" style="margin-top:0.75rem;">
-                    <div class="bmi-head">
-                        <div class="bmi-title">Goal Progress</div>
-                        <div id="goal-percent-live" class="bmi-score">{abs(delta_pct):.1f}% {mode_label}</div>
-                    </div>
-                    <div id="goal-note-live" class="bmi-note" style="margin:0; color:#4b5563; font-size:0.98rem; font-weight:700;">
-                        You are aiming for a {abs(delta_pct):.1f}% {mode_label} change. We will support you all the way.
-                    </div>
-                </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
-        if st.button("Next", use_container_width=True, key="goal_weight_next_btn"):
-            st.session_state["onboarding_stage"] = "goal_timeline"
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-card
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-page-shell
         return None
@@ -3275,6 +3801,8 @@ def render_onboarding_wizard():
         today = date.today()
         current_weight = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
         goal_weight = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
+        current_height = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+        selected_sex_for_goal_time_back = st.session_state.get("onboarding_selected_sex", "M")
 
         default_goal_year = int(st.session_state.get("onboarding_goal_year", today.year))
         default_goal_month = int(st.session_state.get("onboarding_goal_month", today.month))
@@ -3295,14 +3823,14 @@ def render_onboarding_wizard():
         st.markdown('<div class="goal-time-stage-lock"></div>', unsafe_allow_html=True)
         st.markdown('<div class="weight-page-shell">', unsafe_allow_html=True)
         st.markdown(
-            '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_goal_time_back=1" target="_self" rel="noopener">Back</a></div>',
+            f'<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_sex={selected_sex_for_goal_time_back}&onboarding_height={current_height}&onboarding_weight={current_weight:.1f}&onboarding_goal_weight={goal_weight:.1f}&onboarding_goal_time_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
         st.markdown('<div class="weight-card">', unsafe_allow_html=True)
         st.markdown(
             """
-                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:0.55rem 0.2rem 0.8rem 0.2rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:84%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:10px; box-shadow:none; padding:1.15rem 0.2rem 0.8rem 0.2rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:72%;"></div></div>
                     <div class="assessment-question">When do you want to reach your goal weight?</div>
                     <div class="assessment-helper">Pick a target date and we will pace your weekly plan.</div>
                 </div>
@@ -3571,7 +4099,7 @@ def render_onboarding_wizard():
         </body>
         </html>
         """
-        components.html(goal_time_component_html, height=380, scrolling=False)
+        components.html(goal_time_component_html, height=340, scrolling=False)
         st.markdown('<div class="weight-next-btn">', unsafe_allow_html=True)
         if st.button("Next", use_container_width=True, key="goal_time_next_btn"):
             goal_y = int(st.session_state.get("onboarding_goal_year", default_goal_year))
@@ -3599,17 +4127,21 @@ def render_onboarding_wizard():
         return None
 
     if st.session_state["onboarding_stage"] == "plan_intro":
+        current_weight_for_back = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
+        current_goal_weight_for_back = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
+        current_height_for_back = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+        selected_sex_for_back = st.session_state.get("onboarding_selected_sex", "M")
         st.markdown('<div class="plan-intro-stage-lock"></div>', unsafe_allow_html=True)
         st.markdown('<div class="weight-page-shell">', unsafe_allow_html=True)
         st.markdown(
-            '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_plan_intro_back=1" target="_self" rel="noopener">Back</a></div>',
+            f'<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_sex={selected_sex_for_back}&onboarding_height={current_height_for_back}&onboarding_weight={current_weight_for_back:.1f}&onboarding_goal_weight={current_goal_weight_for_back:.1f}&onboarding_plan_intro_back=1" target="_self" rel="noopener">Back</a></div>',
             unsafe_allow_html=True,
         )
         st.markdown(
             """
             <div style="max-width:820px; margin: 0 auto;">
-                <div class="assessment-card" style="margin-top:0; margin-bottom:14px; box-shadow:none; padding:0.85rem 1.1rem 1.05rem 1.1rem;">
-                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:58%;"></div></div>
+                <div class="assessment-card" style="margin-top:0; margin-bottom:14px; box-shadow:none; padding:1.2rem 1.1rem 1.05rem 1.1rem;">
+                    <div class="assessment-progress"><div class="assessment-progress-fill" style="width:84%;"></div></div>
                     <div style="margin-top:24px; display:flex; justify-content:center;">
                         <div style="
                             width:min(95%, 700px);
@@ -3651,15 +4183,19 @@ def render_onboarding_wizard():
         st.markdown("</div>", unsafe_allow_html=True)  # .weight-page-shell
         return None
 
+    current_weight_for_back = float(st.session_state.get("onboarding_weight_kg", defaults["weight_kg"]))
+    current_goal_weight_for_back = float(st.session_state.get("onboarding_goal_weight_kg", defaults["goal_weight_kg"]))
+    current_height_for_back = int(st.session_state.get("onboarding_height_cm", defaults["height_cm"]))
+    selected_sex_for_back = st.session_state.get("onboarding_selected_sex", "M")
     st.markdown('<div class="details-stage-lock"></div>', unsafe_allow_html=True)
     st.markdown('<div class="basic-info-wrap">', unsafe_allow_html=True)
     st.markdown(
-        '<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_details_back=1" target="_self" rel="noopener">Back</a></div>',
+        f'<div class="height-top-back-wrap"><a class="height-top-back-link" href="?onboarding_sex={selected_sex_for_back}&onboarding_height={current_height_for_back}&onboarding_weight={current_weight_for_back:.1f}&onboarding_goal_weight={current_goal_weight_for_back:.1f}&onboarding_details_back=1" target="_self" rel="noopener">Back</a></div>',
         unsafe_allow_html=True,
     )
     st.markdown(
         """
-            <div class="assessment-card" style="margin-top:0; margin-bottom:12px; box-shadow:none; padding:0.75rem 1rem 0.95rem 1rem;">
+            <div class="assessment-card" style="margin-top:0; margin-bottom:12px; box-shadow:none; padding:1.15rem 1rem 0.95rem 1rem;">
                 <div class="assessment-progress"><div class="assessment-progress-fill" style="width:96%;"></div></div>
                 <div class="assessment-question" style="font-size:2.1rem; margin-top:0.55rem;">Lifestyle Questions</div>
                 <div class="assessment-helper">Help us personalize your daily nutrition and training routine.</div>
@@ -3695,6 +4231,14 @@ def render_onboarding_wizard():
 
     def _safe_index(options: list[str], value: str) -> int:
         return options.index(value) if value in options else 0
+
+    def _normalize_health_conditions(selected: list[str] | None) -> list[str]:
+        values = [v for v in (selected or []) if v in health_options]
+        if not values:
+            return ["None"]
+        if "None" in values and len(values) > 1:
+            values = [v for v in values if v != "None"]
+        return values or ["None"]
 
     with st.form("basic_information_form"):
         schedule_type = st.radio(
@@ -3745,13 +4289,24 @@ def render_onboarding_wizard():
         default_conditions = [c for c in default_conditions if c in health_options]
         if not default_conditions:
             default_conditions = ["None"]
-        default_health_choice = default_conditions[0]
-        health_condition = st.radio(
-            "Do you have any injuries or health conditions?",
-            health_options,
-            index=_safe_index(health_options, default_health_choice),
-            horizontal=True,
-        )
+        # main branch: upgraded to checkbox grid UI (better UX than radio)
+        st.markdown("**Do you have any injuries or health conditions?**")
+        picked_conditions: list[str] = []
+        pills_per_row = 4
+        for row_start in range(0, len(health_options), pills_per_row):
+            row_options = health_options[row_start : row_start + pills_per_row]
+            row_cols = st.columns(len(row_options), gap="small")
+            for idx, (col, option) in enumerate(zip(row_cols, row_options)):
+                option_key = f"onboarding_health_condition_{row_start + idx}"
+                with col:
+                    is_selected = st.checkbox(
+                        option,
+                        value=option in default_conditions,
+                        key=option_key,
+                    )
+                if is_selected:
+                    picked_conditions.append(option)
+        # Diet Adherence slider — feeds directly into k-NN Diet Twin matching (45–99 matches dataset range)
         adherence_score = st.slider(
             "How well do you usually stick to a diet plan? (Diet Adherence)",
             min_value=45,
@@ -3775,7 +4330,7 @@ def render_onboarding_wizard():
     goal_timeline_weeks = int(st.session_state.get("onboarding_goal_weeks", 12))
     workout_time_to_days = {"15-20 minutes": 3, "30-45 minutes": 4, "60+ minutes": 5}
     days_per_week = int(workout_time_to_days.get(workout_time, defaults["days_per_week"]))
-    health_conditions = [health_condition] if health_condition else ["None"]
+    health_conditions = _normalize_health_conditions(picked_conditions)
     lifestyle_text = (
         f"{schedule_type.lower()} schedule. "
         f"Prefers {workout_location.lower()} workouts and {workout_time} sessions. "
@@ -3886,7 +4441,7 @@ def _render_mint_table(df: pd.DataFrame) -> None:
 def render_diet_plan_tab(meals: pd.DataFrame) -> None:
     st.markdown('<div class="section-title">Recommended Meal Structure</div>', unsafe_allow_html=True)
 
-    # Aggregate 7 dishes into 3 meals
+    # Aggregate the 7 Monte Carlo dishes into 3 meals (breakfast / lunch / dinner)
     meal_order = ["breakfast", "lunch", "dinner"]
     meal_emoji = {"breakfast": "🌅", "lunch": "☀️", "dinner": "🌙"}
     rows = []
@@ -3930,10 +4485,15 @@ def render_lifestyle_fit_tab(
 ) -> None:
     st.markdown('<div class="section-title">Why This Plan Fits Your Lifestyle</div>', unsafe_allow_html=True)
     if lifestyle_fit:
-        f1, f2, f3 = st.columns(3)
+        f1, f2, f3, f4 = st.columns(4)
         f1.metric("Lifestyle Fit", f"{lifestyle_fit['score']:.0f} / 100", lifestyle_fit["label"])
         f2.metric("Predicted Pattern", lifestyle_fit["pattern"])
-        f3.metric("Model Confidence", f"{lifestyle_fit['pattern_confidence']:.0%}")
+        twin_adherence = lifestyle_fit.get("twin_adherence_score")
+        f3.metric(
+            "Twin Adherence",
+            f"{twin_adherence:.0f}%" if twin_adherence is not None else "N/A",
+        )
+        f4.metric("Model Confidence", f"{lifestyle_fit['pattern_confidence']:.0%}")
 
         st.markdown(
             f"""
@@ -3941,7 +4501,9 @@ def render_lifestyle_fit_tab(
                 <b>Machine learning output:</b> A Random Forest model predicts that this plan has a
                 <b>{str(lifestyle_fit['label']).lower()}</b> for your current routine. The raw model estimate was
                 <b>{lifestyle_fit['raw_score']:.0f}%</b>, then the app applied small safety adjustments for sleep,
-                injuries, and medical constraints.
+                injuries, and medical constraints. The final score is also blended with your closest diet twin's
+                historical adherence score using a <b>{lifestyle_fit.get('twin_influence', 0) * 100:.0f}%</b>
+                twin influence weight.
             </div>
             """,
             unsafe_allow_html=True,
@@ -3965,6 +4527,8 @@ def render_lifestyle_fit_tab(
 
     if lifestyle_fit:
         st.markdown("### Strongest Model Drivers")
+        expander_twin_score = lifestyle_fit.get("twin_adherence_score")
+        expander_twin_text = f"{expander_twin_score:.0f}" if expander_twin_score is not None else "unavailable"
         driver_labels = {
             "age": "Age",
             "height_cm": "Height",
@@ -3993,8 +4557,11 @@ def render_lifestyle_fit_tab(
 
                 The target is historical `adherence_score`, so the output is an estimated likelihood that the
                 generated plan matches the user's routine. A companion `RandomForestClassifier` predicts the
-                closest diet pattern label. On the current holdout split, the adherence model has MAE
-                `{lifestyle_fit['metrics']['mae']:.1f}` points and R2 `{lifestyle_fit['metrics']['r2']:.2f}`.
+                closest diet pattern label. The final visible score blends the model-adjusted score
+                `{lifestyle_fit['adjusted_score']:.0f}` with the matched diet twin's adherence score
+                `{expander_twin_text}` when available. On the current holdout split,
+                the adherence model has MAE `{lifestyle_fit['metrics']['mae']:.1f}` points and R2
+                `{lifestyle_fit['metrics']['r2']:.2f}`.
                 """
             )
 
@@ -4028,6 +4595,14 @@ def render_profile_form_ui(defaults: dict) -> dict | None:
 
     def _safe_index(options: list[str], value: str) -> int:
         return options.index(value) if value in options else 0
+
+    def _normalize_health_conditions(selected: list[str] | None) -> list[str]:
+        values = [v for v in (selected or []) if v in health_options]
+        if not values:
+            return ["None"]
+        if "None" in values and len(values) > 1:
+            values = [v for v in values if v != "None"]
+        return values or ["None"]
 
     with st.form("profile_form"):
         st.subheader("Tell us about you")
@@ -4081,13 +4656,22 @@ def render_profile_form_ui(defaults: dict) -> dict | None:
         default_conditions = [c for c in default_conditions if c in health_options]
         if not default_conditions:
             default_conditions = ["None"]
-        default_health_choice = default_conditions[0]
-        health_condition = st.radio(
-            "Do you have any injuries or health conditions?",
-            health_options,
-            index=_safe_index(health_options, default_health_choice),
-            horizontal=True,
-        )
+        st.markdown("**Do you have any injuries or health conditions?**")
+        picked_conditions: list[str] = []
+        pills_per_row = 4
+        for row_start in range(0, len(health_options), pills_per_row):
+            row_options = health_options[row_start : row_start + pills_per_row]
+            row_cols = st.columns(len(row_options), gap="small")
+            for idx, (col, option) in enumerate(zip(row_cols, row_options)):
+                option_key = f"profile_health_condition_{row_start + idx}"
+                with col:
+                    is_selected = st.checkbox(
+                        option,
+                        value=option in default_conditions,
+                        key=option_key,
+                    )
+                if is_selected:
+                    picked_conditions.append(option)
         lifestyle_text = st.text_area(
             "Lifestyle description",
             value=defaults.get(
@@ -4111,7 +4695,7 @@ def render_profile_form_ui(defaults: dict) -> dict | None:
 
     if not submitted:
         return None
-    health_conditions = [health_condition] if health_condition else ["None"]
+    health_conditions = _normalize_health_conditions(picked_conditions)
     return {
         "age": age,
         "sex": sex,
@@ -4197,8 +4781,7 @@ def render_workout_plan_tab(workouts: pd.DataFrame, lifestyle: dict) -> None:
         workout_table = workouts[["exercise_name", "muscle_group", "difficulty", "equipment", "duration_min"]].copy()
         workout_table.insert(0, "Day", [f"Day {i + 1}" for i in range(len(workout_table))])
         workout_table.columns = ["Day", "Exercise", "Muscle Group", "Difficulty", "Equipment", "Duration (min)"]
-        with st.expander("View workout table", expanded=False):
-            _render_mint_table(workout_table)
+        _render_mint_table(workout_table)
 
     if lifestyle["home_workout"]:
         st.info("This plan prioritizes home-friendly exercises based on your profile.")
@@ -4207,7 +4790,7 @@ def render_workout_plan_tab(workouts: pd.DataFrame, lifestyle: dict) -> None:
 
 
 def render_plan_screen(plan_data: dict) -> None:
-    progress_pct = max(0.0, min(100.0, float(plan_data["goal_progress"]) * 100.0))
+    progress_pct = 100.0
     st.markdown(
         f"""
         <div class="result-shell">
@@ -4216,7 +4799,6 @@ def render_plan_screen(plan_data: dict) -> None:
                     <div class="result-top-progress-fill" style="width:{progress_pct:.0f}%"></div>
                 </div>
                 <div class="result-ready-title">Your personalized result is ready.</div>
-                <div class="result-ready-sub">A focused green-and-white plan based on your profile.</div>
         """,
         unsafe_allow_html=True,
     )
@@ -4231,7 +4813,13 @@ def render_plan_screen(plan_data: dict) -> None:
         days_per_week=plan_data["days_per_week"],
     )
     st.markdown("<div style='height:1.05rem'></div>", unsafe_allow_html=True)
-    st.progress(plan_data["goal_progress"], text=f"Goal alignment progress: {plan_data['goal_progress'] * 100:.0f}%")
+    goal_progress = float(plan_data.get("goal_progress", 0.0))
+    goal_progress = max(0.0, min(1.0, goal_progress))
+    goal_percent = round(goal_progress * 100)
+    st.progress(
+        goal_progress,
+        text=f"Goal alignment progress: {goal_percent}%"
+    )
     st.markdown("<div style='height:1.2rem'></div>", unsafe_allow_html=True)
     render_twin_section(plan_data["twin"])
     tab_meals, tab_workouts, tab_lifestyle = st.tabs(["Diet Plan", "Lift Plan", "Lifestyle Fit"])

@@ -1,5 +1,4 @@
 from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -226,7 +225,13 @@ def build_lifestyle_fit_model(diet_df: pd.DataFrame):
     }
 
 
-def predict_lifestyle_fit(model_bundle: dict, user_vector: np.ndarray, lifestyle: dict):
+def predict_lifestyle_fit(
+    model_bundle: dict,
+    user_vector: np.ndarray,
+    lifestyle: dict,
+    twin_adherence_score: float | None = None,
+    twin_similarity: float = 0.0,
+):
     user_row = pd.DataFrame([user_vector], columns=LIFESTYLE_FIT_FEATURE_COLS)
     user_row = user_row.fillna(model_bundle["feature_medians"])
 
@@ -252,7 +257,16 @@ def predict_lifestyle_fit(model_bundle: dict, user_vector: np.ndarray, lifestyle
     if lifestyle["home_workout"]:
         score_adjustment += 2
 
-    fit_score = float(np.clip(raw_score + score_adjustment, 0, 100))
+    adjusted_score = float(np.clip(raw_score + score_adjustment, 0, 100))
+    if twin_adherence_score is None or pd.isna(twin_adherence_score):
+        fit_score = adjusted_score
+        twin_weight = 0.0
+        twin_adherence = None
+    else:
+        twin_adherence = float(np.clip(twin_adherence_score, 0, 100))
+        twin_weight = float(np.clip(twin_similarity, 0, 1)) * 0.30
+        fit_score = float(np.clip((adjusted_score * (1 - twin_weight)) + (twin_adherence * twin_weight), 0, 100))
+
     if fit_score >= 78:
         label = "Strong fit"
     elif fit_score >= 62:
@@ -265,9 +279,12 @@ def predict_lifestyle_fit(model_bundle: dict, user_vector: np.ndarray, lifestyle
     return {
         "score": fit_score,
         "raw_score": raw_score,
+        "adjusted_score": adjusted_score,
         "label": label,
         "pattern": pattern.replace("_", " ").title(),
         "pattern_confidence": pattern_confidence,
+        "twin_adherence_score": twin_adherence,
+        "twin_influence": twin_weight,
         "top_features": model_bundle["importances"].head(4),
         "metrics": model_bundle["metrics"],
     }
@@ -317,6 +334,10 @@ def lifestyle_fit_recommendations(lifestyle: dict, fit_result: dict, calorie_tar
         recommendations.append(
             "Weekly execution target: review the plan every Sunday, choose the meals you will repeat, and schedule workouts on your calendar before the week starts."
         )
+    if fit_result.get("twin_adherence_score") is not None:
+        recommendations.append(
+            f"Diet twin signal: your closest matched profile averaged {fit_result['twin_adherence_score']:.0f}% adherence, so the lifestyle fit score is partially anchored to that real matched outcome."
+        )
     return recommendations[:6]
 
 
@@ -341,14 +362,81 @@ def pick_meals(food_df: pd.DataFrame, calorie_target: int, vegetarian_pref: int)
     return pd.concat(meal_plan, ignore_index=True)
 
 
-def pick_workouts(gym_df: pd.DataFrame, home_workout: int, short_sessions: int, days_per_week: int):
+def pick_workouts(
+    gym_df: pd.DataFrame,
+    home_workout: int,
+    short_sessions: int,
+    days_per_week: int,
+    injury_care: int = 0,
+    health_conditions=None,
+):
     d = gym_df.copy()
+
     if home_workout:
         d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+
     if short_sessions:
         d = d[d["duration_min"] <= 25]
+
+    if health_conditions is None:
+        health_conditions = []
+
+    health_text = " ".join([str(x).lower().strip() for x in health_conditions])
+    avoid_keywords = []
+
+    if "knee" in health_text:
+        avoid_keywords += [
+            "squat", "lunge", "jump", "step", "run",
+            "groiner", "hip circle", "side leg raise", "leg raise",
+            "ankle", "calf", "calves", "leg", "hip",
+            "kneeling", "kneel"
+        ]
+
+    if "back" in health_text:
+        avoid_keywords += [
+            "back", "spine", "twist", "rotation", "bend",
+            "deadlift", "row", "crunch", "sit up", "sit-up",
+            "superman", "bridge", "extension", "plank"
+        ]
+
+    if "shoulder" in health_text:
+        avoid_keywords += [
+            "shoulder", "press", "push up", "push-up", "plank",
+            "dip", "raise", "row", "overhead", "arm circle",
+            "lateral", "fly"
+        ]
+
+    if "joint" in health_text or "arthritis" in health_text:
+        avoid_keywords += [
+            "jump", "run", "burpee", "squat", "lunge", "step",
+            "mountain climber", "high knees", "plank", "push up",
+            "push-up", "twist", "rotation", "dip", "press",
+            "kneeling", "kneel"
+        ]
+
+    if avoid_keywords:
+        pattern = "|".join(avoid_keywords)
+        d = d[
+            ~d["exercise_name"].str.lower().str.contains(pattern, na=False)
+            & ~d["muscle_group"].str.lower().str.contains(
+                "adductor|abductor|quadriceps|hamstring|glutes|calves|lower back|lats|traps|shoulders",
+                na=False
+            )
+        ]
+
+    if injury_care:
+        d = d[d["difficulty"] <= 2]
+
     if d.empty:
-        d = gym_df.copy()
+        st.warning("No safe workouts found for your condition. Showing light general exercises.")
+        d = gym_df[gym_df["difficulty"] <= 1]
+
+        if home_workout:
+            d = d[d["equipment"].isin(["bodyweight", "dumbbell", "resistance_band", "bands"])]
+
+        if short_sessions:
+            d = d[d["duration_min"] <= 25]
+
     weekly_count = min(max(days_per_week, 3), 6)
     return d.sort_values(by=["difficulty", "duration_min"]).head(weekly_count)
 
@@ -386,11 +474,25 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
 
     # --- Lifestyle fit model (Random Forest) --- kept completely unchanged ---
     lifestyle_model = build_lifestyle_fit_model(diet_df)
-    lifestyle_fit = predict_lifestyle_fit(lifestyle_model, user_vector, lifestyle)
+    twin_adherence_score = float(twin.get("adherence_score", np.nan))
+    lifestyle_fit = predict_lifestyle_fit(
+        lifestyle_model,
+        user_vector,
+        lifestyle,
+        twin_adherence_score=twin_adherence_score,
+        twin_similarity=similarity,
+    )
     lifestyle_recommendations = lifestyle_fit_recommendations(lifestyle, lifestyle_fit, calorie_target)
 
-    # --- Workout recommendations --- kept completely unchanged ---
-    workouts = pick_workouts(gym_df, lifestyle["home_workout"], lifestyle["short_sessions"], days_per_week)
+    # --- Workout recommendations (uses main's updated signature with injury/health params) ---
+    workouts = pick_workouts(
+        gym_df,
+        lifestyle["home_workout"],
+        lifestyle["short_sessions"],
+        days_per_week,
+        lifestyle["injury_care"],
+        profile.get("health_conditions", []),
+    )
 
     # =========================================================
     # DIET TWIN: DietTwinFinder (StandardScaler + 12 features)
@@ -485,7 +587,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     }).reset_index(drop=True)
     meals.insert(0, "meal_type", meal_labels)
 
-    # =========================================================
+
     bmi = weight_kg / ((height_cm / 100) ** 2)
     goal_progress = max(0.0, min(1.0, 1.0 - abs(goal_weight_kg - weight_kg) / max(weight_kg, 1)))
 
