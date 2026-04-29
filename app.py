@@ -376,16 +376,16 @@ def pick_workouts(
 
     elif long_sessions:
         long_d = d[d["duration_min"] >= 45]
-    if not long_d.empty:
-        d = long_d
+        if not long_d.empty:
+            d = long_d
+        else:
+            d = d[d["duration_min"] >= 30]
+
     else:
-        d = d[d["duration_min"] >= 30]   # fallback（很关键）
-
-else:
-    mid_d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
-    if not mid_d.empty:
-        d = mid_d
-
+        mid_d = d[(d["duration_min"] >= 30) & (d["duration_min"] <= 45)]
+        if not mid_d.empty:
+            d = mid_d
+    
     if health_conditions is None:
         health_conditions = []
 
