@@ -1,7 +1,6 @@
 import base64
 import html
 import io
-import shutil
 import textwrap
 from collections import deque
 from datetime import date, timedelta
@@ -16,15 +15,6 @@ import streamlit.components.v1 as components
 
 _ONBOARDING_GENDER_AVATAR_WIDTH_PX = 288
 WELCOME_VIDEO = Path(__file__).parent / "img" / "welcome_video.mp4"
-WELCOME_FALLBACK_IMAGE = Path(
-    "/Users/bztr1ng2l1ve/.cursor/projects/Users-bztr1ng2l1ve-Desktop-ml-diet-twin-app/assets/image-f734546c-2013-4351-aaf2-4302d0c6611d.png"
-)
-
-# (male glob, female glob) — newest matching pair wins; add rows when Cursor renames uploads.
-_GENDER_UPLOAD_PATTERN_PAIRS = (
-    ("*20260420191450_72_131*.png", "*20260420191452_73_131*.png"),
-    ("*771d108b*.png", "*57d53876*.png"),
-)
 
 def apply_custom_theme_styles() -> None:
     st.markdown(
@@ -63,32 +53,25 @@ def apply_custom_theme_styles() -> None:
                 display: none !important;
             }
             .main .block-container {
-                max-width: 1240px;
-                padding-top: 0.7rem;
-                padding-bottom: 2.4rem;
+                width: 100% !important;
+                max-width: none !important;
                 margin-left: 0 !important;
-                margin-right: auto !important;
-                padding-left: 0.1rem;
-                padding-right: 0.85rem;
+                margin-right: 0 !important;
+                padding-top: 0.7rem !important;
+                padding-bottom: 2.4rem !important;
+                padding-left: 0.2rem !important;
+                padding-right: 0.8rem !important;
+                background: transparent !important;
             }
             [data-testid="stAppViewContainer"] > .main .block-container {
                 width: auto !important;
                 max-width: 1240px !important;
-                margin-left: 0 !important;
                 margin-right: auto !important;
                 padding-left: 0.05rem !important;
                 padding-right: 0.85rem !important;
             }
             [data-testid="stAppViewContainer"] > .main {
                 margin-left: 0 !important;
-            }
-            .main .block-container {
-                width: 100% !important;
-                max-width: none !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-                padding-left: 0.2rem !important;
-                padding-right: 0.8rem !important;
             }
             [data-testid="stSidebar"] {
                 background: var(--apple-bg-light);
@@ -648,7 +631,7 @@ def render_welcome_hero(video_uri: str, fallback_style: str) -> None:
     )
 
 
-def render_welcome_page_layout(video_uri: str, image_uri: str) -> None:
+def render_welcome_page_layout(video_uri: str) -> None:
     st.html(
         textwrap.dedent(
             """
@@ -680,37 +663,8 @@ def render_welcome_page_layout(video_uri: str, image_uri: str) -> None:
             """
         )
     )
-    if image_uri:
-        fallback_style = f"background-image: url('{image_uri}'); background-size: cover; background-position: center center;"
-    else:
-        fallback_style = "background: linear-gradient(120deg, #1f2937, #0f172a);"
+    fallback_style = "background: linear-gradient(120deg, #1f2937, #0f172a);"
     render_welcome_hero(video_uri, fallback_style)
-
-
-def render_app_title() -> None:
-    st.markdown(
-        """
-        <div class="app-title-wrap">
-            <div class="app-title">Diet Twin Planner</div>
-            <div class="app-subtitle">Premium, minimal planning interface with focused nutrition and training decisions.</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-
-@st.cache_data
-def get_welcome_bg_data_uri():
-    candidates = [
-        Path(__file__).parent / "assets" / "welcome_page.png",
-        WELCOME_FALLBACK_IMAGE,
-    ]
-    for image_path in candidates:
-        if image_path.exists():
-            encoded = base64.b64encode(image_path.read_bytes()).decode("ascii")
-            return f"data:image/png;base64,{encoded}"
-    return ""
 
 
 @st.cache_data
@@ -721,88 +675,15 @@ def get_welcome_video_data_uri():
     return f"data:video/mp4;base64,{encoded}"
 
 
-# (male glob, female glob) — newest matching pair wins; add rows when Cursor renames uploads.
-_GENDER_UPLOAD_PATTERN_PAIRS = (
-    ("*20260420191450_72_131*.png", "*20260420191452_73_131*.png"),
-    ("*771d108b*.png", "*57d53876*.png"),
-)
-
-
-def _latest_png_match(directory: Path, pattern: str) -> Path | None:
-    hits = [p for p in directory.glob(pattern) if p.is_file()]
-    if not hits:
-        return None
-    return max(hits, key=lambda p: p.stat().st_mtime)
-
-
-def _pick_gender_sources_from_dir(src_dir: Path) -> tuple[Path | None, Path | None]:
-    for pat_m, pat_f in _GENDER_UPLOAD_PATTERN_PAIRS:
-        m = _latest_png_match(src_dir, pat_m)
-        f = _latest_png_match(src_dir, pat_f)
-        if m and f:
-            return m, f
-    return None, None
-
-
-def _gender_avatar_cursor_assets_dir() -> Path | None:
-    """Cursor stores pasted chat images under ~/.cursor/projects/<id>/assets/."""
-    root = Path.home() / ".cursor" / "projects"
-    if not root.is_dir():
-        return None
-    explicit = root / "c-Users-Administrator-Desktop-Diet-Exercise-Plan-App" / "assets"
-    if explicit.is_dir():
-        return explicit
-    for proj in root.iterdir():
-        if not proj.is_dir():
-            continue
-        ad = proj / "assets"
-        if not ad.is_dir():
-            continue
-        if _pick_gender_sources_from_dir(ad)[0]:
-            return ad
-    return None
-
-
-def sync_gender_avatars_to_assets() -> None:
-    """Copy chat-upload avatars into ./assets when missing (UUID suffix may change)."""
-    assets_dir = Path(__file__).parent / "assets"
-    assets_dir.mkdir(parents=True, exist_ok=True)
-    dest_m = assets_dir / "gender_avatar_male.png"
-    dest_f = assets_dir / "gender_avatar_female.png"
-    if dest_m.is_file() and dest_f.is_file():
-        return
-    src_dir = _gender_avatar_cursor_assets_dir()
-    if not src_dir:
-        return
-    src_m, src_f = _pick_gender_sources_from_dir(src_dir)
-    try:
-        if src_m and not dest_m.is_file():
-            shutil.copy2(src_m, dest_m)
-        if src_f and not dest_f.is_file():
-            shutil.copy2(src_f, dest_f)
-    except OSError:
-        pass
-
-
 def resolve_gender_avatar_paths():
-    """Prefer ./assets; else newest matching files in Cursor upload folder."""
-    sync_gender_avatars_to_assets()
-    assets_dir = Path(__file__).parent / "assets"
-    local_m = assets_dir / "gender_avatar_male.png"
-    local_f = assets_dir / "gender_avatar_female.png"
-    male = local_m if local_m.is_file() else None
-    female = local_f if local_f.is_file() else None
-    if male and female:
-        return male, female
-    src_dir = _gender_avatar_cursor_assets_dir()
-    if not src_dir:
-        return male, female
-    src_m, src_f = _pick_gender_sources_from_dir(src_dir)
-    if male is None:
-        male = src_m
-    if female is None:
-        female = src_f
-    return male, female
+    img_dir = Path(__file__).parent / "img"
+    male = img_dir / "gender_avatar_male.png"
+    female = img_dir / "gender_avatar_female.png"
+
+    return (
+        male if male.is_file() else None,
+        female if female.is_file() else None,
+    )
 
 
 @st.cache_data(show_spinner=False)
@@ -880,18 +761,9 @@ def render_welcome_page():
     if clicked:
         params.clear()
         return True
-
     video_uri = get_welcome_video_data_uri()
-    image_uri = get_welcome_bg_data_uri()
-    render_welcome_page_layout(video_uri, image_uri)
+    render_welcome_page_layout(video_uri)
     return False
-
-
-
-
-def set_onboarding_sex(value: str) -> None:
-    """Callback runs before the rest of the script; do not call st.rerun() here."""
-    st.session_state["onboarding_selected_sex"] = value
 
 
 def render_onboarding_wizard():
@@ -912,19 +784,6 @@ def render_onboarding_wizard():
         "sleep_quality": "Average",
         "health_conditions": ["None"],
     }
-    activity_options = [
-        "Sedentary",
-        "Lightly Active",
-        "Moderately Active",
-        "Very Active",
-    ]
-    activity_to_days = {
-        "Sedentary": 1,
-        "Lightly Active": 3,
-        "Moderately Active": 5,
-        "Very Active": 6,
-    }
-    days_to_activity = {v: k for k, v in activity_to_days.items()}
     params = st.query_params
 
     def _qp_str(key: str, default: str = "") -> str:
@@ -1298,7 +1157,6 @@ def render_onboarding_wizard():
             .main .block-container {
                 padding-top: 0 !important;
                 padding-bottom: 1.25rem !important;
-                background: transparent !important;
             }
             [data-testid="stAppViewContainer"] > .main {
                 padding-top: 0 !important;
@@ -1328,6 +1186,9 @@ def render_onboarding_wizard():
             }
             body:has(.assessment-gender-step) .assessment-helper {
                 margin-bottom: 0.55rem;
+            }
+            .gender-pick-gap {
+                height: 1.5rem;
             }
             body:has(.assessment-gender-step) .gender-pick-gap {
                 height: 0.5rem;
@@ -1379,9 +1240,6 @@ def render_onboarding_wizard():
             }
             .assessment-shell [data-testid="stMarkdownContainer"] > div {
                 background: transparent !important;
-            }
-            .gender-pick-gap {
-                height: 1.5rem;
             }
             .gender-pick-link {
                 text-decoration: none !important;
@@ -1652,11 +1510,11 @@ def render_onboarding_wizard():
             .height-top-back-wrap {
                 display: flex;
                 justify-content: flex-start;
-                margin: 0 !important;
-                position: fixed !important;
-                top: 28px !important;
-                left: 72px !important;
-                z-index: 99999 !important;
+                margin: -150px 0 12px 0 !important;
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                z-index: 10 !important;
                 pointer-events: auto !important;
                 transform: none !important;
             }
@@ -1791,21 +1649,23 @@ def render_onboarding_wizard():
                 z-index: 25;
             }
 
-            /* Move the white card up without shifting back/next controls */
-            body:has(.height-stage-lock) .assessment-card {
-                margin-top: -60px !important;
+            body:has(.height-stage-lock) .height-top-back-wrap {
+                margin: -165px 0 12px 0 !important;
             }
 
             /* Apply same upward card/button shift to other onboarding stages
                while keeping the Back link fixed/visible. */
+            body:has(.assessment-gender-step) .assessment-card {
+                margin-top: -60px !important;
+            }
+            body:has(.height-stage-lock) .assessment-card,
             body:has(.weight-stage-lock) .assessment-card,
             body:has(.age-stage-lock) .assessment-card,
             body:has(.goal-stage-lock) .assessment-card,
             body:has(.goal-time-stage-lock) .assessment-card,
             body:has(.plan-intro-stage-lock) .assessment-card,
-            body:has(.details-stage-lock) .assessment-card,
-            body:has(.assessment-gender-step) .assessment-card {
-                margin-top: -60px !important;
+            body:has(.details-stage-lock) .assessment-card {
+                margin-top: -76px !important;
             }
 
             body:has(.weight-stage-lock) [data-testid="stButton"],
@@ -3760,11 +3620,6 @@ def render_onboarding_wizard():
                         // Ignore bridge failures.
                     }}
                 }}
-                function commitGoalWeightToApp() {{
-                    // Avoid top-level URL mutations from inside iframe.
-                    // They can trigger Streamlit removeChild errors on some browsers.
-                    return;
-                }}
                 function onMoveClientX(clientX) {{
                     if (!dragging) return;
                     const deltaKg = (clientX - dragStartX) / pxPerKg;
@@ -3784,7 +3639,6 @@ def render_onboarding_wizard():
                     dragging = false;
                     if (Math.abs(current - lastCommitted) >= 0.1) {{
                         lastCommitted = current;
-                        commitGoalWeightToApp();
                     }}
                 }}
                 ruler.addEventListener("pointerdown", (e) => startDrag(e.clientX));
@@ -4849,6 +4703,20 @@ def render_workout_plan_tab(workouts: pd.DataFrame, lifestyle: dict) -> None:
 
 def render_plan_screen(plan_data: dict) -> None:
     progress_pct = 100.0
+    st.markdown('<div id="plan-top"></div>', unsafe_allow_html=True)
+
+    components.html(
+        """
+        <script>
+            const doc = window.parent.document;
+            const target = doc.getElementById("plan-top");
+            if (target) {
+                target.scrollIntoView({ behavior: "auto", block: "start" });
+            }
+        </script>
+        """,
+        height=0,
+    )
     st.markdown(
         f"""
         <div class="result-shell">
