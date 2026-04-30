@@ -290,7 +290,9 @@ if st.button("Generate Meal Plan"):
         
         # Display Monte Carlo Convergence Chart
         st.write("### Optimization Convergence (10,000 Iterations)")
-        st.line_chart(error_history)
+        # Cap max value at 1.0 to prevent the +1000.0 absolute penalty spikes from squashing the chart scale
+        capped_history = [min(e, 1.0) for e in error_history]
+        st.line_chart(capped_history)
         
         # Display Totals Comparison
         st.write("### Target vs. Actual Macros")
