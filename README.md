@@ -17,7 +17,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 ```Windows:
-cd ml_diet_twin_app
+cd Diet-Exercise-Plan-App
 python -m venv .venv
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 .venv\Scripts\activate
@@ -58,14 +58,17 @@ This overwrites:
 ```text
 Diet-Exercise-Plan-App/
 ├── app.py                     # Main Streamlit application and ML orchestration
-├── diet_twin_finder.py        # Custom pure-NumPy k-NN implementation for Diet Twin
-├── meal_generator.py          # Custom pure-NumPy Monte Carlo optimizer for Meal Planning
-├── ui_sections.py             # Streamlit UI components and layout rendering
+├── diet_twin_finder.py        # Custom NumPy-based k-NN retrieval system
+├── meal_generator.py          # Monte Carlo optimizer for meal planning
+├── ui_sections.py             # Streamlit UI components and layout
 ├── pages/
-│   └── test_algorithm.py      # Standalone testing dashboard to validate math/algorithms
-├── data/                      # Directory for CSV datasets (NHANES, diets, workouts)
-├── scripts/                   # Utility scripts for data cleaning and preparation
-└── README.md                  # Project overview and run instructions
+│   └── test_algorithm.py      # Testing dashboard for validating algorithms
+├── data/                      # Processed datasets (NHANES, diet, workouts)
+├── scripts/                   # Data preprocessing and dataset construction scripts
+├── img/                       # Media files (avatars, videos)
+├── requirements.txt           # Python dependencies
+├── .gitignore                 # Git ignore rules
+└── README.md                  # Design document + setup and run instructions
 ```
 
 ## Division of Labor
