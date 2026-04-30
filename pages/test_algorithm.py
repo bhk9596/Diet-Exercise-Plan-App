@@ -186,16 +186,18 @@ for i, (idx, dist) in enumerate(zip(indices, distances)):
         twin_sex_str = "F" if twin_sex_bin == 1 else "M"
 
         if goal == "Weight Loss":
-            goal_weight_kg = twin_weight - 5.0
+            goal_weight_kg = weight_kg - 5.0
         elif goal == "Muscle Gain":
-            goal_weight_kg = twin_weight + 5.0
+            goal_weight_kg = weight_kg + 5.0
         else:
-            goal_weight_kg = twin_weight
+            goal_weight_kg = weight_kg
             
         # Default days_per_week for the testing dashboard
         days_per_week = 4
         
-        calc_cals = estimate_calories(twin_age, twin_sex_str, twin_height, twin_weight, goal_weight_kg, days_per_week, activity_df)
+        # Calculate using the USER's actual body (matches app.py)
+        sex_str = "M" if sex == "Male" else "F"
+        calc_cals = estimate_calories(age, sex_str, height_cm, weight_kg, goal_weight_kg, days_per_week, activity_df)
         
         # Standard Macro Splits based on goal
         if goal == "Weight Loss":
