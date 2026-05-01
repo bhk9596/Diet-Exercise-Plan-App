@@ -15,6 +15,7 @@ from ui_sections import (
     render_welcome_page,
 )
 from diet_twin_finder import DietTwinFinder
+from lifestyle_recommendation_engine import generate_lifestyle_recommendations
 from meal_generator import MealGenerator
 
 
@@ -329,63 +330,6 @@ def predict_lifestyle_fit(
     }
 
 
-def lifestyle_fit_recommendations(lifestyle: dict, fit_result: dict, calorie_target=None):
-    recommendations = []
-    daily_calorie_text = f" Keep the full day near {calorie_target} calories." if calorie_target else ""
-    if lifestyle["night_shift"]:
-        recommendations.append(
-            "Night shift schedule: eat your largest meal within 1-2 hours after waking, pack one planned high-protein snack for the middle of your shift, and make the final meal lighter so it is easier to sleep after work."
-        )
-    if lifestyle["sugar_craving"]:
-        recommendations.append(
-            "Sweet/snack cravings: pre-plan one controlled sweet option per day, such as Greek yogurt with fruit, a protein bar, or oatmeal with cinnamon. Eat it after a protein-rich meal instead of grazing between meals."
-        )
-    if lifestyle.get("low_stress"):
-        recommendations.append(
-            "Low-stress routine: use the extra bandwidth to plan ahead. Prep one protein option and one vegetable or fruit option before the week starts so the plan stays easy when the week gets busier."
-        )
-    elif lifestyle.get("medium_stress"):
-        recommendations.append(
-            "Moderate-stress routine: keep the plan simple and repeatable. Choose two default meals and one backup snack so normal busy days do not turn into last-minute food decisions."
-        )
-    elif lifestyle["high_stress"]:
-        recommendations.append(
-            "High-stress days: use a simple backup menu instead of improvising. Pick two repeatable meals, such as chicken/rice/vegetables or eggs/toast/fruit, and keep them ready for days when decision-making is low."
-        )
-    if lifestyle["short_sessions"]:
-        recommendations.append(
-            "Short workout sessions: use a 15-20 minute circuit with 3 rounds of 4 movements: one lower-body move, one push, one pull, and one core move. Rest 30-45 seconds between movements so the session stays short."
-        )
-    if lifestyle["home_workout"]:
-        recommendations.append(
-            "Home workout setup: keep the plan limited to bodyweight, dumbbells, or resistance bands. Put equipment in one visible spot and start with a 3-minute warmup so setup time does not become the reason to skip."
-        )
-    if lifestyle["low_sleep"]:
-        recommendations.append(
-            "Poor sleep: if you slept badly, switch that day's workout to an easy walk, mobility, or one light set of each planned exercise. Keep the habit, but avoid max-effort lifting or high-intensity intervals."
-        )
-    if lifestyle["injury_care"] or lifestyle["medical_condition"]:
-        recommendations.append(
-            "Injury or medical constraint: avoid exercises that trigger pain, keep intensity moderate, and choose controlled movements over jumping or heavy loading. For medical conditions, confirm major diet or training changes with a qualified clinician."
-        )
-    if not recommendations:
-        recommendations.append(
-            f"Low-friction routine: focus on three basics each day: hit the calorie target, include protein at every main meal, and complete the scheduled workout days.{daily_calorie_text}"
-        )
-
-    if fit_result["score"] < 62:
-        recommendations.append(
-            "Lower predicted adherence: for week 1, do not change everything at once. Choose one meal rule, such as protein at breakfast, and one exercise rule, such as completing the first 10 minutes of each workout."
-        )
-    else:
-        recommendations.append(
-            "Weekly execution target: review the plan every Sunday, choose the meals you will repeat, and schedule workouts on your calendar before the week starts."
-        )
-    if fit_result.get("twin_adherence_score") is not None:
-        recommendations.append(
-            f"Diet twin signal: your closest matched profile averaged {fit_result['twin_adherence_score']:.0f}% adherence, so the lifestyle fit score is partially anchored to that real matched outcome."
-        )
-    return recommendations[:6]
 
 
 # NOTE: retrieve_diet_twin() removed — replaced by DietTwinFinder in diet_twin_finder.py
@@ -733,10 +677,6 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
         twin_adherence_score=twin_adherence_score,
         twin_similarity=similarity,
     )
-    lifestyle_recommendations = lifestyle_fit_recommendations(lifestyle, lifestyle_fit, calorie_target)
-
-
-
     # Determine AMDR Hinge Loss Ranges based on Diet Preference
     diet_pref = profile.get("diet_preference", "No preference")
     
@@ -800,6 +740,15 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
     }).reset_index(drop=True)
     meals.insert(0, "meal_type", meal_labels)
 
+    lifestyle_recommendations = generate_lifestyle_recommendations(
+        profile=profile,
+        lifestyle=lifestyle,
+        fit_result=lifestyle_fit,
+        twin=twin,
+        meals=meals,
+        workouts=workouts,
+        calorie_target=calorie_target,
+    )
 
     bmi = weight_kg / ((height_cm / 100) ** 2)
     goal_progress = max(0.0, min(1.0, 1.0 - abs(goal_weight_kg - weight_kg) / max(weight_kg, 1)))
