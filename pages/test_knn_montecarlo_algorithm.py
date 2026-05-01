@@ -199,39 +199,35 @@ for i, (idx, dist) in enumerate(zip(indices, distances)):
         sex_str = "M" if sex == "Male" else "F"
         calc_cals = estimate_calories(age, sex_str, height_cm, weight_kg, goal_weight_kg, days_per_week, activity_df)
         
-        # Standard Macro Splits based on goal
-        if goal == "Weight Loss":
-            # High Protein: 40% Pro, 30% Carbs, 30% Fat
-            base_pro, base_carbs, base_fat = 0.40, 0.30, 0.30
-        elif goal == "Muscle Gain":
-            # High Carbs: 30% Pro, 50% Carbs, 20% Fat
-            base_pro, base_carbs, base_fat = 0.30, 0.50, 0.20
-        else:
-            # Balanced: 40% Pro, 35% Carbs, 25% Fat (User requested 40/35/25)
-            base_pro, base_carbs, base_fat = 0.40, 0.35, 0.25
+        # Determine AMDR Hinge Loss Ranges based on Diet Pattern Selection
+        # Base AMDR Ranges
+        pro_pct = [0.20, 0.35]
+        carb_pct = [0.40, 0.55]
+        fat_pct = [0.25, 0.35]
 
-        # Override/shift based on explicit diet pattern (Low Carb / High Protein)
         if diet_pattern_sel == "💪 Higher Protein":
-            # Shift 10% from carbs to protein
-            base_pro += 0.10
-            base_carbs -= 0.10
+            pro_pct = [0.36, 0.50]
+            carb_pct = [0.30, 0.44]
+            fat_pct = [0.20, 0.30]
+        # In the test dashboard, "Low Carb" isn't a direct radio option, it falls under specific UI tests.
+        # But for mathematical parity, we calculate the absolute grams:
+        
+        calc_pro_min, calc_pro_max = round(calc_cals * pro_pct[0] / 4), round(calc_cals * pro_pct[1] / 4)
+        calc_carbs_min, calc_carbs_max = round(calc_cals * carb_pct[0] / 4), round(calc_cals * carb_pct[1] / 4)
+        calc_fat_min, calc_fat_max = round(calc_cals * fat_pct[0] / 9), round(calc_cals * fat_pct[1] / 9)
 
-        calc_pro = (calc_cals * base_pro) / 4
-        calc_carbs = (calc_cals * base_carbs) / 4
-        calc_fat = (calc_cals * base_fat) / 9
-
-        st.markdown("#### Scientifically Calculated Macro Targets")
+        st.markdown("#### Scientifically Calculated AMDR Macro Ranges")
         m_col1, m_col2, m_col3, m_col4 = st.columns(4)
         m_col1.metric("Calories", f"{calc_cals} kcal")
-        m_col2.metric("Protein", f"{calc_pro:.0f} g")
-        m_col3.metric("Carbs", f"{calc_carbs:.0f} g")
-        m_col4.metric("Fat", f"{calc_fat:.0f} g")
+        m_col2.metric("Protein Range", f"{calc_pro_min}-{calc_pro_max} g")
+        m_col3.metric("Carbs Range", f"{calc_carbs_min}-{calc_carbs_max} g")
+        m_col4.metric("Fat Range", f"{calc_fat_min}-{calc_fat_max} g")
         
-        # Save to session state for the sliders below
+        # Save to session state for the sliders below (use midpoint for default slider position)
         st.session_state["calc_cals"] = calc_cals
-        st.session_state["calc_pro"] = int(calc_pro)
-        st.session_state["calc_carbs"] = int(calc_carbs)
-        st.session_state["calc_fat"] = int(calc_fat)
+        st.session_state["calc_pro"] = int((calc_pro_min + calc_pro_max) / 2)
+        st.session_state["calc_carbs"] = int((calc_carbs_min + calc_carbs_max) / 2)
+        st.session_state["calc_fat"] = int((calc_fat_min + calc_fat_max) / 2)
         
     except Exception as e:
         st.warning(f"Could not calculate macros: {e}")
