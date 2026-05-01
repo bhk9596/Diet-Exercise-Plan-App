@@ -13,16 +13,16 @@ class MealGenerator:
         # Drop rows with missing crucial macro data to avoid math errors during simulation
         self.food_df = self.food_df.dropna(subset=['Calories', 'Protein', 'Carbs', 'Fat'])
         
-    def generate_meal_plan(self, target_cals, target_protein, target_carbs, target_fat, num_meals=7, iterations=10000):
+    def generate_meal_plan(self, target_cals, pro_range, carb_range, fat_range, num_meals=7, iterations=10000):
         """
         Use a Monte Carlo random search approach to find a combination of meals that 
-        closely match the target macronutrients and are distributed properly across the day.
+        closely match the target macronutrients using AMDR Hinge Loss Optimization.
         
         Args:
             target_cals (float): Target daily Calories (Calculated as Pro*4 + Carb*4 + Fat*9)
-            target_protein (float): Target daily Protein (g)
-            target_carbs (float): Target daily Carbs (g)
-            target_fat (float): Target daily Fat (g)
+            pro_range (tuple): (min_protein, max_protein) in grams
+            carb_range (tuple): (min_carbs, max_carbs) in grams
+            fat_range (tuple): (min_fat, max_fat) in grams
             num_meals (int): Number of recipes to pick (default 7: Breakfast x2, Lunch x3, Dinner x2)
             iterations (int): Number of random combinations to test
             
@@ -52,6 +52,15 @@ class MealGenerator:
         
         num_recipes = len(self.food_df)
         
+        min_pro, max_pro = pro_range
+        min_carbs, max_carbs = carb_range
+        min_fat, max_fat = fat_range
+        
+        # Calculate a midpoint target for meal balance distribution logic
+        target_protein = (min_pro + max_pro) / 2.0
+        target_carbs = (min_carbs + max_carbs) / 2.0
+        target_fat = (min_fat + max_fat) / 2.0
+        
         # Calculate expected distribution for each meal based on the 30/40/30 distribution
         expected_breakfast_cals = target_cals * 0.30
         expected_lunch_cals = target_cals * 0.40
@@ -75,11 +84,17 @@ class MealGenerator:
             sum_carbs = np.sum(carb_array[idx])
             sum_fat = np.sum(fat_array[idx])
             
-            # --- Overall Macro Errors ---
+            # --- Overall Macro Errors (Hinge Loss) ---
             err_cals = abs(target_cals - sum_cals) / max(target_cals, 1)
-            err_pro = abs(target_protein - sum_pro) / max(target_protein, 1)
-            err_carbs = abs(target_carbs - sum_carbs) / max(target_carbs, 1)
-            err_fat = abs(target_fat - sum_fat) / max(target_fat, 1)
+            
+            def hinge_loss(val, min_val, max_val):
+                if val < min_val: return (min_val - val) / max(min_val, 1)
+                if val > max_val: return (val - max_val) / max(max_val, 1)
+                return 0.0
+                
+            err_pro = hinge_loss(sum_pro, min_pro, max_pro)
+            err_carbs = hinge_loss(sum_carbs, min_carbs, max_carbs)
+            err_fat = hinge_loss(sum_fat, min_fat, max_fat)
             
             # --- Meal-by-Meal Balance Errors ---
             if num_meals == 7:

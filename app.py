@@ -737,24 +737,27 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
 
 
 
-    # Determine base macro split based on goal
-    if goal_direction < 0:   # Weight Loss: high protein
-        base_pro, base_carbs, base_fat = 0.40, 0.30, 0.30
-    elif goal_direction > 0: # Muscle Gain: high carbs
-        base_pro, base_carbs, base_fat = 0.30, 0.50, 0.20
-    else:                    # Maintenance: balanced (User requested 40/35/25)
-        base_pro, base_carbs, base_fat = 0.40, 0.35, 0.25
+    # Determine AMDR Hinge Loss Ranges based on Diet Preference
+    diet_pref = profile.get("diet_preference", "No preference")
+    
+    # Base AMDR Ranges
+    pro_pct = [0.20, 0.35]
+    carb_pct = [0.40, 0.55]
+    fat_pct = [0.25, 0.35]
 
-    # Override/shift based on explicit diet pattern (Low Carb / High Protein)
-    if diet_pattern_enc_user == 0.0: # "higher_protein" from UI preference
-        # Shift 10% from carbs to protein
-        base_pro += 0.10
-        base_carbs -= 0.10
+    if diet_pref == "High protein" or diet_pattern_enc_user == 0.0:
+        pro_pct = [0.36, 0.50]
+        carb_pct = [0.30, 0.44]
+        fat_pct = [0.20, 0.30]
+    elif diet_pref in ["Low carb", "Keto"]:
+        pro_pct = [0.25, 0.40]
+        carb_pct = [0.15, 0.20] # Strict 15-20% User Constraint
+        fat_pct = [0.45, 0.60]
 
-    # Calculate absolute grams
-    target_pro   = round(calorie_target * base_pro / 4)
-    target_carbs = round(calorie_target * base_carbs / 4)
-    target_fat   = round(calorie_target * base_fat / 9)
+    # Convert percentages to absolute gram ranges
+    pro_range   = (round(calorie_target * pro_pct[0] / 4), round(calorie_target * pro_pct[1] / 4))
+    carb_range  = (round(calorie_target * carb_pct[0] / 4), round(calorie_target * carb_pct[1] / 4))
+    fat_range   = (round(calorie_target * fat_pct[0] / 9), round(calorie_target * fat_pct[1] / 9))
 
     # --- Workout recommendations (uses main's updated signature) ---
     workouts = pick_workouts(
@@ -780,7 +783,7 @@ def render_plan(profile, body_df, diet_df, gym_df, food_df, activity_df):
 
     generator = MealGenerator(meal_food_df)
     best_plan_df, _best_error, _actual_totals, _error_history = generator.generate_meal_plan(
-        calorie_target, target_pro, target_carbs, target_fat,
+        calorie_target, pro_range, carb_range, fat_range,
         num_meals=7, iterations=10000,
     )
 

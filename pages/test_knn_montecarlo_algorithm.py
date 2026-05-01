@@ -264,15 +264,20 @@ default_pro = st.session_state.get("calc_pro", 120)
 default_carbs = st.session_state.get("calc_carbs", 200)
 default_fat = st.session_state.get("calc_fat", 70)
 
-# Macro Input Sliders
+# Macro Range Input Sliders (AMDR Hinge Loss Optimization)
 mcol1, mcol2, mcol3 = st.columns(3)
-target_pro = mcol1.slider("Target Protein (g)", 30, 400, default_pro, step=5)
-target_carbs = mcol2.slider("Target Carbs (g)", 50, 600, default_carbs, step=10)
-target_fat = mcol3.slider("Target Fat (g)", 20, 300, default_fat, step=5)
 
-# Mathematically valid calorie calculation (Pro*4 + Carb*4 + Fat*9)
-calculated_cals = (target_pro * 4) + (target_carbs * 4) + (target_fat * 9)
-st.info(f"💡 **Calculated Target Calories:** {calculated_cals} kcal (Protein × 4 + Carbs × 4 + Fat × 9)")
+# Default to a +/- 15g flexible range around the scientific recommendation
+pro_range = mcol1.slider("Protein Range (g)", 30, 400, (max(30, default_pro - 15), default_pro + 15), step=5)
+carb_range = mcol2.slider("Carbs Range (g)", 50, 600, (max(50, default_carbs - 20), default_carbs + 20), step=10)
+fat_range = mcol3.slider("Fat Range (g)", 20, 300, (max(20, default_fat - 10), default_fat + 10), step=5)
+
+# Mathematically valid calorie calculation using the midpoints of the selected ranges
+mid_pro = (pro_range[0] + pro_range[1]) / 2.0
+mid_carbs = (carb_range[0] + carb_range[1]) / 2.0
+mid_fat = (fat_range[0] + fat_range[1]) / 2.0
+calculated_cals = (mid_pro * 4) + (mid_carbs * 4) + (mid_fat * 9)
+st.info(f"💡 **Estimated Target Calories:** {calculated_cals:.0f} kcal (Calculated from range midpoints)")
 
 if st.button("Generate Meal Plan"):
     with st.spinner("Running deep Monte Carlo simulation (10000 iterations)..."):
@@ -285,7 +290,7 @@ if st.button("Generate Meal Plan"):
 
         generator = MealGenerator(meal_food_df)
         best_plan_df, best_error, actual_totals, error_history = generator.generate_meal_plan(
-            calculated_cals, target_pro, target_carbs, target_fat, num_meals=7, iterations=10000
+            calculated_cals, pro_range, carb_range, fat_range, num_meals=7, iterations=10000
         )
         
         st.success(f"Meal Plan Generated! Total Error Score: {best_error:.4f}")
