@@ -57,18 +57,19 @@ This overwrites:
 ## Repo structure
 ```text
 Diet-Exercise-Plan-App/
-├── app.py                     # Main Streamlit application and ML orchestration
-├── diet_twin_finder.py        # Custom NumPy-based k-NN retrieval system
-├── meal_generator.py          # Monte Carlo optimizer for meal planning
-├── ui_sections.py             # Streamlit UI components and layout
+├── app.py                                  # Main Streamlit application and ML orchestration
+├── diet_twin_finder.py                     # Custom NumPy-based k-NN retrieval system
+├── lifestyle_recommendation_engine.py      # Rule-based lifestyle recommendation engine
+├── meal_generator.py                       # Monte Carlo optimizer for meal planning
+├── ui_sections.py                          # Streamlit UI components and layout
 ├── pages/
-│   └── test_knn_montecarlo_algorithm.py  # Testing dashboard for validating algorithms
-├── data/                      # Processed datasets (NHANES, diet, workouts)
-├── scripts/                   # Data preprocessing and dataset construction scripts
-├── img/                       # Media files (avatars, videos)
-├── requirements.txt           # Python dependencies
-├── .gitignore                 # Git ignore rules
-└── README.md                  # Design document + setup and run instructions
+│   └── test_knn_montecarlo_algorithm.py    # Testing dashboard for validating algorithms
+├── data/                                   # Processed datasets (NHANES, diet, workouts)
+├── scripts/                                # Data preprocessing and dataset construction scripts
+├── img/                                    # Media files (avatars, videos)
+├── requirements.txt                        # Python dependencies
+├── .gitignore                              # Git ignore rules
+└── README.md                               # Design document + setup and run instructions
 ```
 
 ## Division of Labor
