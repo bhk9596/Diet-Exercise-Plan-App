@@ -223,11 +223,10 @@ for i, (idx, dist) in enumerate(zip(indices, distances)):
         m_col3.metric("Carbs Range", f"{calc_carbs_min}-{calc_carbs_max} g")
         m_col4.metric("Fat Range", f"{calc_fat_min}-{calc_fat_max} g")
         
-        # Save to session state for the sliders below (use midpoint for default slider position)
-        st.session_state["calc_cals"] = calc_cals
-        st.session_state["calc_pro"] = int((calc_pro_min + calc_pro_max) / 2)
-        st.session_state["calc_carbs"] = int((calc_carbs_min + calc_carbs_max) / 2)
-        st.session_state["calc_fat"] = int((calc_fat_min + calc_fat_max) / 2)
+        # Save the exact AMDR boundaries to session state for the sliders
+        st.session_state["calc_pro_range"] = (int(calc_pro_min), int(calc_pro_max))
+        st.session_state["calc_carbs_range"] = (int(calc_carbs_min), int(calc_carbs_max))
+        st.session_state["calc_fat_range"] = (int(calc_fat_min), int(calc_fat_max))
         
     except Exception as e:
         st.warning(f"Could not calculate macros: {e}")
@@ -255,18 +254,17 @@ st.markdown("---")
 st.header("Meal Plan Generator (Monte Carlo Search)")
 st.markdown("Input target macros. **Total Calories are automatically calculated** to ensure mathematical consistency.")
 
-# Use calculated defaults if available
-default_pro = st.session_state.get("calc_pro", 120)
-default_carbs = st.session_state.get("calc_carbs", 200)
-default_fat = st.session_state.get("calc_fat", 70)
+# Use calculated AMDR ranges if available
+default_pro_range = st.session_state.get("calc_pro_range", (110, 160))
+default_carbs_range = st.session_state.get("calc_carbs_range", (200, 250))
+default_fat_range = st.session_state.get("calc_fat_range", (60, 90))
 
 # Macro Range Input Sliders (AMDR Hinge Loss Optimization)
 mcol1, mcol2, mcol3 = st.columns(3)
 
-# Default to a +/- 15g flexible range around the scientific recommendation
-pro_range = mcol1.slider("Protein Range (g)", 30, 400, (max(30, default_pro - 15), default_pro + 15), step=5)
-carb_range = mcol2.slider("Carbs Range (g)", 50, 600, (max(50, default_carbs - 20), default_carbs + 20), step=10)
-fat_range = mcol3.slider("Fat Range (g)", 20, 300, (max(20, default_fat - 10), default_fat + 10), step=5)
+pro_range = mcol1.slider("Protein Range (g)", 30, 400, default_pro_range, step=5)
+carb_range = mcol2.slider("Carbs Range (g)", 50, 600, default_carbs_range, step=10)
+fat_range = mcol3.slider("Fat Range (g)", 20, 300, default_fat_range, step=5)
 
 # Mathematically valid calorie calculation using the midpoints of the selected ranges
 mid_pro = (pro_range[0] + pro_range[1]) / 2.0
