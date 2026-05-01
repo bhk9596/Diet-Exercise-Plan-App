@@ -88,8 +88,8 @@ class MealGenerator:
             err_cals = abs(target_cals - sum_cals) / max(target_cals, 1)
             
             def hinge_loss(val, min_val, max_val):
-                if val < min_val: return (min_val - val) / max(min_val, 1)
-                if val > max_val: return (val - max_val) / max(max_val, 1)
+                if val < min_val: return ((min_val - val) / max(min_val, 1)) + 5.0
+                if val > max_val: return ((val - max_val) / max(max_val, 1)) + 5.0
                 return 0.0
                 
             err_pro = hinge_loss(sum_pro, min_pro, max_pro)
