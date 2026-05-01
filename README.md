@@ -62,7 +62,7 @@ Diet-Exercise-Plan-App/
 ├── meal_generator.py          # Monte Carlo optimizer for meal planning
 ├── ui_sections.py             # Streamlit UI components and layout
 ├── pages/
-│   └── test_algorithm.py      # Testing dashboard for validating algorithms
+│   └── test_knn_montecarlo_algorithm.py  # Testing dashboard for validating algorithms
 ├── data/                      # Processed datasets (NHANES, diet, workouts)
 ├── scripts/                   # Data preprocessing and dataset construction scripts
 ├── img/                       # Media files (avatars, videos)
@@ -75,14 +75,14 @@ Diet-Exercise-Plan-App/
 
 *   **Boren**: Streamlit UI/UX architecture and overall frontend design (`ui_sections.py`).
 *   **Jiahao**: Engineered the 3 Input modules, parsing physical stats and lifestyle questionnaire data into machine-readable structures.
-*   **Gaohong**: Implemented the Diet output module. Built the `DietTwinFinder` (k-NN retrieval using pure NumPy and Cosine similarity) and the `MealGenerator` (Monte Carlo optimization algorithm).
+*   **Gaohong**: Implemented the Diet output module. Built the `DietTwinFinder` (k-NN retrieval using pure NumPy and Cosine similarity) and the `MealGenerator` (Monte Carlo optimizer using **AMDR-aligned Hinge Loss**).
 *   **Jason**: Implemented the Exercise output module. Developed the Safe Workout Picker using rule-based injury filtering.
 *   **Ben**: Implemented the Lifestyle Fit output module. Developed the RandomForest models for body-type classification and lifestyle pattern prediction.
 
 ## Methods implemented
 
 - **Diet Twin Retrieval (From Scratch )**: k-NN using purely NumPy. Computes Standardisation, applies behavioural weighting, and uses Cosine Similarity to find the most behaviourally similar user.
-- **Meal Generator**: Monte Carlo optimization algorithm using pure NumPy/Pandas. Runs 10,000 iterations to minimize macro target errors to find the optimal 7-dish combination.
+- **Meal Generator (Feasible Region Optimizer)**: Monte Carlo optimization algorithm using pure NumPy/Pandas. Implements **Hinge Loss logic** to find meal plans within clinical **AMDR (Acceptable Macronutrient Distribution Ranges)**. Includes strict boundary penalties to enforce diet preferences (e.g., Low Carb, High Protein) with mathematical certainty.
 - **Classification & Regression**: RandomForest model predicting body-type and lifestyle fit scores from user vectors.
 - **Safe Workout Picker**: Strict injury rule-based filtering to select home/gym workouts avoiding compromised joints.
 
